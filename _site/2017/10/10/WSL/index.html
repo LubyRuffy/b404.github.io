@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>WSL</title>
+    <meta name="description" content="WSL概念最初以Astoria项目和Drawbridge项目开始，旨在在Windows系统上运行本机Android应用程序">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/10/10/WSL/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>WSL</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-10-10
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#hack" title="Category: hack" rel="category">hack</a>&nbsp;
+    
+        <a href="/category/#sec" title="Category: sec" rel="category">sec</a>&nbsp;
+    
+        <a href="/category/#skills" title="Category: skills" rel="category">skills</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a-->
+        <a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a>&nbsp;
+    
+        <!--a href="/tag/#hack" title="Tag: hack" rel="tag">hack</a-->
+        <a href="/tag/#hack" title="Tag: hack" rel="tag">hack</a>&nbsp;
+    
+        <!--a href="/tag/#skills" title="Tag: skills" rel="tag">skills</a-->
+        <a href="/tag/#skills" title="Tag: skills" rel="tag">skills</a>&nbsp;
+    
+        <!--a href="/tag/#windows" title="Tag: windows" rel="tag">windows</a-->
+        <a href="/tag/#windows" title="Tag: windows" rel="tag">windows</a>&nbsp;
+    
+        <!--a href="/tag/#wsl" title="Tag: wsl" rel="tag">wsl</a-->
+        <a href="/tag/#wsl" title="Tag: wsl" rel="tag">wsl</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <ul id="markdown-toc">
+  <li><a href="#wsl" id="markdown-toc-wsl">WSL</a>    <ul>
+      <li><a href="#windows体系架构" id="markdown-toc-windows体系架构">Windows体系架构</a></li>
+    </ul>
+  </li>
+  <li><a href="#安装" id="markdown-toc-安装">安装</a></li>
+  <li><a href="#bashware" id="markdown-toc-bashware">BASHWARE</a>    <ul>
+      <li><a href="#加载wsl组件" id="markdown-toc-加载wsl组件">加载WSL组件</a></li>
+      <li><a href="#开启开发人员模式" id="markdown-toc-开启开发人员模式">开启开发人员模式</a></li>
+      <li><a href="#安装linux" id="markdown-toc-安装linux">安装Linux</a></li>
+      <li><a href="#wine" id="markdown-toc-wine">Wine</a></li>
+    </ul>
+  </li>
+  <li><a href="#攻击wsl" id="markdown-toc-攻击wsl">攻击WSL</a></li>
+  <li><a href="#参考" id="markdown-toc-参考">参考</a></li>
+</ul>
+
+<p>WSL概念最初以<a href="https://en.wikipedia.org/wiki/Windows_10_Mobile#Development">Astoria项目</a>和<a href="https://www.microsoft.com/en-us/research/project/drawbridge/">Drawbridge项目</a>开始，旨在在Windows系统上运行本机Android应用程序</p>
+
+<!--more-->
+
+<h2 id="wsl">WSL</h2>
+
+<h3 id="windows体系架构">Windows体系架构</h3>
+
+<p>在设计之初，微软允许u类似于Win32这种子系统运行于Windows NT内核之上，它可以为上层应用提供编程接口，同时避免应用去实现内核里的一些调用细节。NT内核的设计在最开始就可以支持POSIX，OS/2和Win32子系统。</p>
+
+<p>初期的子系统都是用户态模块的实现，封装了NT系统的系统调用为应用程序提供编程接口，所有的应用程序都是PE/COFF（一些子系统封装NT系统调用的库和服务）可执行，当一个用户态的程序启动的时候，启动器就会基于可执行的头部去引用适当的子系统来满足应用程序的依赖。</p>
+
+<p><img src="/img/hack/WSL/1506668702012.png" alt="Windows2000/xp体系的基本结构" /></p>
+
+<p><img src="/img/hack/WSL/1506668718497.png" alt="WindowsNT体系结构" /></p>
+
+<p>后面的版本子系统替换掉POSIX层，由用户态组件提供了Subsystem for Unix-based Application(SUA)，满足：</p>
+
+<ul>
+  <li>进程和信号管理</li>
+  <li>终端管理</li>
+  <li>系统服务请求和进程间通信</li>
+</ul>
+
+<blockquote>
+  <p>SUA的主要目的是为了鼓励应用程序移植到Windows而不会重写，这是通过POSIX用户模式的API来实现，鉴于这些组件是以用户模式构建的，因此对于fork()这样的内核模式系统调用拥有语义和性能奇偶性是很困难的。该模式需要持续的功能移植，程序就需要重新编译，维护负担大</p>
+</blockquote>
+
+<p>后演变为Windows Subsystem for Linux</p>
+
+<p>WSL不是一个Linux 的Bash外壳，它包含了用户模式和内核模式组件，它们共同创建一个完整的兼容性底层，用于运行和Linux类似的行为环境，且无需启动任何虚拟机。</p>
+
+<p>WSL是一些组件的集合，允许原生的ELF64二进制文件在Windows上运行，它包含用户模式和内核模式组件，主要包括：</p>
+
+<ul>
+  <li>处理Linux实例生命周期的用户模式会话管理服务</li>
+  <li>根据Pico提供驱动程序，翻译Linux调用，模拟Linux内核</li>
+  <li>Pico 进程管理原生的用户态Linux（比如/bin/bash)</li>
+</ul>
+
+<blockquote>
+  <p>Pico进程是最小进程的一种，Pico的意思是微小，常常出现在容器技术中，它的特点是有一个驱动程序与其关联，当这个进程内发生系统调用时，内核会把系统调用转给这个驱动，这个驱动被称为Pico Provider，这样的进程被称为Pico进程.小进程是Windows 8.1引入的，代表一个最小化的进程对象，它具有名字、令牌、保护级别等基本属性，但是进程空间是空的，没有PEB，也没有NTDLL，也没有句柄表。EPROCESS结构体中的Minimal为1代表该进程是最小进程。</p>
+
+  <p>微软为了在隔离环境中运行程序，减少开销，在单个进程的用户模式的地址空间中运行目标应用程序和操作系统，引入Pico进程。Pico进程是允许在Windows OS上运行ELF二进制文件的容器。</p>
+</blockquote>
+
+<p><img src="/img/hack/WSL/1506736051117.png" alt="" /></p>
+
+<p>Windows NT系统的三种进程：</p>
+
+<p><img src="/img/hack/WSL/1506671693775.png" alt="NT系统的三种进程" /></p>
+
+<p><strong>当用户以用户模式启动bash.exe时，会同时启动相关服务以及LX会话管理，该服务在用户通过命令提示符输入的bash命令和待执行的相关原生ELF64二进制程序之间承担了中介的角色。此处的Linux二进制程序是Canonical提供的用户模式Ubuntu系统的组成部分，以Pico进程的形式启动并在用户模式下运行。（未修改的Linux二进制文件放于Pico进程中）Linux系统调用就导入到Windows内核中，<code class="highlighter-rouge">lxss.sys</code>和<code class="highlighter-rouge">lxcore.sys</code>驱动程序负责模拟Linux内核并拦截系统调用，大多情况下，将Linux系统调用映射为NT API</strong>。例如前文提到的fork()没有对等调用</p>
+
+<p><img src="/img/hack/WSL/1506671120362.png" alt="WSl组件" /></p>
+
+<h2 id="安装">安装</h2>
+
+<p>每个子系统通常都有一个子系统服务进程和一个内核态驱动，对于Windows子系统，分别是著名的CSRSS.exe和Win32K.sys。对于WSL，它的组成主要有以下几个部分：
+以系统服务形式运行的子系统服务进程LxssManager。</p>
+
+<p>在服务管理器里，可以看到这个服务。服务的描述信息很详实，不妨引用一下：LXSS Manager服务支持运行本机ELF二进制文件。该服务提供在Windows上运行ELF二进制文件所需的基础结构。如果停止或禁用该服务，这些二进制文件将不再运行。LxssManager的核心代码是一个DLL，位于system32lxss子目录下。它使用svchost.exe作为宿主运行。</p>
+
+<p><img src="/img/hack/WSL/1506677295390.png" alt="WSL的子系统服务DLL" /></p>
+
+<p>运行在内核空间的Linux子系统驱动，有两个，一个文件名叫lxss.sys，另一个叫LxCore.sys，都位于system32drivers目录中
+安装Windows10，在本地直接运行bash.exe安装，速度非常慢。</p>
+
+<p><img src="/img/hack/WSL/1506677465260.png" alt="" /></p>
+
+<p>先下载好<a href="https://pan.baidu.com/s/1o7BYHEq">trusty-server-cloudimg-amd64-root.tar.gz</a>：https://pan.baidu.com/s/1o7BYHEq 密码: ha3w</p>
+
+<p>然后使用Fiddler代理。</p>
+
+<p>在tool -&gt; options -&gt; https 中开启HTTPS代理：</p>
+
+<p><img src="/img/hack/WSL/1505723118885.png" alt="" /></p>
+
+<p>运行bash.exe，出现了：</p>
+
+<p><img src="/img/hack/WSL/1505723308961.png" alt="" /></p>
+
+<p>然后在Fiddler右边窗口，点击AutoResponder 勾选下面的 Enable rules 、 Unmatched requests passthrough、Enable Latency  。 点击Add Rule 选择刚才下载的镜像文件<code class="highlighter-rouge">trusty-server-cloudimg-amd64-root.tar.gz</code>,构造规则成功之后，再次运行bash.exe，直接读取下载好的Linux子系统：</p>
+
+<p><img src="/img/hack/WSL/安装到100.png" alt="" /></p>
+
+<p><img src="/img/hack/WSL/设置基本信息.png" alt="" />
+<img src="/img/hack/WSL/设置语言.png" alt="" /></p>
+
+<p>WSL 安装成功。</p>
+
+<p><img src="/img/hack/WSL/1506677246689.png" alt="" /></p>
+
+<h2 id="bashware">BASHWARE</h2>
+
+<p>通过Windows10新的功能Windows Subsystem for Linux(WSL)，规避杀软检测执行的恶意软件称为Bashware。很多AV并未对WSL执行恶意软件进行防护，所以该方法目前说是很可靠的攻击手法。</p>
+
+<p>Bashware技术利用Windows Subsystem for Linux（WSL）的底层机制，WSL允许本机Linux ELF二进制文件在Windows上运行。该技术的关键在于Pico进程，该进程没有Windows一般进程的特性，并且具有相同功能，会造成很大的危害：</p>
+
+<p><img src="/img/hack/WSL/1506672708285.png" alt="Bashware侵害的四个步骤" /></p>
+
+<p>Bashware加载恶意程序的四个步骤：</p>
+
+<h3 id="加载wsl组件">加载WSL组件</h3>
+
+<p>Bashware入侵，首先得检查WSL特性开启与否，这个可以通过检查Pico驱动程序的状态来实现（即检查<code class="highlighter-rouge">lxcore.sys</code>和<code class="highlighter-rouge">lxss.sys</code>在windows磁盘存在路径）。在该功能被禁用的情况下，Bashware可使用DISM程序加载驱动程序，该方法简单，且通过后台静默运行单个命令行，用户不可见。</p>
+
+<p>当Bashware加载WSL组件成功，就可以进入下一步</p>
+
+<h3 id="开启开发人员模式">开启开发人员模式</h3>
+
+<p>开启WSL需要手动设置开发者模式，但是手动设置也就是打开注册表项：</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">HKLM</span> <span class="err">\</span> <span class="nt">SOFTWARE</span> <span class="err">\</span> <span class="nt">Microsoft</span> <span class="err">\</span> <span class="nt">Windows</span> <span class="err">\</span> <span class="nt">CurrentVersion</span> <span class="err">\</span> <span class="nt">AppModelUnlock</span> <span class="err">\</span> <span class="nt">AllowAllTrustedApps</span>
+</code></pre></div></div>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">HKLM</span> <span class="err">\</span> <span class="nt">SOFTWARE</span> <span class="err">\</span> <span class="nt">Microsoft</span> <span class="err">\</span> <span class="nt">Windows</span> <span class="err">\</span> <span class="nt">CurrentVersion</span> <span class="err">\</span> <span class="nt">AppModelUnlock</span> <span class="err">\</span> <span class="nt">AllowDevelopmentWithoutDevLicense</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/WSL/1506675427545.png" alt="" /></p>
+
+<h3 id="安装linux">安装Linux</h3>
+
+<p>这时候，Bashware开启WSL，并进入了开发人员模式，但这时候Linux不包含文件系统。此时需要从微软服务器下载并解压Linux文件系统。</p>
+
+<p><code class="highlighter-rouge">Lxrun.exe</code>是管理和维护WSL的工具程序，添加<code class="highlighter-rouge">/install</code>参数可以安装，然后默默运行安装</p>
+
+<p><img src="/img/hack/WSL/1506677631498.png" alt="" /></p>
+
+<h3 id="wine">Wine</h3>
+
+<p>攻击的方向是从Linux实例运行恶意软件攻击Windows系统，可以使用Winehq进行。Wine不是一个模拟器，而是将Windows API调用转换成POSIX（便携式操作系统接口）。Bashware使用Winehq，并预先将Wine安装到WSL中。</p>
+
+<p>接下来，EXE格式需要由Wine转换，将其NT系统调用转化为POSIX系统调用，之后Pico提供的进程(lxcore.sys)会将这些POSIX系统调用回调到NT系统调用，将lxcore转换为这个过程的实际调用者。这样Windows OS就可以通过Linux执行任何恶意的payload。</p>
+
+<h2 id="攻击wsl">攻击WSL</h2>
+
+<p>在WSL安装过程中，<code class="highlighter-rouge">LxRun.exe</code>负责从微软的服务器下载和解压缩Linux文件系统，在执行下载之后，文件将被保存在<code class="highlighter-rouge">%APPDAT</code>目录下的隐藏文件，然后继续<code class="highlighter-rouge">LxRun.exe</code> 将其解压到同一目录，任务完成之后，隐藏的文件夹包含完整的Linux系统供WSL使用。</p>
+
+<p><img src="/img/hack/WSL/1506678700810.png" alt="" /></p>
+
+<p>WSL运行后，NTFS分区自动安装在Linux环境中的<code class="highlighter-rouge">/mnt</code>中，并具有从WSL内读写和执行NTFS的能力</p>
+
+<p><img src="/img/hack/WSL/1506760057217.png" alt="" /></p>
+
+<p>若是利用管理员启动Bash.exe，那么Bash.exe和其运行的子程序将按照管理员权限执行，就可以绕过UAC，通过Linux执行Windows恶意程序</p>
+
+<h2 id="参考">参考</h2>
+
+<ol>
+  <li>Windows Subsystem for Linux Overview： https://blogs.msdn.microsoft.com/wsl/2016/04/22/windows-subsystem-for-linux-overview/</li>
+  <li>在调试器里看Windows 10的Linux子系统 ：http://www.sohu.com/a/145435631_115128</li>
+  <li>Pico Process：http://research.microsoft.com/en-us/projects/drawbridge/#Picoprocess</li>
+  <li>Windows原生运行Linux的技术细节：http://www.infoq.com/cn/news/2016/05/linux-windows</li>
+</ol>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/02/08/Shodan-Manual/">Shodan手册
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/27/hidden-the-network/">阻碍获取真实网络指纹
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/04/command-and-control-images/">command-and-control-images
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/30/exploit-domain/">域渗透的整理
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/27/open-RDP/">开启RDP
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/19/build-domain/">域环境
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/10/08/powershell2/">powershell备忘单2</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/10/10/attack-ssh/">利用msf进行SSH渗透</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/10/10/WSL/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/10/10/WSL/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

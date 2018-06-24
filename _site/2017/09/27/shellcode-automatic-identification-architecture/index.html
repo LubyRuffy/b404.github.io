@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>shellcode自识别32/64位架构</title>
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/09/27/shellcode-automatic-identification-architecture/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>shellcode自识别32/64位架构</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-09-27
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#hack" title="Category: hack" rel="category">hack</a>&nbsp;
+    
+        <a href="/category/#skills" title="Category: skills" rel="category">skills</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a-->
+        <a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a>&nbsp;
+    
+        <!--a href="/tag/#skills" title="Tag: skills" rel="tag">skills</a-->
+        <a href="/tag/#skills" title="Tag: skills" rel="tag">skills</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <ul id="markdown-toc">
+  <li><a href="#推荐方案zero-sum" id="markdown-toc-推荐方案zero-sum">推荐方案(zero sum)</a></li>
+  <li><a href="#kronos-malware" id="markdown-toc-kronos-malware">Kronos malware</a></li>
+  <li><a href="#其他段选择子" id="markdown-toc-其他段选择子">其他段选择子</a></li>
+  <li><a href="#teb" id="markdown-toc-teb">TEB</a></li>
+  <li><a href="#refer" id="markdown-toc-refer">refer</a></li>
+</ul>
+
+<!--more-->
+
+<h2 id="推荐方案zero-sum">推荐方案(zero sum)</h2>
+
+<p>shellcode自识别32/64位架构极其重要，比如Windows的TIB，x86上用FS寻址，x64上
+用GS寻址。下面这5字节汇编指令可以自动识别32/64位架构:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">--------------------------------------------------------------------------</span>
+<span class="nt">_shellcode</span><span class="o">:</span>
+
+    <span class="nt">xor</span> <span class="nt">ecx</span><span class="o">,</span><span class="nt">ecx</span>         <span class="o">;</span> <span class="nt">set</span> <span class="nt">ecx</span> <span class="nt">to</span> <span class="nt">0</span>
+    <span class="nt">db</span> <span class="nt">0x41</span>             <span class="o">;</span> <span class="nt">x86</span> <span class="nt">opcode</span> <span class="nt">for</span><span class="o">:</span> <span class="nt">inc</span> <span class="nt">ecx</span>
+    <span class="nt">loop</span> <span class="nt">x64_code</span>       <span class="o">;</span> <span class="nt">ecx</span> <span class="nt">now</span> <span class="nt">-1</span> <span class="nt">in</span> <span class="nt">x64</span><span class="o">,</span> <span class="nt">we</span> <span class="nt">jmp</span>
+
+<span class="nt">x86_code</span><span class="o">:</span>
+
+    <span class="o">;</span> <span class="nt">use</span> <span class="nt">fs</span> <span class="nt">segment</span>
+
+    <span class="o">;</span> <span class="nt">ret</span>
+
+<span class="nt">x64_code</span><span class="o">:</span>
+
+    <span class="o">;</span> <span class="nt">use</span> <span class="nt">gs</span> <span class="nt">segment</span>
+<span class="nt">--------------------------------------------------------------------------</span>
+</code></pre></div></div>
+
+<p>熟悉x64汇编的人应该知道，[0x40,0x50]经常用作指令前缀，可以利用这点微妙的区
+别自动识别32/64位架构。</p>
+
+<p>假设在x86上运行:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">--------------------------------------------------------------------------</span>
+<span class="nt">xor</span> <span class="nt">ecx</span><span class="o">,</span><span class="nt">ecx</span>         <span class="o">;</span> <span class="nt">31c9</span>      <span class="nt">ecx</span><span class="o">=</span><span class="nt">0</span>
+<span class="nt">inc</span> <span class="nt">ecx</span>             <span class="o">;</span> <span class="nt">41</span>        <span class="nt">ecx</span><span class="o">=</span><span class="nt">1</span>
+<span class="nt">loop</span> <span class="nt">x64_code</span>       <span class="o">;</span> <span class="nt">e201</span>      <span class="nt">ecx</span><span class="o">=</span><span class="nt">0</span> <span class="nt">no</span> <span class="nt">jmp</span>
+<span class="nt">--------------------------------------------------------------------------</span>
+
+</code></pre></div></div>
+
+<p>假设在x64上运行:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">--------------------------------------------------------------------------</span>
+<span class="nt">xor</span> <span class="nt">ecx</span><span class="o">,</span><span class="nt">ecx</span>         <span class="o">;</span> <span class="nt">31c9</span>      <span class="nt">ecx</span><span class="o">=</span><span class="nt">0</span>
+<span class="nt">rex</span><span class="nc">.B</span> <span class="nt">loop</span> <span class="nt">x64_code</span> <span class="o">;</span> <span class="nt">41e201</span>    <span class="nt">ecx</span><span class="o">=</span><span class="nt">-1</span> <span class="nt">jmp</span>
+<span class="nt">--------------------------------------------------------------------------</span>
+
+</code></pre></div></div>
+
+<p>这里用”db 0x41”，而不是直接写成”inc ecx”，因为nasm会采用2字节指令避免这种
+歧义，我们恰恰需要这种歧义。</p>
+
+<p>上面给出的机器码只是演示，e201中的01是假设x86_code处只有一条ret指令，占1个
+字节。</p>
+
+<p>Eternalblue使用了本质上相同的类似方案:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">--------------------------------------------------------------------------</span>
+<span class="nt">31</span> <span class="nt">C0</span>                                   <span class="nt">xor</span>     <span class="nt">eax</span><span class="o">,</span> <span class="nt">eax</span>
+<span class="nt">40</span> <span class="nt">90</span>                                   <span class="nt">xchg</span>    <span class="nt">eax</span><span class="o">,</span> <span class="nt">eax</span>
+<span class="nt">0F</span> <span class="nt">84</span> <span class="nt">B5</span> <span class="nt">05</span> <span class="nt">00</span> <span class="nt">00</span>                       <span class="nt">jz</span>      <span class="nt">x64_main</span>
+<span class="nt">--------------------------------------------------------------------------</span>
+
+</code></pre></div></div>
+
+<p>这是推荐方案，它只与CPU相关，与OS无关，理论上针对Linux也能使用这种技术。后
+面其他方案都是针对Windows的。</p>
+
+<h2 id="kronos-malware">Kronos malware</h2>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">xor</span> <span class="nt">eax</span><span class="o">,</span> <span class="nt">eax</span>
+<span class="nt">mov</span> <span class="nt">ax</span><span class="o">,</span>  <span class="nt">cs</span>
+<span class="nt">shr</span> <span class="nt">eax</span><span class="o">,</span> <span class="nt">5</span>
+</code></pre></div></div>
+
+<p>x86/Win7用户态的CS是0x1B，x64/Win7用户态的CS是0x23或0x33，因此最后的eax为0
+时表示x86，为1时表示x64。</p>
+
+<p>上述代码只适用于用户态，且无法区分SysWOW64。</p>
+
+<h2 id="其他段选择子">其他段选择子</h2>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">--------------------------------------------------------------------------</span>
+<span class="nt">x86</span><span class="o">/</span><span class="nt">Win7</span> <span class="nt">user</span>
+
+    <span class="nt">cs</span><span class="o">=</span><span class="nt">001b</span>  <span class="nt">ss</span><span class="o">=</span><span class="nt">0023</span>  <span class="nt">ds</span><span class="o">=</span><span class="nt">0023</span>  <span class="nt">es</span><span class="o">=</span><span class="nt">0023</span>  <span class="nt">fs</span><span class="o">=</span><span class="nt">003b</span>  <span class="nt">gs</span><span class="o">=</span><span class="nt">0000</span>
+
+<span class="nt">x64</span><span class="o">/</span><span class="nt">Win7</span> <span class="nt">32-bits</span> <span class="nt">user</span>
+
+    <span class="nt">cs</span><span class="o">=</span><span class="nt">0023</span>  <span class="nt">ss</span><span class="o">=</span><span class="nt">002b</span>  <span class="nt">ds</span><span class="o">=</span><span class="nt">002b</span>  <span class="nt">es</span><span class="o">=</span><span class="nt">002b</span>  <span class="nt">fs</span><span class="o">=</span><span class="nt">0053</span>  <span class="nt">gs</span><span class="o">=</span><span class="nt">002b</span>
+
+<span class="nt">x64</span><span class="o">/</span><span class="nt">Win7</span> <span class="nt">64-bits</span> <span class="nt">user</span>
+
+    <span class="nt">cs</span><span class="o">=</span><span class="nt">0033</span>  <span class="nt">ss</span><span class="o">=</span><span class="nt">002b</span>  <span class="nt">ds</span><span class="o">=</span><span class="nt">002b</span>  <span class="nt">es</span><span class="o">=</span><span class="nt">002b</span>  <span class="nt">fs</span><span class="o">=</span><span class="nt">0053</span>  <span class="nt">gs</span><span class="o">=</span><span class="nt">002b</span>
+<span class="nt">--------------------------------------------------------------------------</span>
+<span class="nt">x86</span><span class="o">/</span><span class="nt">Win7</span> <span class="nt">kernel</span>
+
+    <span class="nt">cs</span><span class="o">=</span><span class="nt">0008</span>  <span class="nt">ss</span><span class="o">=</span><span class="nt">0010</span>  <span class="nt">ds</span><span class="o">=</span><span class="nt">0023</span>  <span class="nt">es</span><span class="o">=</span><span class="nt">0023</span>  <span class="nt">fs</span><span class="o">=</span><span class="nt">0030</span>  <span class="nt">gs</span><span class="o">=</span><span class="nt">0000</span>
+
+<span class="nt">x64</span><span class="o">/</span><span class="nt">Win7</span> <span class="nt">kernel</span>
+
+    <span class="nt">cs</span><span class="o">=</span><span class="nt">0010</span>  <span class="nt">ss</span><span class="o">=</span><span class="nt">0018</span>  <span class="nt">ds</span><span class="o">=</span><span class="nt">002b</span>  <span class="nt">es</span><span class="o">=</span><span class="nt">002b</span>  <span class="nt">fs</span><span class="o">=</span><span class="nt">0053</span>  <span class="nt">gs</span><span class="o">=</span><span class="nt">002b</span>
+<span class="nt">--------------------------------------------------------------------------</span>
+
+</code></pre></div></div>
+
+<p>OsandaMalith受Kronos启发，用其他段选择子区分32/64位架构:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">--------------------------------------------------------------------------</span>
+<span class="nt">xor</span>  <span class="nt">eax</span><span class="o">,</span> <span class="nt">eax</span>
+<span class="nt">mov</span>  <span class="nt">ax</span><span class="o">,</span>  <span class="nt">es</span>
+<span class="nt">ror</span>  <span class="nt">ax</span><span class="o">,</span>  <span class="nt">0x3</span>
+<span class="nt">and</span>  <span class="nt">eax</span><span class="o">,</span> <span class="nt">0x1</span>
+<span class="nt">test</span> <span class="nt">eax</span><span class="o">,</span> <span class="nt">eax</span>
+<span class="nt">--------------------------------------------------------------------------</span>
+<span class="nt">xor</span>  <span class="nt">eax</span><span class="o">,</span> <span class="nt">eax</span>
+<span class="nt">mov</span>  <span class="nt">eax</span><span class="o">,</span> <span class="nt">gs</span>
+<span class="nt">test</span> <span class="nt">eax</span><span class="o">,</span> <span class="nt">eax</span>
+<span class="nt">--------------------------------------------------------------------------</span>
+
+</code></pre></div></div>
+
+<p>上述代码无法区分SysWOW64。当然，不必那么死板，只要存在差异，就可以区分。</p>
+
+<h2 id="teb">TEB</h2>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">x86</span><span class="o">/</span><span class="nt">Win7</span> <span class="nt">user</span>
+
+    <span class="o">&gt;</span> <span class="nt">dt</span> <span class="nt">ntdll</span><span class="o">!</span><span class="nt">_TEB</span> <span class="nt">WOW32Reserved</span> <span class="o">@</span><span class="err">$</span><span class="nt">teb</span>
+       <span class="o">+</span><span class="nt">0x0c0</span> <span class="nt">WOW32Reserved</span> <span class="o">:</span> <span class="o">(</span><span class="nt">null</span><span class="o">)</span>
+
+    <span class="o">&gt;</span> <span class="o">?</span> <span class="o">@</span><span class="err">$</span><span class="nt">teb</span>
+    <span class="nt">Evaluate</span> <span class="nt">expression</span><span class="o">:</span> <span class="nt">2147344384</span> <span class="o">=</span> <span class="nt">7ffde000</span>
+
+    <span class="nt">x86</span><span class="err">用户态</span><span class="nt">FS</span><span class="nd">:0</span><span class="err">指向</span><span class="nt">ntdll</span><span class="o">!</span><span class="nt">_TEB</span><span class="err">，可以用</span><span class="s1">"dg @fs"</span><span class="err">获取</span><span class="nt">FS</span><span class="err">段基址。</span>
+
+    <span class="o">&gt;</span> <span class="nt">dg</span> <span class="k">@fs</span>
+                                      <span class="n">P</span> <span class="n">Si</span> <span class="n">Gr</span> <span class="n">Pr</span> <span class="n">Lo</span>
+    <span class="n">Sel</span>    <span class="n">Base</span>     <span class="n">Limit</span>     <span class="n">Type</span>    <span class="n">l</span> <span class="n">ze</span> <span class="n">an</span> <span class="n">es</span> <span class="n">ng</span> <span class="n">Flags</span>
+    <span class="n">----</span> <span class="n">--------</span> <span class="n">--------</span> <span class="n">----------</span> <span class="n">-</span> <span class="n">--</span> <span class="n">--</span> <span class="n">--</span> <span class="n">--</span> <span class="n">--------</span>
+    <span class="m">003</span><span class="n">B</span> <span class="m">7</span><span class="n">ffde000</span> <span class="m">00000</span><span class="n">fff</span> <span class="n">Data</span> <span class="n">RW</span> <span class="n">Ac</span> <span class="m">3</span> <span class="n">Bg</span> <span class="n">By</span> <span class="n">P</span>  <span class="n">Nl</span> <span class="m">000004</span><span class="n">f3</span>
+
+<span class="n">x64</span><span class="p">/</span><span class="n">Win7</span> <span class="m">32</span><span class="n">-bits</span> <span class="n">user</span>
+
+    <span class="err">&gt;</span> <span class="n">dt</span> <span class="n">ntdll</span><span class="err">!</span><span class="n">_TEB</span> <span class="n">WOW32Reserved</span> <span class="err">@$</span><span class="n">teb</span>
+       <span class="err">+</span><span class="m">0</span><span class="n">x0c0</span> <span class="n">WOW32Reserved</span> <span class="p">:</span> <span class="m">0</span><span class="n">x74a92320</span> <span class="n">Void</span>
+    <span class="err">&gt;</span> <span class="n">u</span> <span class="m">0</span><span class="n">x74a92320</span> <span class="n">l</span> <span class="m">1</span>
+    <span class="m">74</span><span class="n">a92320</span> <span class="n">ea1e27a9743300</span>  <span class="n">jmp</span>     <span class="m">0033</span><span class="p">:</span><span class="m">74</span><span class="n">A9271E</span>
+
+    <span class="err">&gt;</span> <span class="err">?</span> <span class="err">@$</span><span class="n">teb</span>
+    <span class="n">Evaluate</span> <span class="n">expression</span><span class="p">:</span> <span class="m">2130563072</span> <span class="err">=</span> <span class="m">7</span><span class="n">efdd000</span>
+
+    <span class="err">&gt;</span> <span class="n">dg</span> <span class="err">@</span><span class="n">fs</span>
+                                      <span class="n">P</span> <span class="n">Si</span> <span class="n">Gr</span> <span class="n">Pr</span> <span class="n">Lo</span>
+    <span class="n">Sel</span>    <span class="n">Base</span>     <span class="n">Limit</span>     <span class="n">Type</span>    <span class="n">l</span> <span class="n">ze</span> <span class="n">an</span> <span class="n">es</span> <span class="n">ng</span> <span class="n">Flags</span>
+    <span class="n">----</span> <span class="n">--------</span> <span class="n">--------</span> <span class="n">----------</span> <span class="n">-</span> <span class="n">--</span> <span class="n">--</span> <span class="n">--</span> <span class="n">--</span> <span class="n">--------</span>
+    <span class="m">0053</span> <span class="m">7</span><span class="n">efdd000</span> <span class="m">00000</span><span class="n">fff</span> <span class="n">Data</span> <span class="n">RW</span> <span class="n">Ac</span> <span class="m">3</span> <span class="n">Bg</span> <span class="n">By</span> <span class="n">P</span>  <span class="n">Nl</span> <span class="m">000004</span><span class="n">f3</span>
+
+<span class="n">x64</span><span class="p">/</span><span class="n">Win7</span> <span class="m">64</span><span class="n">-bits</span> <span class="n">user</span>
+
+    <span class="err">&gt;</span> <span class="n">dt</span> <span class="n">ntdll</span><span class="err">!</span><span class="n">_TEB</span> <span class="n">WOW32Reserved</span> <span class="err">@$</span><span class="n">teb</span>
+       <span class="err">+</span><span class="m">0</span><span class="n">x100</span> <span class="n">WOW32Reserved</span> <span class="p">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
+
+    <span class="err">&gt;</span> <span class="err">?</span> <span class="err">@$</span><span class="n">teb</span>
+    <span class="n">Evaluate</span> <span class="n">expression</span><span class="p">:</span> <span class="m">8796092882944</span> <span class="err">=</span> <span class="m">000007</span><span class="n">ff</span><span class="err">`</span><span class="n">fffde000</span>
+
+    <span class="n">x64</span><span class="err">用户态</span><span class="n">GS</span><span class="p">:</span><span class="m">0</span><span class="err">指向</span><span class="n">ntdll</span><span class="err">!</span><span class="n">_TEB</span><span class="err">。对于</span><span class="n">x64</span><span class="err">，</span><span class="s1">"dg @gs"</span><span class="err">无法获取</span><span class="n">GS</span><span class="err">段基址。</span>
+
+</code></pre></div></div>
+
+<p>用WOW32Reserved可以区分SysWOW64，但WOW32Reserved的偏移对于三种情况不统一，
+而且访问TEB时涉及FS、GS的选择，本方案意义不大。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">xor</span>  <span class="nt">eax</span><span class="o">,</span> <span class="nt">eax</span>
+<span class="nt">mov</span>  <span class="nt">eax</span><span class="o">,</span> <span class="o">[</span><span class="nt">FS</span><span class="nd">:0xc0</span><span class="o">]</span>
+<span class="nt">test</span> <span class="nt">eax</span><span class="o">,</span> <span class="nt">eax</span>
+</code></pre></div></div>
+
+<h2 id="refer">refer</h2>
+
+<p>标题: shellcode自识别32/64位架构</p>
+
+<p>创建: 2014-12-26
+更新: 2017-09-26 17:18
+链接: http://scz.617.cn/windows/201412260000.txt</p>
+
+<p>本文为下列文档的意译，仅为收集整理点评，非原创。</p>
+
+<hr />
+<p>Architecture Detection (x86 or x64) Assembly Stub - zero sum [2014-12-26]
+https://zerosum0x0.blogspot.com/2014/12/detect-x86-or-x64-assembly-stub.html</p>
+
+<p>Detecting Architecture in Windows - OsandaMalith [2017-09-24]
+https://osandamalith.com/2017/09/24/detecting-architecture-in-windows/</p>
+
+<p>checking_architecture.cpp
+https://gist.github.com/hasherezade/0994447e9d3dc184888fb2afd5a57301</p>
+
+<p>The initial values of x86 registers
+https://github.com/corkami/docs/blob/master/InitialValues.md</p>
+
+<hr />
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/02/08/Shodan-Manual/">Shodan手册
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/27/hidden-the-network/">阻碍获取真实网络指纹
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/04/command-and-control-images/">command-and-control-images
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/27/open-RDP/">开启RDP
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/11/30/Test-LAB-11/">TEST LAB 11
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/11/29/proxy/">代理
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/09/27/pop-up-calc/">弹出计算器</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/10/08/powershell/">powershell备忘单</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/09/27/shellcode-automatic-identification-architecture/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/09/27/shellcode-automatic-identification-architecture/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

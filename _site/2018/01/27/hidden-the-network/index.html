@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>阻碍获取真实网络指纹</title>
+    <meta name="description" content="真实环境中，很多因素对基本指纹识别，比如说负载平衡器、虚拟服务器配置、代理、WAF、CDN…">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2018/01/27/hidden-the-network/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>阻碍获取真实网络指纹</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2018-01-27
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#hack" title="Category: hack" rel="category">hack</a>&nbsp;
+    
+        <a href="/category/#sec" title="Category: sec" rel="category">sec</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a-->
+        <a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a>&nbsp;
+    
+        <!--a href="/tag/#hack" title="Tag: hack" rel="tag">hack</a-->
+        <a href="/tag/#hack" title="Tag: hack" rel="tag">hack</a>&nbsp;
+    
+        <!--a href="/tag/#skills" title="Tag: skills" rel="tag">skills</a-->
+        <a href="/tag/#skills" title="Tag: skills" rel="tag">skills</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <ul id="markdown-toc">
+  <li><a href="#cdn" id="markdown-toc-cdn">CDN</a>    <ul>
+      <li><a href="#发现cdn" id="markdown-toc-发现cdn">发现CDN</a></li>
+    </ul>
+  </li>
+  <li><a href="#负载平衡器" id="markdown-toc-负载平衡器">负载平衡器</a>    <ul>
+      <li><a href="#识别负载平衡器" id="markdown-toc-识别负载平衡器">识别负载平衡器</a></li>
+    </ul>
+  </li>
+  <li><a href="#虚拟服务器" id="markdown-toc-虚拟服务器">虚拟服务器</a></li>
+  <li><a href="#检测代理" id="markdown-toc-检测代理">检测代理</a></li>
+  <li><a href="#检测waf" id="markdown-toc-检测waf">检测WAF</a></li>
+</ul>
+
+<p>真实环境中，很多因素对基本指纹识别，比如说负载平衡器、虚拟服务器配置、代理、WAF、CDN…</p>
+
+<!--more-->
+
+<h2 id="cdn">CDN</h2>
+
+<p><strong>CDN</strong>是构建在网络之上的内容分发网络，依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，提高用户访问响应速度和命中率。CDN的关键技术主要有内容存储和分发技术。CDN的基本原理是广泛采用各种缓存服务器，将这些缓存服务器分布到用户访问相对集中的地区或网络中，在用户访问网站时，利用全局负载技术将用户的访问指向距离最近的工作正常的缓存服务器上，由缓存服务器直接响应用户请求。</p>
+
+<h3 id="发现cdn">发现CDN</h3>
+
+<ul>
+  <li>查看域名的历史解析记录</li>
+  <li>注册的地方，看邮件头，扫C段</li>
+  <li>寻找主站的真实IP，搜集其他公司的所有IP，写脚本，绑定host，直接解析</li>
+  <li>验证是否存在CDN
+通过在线的多地ping，通过各地区ping的结果得到ip，比较ip</li>
+  <li>验证ip和域名是否真实对应
+修改本地hosts文件，强行将域名与ip解析对应，然后访问域名，查看页面是否变化</li>
+  <li>ping顶级域名。厂商可能让www使用cdn，空域名不使用CDN缓存</li>
+  <li>ping分站域名。为了省钱，分站未作CDN。对比IP</li>
+  <li>通过国外代理访问，或者通过国外的DNS解析。许多国内CDN只针对国内用户加速。</li>
+  <li>mx记录查询，一般会是c段。一些网提供注册服务，可能会验证邮件，还有RSS订阅邮件、忘记密码等等可能服务器本身自带sendmail可以直接发送邮件，当然使用第三方的除外（如网易、腾讯的等）
+通过邮件发送地址往往也能得到服务器IP。当然这个IP也要验证是否为主站的。Web版的邮件管理，可以通过常看网页源代码看到IP</li>
+  <li><a href="https://passivetotal.org/home">信息查询</a></li>
+  <li>xss，让服务器主动连接攻击者</li>
+  <li>找彩蛋phpinfo();之类的探针</li>
+  <li>DDOS，耗尽CDN流量，回源之后找到真实ip。不设防的cdn量大就会挂，高防CDN要增大流量</li>
+  <li>社工。勾搭CDN妹子</li>
+  <li>查看域名绑定历史,(17ce)[http://www.17ce.com/] (netcraft)[http://toolbar.netcraft.com/site_report?url=]</li>
+  <li>DNS社工裤</li>
+  <li>cloudflare (freebuff)[http://www.freebuf.com/articles/web/41533.html]</li>
+  <li>全网扫描，zmap</li>
+  <li><a href="https://github.com/m0rtem/CloudFail">CloudFail</a>：查找CloudFlare隐藏的IP</li>
+  <li></li>
+</ul>
+
+<h2 id="负载平衡器">负载平衡器</h2>
+
+<p>负载平衡器是通过在多个服务器中分割WEB流量，来确保单个服务器的请求不会超载，一般不可见，但是有可能极大的改变渗透测试的进程。当发出请求的时候，负载平衡器可能将请求交给其中的一个服务器来处理。每个服务器的应用结构虽然相同，但是文件夹不同、补丁级别不同及其他配置可能完全不同。</p>
+
+<h3 id="识别负载平衡器">识别负载平衡器</h3>
+
+<ul>
+  <li><strong>对临近IP段进行扫描</strong></li>
+  <li><strong><a href="https://github.com//jmbr/halberd">查询负载均衡</a></strong>：https://github.com//jmbr/halberd</li>
+  <li><strong>响应时间戳分析</strong>：有些服务器没有同步时间，就可以在一秒发出多个请求确定是否有多台服务器</li>
+  <li><strong>通过比较相同请求资源的首部响应中的ETag和Last-Modified的值，能够确定是否会从多个服务器上的到不同的文件</strong></li>
+  <li><strong>通过谷歌查找cookie：</strong>有些服务器会在HTTP会话中加入自己的cookie</li>
+  <li><strong>枚举SSL异常</strong>：查看SSL证书是否存在差异，是否支持同一个密码长度</li>
+  <li><strong>检查HTML源码中返回的注释</strong></li>
+</ul>
+
+<h2 id="虚拟服务器">虚拟服务器</h2>
+
+<p>一些WEB主机公司为了节约成本，在相同机器上的多个虚拟IP上运行不同的WEB服务器。端口扫描所指出的不同IP地址上的大量活跃服务器，实际上可能是具有多个虚拟IP地址的单台机器。</p>
+
+<h2 id="检测代理">检测代理</h2>
+
+<ul>
+  <li>TRACE请求：TRACE请求通知Web服务器回复刚刚收到的请求内容，代理服务器会添加某些首部。</li>
+  <li>标准连接测试：CONNECT命令主要用于代理服务器代理SSL连接。比如发送<code class="highlighter-rouge">CONNECT https://site.com:443</code>，连接成功将建立安全链接隧道</li>
+  <li>标准代理请求：插入公共网站的地址，查看代理服务器是否返回该网站的响应，若返回就意味着可以将该服务器导向任何你选择的地址，使得你的代理服务器成为一个向公众开放的匿名代理，允许攻击者访问内部网络。可用的一种较好的技术是识别目标的内部IP地址范围，然后对着一范围进行端口扫描。
+    <ul>
+      <li>测试代理：<code class="highlighter-rouge">GET http://www.site.com/ HTTP/1.0</code></li>
+      <li>扫描开放Web服务器的网络：<code class="highlighter-rouge">GET http://192.168.1.1:80 HTTP/1.0</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="检测waf">检测WAF</h2>
+
+<p>WAF是放在用户和Web服务器之间的保护性设备。</p>
+
+<ul>
+  <li><a href="http://www.freebuf.com/articles/web/21744.html">区别cookie</a>：http://www.freebuf.com/articles/web/21744.html</li>
+  <li>wafw00f:<code class="highlighter-rouge">pip install wafw00f</code></li>
+  <li>xenoitx:</li>
+  <li>sqlmap:<code class="highlighter-rouge">python sqlmap.py -u “http://www.victim.org/ex.php?id=1” --identify-waf</code></li>
+  <li><a href="https://github.com/tanjiti/FingerPrint.git">FingerPrint</a>:https://github.com/tanjiti/FingerPrint.git</li>
+</ul>
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/02/08/Shodan-Manual/">Shodan手册
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/04/command-and-control-images/">command-and-control-images
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/30/exploit-domain/">域渗透的整理
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/27/open-RDP/">开启RDP
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/11/30/Test-LAB-11/">TEST LAB 11
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/11/29/proxy/">代理
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2018/01/04/command-and-control-images/">command-and-control-images</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2018/02/08/Shodan-Manual/">Shodan手册</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2018/01/27/hidden-the-network/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2018/01/27/hidden-the-network/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

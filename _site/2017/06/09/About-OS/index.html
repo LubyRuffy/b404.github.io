@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>温故而知新——关于操作系统的一些知识</title>
+    <meta name="description" content="计算机的中央处理器CPU、内存和I/O控制芯片这三个部件是计算机的核心。">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/06/09/About-OS/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>温故而知新——关于操作系统的一些知识</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-06-09
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#Misc" title="Category: Misc" rel="category">Misc</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#reading-notes" title="Tag: reading-notes" rel="tag">reading-notes</a-->
+        <a href="/tag/#reading-notes" title="Tag: reading-notes" rel="tag">reading-notes</a>&nbsp;
+    
+        <!--a href="/tag/#OS" title="Tag: OS" rel="tag">OS</a-->
+        <a href="/tag/#OS" title="Tag: OS" rel="tag">OS</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>计算机的中央处理器CPU、内存和I/O控制芯片这三个部件是计算机的核心。</p>
+
+<ul id="markdown-toc">
+  <li><a href="#操作系统的目标和作用" id="markdown-toc-操作系统的目标和作用">操作系统的目标和作用</a></li>
+  <li><a href="#操作系统的发展过程" id="markdown-toc-操作系统的发展过程">操作系统的发展过程</a></li>
+  <li><a href="#操作系统的基本特性" id="markdown-toc-操作系统的基本特性">操作系统的基本特性</a></li>
+  <li><a href="#操作系统的主要功能" id="markdown-toc-操作系统的主要功能">操作系统的主要功能</a></li>
+  <li><a href="#os结构设计" id="markdown-toc-os结构设计">OS结构设计</a></li>
+  <li><a href="#硬件结构" id="markdown-toc-硬件结构">硬件结构</a></li>
+  <li><a href="#软件体系" id="markdown-toc-软件体系">软件体系</a></li>
+  <li><a href="#线程和进程" id="markdown-toc-线程和进程">*线程和进程</a>    <ul>
+      <li><a href="#函数重入" id="markdown-toc-函数重入">函数重入</a></li>
+    </ul>
+  </li>
+  <li><a href="#进程的描述与控制" id="markdown-toc-进程的描述与控制">进程的描述与控制</a>    <ul>
+      <li><a href="#前趋图和程序执行" id="markdown-toc-前趋图和程序执行">前趋图和程序执行</a></li>
+      <li><a href="#进程的描述" id="markdown-toc-进程的描述">进程的描述</a></li>
+    </ul>
+  </li>
+</ul>
+
+<!--more-->
+
+<h2 id="操作系统的目标和作用">操作系统的目标和作用</h2>
+
+<p>计算机由硬件系统(裸机)、软件系统、系统软件、应用软件：</p>
+
+<ol>
+  <li>OS的主要目标：有效性、方便性、可扩充性、开放性</li>
+  <li>os的作用
+    <ul>
+      <li>作为用户和计算机硬件系统之间的接口</li>
+      <li>作为计算机系统资源的管理者</li>
+      <li>实现了计算机资源的抽象</li>
+    </ul>
+  </li>
+  <li>推动操作系统发展的主要动力：
+    <ul>
+      <li>不断提高计算机资源利用率</li>
+      <li>方便用户</li>
+      <li>器件的不断更新换代</li>
+      <li>计算机体系结构的不断发展</li>
+      <li>不断提出新的应用需求</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="操作系统的发展过程">操作系统的发展过程</h2>
+
+<ul>
+  <li>未配置操作系统的计算机系统</li>
+  <li>单道批处理系统</li>
+  <li>多道批处理系统</li>
+  <li>分时系统</li>
+  <li>实时系统</li>
+</ul>
+
+<p>脱机I/O：
+为了解决人机矛盾及CPU和I/O设备之间速度不匹配的矛盾。
+事先将装有用户程序和数据的纸带装入纸带输入机，再一台外围控制机的控制下，把纸带卡片上的数据输入到磁带上。</p>
+
+<p>单道批处理系统：为了解决人机矛盾和CPU与I/O设备速度不匹配矛盾的过程中形成的。缺点就是，系统中的资源得不到充分利用。</p>
+
+<p>多道批处理系统：</p>
+<ul>
+  <li>优缺点：
+    <ol>
+      <li>资源利用率高</li>
+      <li>系统吞吐量大</li>
+      <li>平均周转时间长</li>
+      <li>无交互能力</li>
+    </ol>
+  </li>
+  <li>需要解决的问题：
+    <ol>
+      <li>处理机争用问题</li>
+      <li>内存分配和保护问题</li>
+      <li>I/O设备分配问题</li>
+      <li>文件的组织和管理问题</li>
+      <li>作业管理问题</li>
+      <li>用户和系统接口问题</li>
+    </ol>
+  </li>
+</ul>
+
+<p>分时系统：
+关键问题：及时接收、及时处理
+特征：多路性、独立性、及时性、交互性</p>
+
+<p>实时系统：
+硬实时任务和软实时任务：硬实时任务是指系统必须满足任务对截至时间的要求，否则可能出现难以预料的后果；软实时任务是指任务时间上执行并不严格，偶尔错过任务的截至时间，对系统的影响也不会会太大。</p>
+
+<p>微机os的发展：
+1.单用户单任务操作系统：CP/M、MS-DOS（IBM首先推出个人PC）
+2.单用户多任务操作系统：windows95
+3.多用户多任务操作系统：UNIX OS</p>
+
+<h2 id="操作系统的基本特性">操作系统的基本特性</h2>
+
+<ul>
+  <li>并发性:
+    <ul>
+      <li>并行和并发</li>
+      <li>引入进程</li>
+    </ul>
+  </li>
+  <li>共享性：
+    <ul>
+      <li>互斥共享</li>
+      <li>同时访问</li>
+    </ul>
+  </li>
+  <li>虚拟性
+    <ul>
+      <li>时分复用</li>
+      <li>空分复用</li>
+    </ul>
+  </li>
+  <li>异步性</li>
+</ul>
+
+<h2 id="操作系统的主要功能">操作系统的主要功能</h2>
+
+<ol>
+  <li>处理机管理功能
+    <ul>
+      <li>进程控制</li>
+      <li>进程同步</li>
+      <li>进程通信</li>
+      <li>调度</li>
+    </ul>
+  </li>
+  <li>存储器管理功能
+    <ul>
+      <li>内存分配</li>
+      <li>内存保护</li>
+      <li>地址映射</li>
+      <li>内存扩充</li>
+    </ul>
+  </li>
+  <li>设备管理功能
+    <ul>
+      <li>缓冲管理</li>
+      <li>设备分配</li>
+      <li>设备处理</li>
+    </ul>
+  </li>
+  <li>文件管理功能
+    <ul>
+      <li>文件存储空间的管理</li>
+      <li>目录管理</li>
+      <li>文件的读/写管理和保护</li>
+    </ul>
+  </li>
+  <li>操作系统与用户之间的接口
+    <ul>
+      <li>用户接口</li>
+      <li>程序接口</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="os结构设计">OS结构设计</h2>
+
+<p>传统操作系统结构：无结构操作系统、模块化操作系统
+客户/服务器模式：</p>
+<ul>
+  <li>C/S模式的由来、组成、类型：客户机、服务器、网络</li>
+  <li>C/S之间的交互：<img src="C:\Users\b404\Pictures\捕获.PNG" alt="捕获.PNG" /></li>
+  <li>C/S模式的优点：
+    <ul>
+      <li>数据的分布处理和存储</li>
+      <li>便于集中管理</li>
+      <li>灵活性和可扩充性</li>
+      <li>易于改变应用软件
+面向对象的程序设计
+微内核OS结构：
+    1. 足够小的内核
+    2. 基于C/S模式
+    3. 应用“机制与策略分离”原理
+    4. 采用面向对象技术</li>
+    </ul>
+  </li>
+</ul>
+
+<p>微内核的基本功能：</p>
+<ol>
+  <li>线程（进程）管理</li>
+  <li>低级存储器管理</li>
+  <li>中断和陷入处理</li>
+</ol>
+
+<p>微内核优点：</p>
+<ol>
+  <li>提高系统的可扩展性</li>
+  <li>增强系统的可靠性</li>
+  <li>可移植性强</li>
+  <li>提供对分布式系统的支持</li>
+  <li>融入了面向对象技术</li>
+</ol>
+
+<h2 id="硬件结构">硬件结构</h2>
+
+<p>南桥是基于个人电脑主板芯片组架构中的其中一枚芯片。南桥设计用来处理低速信号，通过北桥与中央处理器联系。各芯片组厂商的南桥名称都有所不同，例如英特尔称之为输出/输入控制器中心（Input/Output Controller Hub，ICH），NVIDIA的称为MCP，ATI的称为IXP/SB，AMD也开始纳入Fusion APU，并给予FCH这个标记，或称Fusion控制器中心，代表其南桥芯片。</p>
+
+<p>南桥专门处理低速设备，比如周边设备接口、多媒体控制器和通信功能接口。(如PCI控制器、ATA控制器、USB控制器)</p>
+
+<p>北桥连接所有高速芯片，处理高速设备。</p>
+
+<p><img src="/img/os/南桥北桥.png" alt="南桥北桥.png" /></p>
+
+<p>多核处理器是SMP(对称多处理器,Symmetrical Multi-Processing)的简化版，从逻辑上看，相差不大。</p>
+
+<p><img src="/img/os/硬件结构架构.png" alt="硬件结构架构.png" /></p>
+
+<h2 id="软件体系">软件体系</h2>
+
+<p><img src="/img/os/软件体系结构.JPG" alt="软件体系结构.JPG" /></p>
+
+<p>每个层次之间相互通信的协议称为接口(Interface)，接口上层为提供者（定义接口），下层为使用者（实现所需功能）。</p>
+
+<p>在硬件和操作系统之间增加一层虚拟层，使得计算机可同时运行多个操作系统。</p>
+
+<p>应用程序接口的提供者是运行库，Linux的Glibc库提供POSIX的API，Windows的运行库提供Windows API，运行库使用操作系统提供的系统调用接口，系统调用接口一般是用中断方式提供。Linux使用0x80号中断作为系统调用接口，Windows使用0x2E号中断作为系统调用接口(从Win xp sp2开始采用新的系统调用方式)</p>
+
+<p>硬件规格：硬件的接口定义OS内核（驱动如何操作硬件，如何与硬件通信）</p>
+
+<p>操作系统作用：提供抽象接口，管理硬件资源</p>
+
+<p>使用虚拟地址（通过映射，可以让虚拟地址转换成实际的物理地址），可以让一个程序能够访问的物理内存区域跟另外一个程序互不重叠，达到地址空间隔离的效果。</p>
+
+<p>系统使用一种通过软件扩展物理硬件能力的内存管理方案。因为地址空间与实内存不是一一对应的，所以地址空间（以及系统将其与实内存相对应的方法）称为虚拟内存。
+内核和硬件子系统相互合作以将虚拟地址转换为物理地址，它们组成了内存管理子系统。内存管理策略由内核采用的操作构成，那些操作保证进程能平等地分享主内存。（地址空间为程序创造了一种抽象的内存。地址空间是一个进程可用于寻址内存的一套地址集合。每个进程都有一个自己的地址空间，并且这个地址空间独立于其他进程的地址空间。）</p>
+
+<p>分段：把一段与程序所需的内存空间大小的虚拟地址空间映射到某个地址空间。
+分页：把地址空间人为地等分为固定大小的页，每一页由硬件决定，或硬件支持多种大小的页，由操作系统选择决定页的大小。</p>
+
+<p>虚拟地址和物理地址通过MMU（内存管理单元，集成在CPU内部）实现。</p>
+
+<h2 id="线程和进程">*线程和进程</h2>
+
+<p>线程：有时称为轻量级进程(LWP,Lightweight Process)，是程序执行流的最小单元。一个标准的
+线程由线程ID、当前指令指针、寄存器集合和堆栈组成</p>
+
+<p>进程：一个进程由一个或者多个线程组成，各个线程之间共享程序的内存空间(包括代码段、数据段、堆等)及一些进城级的资源（如打开文件和信号）</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>线程私有</th>
+      <th>线程之间共享</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>局部变量</td>
+      <td>全局变量</td>
+    </tr>
+    <tr>
+      <td>函数的参数</td>
+      <td>堆上的数据</td>
+    </tr>
+    <tr>
+      <td>TLS(线程局部存储)数据</td>
+      <td>函数里的静态变量</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>程序代码，任何线程都拥有权力读取执行任何代码</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>打开的文件，A线程打开的文件B线程可以读写</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="/img/os/进程内的线程.png" alt="进程内的线程.png" /></p>
+
+<h3 id="函数重入">函数重入</h3>
+
+<p>一个函数被重入，表示该函数没有执行完成，由于外部因素或内部调用，又一次进入该函数执行。一个函数要被重入只有两种情况：</p>
+<ul>
+  <li>多个线程同时执行这个函数</li>
+  <li>函数自身调用自身</li>
+</ul>
+
+<p>一个函数可重入（可重入，表明该函数重入之后不会产生不良后果），必须具有如下特点：</p>
+<ul>
+  <li>不使用任何（局部）静态或全局的非const变量</li>
+  <li>不返回任何（局部）静态或全局的非const变量的指针</li>
+  <li>仅依赖于调用方提供的参数</li>
+  <li>不依赖于任何单个资源的锁</li>
+  <li>不调用任何不可重入的函数</li>
+</ul>
+
+<p>可重入是并发安全的保障，一个可重入函数可在多线程环境下放心使用。</p>
+
+<h2 id="进程的描述与控制">进程的描述与控制</h2>
+
+<h3 id="前趋图和程序执行">前趋图和程序执行</h3>
+
+<p>2.1.1 前趋图：有向无循环图
+2.1.2 程序顺序执行
+2.1.3 程序的并发执行</p>
+
+<h3 id="进程的描述">进程的描述</h3>
+
+<p>多道程序下，进程的执行是并发的，为了使参与并发执行的每个程序(含数据)都能独立运行，在操作系统中必须为之配置一个专门的数据结构，称为进程控制块(PCB)。系统利用PCB来描述进程的基本情况和活动过程，进而控制和管理进程。</p>
+
+<p>进程：进程实体就叫做进程，由程序段、相关的数据段和PCB三部分便构成了进程实体(进程映像)。创建进程，实质上是创建进程实体中的PCB；撤销进程，就是撤销进程的PCB。<strong>进程是进程实体的运行过程，是系统进行资源分配和调度的一个独立单位</strong>
+进程的特征：动态性、并发性、独立性、异步性</p>
+
+<p><strong>进程的基本状态和转换：</strong></p>
+
+<p>进程的三种基本状态：就绪、执行、阻塞</p>
+
+<p>三种基本状态的转换：</p>
+
+<p>创建状态和终止状态：
+为了满足进程控制块对数据及操作的完整性要求以及增强管理的灵活性，引入了创建状态和终止状态：</p>
+<ol>
+  <li>创建状态
+引入创建状态是为了保证进程的调度必须在创建工作完成后进行，以确保对进程控操作的完整性。同时，创建状态的引入增加了管理的灵活性，OS可以根据系统性能或主存容量的限制推迟新进程的提交(创建状态)。对于创建状态的进程，当其获得了所需的资源以及对其PCB的初始化工作完成后，便可由创建状态转入就绪状态。</li>
+  <li>终止状态
+进程的终止要等到操作系统进行善后处理，最后将其PCB清零，并将PCB空间返还系统。</li>
+</ol>
+
+<p>其他的一些关于OS的知识 ,链接: https://pan.baidu.com/s/1o7LCYGq 密码: ucw8</p>
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/06/04/SSDT/">SSDT</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/06/10/compile-and-link/">编译和链接</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/06/09/About-OS/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/06/09/About-OS/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

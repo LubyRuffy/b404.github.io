@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>栈帧</title>
+    <meta name="description" content="栈帧在程序中用于声明局部变量、调用函数。栈帧就是利用EBP（栈帧指针）寄存器访问栈内局部变量、参数、函数返回地址等的手段。简而言之，栈帧技术使用了EBP寄存器(而非ESP寄存器)管理局部变量、参数、返回地址等。">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/03/15/stack-frame/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>栈帧</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-03-15
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#ReverseCore" title="Category: ReverseCore" rel="category">ReverseCore</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#reading-notes" title="Tag: reading-notes" rel="tag">reading-notes</a-->
+        <a href="/tag/#reading-notes" title="Tag: reading-notes" rel="tag">reading-notes</a>&nbsp;
+    
+        <!--a href="/tag/#reverse" title="Tag: reverse" rel="tag">reverse</a-->
+        <a href="/tag/#reverse" title="Tag: reverse" rel="tag">reverse</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>栈帧在程序中用于声明局部变量、调用函数。
+栈帧就是利用EBP（栈帧指针）寄存器访问栈内局部变量、参数、函数返回地址等的手段。
+<strong>简而言之，栈帧技术使用了EBP寄存器(而非ESP寄存器)管理局部变量、参数、返回地址等。</strong></p>
+
+<ul id="markdown-toc">
+  <li><a href="#开始执行main函数生成栈帧" id="markdown-toc-开始执行main函数生成栈帧">开始执行main()函数&amp;生成栈帧</a></li>
+  <li><a href="#设置局部变量" id="markdown-toc-设置局部变量">设置局部变量</a></li>
+  <li><a href="#add函数参数传递与调用" id="markdown-toc-add函数参数传递与调用">add()函数参数传递与调用</a></li>
+  <li><a href="#开始执行add函数生成栈帧" id="markdown-toc-开始执行add函数生成栈帧">开始执行add()函数&amp;生成栈帧</a></li>
+  <li><a href="#设置add函数的局部变量xy" id="markdown-toc-设置add函数的局部变量xy">设置add()函数的局部变量(x,y)</a></li>
+  <li><a href="#add运算" id="markdown-toc-add运算">ADD运算</a></li>
+  <li><a href="#删除add函数地栈帧函数执行完毕返回" id="markdown-toc-删除add函数地栈帧函数执行完毕返回">删除add()函数地栈帧&amp;函数执行完毕(返回)</a></li>
+  <li><a href="#从栈中删除函数add的参数整理栈" id="markdown-toc-从栈中删除函数add的参数整理栈">从栈中删除函数add()的参数(整理栈)</a></li>
+  <li><a href="#调用printf函数" id="markdown-toc-调用printf函数">调用printf()函数</a></li>
+  <li><a href="#设置返回值" id="markdown-toc-设置返回值">设置返回值</a></li>
+  <li><a href="#删除栈帧main函数终止" id="markdown-toc-删除栈帧main函数终止">删除栈帧&amp;main()函数终止</a></li>
+  <li><a href="#设置od选项" id="markdown-toc-设置od选项">设置OD选项</a></li>
+  <li><a href="#analysis1选项" id="markdown-toc-analysis1选项">Analysis1选项</a></li>
+</ul>
+
+<!--more-->
+
+<p>ESP寄存器承担着栈顶指针的作用，而EBP寄存器则负责行使栈帧的职能。程序运行中，ESP寄存器的值随时变化，访问栈中函数的局部变量、参数时，若以ESP值为基准编写程序会十分困难，并且也很难使CPU引用到准确的地址。所以，调用函数时，先要把用作基准点(函数起始地址)的ESP值保存到EBP，并维持在函数内部。这样，无论ESP的值如何变化，以EBP的值为基准能够安全访问到相关函数的局部变量、参数、返回地址，这是EBP寄存器作为栈帧指针的作用。</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">#include "stdio.h"
+</span>
+<span class="kt">long</span> <span class="nf">add</span><span class="p">(</span><span class="kt">long</span> <span class="n">a</span><span class="p">,</span> <span class="kt">long</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">long</span> <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="kt">long</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">));</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><img src="/img/reversecore_assets/StackFrame调试器画面.png" alt="StackFrame调试器画面.png" /></p>
+
+<h2 id="开始执行main函数生成栈帧">开始执行main()函数&amp;生成栈帧</h2>
+
+<p>首先从代码的主函数开始分析：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+</code></pre></div></div>
+<p>函数main()是程序开始执行的地方，在main()函数的起始地址(401020)处，按F2键设置一个断点，然后按F9运行程序，程序运行到main()函数的断点处暂停。</p>
+
+<p><img src="/img/reversecore_assets/StackFrame栈初值.png" alt="StackFrame栈初值.png" /></p>
+
+<p>当前ESP的值为<code class="highlighter-rouge">12FF44</code>,EBP的值为<code class="highlighter-rouge">12FF88</code>。地址<code class="highlighter-rouge">401250</code>保存在ESP(12FF44)中，它是main()函数执行完毕后要返回地址。</p>
+
+<p>main()函数一开始运行就生成与其对应的函数帧。</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mo">00401020</span> <span class="n">PUSH</span> <span class="n">EBP</span> <span class="p">;</span><span class="n">main</span>
+</code></pre></div></div>
+<p>PUSH是一条压栈指令，上面这条PUSH语句的意思就是“把EBP值压入栈中”。main()函数中，EBP为栈帧指针，用来把EBP之前的值备份到栈中(main()函数执行完毕，返回之前，该值会再次恢复)</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mo">00401021</span> <span class="n">MOV</span> <span class="n">EBP</span><span class="p">,</span><span class="n">ESP</span>
+</code></pre></div></div>
+<p>MOV是一条数据传送命令，上面这条MOV语句的命令是”把ESP值传送到EBP”。换言之，该命令之后，EBP就持有与当前ESP相同的值，并且直到main()函数执行完毕后，EBP的值始终保持不变。也就是说，通过EBP可以安全访问到存储在栈中的函数参数与局部变量。执行完<code class="highlighter-rouge">401020</code>和<code class="highlighter-rouge">401021</code>地址处的两条指令后，main()函数的栈帧就生成（设置好EBP了）</p>
+
+<p>在OD的栈窗口，鼠标右键，选择Address-&gt;Relative to EBP</p>
+
+<p><img src="/img/reversecore_assets/选择相对于EBP菜单.png" alt="选择相对于EBP菜单.png" /></p>
+
+<p>接下来，在OD的栈窗口确认EBP的位置。程序调试到现在的栈内情况如图，把地址转换为相对于EBP的偏移后，能更直观地观察到站内情况。</p>
+
+<p><img src="/img/reversecore_assets/备份到栈中地EBP初始值.png" alt="备份到栈中地EBP初始值.png" /></p>
+
+<blockquote>
+  <p>当前EBP值为12FF40，与ESP值一致，12FF40地址处保存着<code class="highlighter-rouge">12FF88</code>,他是main()函数开始执行时EBP持有地初始值。</p>
+</blockquote>
+
+<h2 id="设置局部变量">设置局部变量</h2>
+
+<p>分析源码中地变量声明和赋值语句</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">long</span> <span class="n">a</span> <span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span>
+</code></pre></div></div>
+
+<p>main()函数中，上述语句用于在栈中为局部变量(a,b)分配空间，并赋初始值。</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mo">00401023</span> <span class="n">SUB</span> <span class="n">ESP</span><span class="p">,</span><span class="mi">8</span>
+</code></pre></div></div>
+<p>SUB是一条减法指令，上面这条语句用来将ESP地值减去8个字节。执行这条指令之前，ESP地值为12FF40，减去8个字节之后，变为12FF88.
+从ESP减去8个字节，实质就是为函数地局部变量(a和b)开辟空间，以便将它们保存在栈中。由于局部变量a和b都是long型(长整型)，他们分别占据4个字节大小，所以需要在栈中开辟8个字节地空间来保存这两个变量。</p>
+
+<p>使用SUB指令从ESP中减去8个字节，为两个函数变量开辟好空间后，在main()内部，无论ESP地值如何变化，变量a和b地栈空间都不会受到损坏。由于EBP的值在main()函数内部是固定不变的，就能以它为基准来访问函数的局部变量。</p>
+
+<div class="language-nasm highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">00401026</span>  <span class="k">MOV</span> <span class="n">DWORD</span> <span class="n">PTR</span> <span class="n">SS</span><span class="o">:</span><span class="err">[</span><span class="n">EBP</span><span class="o">-</span><span class="mi">4</span><span class="err">]</span><span class="p">,</span><span class="mi">1</span>   <span class="c">;[EBP-4] = local 'a'</span>
+<span class="mi">0040102</span><span class="n">D</span>  <span class="k">MOV</span> <span class="n">DWORD</span> <span class="n">PTR</span> <span class="n">SS</span><span class="o">:</span><span class="err">[</span><span class="n">EBP</span><span class="o">-</span><span class="mi">4</span><span class="err">]</span><span class="p">,</span><span class="mi">2</span>   <span class="c">;[EBP-4] = local 'b'</span>
+</code></pre></div></div>
+
+<p>将<code class="highlighter-rouge">DWORD PTR SS:[EBP-4]</code>看作类似于C语言的指针。</p>
+
+<p><img src="/img/reversecore_assets/汇编语言与C语言的指针语句格式.png" alt="汇编语言与C语言的指针语句格式.png" /></p>
+
+<p>再次分析两条MOV指令，他们的含义就是“把数据1和2分别保存到[EBP-4]和[EBP-8]中”，即[EBP-4]代表局部变量a，[EBP-8]代表局部变量b。执行完两条语句之后，函数栈内情况：</p>
+
+<p><img src="/img/reversecore_assets/StackFrame程序中的变量a和b.png" alt="StackFrame程序中的变量a和b.png" /></p>
+
+<h2 id="add函数参数传递与调用">add()函数参数传递与调用</h2>
+
+<p>StackFrame.cpp源码中使用如下语句调用add()函数，执行加法运算并输出函数返回值。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>printf("%d\n",add(a,b));
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>00401034   mov eax,DWORD PTR SS:[EBP-8]   ;[EBP-8]=b
+00401037   push eax                       ;Arg2=00000002
+00401038   mov ecx,[local.1]              ;[EBP-4]=a
+0040103B   push ecx                       ;Arg1=00000001
+0040103C   call 00401000                  ;add()
+</code></pre></div></div>
+<p>上述五行汇编代码，描述了调用add()函数的整个过程。地址40103C处为“CALL 401000”命令，该命令用于调用401000处的函数，而<code class="highlighter-rouge">401000</code>处的函数即为add()函数。函数add()接收a、b这两个长整型参数，所以调用add()之前需要先把2个参数压入栈，地址<code class="highlighter-rouge">401034</code>~<code class="highlighter-rouge">40103B</code>之间的代码即用于此。这一过程中需要注意的是，参数入栈的顺序与C语言源码中的参数顺序恰好相反(逆向存储)。换言之，变量b（[EBP-8]）首先入栈，接着变量a([EBP-4])再入栈。执行完地址<code class="highlighter-rouge">401034</code>~<code class="highlighter-rouge">40103B</code>之间的代码后，栈内情况：</p>
+
+<p><img src="/img/reversecore_assets/StackFrame程序函数add的返回地址.png" alt="StackFrame程序函数add()的返回地址.png" /></p>
+
+<h2 id="开始执行add函数生成栈帧">开始执行add()函数&amp;生成栈帧</h2>
+
+<p>源码中的函数add()的前两行代码如下：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>long add(long a, long b)
+{
+</code></pre></div></div>
+
+<p>函数开始执行时，栈中会单独生成与其对应的栈帧。</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mo">00401000</span>  <span class="n">PUSH</span> <span class="n">EBP</span>
+<span class="mo">00401001</span>  <span class="n">MOV</span> <span class="n">EBP</span><span class="p">,</span><span class="n">ESP</span>
+</code></pre></div></div>
+
+<p>上述两行代码与开始执行main()函数时的代码完全相同，先把EBP值(main()函数的基址指针)保存到栈中，再把当前ESP存储到EBP中，这样函数add()的栈帧就生成。如此一来，add()函数内部的EBP值始终不变。执行完以上2行代码后，栈内情况：</p>
+
+<p><img src="/img/reversecore_assets/StackFrame程序add函数的栈帧.png" alt="StackFrame程序add函数的栈帧.png" /></p>
+
+<p>main()函数使用的EBP值(12FF40)被备份到栈中，然后EBP的值被设置为一个新值<code class="highlighter-rouge">12FF28</code></p>
+
+<h2 id="设置add函数的局部变量xy">设置add()函数的局部变量(x,y)</h2>
+
+<p>源码中有<code class="highlighter-rouge">long x = a, y = b;</code></p>
+
+<p>上面语句声明了2个长整型的局部变量(x,y)，并使用2个形参(a,b)分别为它们赋初始值。<small>观察形式参数和局部变量在函数内部的表示方式</small></p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mo">00401003</span>	<span class="n">SUB</span> <span class="n">ESP</span><span class="p">,</span><span class="mi">8</span>
+</code></pre></div></div>
+<p>上面这条语句含义为，在栈内存中为局部变量x、y开辟8个字节的空间。</p>
+
+<div class="language-nasm highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">00401006</span>  <span class="o">|</span><span class="p">.</span> <span class="mi">8</span><span class="n">B45</span> <span class="mi">08</span>        <span class="k">MOV</span> <span class="n">EAX</span><span class="p">,</span><span class="n">DWORD</span> <span class="n">PTR</span> <span class="n">SS</span><span class="o">:</span><span class="err">[</span><span class="n">EBP</span><span class="o">+</span><span class="mi">8</span><span class="err">]</span> <span class="c">;[EBP+8] = param a</span>
+<span class="mi">00401009</span>  <span class="o">|</span><span class="p">.</span> <span class="mi">8945</span> <span class="n">F8</span>        <span class="k">MOV</span> <span class="n">DWORD</span> <span class="n">PTR</span> <span class="n">SS</span><span class="o">:</span><span class="err">[</span><span class="n">EBP</span><span class="o">-</span><span class="mi">8</span><span class="err">]</span><span class="p">,</span><span class="n">EAX</span> <span class="c">;[EBP-8] = local x</span>
+<span class="mi">0040100</span><span class="n">C</span>  <span class="o">|</span><span class="p">.</span> <span class="mi">8</span><span class="n">B4D</span> <span class="mi">0</span><span class="n">C</span>        <span class="k">MOV</span> <span class="n">ECX</span><span class="p">,</span><span class="n">DWORD</span> <span class="n">PTR</span> <span class="n">SS</span><span class="o">:</span><span class="err">[</span><span class="n">EBP</span><span class="o">+</span><span class="n">C</span><span class="err">]</span> <span class="c">;[EBP+C] = param b</span>
+<span class="mi">0040100</span><span class="n">F</span>  <span class="o">|</span><span class="p">.</span> <span class="mi">894</span><span class="n">D</span> <span class="n">FC</span>        <span class="k">MOV</span> <span class="n">DWORD</span> <span class="n">PTR</span> <span class="n">SS</span><span class="o">:</span><span class="err">[</span><span class="n">EBP</span><span class="o">-</span><span class="mi">4</span><span class="err">]</span><span class="p">,</span><span class="n">ECX</span> <span class="c">;[EBP-4] = local y</span>
+</code></pre></div></div>
+<p>add函数的栈帧生成之后，EBP的值发生变化，[EBP+8]与[EBP+C]分别指向参数a与b，而[EBP-8]与[EBP-4]则分别指向add（）函数的2个局部变量x、y。执行完上述语句，栈内情况：</p>
+
+<p><img src="/img/reversecore_assets/StackFrame程序函数add的局部变量x与y.png" alt="StackFrame程序函数add的局部变量x与y.png" /></p>
+
+<h2 id="add运算">ADD运算</h2>
+
+<p>源码中的<code class="highlighter-rouge">return (x+y)</code>用于返回2个局部变量之和。</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mo">00401012</span>  <span class="n">MOV</span> <span class="n">EAX</span><span class="p">,</span><span class="n">DWORD</span> <span class="n">PTR</span> <span class="n">SS</span><span class="o">:</span><span class="p">[</span><span class="n">EBP</span><span class="o">-</span><span class="mi">8</span><span class="p">]</span>  <span class="p">;[</span><span class="n">EBP</span><span class="o">-</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">local</span> <span class="n">x</span>
+</code></pre></div></div>
+<p>上述MOV语句中，变量X的值被传送到EAX。</p>
+
+<div class="language-nasm highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">00401015</span>  <span class="k">ADD</span> <span class="n">EAX</span><span class="p">,</span><span class="n">DWORD</span> <span class="n">PTR</span> <span class="n">SS</span><span class="o">:</span><span class="err">[</span><span class="n">EBP</span><span class="o">-</span><span class="mi">4</span><span class="err">]</span>  <span class="c">;[EBP-4] = local y</span>
+</code></pre></div></div>
+
+<p>ADD指令为加法指令，上面语句中，变量y([EBP-4]=2)与EAX原值(x)相加，且运算结果被存储在EAX中，运算完成后EAX的值为3.</p>
+
+<blockquote>
+  <p>EAX是通用寄存器，在算术运算中存储输入输出数据，为函数提供返回值。若向EAX中输入某个值，该值就会原封不动地返回。执行运算地过程中栈内情况保持不变。</p>
+</blockquote>
+
+<h2 id="删除add函数地栈帧函数执行完毕返回">删除add()函数地栈帧&amp;函数执行完毕(返回)</h2>
+
+<p>源码中的<code class="highlighter-rouge">return (x+y)</code>对应“删除函数栈帧与函数执行完毕返回”</p>
+
+<p>执行完加法运算后，要返回函数add()，在此之前先删除函数add()的栈帧。</p>
+
+<div class="language-nasm highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">00401018</span>	<span class="k">MOV</span> <span class="n">ESP</span><span class="p">,</span><span class="n">EBP</span>
+</code></pre></div></div>
+<p>上面这条指令，把当前EBP的值赋给ESP，与地址<code class="highlighter-rouge">401001</code>处的<code class="highlighter-rouge">MOV EBP，ESP</code>命令相对应。在地址<code class="highlighter-rouge">401001</code>处，<code class="highlighter-rouge">MOV EBP,ESP</code>命令把函数add()开始执行时的ESP值(12FF28)放入EBP，函数执行完毕时，使用<code class="highlighter-rouge">401018</code>处的<code class="highlighter-rouge">MOV ESP,EBP</code>命令再把存储到EBP中的值恢复到ESP中。</p>
+
+<blockquote>
+  <p>执行完上面的命令后，地址<code class="highlighter-rouge">401003</code>处的SUB ESP,8命令就会失效，即函数add()的两个局部变量x、y不再有效。</p>
+</blockquote>
+
+<div class="language-nasm highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">0040101</span><span class="n">A</span> <span class="k">POP</span> <span class="n">EBP</span>
+</code></pre></div></div>
+
+<p>上面这条指令用于恢复函数add()开始执行时备份到栈中的EBP值，它与401000地址处的PUSH EBP命令对应。EBP值恢复为<code class="highlighter-rouge">12FF40</code>，它是main()函数的EBP值。到此,add()函数的栈帧就被删除。
+执行完上述，栈内情况：
+<img src="/img/reversecore_assets/删除函数add的栈帧.png" alt="删除函数add的栈帧.png" /></p>
+
+<p>可以看到ESP的值为<code class="highlighter-rouge">12FF2C</code>，该地址为<code class="highlighter-rouge">401041</code>，它是执行<code class="highlighter-rouge">CALL 401000</code>命令时CPU存储到栈中的返回地址。</p>
+
+<div class="language-nasm highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">0040101</span><span class="n">B</span> <span class="k">RETN</span>
+</code></pre></div></div>
+<p>执行上述RETN命令，存储在栈中的返回地址即被返回，此时栈内情形如图：</p>
+
+<p><img src="/img/reversecore_assets/StackFrame程序函数add返回.png" alt="StackFrame程序函数add返回.png" /></p>
+
+<blockquote>
+  <p>调用栈已经完全返回到调用add()函数之前的状态</p>
+</blockquote>
+
+<p>应用程序采用上述方式管理栈，不论有多少函数嵌套调用，栈都能得到比较好的维护，不会崩溃。但是由于函数的局部变量、参数、返回地址是一次性保存到栈中的，利用字符串函数漏洞等容易引起栈缓冲区溢出，最终导致程序或系统崩溃。</p>
+
+<h2 id="从栈中删除函数add的参数整理栈">从栈中删除函数add()的参数(整理栈)</h2>
+
+<p>此时，程序执行流已经重新返回到main()函数中。</p>
+
+<div class="language-nasm highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">00401041</span>	<span class="k">ADD</span> <span class="n">ESP</span><span class="p">,</span><span class="mi">8</span>
+</code></pre></div></div>
+<p>上面语句使用ADD命令将ESP加上8。地址<code class="highlighter-rouge">12FF30</code>和<code class="highlighter-rouge">12FF34</code>处存储的是传递给函数add()的参数a与b。函数add()执行完毕后，就不再需要参数a与b，所以ESP加上8，将它们从栈中清理掉(a、b参数都是长整型，各占4字节)</p>
+
+<blockquote>
+  <p><strong>调用函数之前，先使用PUSH命令把参数a、b压入栈中</strong></p>
+</blockquote>
+
+<p>执行上述命令后，栈内情况：</p>
+
+<p><img src="/img/reversecore_assets/StackFrame删除add函数的2个参数.png" alt="StackFrame删除add函数的2个参数.png" /></p>
+
+<blockquote>
+  <p><strong>被调函数执行完毕后，函数的调用者(Caller)负责清理存储在栈中的参数，该方式称为cdecl方式；反之，被调用者(Callee)负责清理保存在栈中的参数，这种方式称为stdcall方式。这些函数调用规则统称为调用约定(Calling Convention)</strong></p>
+</blockquote>
+
+<h2 id="调用printf函数">调用printf()函数</h2>
+
+<p>源码中<code class="highlighter-rouge">printf("%d\n",add(a,b))</code>对应打印输出运算结果。</p>
+
+<p>调用printf()函数的汇编代码如下：</p>
+
+<div class="language-nasm highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">00401044</span>       <span class="k">push</span> <span class="n">eax</span> <span class="c">;函数add()的返回值</span>
+<span class="mi">00401045</span>       <span class="k">push</span> <span class="mh">0x40B384</span> <span class="c">;"%d\n"</span>
+<span class="mi">0040104</span><span class="n">A</span>       <span class="k">call</span> <span class="mi">00401067</span> <span class="c">;printf()</span>
+<span class="mi">0040104</span><span class="n">F</span>       <span class="k">add</span> <span class="n">esp</span><span class="p">,</span><span class="mh">0x8</span>
+</code></pre></div></div>
+<p>地址<code class="highlighter-rouge">401044</code>处的EAX寄存器中存储着函数add()的返回值，它是执行加法运算后的结果值3.地址<code class="highlighter-rouge">40104A</code>处的<code class="highlighter-rouge">CALL 401067</code>命令中调用的是<code class="highlighter-rouge">401067</code>地址处的函数，它是C标准库函数printf()。由于上面的printf函数有2个参数，大小为8个字节(32位寄存器+32位常量=64位=8字节)，所以在40104F地址处使用ADD命令，将ESP加上8个字节，把函数的参数从栈中删除。函数printf()执行完毕并通过ADD命令删除参数后如图：</p>
+
+<p><img src="/img/reversecore_assets/StackFrame删除add函数的2个参数.png" alt="StackFrame删除add函数的2个参数.png" /></p>
+
+<h2 id="设置返回值">设置返回值</h2>
+
+<p>源码中的返回语句是<code class="highlighter-rouge">return 0;</code></p>
+
+<p>main()函数使用该语句设置返回值(0)。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>00401052	XOR EAX,EAX
+</code></pre></div></div>
+<p>XOR命令用来进行<code class="highlighter-rouge">Exclusive OR bit</code>（异或）运算，其特点是“2个相同的值进行XOR运算，结果为0”.XOR命令比<code class="highlighter-rouge">MOV EAX,0</code>命令执行速度快，常用于寄存器的初始化操作。</p>
+
+<blockquote>
+  <p>利用相同的值连续2次XOR运算变为原值，这个特征被大量应用于编码和解码</p>
+</blockquote>
+
+<h2 id="删除栈帧main函数终止">删除栈帧&amp;main()函数终止</h2>
+
+<p>源码中<code class="highlighter-rouge">return 0;}</code>对应删除栈帧&amp;main()函数终止。</p>
+
+<p>最终主函数终止执行，同add函数一样，其返回前要先从栈中删除与其对应的栈帧。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>00401054	MOV ESP,EBP
+00401056	POP EBP
+</code></pre></div></div>
+<p>执行完上面两条命令后，main()函数的栈帧立即被删除，且其局部变量a、b也不再有效。执行到此时，栈内情况如下：</p>
+
+<p><img src="/img/reversecore_assets/StackFrame程序删除main函数的栈帧.png" alt="StackFrame程序删除main函数的栈帧.png" /></p>
+
+<p>图中main()函数和开始栈内情况一样:<code class="highlighter-rouge">00401057 RETN</code>
+执行完上述命令，主要函数执行完毕并返回，程序执行流程跳转到返回地址处(401250)，该地址指向VC++的启动函数区域，随后执行进程终止代码。</p>
+
+<h2 id="设置od选项">设置OD选项</h2>
+
+<p>打开OD的Debugging options对话框(Alt+O)：</p>
+
+<p><img src="/img/reversecore_assets/Disasm选项.png" alt="Disasm选项.png" /></p>
+
+<p>关闭显示默认段和始终显示内存操作数的大小后，原来代码中显示的默认段和内存大小都不再显示。</p>
+
+<p><img src="/img/reversecore_assets/选项变更后的代码窗口.png" alt="选项变更后的代码窗口.png" /></p>
+
+<h2 id="analysis1选项">Analysis1选项</h2>
+
+<p>选择Analysis1选项卡，点击“SHOW ARGs and LOCALs in procedures”左侧的复选框，启用该选项。</p>
+
+<p>原来以EBP表示的函数局部变量、参数分别表示成了LOCAL.1、ARG.1的形式。该选项为代码提供了非常好的可读性，有助于调试代码。
+启用该选项后，OllyDbg会直接分析函数的栈帧，然后把局部变量的个数、参数的个数等显示在代码窗口。启用该选项后，虽然偶尔会出现显示错误，但它的显示非常直观，能为调试代码提供帮助。</p>
+
+<p><img src="/img/reversecore_assets/局部变量与参数的表示形式.png" alt="局部变量与参数的表示形式.png" /></p>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/03/14/crackme1/">CrackMe1</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/03/17/CrackMe2/">CrackMe2</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/03/15/stack-frame/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/03/15/stack-frame/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

@@ -1,0 +1,362 @@
+BAT文件语法和技巧（bat文件的编写及使用）
+
+
+比较有用的东比较有用的东西 
+首先，批处理文件是一个文本文件，这个文件的每一行都是一条DOS命令（大部分时候就好象我们在DOS提示符下执行的命令行一样），你可以使用DOS下的Edit或者Windows的记事本(notepad)等任何文本文件编辑工具创建和修改批处理文件。 
+
+其次，批处理文件是一种简单的程序，可以通过条件语句(if)和流程控制语句(goto)来控制命令运行的流程，在批处理中也可以使用循环语句(for)来循环执行一条命令。当然，批处理文件的编程能力与C语言等编程语句比起来是十分有限的，也是十分不规范的。批处理的程序语句就是一条条的DOS命令（包括内部命令和外部命令），而批处理的能力主要取决于你所使用的命令。 
+
+第三，每个编写好的批处理文件都相当于一个DOS的外部命令，你可以把它所在的目录放到你的DOS搜索路径(path)中来使得它可以在任意位置运行。一个良好的习惯是在硬盘上建立一个bat或者batch目录（例如C:\BATCH），然后将所有你编写的批处理文件放到该目录中，这样只要在path中设置上c:\batch，你就可以在任意位置运行所有你编写的批处理程序。 
+
+第四，在DOS和Win9x/Me系统下，C:盘根目录下的AUTOEXEC.BAT批处理文件是自动运行批处理文件，每次系统启动时会自动运行该文件，你可以将系统每次启动时都要运行的命令放入该文件中，例如设置搜索路径，调入鼠标驱动和磁盘缓存，设置系统环境变量等。下面是一个运行于Windows 98下的autoexec.bat的示例： 
+@ECHO OFF 
+PATH C:\WINDOWS;C:\WINDOWS\COMMAND;C:\UCDOS;C:\DOSTools;C:\SYSTOOLS;C:\WINTOOLS;C:\BATCH 
+LH SMARTDRV.EXE /X 
+LH DOSKEY.COM /INSERT 
+LH CTMOUSE.EXE 
+SET TEMP=D:\TEMP 
+SET TMP=D:\TEMP 
+
+
+批处理的作用 
+简单的说，批处理的作用就是自动的连续执行多条命令。 
+
+这里先讲一个最简单的应用：在启动wps软件时，每次都必须执行（>前面内容表示DOS提示符）： 
+C:\>cd wps 
+C:\WPS>spdos 
+C:\WPS>py 
+C:\WPS>wbx 
+C:\WPS>wps 
+如果每次用WPS之前都这样执行一遍，您是不是觉得很麻烦呢？ 
+
+好了，用批处理，就可以实现将这些麻烦的操作简单化，首先我们编写一个runwps.bat批处理文件，内容如下： 
+@echo off 
+c: 
+cd\wps 
+spdos 
+py 
+wbx 
+wps 
+cd\ 
+
+以后，我们每次进入wps，只需要运行runwps这个批处理文件即可。 
+
+常用命令 
+
+echo、@、call、pause、rem(小技巧：用::代替rem)是批处理文件最常用的几个命令，我们就从他们开始学起。 
+echo 表示显示此命令后的字符 
+echo off 表示在此语句后所有运行的命令都不显示命令行本身 
+@与echo off相象，但它是加在每个命令行的最前面，表示运行时不显示这一行的命令行（只能影响当前行）。 
+call 调用另一个批处理文件（如果不用call而直接调用别的批处理文件，那么执行完那个批处理文件后将无法返回当前文件并执行当前文件的后续命令）。 
+pause 运行此句会暂停批处理的执行并在屏幕上显示Press any key to continue...的提示，等待用户按任意键后继续 
+rem 表示此命令后的字符为解释行（注释），不执行，只是给自己今后参考用的（相当于程序中的注释）。 
+
+例1：用edit编辑a.bat文件，输入下列内容后存盘为c:\a.bat，执行该批处理文件后可实现：将根目录中所有文件写入 a.txt中，启动UCDOS，进入WPS等功能。 
+
+　　批处理文件的内容为: 　　　　　　　 命令注释： 
+
+　　　　@echo off　　　　　　　　　　　不显示后续命令行及当前命令行 
+　　　　dir c:\*.* >a.txt　　　　　　　将c盘文件列表写入a.txt 
+　　　　call c:\ucdos\ucdos.bat　　　　调用ucdos 
+　　　　echo 你好 　　　　　　　　　　 显示"你好" 
+　　　　pause 　　　　　　　　　　　　 暂停,等待按键继续 
+　　　　rem 准备运行wps 　　　　　　　 注释：准备运行wps 
+　　　　cd ucdos　　　　　　　　　　　 进入ucdos目录 
+　　　　wps 　　　　　　　　　　　　　 运行wps　　 
+
+批处理文件的参数 
+
+批处理文件还可以像C语言的函数一样使用参数（相当于DOS命令的命令行参数），这需要用到一个参数表示符"%"。 
+
+%[1-9]表示参数，参数是指在运行批处理文件时在文件名后加的以空格（或者Tab）分隔的字符串。变量可以从%0到%9，%0表示批处理命令本身，其它参数字符串用%1到%9顺序表示。 
+
+例2：C:根目录下有一批处理文件名为f.bat，内容为： 
+@echo off 
+format %1 
+
+如果执行C:\>f a: 
+那么在执行f.bat时，%1就表示a:，这样format %1就相当于format a:，于是上面的命令运行时实际执行的是format a: 
+
+例3：C:根目录下一批处理文件名为t.bat，内容为: 
+@echo off 
+type %1 
+type %2 
+
+那么运行C:\>t a.txt b.txt 
+%1 : 表示a.txt 
+%2 : 表示b.txt> 
+于是上面的命令将顺序地显示a.txt和b.txt文件的内容。 
+
+
+特殊命令 
+
+if goto choice for是批处理文件中比较高级的命令，如果这几个你用得很熟练，你就是批处理文件的专家啦。 
+
+一、if 是条件语句，用来判断是否符合规定的条件，从而决定执行不同的命令。有三种格式: 
+
+1、if [not] "参数" == "字符串" 待执行的命令 
+
+参数如果等于(not表示不等，下同)指定的字符串，则条件成立，运行命令，否则运行下一句。 
+
+例：if "%1"=="a" format a: 
+
+2、if [not] exist [路径\]文件名 待执行的命令 
+如果有指定的文件，则条件成立，运行命令，否则运行下一句。 
+
+如: if exist c:\config.sys type c:\config.sys 
+表示如果存在c:\config.sys文件，则显示它的内容。 
+
+3、if errorlevel <数字> 待执行的命令 
+
+很多DOS程序在运行结束后会返回一个数字值用来表示程序运行的结果(或者状态)，通过if errorlevel命令可以判断程序的返回值，根据不同的返回值来决定执行不同的命令(返回值必须按照从大到小的顺序排列)。如果返回值等于指定的数字，则条件成立，运行命令，否则运行下一句。 
+
+如if errorlevel 2 goto x2 
+
+二、goto 批处理文件运行到这里将跳到goto所指定的标号(标号即label，标号用:后跟标准字符串来定义)处，goto语句一般与if配合使用，根据不同的条件来执行不同的命令组。 
+
+如: 
+
+goto end 
+
+:end 
+echo this is the end 
+
+标号用":字符串"来定义，标号所在行不被执行。 
+
+三、choice 使用此命令可以让用户输入一个字符（用于选择），从而根据用户的选择返回不同的errorlevel，然后于if errorlevel配合，根据用户的选择运行不同的命令。 
+
+注意：choice命令为DOS或者Windows系统提供的外部命令，不同版本的choice命令语法会稍有不同，请用choice /?查看用法。 
+
+choice的命令语法（该语法为Windows 2003中choice命令的语法，其它版本的choice的命令语法与此大同小异）： 
+
+CHOICE [/C choices] [/N] [/CS] [/T timeout /D choice] [/M text] 
+
+描述: 
+　 该工具允许用户从选择列表选择一个项目并返回所选项目的索引。 
+
+参数列表: 
+　/C　　choices　　　 指定要创建的选项列表。默认列表是 "YN"。 
+
+　/N　　　　　　　　　在提示符中隐藏选项列表。提示前面的消息得到显示，选项依旧处于启用状态。 
+
+　/CS　　　　　　　　允许选择分大小写的选项。在默认情况下，这个工具是不分大小写的。 
+
+　/T　　timeout　　　 做出默认选择之前，暂停的秒数。可接受的值是从 0 到 9999。如果指定了 0，就不会有暂停，默认选项 
+　　　　　　　　　　　会得到选择。 
+
+　/D　　choice　　　　在 nnnn 秒之后指定默认选项。字符必须在用 /C 选项指定的一组选择中; 同时，必须用 /T 指定 nnnn。 
+
+　/M　　text　　　　　指定提示之前要显示的消息。如果没有指定，工具只显示提示。 
+
+　/?　　　　　　　　　显示帮助消息。 
+
+　注意: 
+　ERRORLEVEL 环境变量被设置为从选择集选择的键索引。列出的第一个选择返回 1，第二个选择返回 2，等等。如果用户按的键不是有效的选择，该工具会发出警告响声。如果该工具检测到错误状态，它会返回 255 的ERRORLEVEL 值。如果用户按 Ctrl+Break 或 Ctrl+C 键，该工具会返回 0 的 ERRORLEVEL 值。在一个批程序中使用 ERRORLEVEL 参数时，将参数降序排列。 
+
+示例: 
+　CHOICE /? 
+　CHOICE /C YNC /M "确认请按 Y，否请按 N，或者取消请按 C。" 
+　CHOICE /T 10 /C ync /CS /D y 
+　CHOICE /C ab /M "选项 1 请选择 a，选项 2 请选择 b。" 
+　CHOICE /C ab /N /M "选项 1 请选择 a，选项 2 请选择 b。" 
+　 
+如果我运行命令：CHOICE /C YNC /M "确认请按 Y，否请按 N，或者取消请按 C。" 
+屏幕上会显示： 
+确认请按 Y，否请按 N，或者取消请按 C。 [Y,N,C]? 
+　 
+　 
+例：test.bat的内容如下（注意，用if errorlevel判断返回值时，要按返回值从高到低排列）: 
+@echo off 
+choice /C dme /M "defrag,mem,end" 
+if errorlevel 3 goto end 
+if errorlevel 2 goto mem 
+if errotlevel 1 goto defrag 
+
+:defrag 
+c:\dos\defrag 
+goto end 
+
+:mem 
+mem 
+goto end 
+
+:end 
+echo good bye 
+
+此批处理运行后，将显示"defrag,mem,end[D,M,E]?" ，用户可选择d m e ，然后if语句根据用户的选择作出判断，d表示执行标号为defrag的程序段，m表示执行标号为mem的程序段，e表示执行标号为end的程序段，每个程序段最后都以goto end将程序跳到end标号处，然后程序将显示good bye，批处理运行结束。 
+
+四、for 循环命令，只要条件符合，它将多次执行同一命令。 
+
+语法： 
+对一组文件中的每一个文件执行某个特定命令。 
+
+FOR %%variable IN (set) DO command [command-parameters] 
+
+%%variable　　　　指定一个单一字母可替换的参数。 
+(set)　　　　　　指定一个或一组文件。可以使用通配符。 
+command　　　　　指定对每个文件执行的命令。 
+command-parameters 为特定命令指定参数或命令行开关。 
+
+例如一个批处理文件中有一行: 
+for %%c in (*.bat *.txt) do type %%c 
+
+则该命令行会显示当前目录下所有以bat和txt为扩展名的文件的内容。 
+
+
+批处理示例 
+
+1. IF-EXIST 
+
+1) 
+
+首先用记事本在C:\建立一个test1.bat批处理文件，文件内容如下： 
+@echo off 
+IF EXIST \AUTOEXEC.BAT TYPE \AUTOEXEC.BAT 
+IF NOT EXIST \AUTOEXEC.BAT ECHO \AUTOEXEC.BAT does not exist 
+
+然后运行它： 
+C:\>TEST1.BAT 
+
+如果C:\存在AUTOEXEC.BAT文件，那么它的内容就会被显示出来，如果不存在，批处理就会提示你该文件不存在。 
+
+2) 
+
+接着再建立一个test2.bat文件，内容如下： 
+@ECHO OFF 
+IF EXIST \%1 TYPE \%1 
+IF NOT EXIST \%1 ECHO \%1 does not exist 
+
+执行: 
+C:\>TEST2 AUTOEXEC.BAT 
+该命令运行结果同上。 
+
+说明： 
+(1) IF EXIST 是用来测试文件是否存在的，格式为 
+IF EXIST [路径+文件名] 命令 
+(2) test2.bat文件中的%1是参数，DOS允许传递9个批参数信息给批处理文件，分别为%1~%9(%0表示test2命令本身) ，这有点象编程中的实参和形参的关系，%1是形参，AUTOEXEC.BAT是实参。 
+
+3) 更进一步的，建立一个名为TEST3.BAT的文件，内容如下： 
+@echo off 
+IF "%1" == "A" ECHO XIAO 
+IF "%2" == "B" ECHO TIAN 
+IF "%3" == "C" ECHO XIN 
+
+如果运行： 
+C:\>TEST3 A B C 
+屏幕上会显示: 
+XIAO 
+TIAN 
+XIN 
+
+如果运行： 
+C:\>TEST3 A B 
+屏幕上会显示 
+XIAO 
+TIAN 
+
+在这个命令执行过程中，DOS会将一个空字符串指定给参数%3。 
+
+2、IF-ERRORLEVEL 
+
+建立TEST4.BAT，内容如下： 
+@ECHO OFF 
+XCOPY C:\AUTOEXEC.BAT D:IF ERRORLEVEL 1 ECHO 文件拷贝失败 
+IF ERRORLEVEL 0 ECHO 成功拷贝文件 
+
+然后执行文件: 
+C:\>TEST4 
+
+如果文件拷贝成功，屏幕就会显示"成功拷贝文件"，否则就会显示"文件拷贝失败"。 
+
+IF ERRORLEVEL 是用来测试它的上一个DOS命令的返回值的，注意只是上一个命令的返回值，而且返回值必须依照从大到小次序顺序判断。因此下面的批处理文件是错误的： 
+@ECHO OFF 
+XCOPY C:\AUTOEXEC.BAT D:\ 
+IF ERRORLEVEL 0 ECHO 成功拷贝文件 
+IF ERRORLEVEL 1 ECHO 未找到拷贝文件 
+IF ERRORLEVEL 2 ECHO 用户通过ctrl-c中止拷贝操作 
+IF ERRORLEVEL 3 ECHO 预置错误阻止文件拷贝操作 
+IF ERRORLEVEL 4 ECHO 拷贝过程中写盘错误 
+
+无论拷贝是否成功，后面的： 
+
+未找到拷贝文件 
+用户通过ctrl-c中止拷贝操作 
+预置错误阻止文件拷贝操作 
+拷贝过程中写盘错误 
+
+都将显示出来。 
+
+以下就是几个常用命令的返回值及其代表的意义： 
+backup 
+0 备份成功 
+1 未找到备份文件 
+2 文件共享冲突阻止备份完成 
+3 用户用ctrl-c中止备份 
+4 由于致命的错误使备份操作中止 
+
+diskcomp 
+0 盘比较相同 
+1 盘比较不同 
+2 用户通过ctrl-c中止比较操作 
+3 由于致命的错误使比较操作中止 
+4 预置错误中止比较 
+
+diskcopy 
+0 盘拷贝操作成功 
+1 非致命盘读/写错 
+2 用户通过ctrl-c结束拷贝操作 
+3 因致命的处理错误使盘拷贝中止 
+4 预置错误阻止拷贝操作 
+
+format 
+0 格式化成功 
+3 用户通过ctrl-c中止格式化处理 
+4 因致命的处理错误使格式化中止 
+5 在提示"proceed with format（y/n）?"下用户键入n结束 
+
+xcopy 
+0 成功拷贝文件 
+1 未找到拷贝文件 
+2 用户通过ctrl-c中止拷贝操作 
+4 预置错误阻止文件拷贝操作 
+5 拷贝过程中写盘错误 
+
+3、IF STRING1 == STRING2 
+
+建立TEST5.BAT，文件内容如下： 
+@echo off 
+IF "%1" == "A" formAT A: 
+
+执行： 
+C:\>TEST5 A 
+屏幕上就出现是否将A:盘格式化的内容。 
+
+注意：为了防止参数为空的情况，一般会将字符串用双引号（或者其它符号，注意不能使用保留符号）括起来。 
+如：if [%1]==[A] 或者 if %1*==A* 
+
+5、GOTO 
+
+建立TEST6.BAT，文件内容如下： 
+@ECHO OFF 
+IF EXIST C:\AUTOEXEC.BAT GOTO _COPY 
+GOTO _DONE 
+:_COPY 
+COPY C:\AUTOEXEC.BAT D:\ 
+:_DONE 
+
+注意： 
+(1) 标号前是ASCII字符的冒号":"，冒号与标号之间不能有空格。 
+(2) 标号的命名规则与文件名的命名规则相同。 
+(3) DOS支持最长八位字符的标号，当无法区别两个标号时，将跳转至最近的一个标号。 
+
+6、FOR 
+
+建立C:\TEST7.BAT，文件内容如下： 
+@ECHO OFF 
+FOR %%C IN (*.BAT *.TXT *.SYS) DO TYPE %%C 
+
+运行： 
+C:>TEST7 
+
+执行以后，屏幕上会将C:盘根目录下所有以BAT、TXT、SYS为扩展名的文件内容显示出来（不包括隐藏文件）。 
+详细出处参考：http://www.jb51.net/article/5828.htm

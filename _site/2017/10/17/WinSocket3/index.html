@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>WinSocket——part3</title>
+    <meta name="description" content="IOCP(I/O completion port,I/O完成端口)是伸缩性最好的一种I/O模型，适合处理成百上千的套接字。">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/10/17/WinSocket3/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>WinSocket——part3</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-10-17
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#code" title="Category: code" rel="category">code</a>&nbsp;
+    
+        <a href="/category/#C++" title="Category: C++" rel="category">C++</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#Socket" title="Tag: Socket" rel="tag">Socket</a-->
+        <a href="/tag/#Socket" title="Tag: Socket" rel="tag">Socket</a>&nbsp;
+    
+        <!--a href="/tag/#Windows" title="Tag: Windows" rel="tag">Windows</a-->
+        <a href="/tag/#Windows" title="Tag: Windows" rel="tag">Windows</a>&nbsp;
+    
+        <!--a href="/tag/#C%2B%2B" title="Tag: C++" rel="tag">C++</a-->
+        <a href="/tag/#C++" title="Tag: C++" rel="tag">C++</a>&nbsp;
+    
+        <!--a href="/tag/#code" title="Tag: code" rel="tag">code</a-->
+        <a href="/tag/#code" title="Tag: code" rel="tag">code</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <ul id="markdown-toc">
+  <li><a href="#io完成端口对象定义" id="markdown-toc-io完成端口对象定义">I/O完成端口对象定义</a></li>
+  <li><a href="#iocp的使用方法" id="markdown-toc-iocp的使用方法">IOCP的使用方法</a>    <ul>
+      <li><a href="#创建完成端口对象" id="markdown-toc-创建完成端口对象">创建完成端口对象</a></li>
+      <li><a href="#io服务线程和完成端口" id="markdown-toc-io服务线程和完成端口">I/O服务线程和完成端口</a></li>
+      <li><a href="#完成端口和重叠io" id="markdown-toc-完成端口和重叠io">完成端口和重叠I/O</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>IOCP(I/O completion port,I/O完成端口)是伸缩性最好的一种I/O模型，适合处理成百上千的套接字。</p>
+
+<!--more-->
+
+<h2 id="io完成端口对象定义">I/O完成端口对象定义</h2>
+
+<p>I/O完成端口是应用程序使用线程池处理异步I/O请求的一种机制，处理多个并发异步I/O请求时，使用I/O完成端口比在I/O请求时创建线程更快更有效。</p>
+
+<p>I/O完成端口最初的设计是应用程序发出一些异步I/O请求，当这些请求完成时，设备驱动将把这些工作项目排序到完成端口，这样，在完成端口上等待的线程池便可以处理这些完成I/O。完成端口实际是一个Windows I/O结构，它可以接收多种对象的句柄，如文件对象、套接字对象等。</p>
+
+<h2 id="iocp的使用方法">IOCP的使用方法</h2>
+
+<h3 id="创建完成端口对象">创建完成端口对象</h3>
+
+<p>使用完成端口模型，首先调用CreateIoCompletionPort函数创建一个完成端口对象，Winsock将使用这个对象为任意数量的套接字句柄管理I/O请求。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">HANDLE</span> <span class="n">CreateIoCompletionPort</span><span class="p">(</span><span class="n">HANDLE</span> <span class="n">FileHandle</span><span class="p">,</span> <span class="n">HANDLE</span> <span class="n">ExistingCompletionPort</span><span class="p">,</span> <span class="n">ULONG_PTR</span> <span class="n">CompletionKey</span><span class="p">,</span> <span class="n">DWORD</span> <span class="n">NumberOfConcurrentThreads</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>该函数两个不同的功能：</p>
+
+<ul>
+  <li>创建一个完成端口对象</li>
+  <li>将一个或者多个文件句柄关联到I/O完成端口对象</li>
+</ul>
+
+<p>最初创建完成端口对象时，唯一需要设置的参数是<code class="highlighter-rouge">NumberOfConcurrentThreads</code>，定义了允许在完成端口上同时执行的线程的数量。理想情况下，每个处理器仅运行一个线程来为完成端口提供服务，以避免线程上下文切换。<code class="highlighter-rouge">NumberOfConcurrentThreads</code>为0表示系统允许的线程数量与处理器数量一样多。</p>
+
+<p>创建完成端口对象，取得标识完成端口的句柄：</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">HANDLEhCompletion</span> <span class="o">=</span> <span class="o">::</span><span class="n">CreateIoCompletionPort</span><span class="p">(</span><span class="n">INVALID_HANDLE_VALUE</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="io服务线程和完成端口">I/O服务线程和完成端口</h3>
+
+<p>成功创建完成端口对象后，可以向该对象关联套接字句柄。在关联套接字之前，需要创建一个或者多个工作线程(称为I/O服务线程)，在完成端口上执行并处理投递到完成端口上的I/O请求。<strong>创建完成端口时指定的线程数量和这里要创建的线程数量不是一回事，之前推荐线程数量为处理器的数量，以避免上下文切换</strong>。<code class="highlighter-rouge">CreateIoCompletionPort</code>函数的<code class="highlighter-rouge">NumberOfConcurrentThreads</code>参数明确告诉系统允许在完成端口上同时运行的线程数量，若创建的线程多于<code class="highlighter-rouge">NumberOfConcurrent Threads</code>，也就仅有<code class="highlighter-rouge">NumberOfConcurrentThreads</code>个线程允许运行。但有时候确实需要创建更多的线程，这取决于程序的总体设计。若某线程调用了一个函数，如sleep或<code class="highlighter-rouge">WaitForSingleObject</code>进入了暂停状态，多出来的线程中就会有一个开始运行，占据休眠线程的位置。总之，总希望在完成端口上参加I/O处理工作的线程和<code class="highlighter-rouge">CreateIoCompletionPort</code>函数指定的线程一样多。<strong>若工作线程会遇到阻塞（进入暂停状态），那就应该创建比<code class="highlighter-rouge">CreateIoCompletionPort</code>指定的数量还要多的线程</strong></p>
+
+<p>有足够的工作线程来处理完成端口上的I/O请求之后，就该为完成端口关联套接字句柄，这就用到<code class="highlighter-rouge">CreateIoCompletionPort</code>函数的前三个参数。</p>
+
+<ul>
+  <li><code class="highlighter-rouge">FileHandle</code>:要关联的套接字句柄</li>
+  <li><code class="highlighter-rouge">ExistingCompletionPort</code>:上面创建的完成端口对象的句柄</li>
+  <li><code class="highlighter-rouge">CompletionKey</code>:指定一个句柄唯一(per-handle)数据，它将与FileHandle套接字句柄关联在一起。应用程序可以在此存储任意类型的信息，通常是一个指针。（CompletionKey参数通常用于描述与套接字相关的信息，所以称为句柄唯一数据）</li>
+</ul>
+
+<h3 id="完成端口和重叠io">完成端口和重叠I/O</h3>
+
+<p>向完成端口关联套接字句柄之后，便可以在套接字上投递重叠发送和接收请求处理I/O了。在这些I/O操作完成时，I/O系统会向完成端口对象发送一个完成通知封包。I/O完成端口先以先进先出的方式为这些封包排队。应用程序使用GetQueuedCompletionStatus函数可以取得这些队列中的封包。这个函数应该在处理完成对象I/O的服务线程中调用。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">BOOL</span> <span class="n">GetQueuedCompletionStatus</span><span class="p">(</span>
+    <span class="n">HANDLE</span> <span class="n">CompletionPort</span><span class="p">,</span> <span class="c1">//完成端口对象句柄
+</span>    <span class="n">LPDWORD</span> <span class="n">lpNumberOfBytes</span><span class="p">,</span> <span class="c1">//取得I/O操作期间传输的字节数
+</span>    <span class="n">PULONG_PTR</span> <span class="n">lpCompletionKey</span><span class="p">,</span> <span class="c1">//取得在关联套接字时指定的句柄唯一数据
+</span>    <span class="n">LPOVERLAPPED</span><span class="o">*</span> <span class="n">lpOverlapped</span><span class="p">,</span> <span class="c1">// 取得投递IO操作时指定的OVERLAPPED结构
+</span>    <span class="n">DWORD</span> <span class="n">dwMillisseconds</span> <span class="c1">//若完成端口没有完成封包，此参数指定了等待的事件，INFINITE为无穷大
+</span>    <span class="p">);</span>
+</code></pre></div></div>
+
+<p>I/O服务线程调用<code class="highlighter-rouge">GetQueuedCompletionStatus</code>函数取得有事件发生的套接字的信息，通过<code class="highlighter-rouge">lpNumberOfBytes</code>参数得到传输的字节数，通过<code class="highlighter-rouge">lpCompletionKey</code>参数得到与套接字关联的句柄唯一数据，通过lpOverlapped参数得到投递I/O请求时使用的重叠对象地址，进一步得到I/O唯一(per-I/O)数据</p>
+
+<p>这些参数中，最重要的是per-handle数据和per-I/O。</p>
+
+<p><code class="highlighter-rouge">lpCompletionKey</code>参数包含了称为<code class="highlighter-rouge">per-handle</code>的数据，因为当套接字第一次与完成端口关联时，这个数据就关联到了一个套接字句柄。这是传递给<code class="highlighter-rouge">CreateIoCompletionPort</code>函数的<code class="highlighter-rouge">CompletionKey</code>参数。如前所述，可以给这个参数传递任何类型的数据。</p>
+
+<p><code class="highlighter-rouge">lpOverlapped</code></p>
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/10/16/attack-vnc/">VNC攻击</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/10/27/industrial-control/">工控</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/10/17/WinSocket3/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/10/17/WinSocket3/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

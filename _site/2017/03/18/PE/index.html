@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>PE</title>
+    <meta name="description" content="PE文件是Windows操作系统下使用的可执行文件。PE文件是指的是PE32，32位的可执行文件。64位的可执行文件称为PE+或者是PE32+，是PE的另外一种拓展形式。">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/03/18/PE/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>PE</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-03-18
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#ReverseCore" title="Category: ReverseCore" rel="category">ReverseCore</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#reading-notes" title="Tag: reading-notes" rel="tag">reading-notes</a-->
+        <a href="/tag/#reading-notes" title="Tag: reading-notes" rel="tag">reading-notes</a>&nbsp;
+    
+        <!--a href="/tag/#reverse" title="Tag: reverse" rel="tag">reverse</a-->
+        <a href="/tag/#reverse" title="Tag: reverse" rel="tag">reverse</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>PE文件是Windows操作系统下使用的可执行文件。
+PE文件是指的是PE32，32位的可执行文件。64位的可执行文件称为PE+或者是PE32+，是PE的另外一种拓展形式。</p>
+
+<ul id="markdown-toc">
+  <li><a href="#基本结构" id="markdown-toc-基本结构">基本结构</a></li>
+  <li><a href="#varva" id="markdown-toc-varva">VA&amp;RVA</a></li>
+  <li><a href="#pe头" id="markdown-toc-pe头">PE头</a>    <ul>
+      <li><a href="#文件头" id="markdown-toc-文件头">文件头</a>        <ul>
+          <li><a href="#machine" id="markdown-toc-machine">Machine</a></li>
+          <li><a href="#numberofsection" id="markdown-toc-numberofsection">NumberOfSection</a></li>
+          <li><a href="#sizeofoptionalheader" id="markdown-toc-sizeofoptionalheader">SizeOfOptionalHeader</a></li>
+          <li><a href="#characteristics" id="markdown-toc-characteristics">Characteristics</a></li>
+        </ul>
+      </li>
+      <li><a href="#nt头--可选头" id="markdown-toc-nt头--可选头">NT头 : 可选头</a>        <ul>
+          <li><a href="#magic" id="markdown-toc-magic">Magic</a></li>
+          <li><a href="#addressofentrypoint" id="markdown-toc-addressofentrypoint">AddressOfEntryPoint</a></li>
+          <li><a href="#imagebase" id="markdown-toc-imagebase">ImageBase</a></li>
+          <li><a href="#sectionalignmentfilealignment" id="markdown-toc-sectionalignmentfilealignment">SectionAlignment,FileAlignment</a></li>
+          <li><a href="#sizeofimage" id="markdown-toc-sizeofimage">SizeOfImage</a></li>
+          <li><a href="#sizeofheader" id="markdown-toc-sizeofheader">SizeOfHeader</a></li>
+          <li><a href="#subsystem" id="markdown-toc-subsystem">SubSystem</a></li>
+          <li><a href="#numberofrvaandsize" id="markdown-toc-numberofrvaandsize">NumberOfRvaAndSize</a></li>
+          <li><a href="#datadirectory" id="markdown-toc-datadirectory">DataDirectory</a></li>
+        </ul>
+      </li>
+      <li><a href="#节区头" id="markdown-toc-节区头">节区头</a></li>
+    </ul>
+  </li>
+  <li><a href="#rva-to-raw" id="markdown-toc-rva-to-raw">RVA to RAW</a>    <ul>
+      <li><a href="#例子" id="markdown-toc-例子">例子</a></li>
+    </ul>
+  </li>
+</ul>
+
+<!--more-->
+
+<p><img src="/img/reversecore_assets/PE文件/PE结构.jpg" alt="PE结构.jpg" /></p>
+
+<h2 id="基本结构">基本结构</h2>
+
+<p>从DOS头到节区头是PE头部分，其下的节区合称PE体。文件中使用偏移(offset)，内存中使用VA(虚拟地址)来表示位置。文件加载到内存时，情况就会发生变化（节区的大小、位置等）。文件的内容一般可分为代码(.txt)、数据(.data)、资源(.rsrc)节，分别保存。
+各节区头定义了各节区在文件或内存中的大小、位置、属性等。
+PE和各节区的尾部存在一个NULL填充的区域。
+<img src="/img/reversecore_assets/PE文件/PE文件结构.png" alt="PE文件结构.png" /></p>
+
+<p><img src="/img/reversecore_assets/PE文件/PE磁盘文件与内存映像结构图.png" alt="PE磁盘文件与内存映像结构图.png" /></p>
+
+<p><img src="/img/reversecore_assets/PE文件/PE磁盘文件与内存映像结构图2.png" alt="PE磁盘文件与内存映像结构图2.png" /></p>
+
+<h2 id="varva">VA&amp;RVA</h2>
+
+<p><strong>RVA+基址=VA</strong>
+VA是指进程虚拟内存的绝对地址，RVA是指从某个基准位置开始的相对位置。</p>
+
+<p>PE头内部信息大多以RVA形式存在。原因在/img/reversecore_assets/PE文件/主要是DLL）加载到进程虚拟内存的特定位置时，该位置可能已经加载了其他PE文件(DLL)。此时必须通过重定位将其加载到其他空白位置，若PE头信息使用的是VA，则无法正常访问。因此，使用RVA来定位信息，即使发生了重定位，只要相对于基准位置的相对地址没有变化，就能正常访问到指定信息，不会出问题。</p>
+
+<h2 id="pe头">PE头</h2>
+
+<ul>
+  <li>PE头</li>
+  <li>DOS小程序
+    <ul>
+      <li>DOS头</li>
+      <li>DOS存根</li>
+    </ul>
+  </li>
+  <li>NT头
+    <ul>
+      <li>签名结构体PE00(50450000h)</li>
+      <li>文件头
+        <ul>
+          <li>Machine</li>
+          <li>NumberOfSection</li>
+          <li>SizeOfOptionalHeader</li>
+          <li>Characteristics</li>
+        </ul>
+      </li>
+      <li>可选头
+        <ul>
+          <li>Magic</li>
+          <li>AddressOfEntryPoint（程序开始执行的地方）</li>
+          <li>ImageBase</li>
+          <li>SectionAlignment,FileAlignment</li>
+          <li>SizeOfImage</li>
+          <li>SizeOfHeaders</li>
+          <li>Subsystem</li>
+          <li>NumberOfRvaAndSizes</li>
+          <li>DataDirectory</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="文件头">文件头</h3>
+
+<h4 id="machine">Machine</h4>
+
+<p>每个CPU都拥有唯一的Machine码</p>
+
+<h4 id="numberofsection">NumberOfSection</h4>
+
+<p>PE文件把代码、数据资源等一句属性分类到各个节区保存 。NumberOfSection用来指出文件中存在的节区数量。该值一定要大于0，且当定义的节区数与实际节区不同时，将发生运行错误。</p>
+
+<h4 id="sizeofoptionalheader">SizeOfOptionalHeader</h4>
+
+<p>IMAGE_NT_HEADERS结构体的最后一个成员为IMAGE_OPTIONAL_HEADER32结构体。SizeOfOPtionalHeader成员用来指出IMAGE_OPTIONAL_HEADER32结构体的长度。IMAGE_OPTIONAL_HEADER32结构体由C编写而成，故其大小已经确定。但是Windows的PE装载器需要查看IMAGE_FILE_HEADER的SizeOfOptionalHeader值，从而识别出IMAGE_OPTIONAL_HEADER32结构体大小。
+PE32+格式的文件中使用的是IMAGE_OPTIONAL_HEADER64结构体，而不是IMAGE_OPTIONAL_HEADER32结构体。2各结构体不同，所以需要在SizeOfOptionalHeader成员中明确指出结构体的大小。</p>
+<blockquote>
+  <p>** 借助IMAGE_DOS_HEADER的e_lfanew成员与IMAGE_FILE_HEADER的SizeOfOptionalHeader成员，可以创建一种脱离常规的PE文件(PE Patch)，也有人称为“麻/img/reversecore_assets/PE文件/*</p>
+</blockquote>
+
+<h4 id="characteristics">Characteristics</h4>
+
+<p>Characteristics该字段用于标识文件的属性，文件是否是可运行的状态、是否为DLL文件等信息，以bit OR形式组合起来。</p>
+
+<h3 id="nt头--可选头">NT头 : 可选头</h3>
+
+<p>在IMAGE_DOS_HEADER32结构体中需要关注以下成员,这些值文件是必须运行的,设置错误将导致文件无法正常运行.</p>
+
+<h4 id="magic">Magic</h4>
+
+<p>为IMAGE_DOS_HEADER32结构体时,Magic码为10B;为IMAGE_DOS_HEADER64结构体时,Magic码为20B;</p>
+
+<h4 id="addressofentrypoint">AddressOfEntryPoint</h4>
+
+<p>AddressOfEntryPoint持有EP的RVA值,该值指出程序最先执行的代码起始地址,相当重要.</p>
+
+<h4 id="imagebase">ImageBase</h4>
+
+<p>进程虚拟内存的范围是 0~FFFFFFFF(32位系统).PE文件被加载到如此大的内存中时,ImageBase指出文件的优先载入地址.</p>
+
+<p>EXE,DLL文件被装载到用户内存的0~7FFFFFFF中,SYS文件被载入内核内存的80000000~FFFFFFFF中.</p>
+
+<h4 id="sectionalignmentfilealignment">SectionAlignment,FileAlignment</h4>
+
+<p>PE文件的Body部分划分为若干节区,这些节存储着不同类别的数据.FileAlignment指定了节区在磁盘文件中的最小单位,而SectionAlignment则指定了节区在内存中最小单位.磁盘文件或内存的节区大小必定为FileAlignment或SectionAlignment值的整数倍.</p>
+
+<h4 id="sizeofimage">SizeOfImage</h4>
+<p>加载到PE文件到内存时,SizeOfImage指定了PE Image在虚拟内存中所占空间的大小.</p>
+
+<h4 id="sizeofheader">SizeOfHeader</h4>
+<p>SizeOfHeader用来指定整个PE头的大小,该值也必须是FileAlignment的整数倍.</p>
+
+<h4 id="subsystem">SubSystem</h4>
+
+<p>该SubSystem值用来区分系统驱动文件(.sys)与普通的可执行文件(.exe,*.dll).Subsystem成员可拥有的值如表.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">值</th>
+      <th style="text-align: right">含义</th>
+      <th>备注</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">Driver文件</td>
+      <td>系统驱动(如:ntfs.sys)</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">2</td>
+      <td style="text-align: right">GUI文件</td>
+      <td>窗口应用程序(如:notepad.exe)</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">3</td>
+      <td style="text-align: right">CUI文件</td>
+      <td>控制台应用程序(如:cmd.exe)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="numberofrvaandsize">NumberOfRvaAndSize</h4>
+<p>NumberOfRvaAndSize用来指定DataDirectory(IMAGE_OPTIONAL_HEADER32结构体的最后一个成员)数组的个数.</p>
+
+<h4 id="datadirectory">DataDirectory</h4>
+<p>DataDirectory是由IMAGE_DATA_DIRECTORY结构体组成的数组,数组的每项都要被定义的值.</p>
+
+<h3 id="节区头">节区头</h3>
+
+<p>把具有相拟属性的数据统一保存在一个被称为”节区”的地方,然后需要把各节区属性记录在节区头中.</p>
+
+<p>需要为每个code/data/resource分别设置不用的特性,访问权限等.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>类别</th>
+      <th>访问权限</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>code</td>
+      <td>执行,读取权限</td>
+    </tr>
+    <tr>
+      <td>data</td>
+      <td>非执行,读取权限</td>
+    </tr>
+    <tr>
+      <td>resource</td>
+      <td>非执行,读取权限</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>IMAGE_SECTION_HEADER</p>
+
+<p>节区头是由IMAGE_SECTION_HEADER结构体组成的数组,每个结构体对应一个节区</p>
+
+<h2 id="rva-to-raw">RVA to RAW</h2>
+
+<p>PE文件加载到内存时，每个节区都要能够准确完成内存地址与文件偏移间的映射。这种映射叫做<code class="highlighter-rouge">RVA to RAW</code>
+方法是：</p>
+<ul>
+  <li>查找RVA所在节区</li>
+  <li>使用简单的公式计算文件偏移(RAW)：
+    <ul>
+      <li>RAW-PointerToRawData=RVA-VirtualAddress</li>
+      <li>RAW=RVA-VirtualAddress+PointerToRawData（磁盘文件中节区起始位置）
+<img src="/img/reversecore_assets/PE文件/notepad.exe文件与内存间的映射.png" alt="notepad.exe文件与内存间的映射.png" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="例子">例子</h3>
+
+<p>Q1：RVA=5000时，File Offset=？</p>
+
+<ul>
+  <li>首先查找RVA值所在节区：RVA5000位于第一个节区(.text)(假设基址为1000000)</li>
+  <li>使用公式：RAW=5000(RVA)-1000(VirtualAddress)+400(PointerToRawData)=4400</li>
+</ul>
+
+<p>Q2：RVA=13314，FileOffset=？</p>
+
+<ul>
+  <li>首先查找RVA的值所在节区：RVA=13314位于第三个节区(.rsrc)</li>
+  <li>使用公式：RAW=RVA-VirtualAddress+PointerToRawData=13314-B000+8400=10714</li>
+</ul>
+
+<p>Q3：RVA=ABA8时，FileOffset=？</p>
+
+<ul>
+  <li>首先查找RVA=ABA8在第二个节区</li>
+  <li>使用公式RAW=RVA-VirtualAddress+PointerToRawData=ABA8-9000-7C00=97A8</li>
+  <li>RAW=97A8在第三个节区，RVA在第二个节区，表明无法定义与RVA(ABA8)相对应的RAW。出现该原因，可能是第二个节区的VirtualSize值要比SizeOfRawData值大。</li>
+</ul>
+
+<p><strong>Windows装载器在装载DOS部分、PE文件头部分和节表(区块表)部分是不进行任何特殊处理的，而在装载节(区块)的时候则会自动按节(区块)的属性做不同的处理</strong>
+<strong>一般情况下，它会处理以下几个方面的内容：</strong></p>
+<ul>
+  <li>内存页的属性</li>
+  <li>节的偏移地址</li>
+  <li>节的尺寸</li>
+  <li>不进行映射的节</li>
+</ul>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/03/18/IAT/">PE之IAT</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/03/27/PE-with-relevant/">与PE有关的基本概念</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/03/18/PE/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/03/18/PE/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

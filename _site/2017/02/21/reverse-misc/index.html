@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Misc</title>
+    <meta name="description" content="逆向知识小记">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/02/21/reverse-misc/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>Misc</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-02-21
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#ReverseCore" title="Category: ReverseCore" rel="category">ReverseCore</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#reading-notes" title="Tag: reading-notes" rel="tag">reading-notes</a-->
+        <a href="/tag/#reading-notes" title="Tag: reading-notes" rel="tag">reading-notes</a>&nbsp;
+    
+        <!--a href="/tag/#reverse" title="Tag: reverse" rel="tag">reverse</a-->
+        <a href="/tag/#reverse" title="Tag: reverse" rel="tag">reverse</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>逆向知识小记</p>
+<ul id="markdown-toc">
+  <li><a href="#小端序标记法" id="markdown-toc-小端序标记法">小端序标记法</a></li>
+  <li><a href="#寄存器" id="markdown-toc-寄存器">寄存器</a></li>
+  <li><a href="#汇编指令" id="markdown-toc-汇编指令">汇编指令</a></li>
+</ul>
+
+<!--more-->
+
+<h2 id="小端序标记法">小端序标记法</h2>
+
+<p>计算机领域中，字节序(Byte Ordering)是多字节数据在计算机内存中存储或网络传输时各字节的存储顺序，主要分为两大类：小端序、大端序。</p>
+
+<p><img src="/img/reversecore_assets/大端序和小端序的区别.png" alt="大端序和小端序的区别.png" /></p>
+
+<p>数据类型为字节序时，其长度为1个字节，保存此类数据时，无论使用大端序还是小端序，字节顺序都是一样的。但数据长度为2个字节以上(含2个字节)时，采用不同字节序保存它们形成的存储顺序是不同的。采用大端序存储数据时，内存地址低位存储数据的高位，内存地址高位存储数据的低位，这是一种直观的字节存储顺序。采用小端序存储数据时，地址高位存储数据的高位，地址低位存储数据的低位，逆序存储方式，保存的字节顺序被倒转，最符合人类思维的字节序。</p>
+
+<blockquote>
+  <p><strong>数据为单一时，无论采用大端序还是小端序保存，字节存储顺序都一样。只有在2两个字节以上时，大端序和小端序的存储顺序不同。</strong>还有如图中代码3-1中的“abcde”被保存在一个字符数组中，字符数组在内存中是连续的，无论采用大端序还是小端序，存储顺序都一样。</p>
+</blockquote>
+
+<h2 id="寄存器">寄存器</h2>
+
+<p>寄存器是位于CPU的内部存储空间，都有自己的名字：</p>
+
+<ul>
+  <li>EAX，”累加器”(accumulator)，扩展累加寄存器，在乘法和除法中被自动使用</li>
+  <li>EBX，”基地址”(base)寄存器, 在内存寻址时存放基地址。</li>
+  <li>ECX，计数器(counter), 是重复(REP)前缀指令和LOOP指令的内定计数器。</li>
+  <li>EDX，则总是被用来放整数除法产生的余数。</li>
+  <li>ESP，扩展堆栈指针寄存器，寻址堆栈，极少用于普通的算术运算和数据传送。</li>
+  <li>ESI和EDI由高速内存数据传送指令使用，通常称为扩展源指针和扩展目的指针寄存器。</li>
+  <li>EBP，扩展帧指针寄存器，高级语言使用EBP引用堆栈上的函数参数和局部变量。</li>
+  <li>EIP，指令指针，存放下一条要执行的指令的地址。（指向当前执行的指令）有些程序可以修改EIP，使程序分支转移到新的地址执行。</li>
+</ul>
+
+<p><img src="/img/reversecore_assets/寄存器.png" alt="寄存器.png" /></p>
+
+<p>在EIP下有C、P、A、Z、S、T、D、O几个字母，它们表示标志。一般会在这些字母后加上F（FLAG），CF、PF、AF、ZF，这些标志表示用于条件分支，如：</p>
+
+<ul>
+  <li>若ZF为1表示跳转</li>
+  <li>若CF位1表示不跳转</li>
+</ul>
+
+<blockquote>
+  <p>EFLAGS 寄存器由控制CPU的操作或反映CPU某些运算的结果的独立二进制位构成。当某标志等于1时就说其被置位；等于0时候就说其被清除（或复位）</p>
+
+  <p>控制标志，控制CPU的操作。例如，某些标志位可以使CPU在每条指令执行后、检测到算术运算溢出后、进入虚拟8086模式或保护模式后中断。</p>
+
+  <p>状态标志，反映CPU执行的算术和逻辑运算的结果，包括溢出标志、符号标志、零标志、辅助进位标志、奇偶标志、进位标志：</p>
+  <ul>
+    <li>进位标志(CF):在无符号算术的运算结果太大而目的操作数无法容纳时置位</li>
+    <li>溢出标志(OF):在有符号算术运算结果太大或太小而无目的操作数无法容纳时置位</li>
+    <li>符号标志(SF):在算术或逻辑运算的结果位负时置位。</li>
+    <li>零标志(ZF):在算术或逻辑运算结果为零时置位。</li>
+    <li>辅助进位标志(AC):在算术运算导致8位操作数的位3到位4产生进位时置位。</li>
+    <li>奇偶标志(PF):结果最低有效字节为1的位的数目位偶数时置位，否则PF复位。通常用于在数据有可能改变或丢失的情况下检查错误。</li>
+  </ul>
+</blockquote>
+
+<p>静态分析和动态分析的区别是在于“是否运行程序”，静态偏向于“纵览全局”，动态分析偏向于“细看局部”。在软件分析的时候，首先用二进制编辑器和IDA看全局，然后再用OllyDbug看局部。</p>
+
+<blockquote>
+  <p>OD对python亲和性高，WinDbg对堆内核领域的程序进行调试，分析rootkit用它。</p>
+</blockquote>
+
+<h2 id="汇编指令">汇编指令</h2>
+
+<p><small>该模块出自<a href="https://www.haiyun.me/archives/crack-assembly.html">破解常用汇编指令</a>.</small></p>
+
+<p><strong>1.软件破解常用汇编指令</strong>：</p>
+
+<div class="language-nasm highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">cmp</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="c1">// 比较a与b
+</span><span class="k">mov</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="c1">// 把b值送给a值，使a=b
+</span><span class="k">ret</span> <span class="c1">// 返回主程序
+</span><span class="k">nop</span> <span class="c1">// 无作用
+</span><span class="k">call</span> <span class="c1">// 调用子程序，子程序以ret结尾
+</span><span class="k">je</span><span class="err">或</span><span class="k">jz</span> <span class="c1">// 相等则跳（机器码是74或84）
+</span><span class="k">jne</span><span class="err">或</span><span class="k">jnz</span> <span class="c1">// 不相等则跳（机器码是75或85）
+</span><span class="k">jmp</span> <span class="c1">// 无条件跳（机器码是EB）
+</span><span class="k">jb</span> <span class="c1">// 若小于则跳
+</span><span class="k">ja</span> <span class="c1">// 若大于则跳
+</span><span class="k">jg</span> <span class="c1">// 若大于则跳
+</span><span class="k">jge</span> <span class="c1">// 若大于等于则跳
+</span><span class="k">jl</span> <span class="c1">// 若小于则跳
+</span><span class="k">pop</span> <span class="n">xxx</span> <span class="c1">// xxx出栈
+</span><span class="k">push</span> <span class="n">xxx</span> <span class="c1">// xxx压栈
+</span></code></pre></div></div>
+
+<p><strong>2.数据传输指令：</strong></p>
+
+<ul>
+  <li>通用数据传送指令.</li>
+</ul>
+
+<div class="language-nasm highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">MOV</span> <span class="err">传送字或字节</span><span class="p">.</span>
+<span class="k">MOVSX</span> <span class="err">先符号扩展</span><span class="p">,</span><span class="err">再传送</span><span class="p">.</span>
+<span class="k">MOVZX</span> <span class="err">先零扩展</span><span class="p">,</span><span class="err">再传送</span><span class="p">.</span>
+<span class="k">PUSH</span> <span class="err">把字压入堆栈</span><span class="p">.</span>
+<span class="k">POP</span> <span class="err">把字弹出堆栈</span><span class="p">.</span>
+<span class="k">PUSHA</span> <span class="err">把</span><span class="n">AX</span><span class="p">,</span><span class="n">CX</span><span class="p">,</span><span class="n">DX</span><span class="p">,</span><span class="n">BX</span><span class="p">,</span><span class="n">SP</span><span class="p">,</span><span class="n">BP</span><span class="p">,</span><span class="n">SI</span><span class="p">,</span><span class="n">DI</span><span class="err">依次压入堆栈</span><span class="p">.</span>
+<span class="k">POPA</span> <span class="err">把</span><span class="n">DI</span><span class="p">,</span><span class="n">SI</span><span class="p">,</span><span class="n">BP</span><span class="p">,</span><span class="n">SP</span><span class="p">,</span><span class="n">BX</span><span class="p">,</span><span class="n">DX</span><span class="p">,</span><span class="n">CX</span><span class="p">,</span><span class="n">AX</span><span class="err">依次弹出堆栈</span><span class="p">.</span>
+<span class="k">PUSHAD</span> <span class="err">把</span><span class="n">EAX</span><span class="p">,</span><span class="n">ECX</span><span class="p">,</span><span class="n">EDX</span><span class="p">,</span><span class="n">EBX</span><span class="p">,</span><span class="n">ESP</span><span class="p">,</span><span class="n">EBP</span><span class="p">,</span><span class="n">ESI</span><span class="p">,</span><span class="n">EDI</span><span class="err">依次压入堆栈</span><span class="p">.</span>
+<span class="k">POPAD</span> <span class="err">把</span><span class="n">EDI</span><span class="p">,</span><span class="n">ESI</span><span class="p">,</span><span class="n">EBP</span><span class="p">,</span><span class="n">ESP</span><span class="p">,</span><span class="n">EBX</span><span class="p">,</span><span class="n">EDX</span><span class="p">,</span><span class="n">ECX</span><span class="p">,</span><span class="n">EAX</span><span class="err">依次弹出堆栈</span><span class="p">.</span>
+<span class="k">BSWAP</span> <span class="err">交换</span><span class="mi">32</span><span class="err">位寄存器里字节的顺序</span>
+<span class="k">XCHG</span> <span class="err">交换字或字节</span><span class="p">.(</span> <span class="err">至少有一个操作数为寄存器</span><span class="p">,</span><span class="err">段寄存器不可作为操作数</span><span class="p">)</span>
+<span class="k">CMPXCHG</span> <span class="err">比较并交换操作数</span><span class="p">.(</span> <span class="err">第二个操作数必须为累加器</span><span class="n">AL</span><span class="o">/</span><span class="n">AX</span><span class="o">/</span><span class="n">EAX</span> <span class="p">)</span>
+<span class="k">XADD</span> <span class="err">先交换再累加</span><span class="p">.(</span> <span class="err">结果在第一个操作数里</span> <span class="p">)</span>
+<span class="k">XLAT</span> <span class="err">字节查表转换</span><span class="p">.</span>
+<span class="err">——</span> <span class="n">BX</span> <span class="err">指向一张</span> <span class="mi">256</span> <span class="err">字节的表的起点</span><span class="p">,</span> <span class="n">AL</span> <span class="err">为表的索引值</span> <span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="mi">255</span><span class="p">,</span><span class="err">即</span>
+<span class="mi">0</span><span class="o">-</span><span class="n">FFH</span><span class="p">)</span><span class="c">; 返回 AL 为查表结果. ( [BX+AL]-&gt;AL )</span>
+</code></pre></div></div>
+
+<ul>
+  <li>输入输出端口传送指令.</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">IN</span> <span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="err">端口输入</span><span class="p">.</span> <span class="p">(</span> <span class="err">语法</span><span class="o">:</span> <span class="n">IN</span> <span class="err">累加器</span><span class="p">,</span> <span class="p">{</span><span class="err">端口号│</span><span class="n">DX</span><span class="p">}</span> <span class="p">)</span>
+<span class="n">OUT</span> <span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="err">端口输出</span><span class="p">.</span> <span class="p">(</span> <span class="err">语法</span><span class="o">:</span> <span class="n">OUT</span> <span class="p">{</span><span class="err">端口号│</span><span class="n">DX</span><span class="p">},</span><span class="err">累加器</span> <span class="p">)</span>
+<span class="err">输入输出端口由立即方式指定时</span><span class="p">,</span> <span class="err">其范围是</span> <span class="mi">0</span><span class="o">-</span><span class="mi">255</span><span class="p">;</span> <span class="err">由寄存器</span> <span class="n">DX</span> <span class="err">指定时</span><span class="p">,</span>
+<span class="err">其范围是</span> <span class="mi">0</span><span class="o">-</span><span class="mi">65535</span><span class="p">.</span>
+</code></pre></div></div>
+
+<p><strong>3.目的地址传送指令：</strong></p>
+
+<div class="language-nasm highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">LEA</span> <span class="err">装入有效地址</span><span class="p">.</span>
+<span class="err">例</span><span class="o">:</span> <span class="k">LEA</span> <span class="n">DX</span><span class="p">,</span><span class="n">string</span> <span class="c">;把偏移地址存到DX.</span>
+<span class="k">LDS</span> <span class="err">传送目标指针</span><span class="p">,</span><span class="err">把指针内容装入</span><span class="n">DS</span><span class="p">.</span>
+<span class="err">例</span><span class="o">:</span> <span class="k">LDS</span> <span class="n">SI</span><span class="p">,</span><span class="n">string</span> <span class="c">;把段地址:偏移地址存到DS:SI.</span>
+<span class="k">LES</span> <span class="err">传送目标指针</span><span class="p">,</span><span class="err">把指针内容装入</span><span class="n">ES</span><span class="p">.</span>
+<span class="err">例</span><span class="o">:</span> <span class="k">LES</span> <span class="n">DI</span><span class="p">,</span><span class="n">string</span> <span class="c">;把段地址:偏移地址存到ES:DI.</span>
+<span class="k">LFS</span> <span class="err">传送目标指针</span><span class="p">,</span><span class="err">把指针内容装入</span><span class="n">FS</span><span class="p">.</span>
+<span class="err">例</span><span class="o">:</span> <span class="k">LFS</span> <span class="n">DI</span><span class="p">,</span><span class="n">string</span> <span class="c">;把段地址:偏移地址存到FS:DI.</span>
+<span class="k">LGS</span> <span class="err">传送目标指针</span><span class="p">,</span><span class="err">把指针内容装入</span><span class="n">GS</span><span class="p">.</span>
+<span class="err">例</span><span class="o">:</span> <span class="k">LGS</span> <span class="n">DI</span><span class="p">,</span><span class="n">string</span> <span class="c">;把段地址:偏移地址存到GS:DI.</span>
+<span class="k">LSS</span> <span class="err">传送目标指针</span><span class="p">,</span><span class="err">把指针内容装入</span><span class="n">SS</span><span class="p">.</span>
+<span class="err">例</span><span class="o">:</span> <span class="k">LSS</span> <span class="n">DI</span><span class="p">,</span><span class="n">string</span> <span class="c">;把段地址:偏移地址存到SS:DI.</span>
+</code></pre></div></div>
+
+<p><strong>4.标志传送指令：</strong></p>
+
+<div class="language-nasm highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">LAHF</span> <span class="err">标志寄存器传送</span><span class="p">,</span><span class="err">把标志装入</span><span class="n">AH</span><span class="p">.</span>
+<span class="k">SAHF</span> <span class="err">标志寄存器传送</span><span class="p">,</span><span class="err">把</span><span class="n">AH</span><span class="err">内容装入标志寄存器</span><span class="p">.</span>
+<span class="k">PUSHF</span> <span class="err">标志入栈</span><span class="p">.</span>
+<span class="k">POPF</span> <span class="err">标志出栈</span><span class="p">.</span>
+<span class="n">PUSHD</span> <span class="mi">32</span><span class="err">位标志入栈</span><span class="p">.</span>
+<span class="n">POPD</span> <span class="mi">32</span><span class="err">位标志出栈</span><span class="p">.</span>
+</code></pre></div></div>
+
+<p><strong>5.算术运算指令：</strong></p>
+
+<div class="language-nasm highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ADD</span> <span class="err">加法</span><span class="p">.</span>
+<span class="k">ADC</span> <span class="err">带进位加法</span><span class="p">.</span>
+<span class="k">INC</span> <span class="err">加</span> <span class="mi">1</span><span class="p">.</span>
+<span class="k">AAA</span> <span class="err">加法的</span><span class="n">ASCII</span><span class="err">码</span>
+</code></pre></div></div>
+
+<p>##栈</p>
+
+<p>栈(Stack)的用途广泛，通常用于存储局部变量、传递函数参数、保存函数返回地址等，调试程序时需要不断查看栈内存。</p>
+
+<p>栈在内存进程中的作用如下：</p>
+<ul>
+  <li>暂时保存函数内的局部变量</li>
+  <li>调用函数时传递参数</li>
+  <li>保存函数返回后的地址</li>
+</ul>
+
+<p>栈是一种数据结构，按照FILO(先进后出)的原则存储数据。</p>
+
+<p><img src="/img/reversecore_assets/栈.png" alt="栈.png" /></p>
+
+<p>一个进程中，栈指针(ESP)初始状态指向栈底端。执行PUSH命令将数据压入栈时，栈顶指针就会上移到栈顶端。执行POP命令从栈中弹出数据时，若栈为空，则栈顶指针重新移动到栈底端。（栈是一种由高地址到低地址扩展的数据结构，栈是由下往上扩展的）栈是逆向扩展的。</p>
+
+<p><strong>例子:</strong>
+栈的初始状态为，栈顶指针的值“12FF8C”，观察右下角的栈窗口，可以看到ESP指向的地址和其值。</p>
+
+<p><img src="/img/reversecore_assets/栈的初始状态.png" alt="栈的初始状态.png" /></p>
+
+<p>在代码窗口中按F7键，执行401000地址处的PUSH100命令。</p>
+
+<p>ESP值变为12FF**，比原来减少了4个字节。并且当前的栈顶指针指向12FF88地址，该地址中保存了100这个值。换言之，执行PUSH命令，数值100被压入栈中，ESP随之向上移动，即ESP的值减少了4个字节。
+<img src="/img/reversecore_assets/PUSH命令.png" alt="PUSH命令.png" /></p>
+
+<p>再次按F7，执行401005地址处的POP EAX命令。</p>
+
+<p><img src="/img/reversecore_assets/POP命令.png" alt="POP命令.png" />
+执行POP EAX命令后，又增加了4个字节，变为12FF8C，栈又变成了初始状态。
+栈中弹出数据后，ESP随之向下移动。</p>
+
+<blockquote>
+  <p><strong>向栈压入数据时，栈顶指针变小，向低地址移动；从栈中弹出数据时，栈顶指针增加，向高地址移动</strong></p>
+</blockquote>
+
+<p><strong>栈的特征：栈顶指针在初始状态下指向栈底。</strong></p>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/02/20/patch/">打补丁</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/03/14/crackme1/">CrackMe1</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/02/21/reverse-misc/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/02/21/reverse-misc/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

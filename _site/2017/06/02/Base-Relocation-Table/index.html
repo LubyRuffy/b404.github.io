@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>基址重定位表</title>
+    <meta name="description" content="向进程的虚拟内存中加载PE文件(EXE/DLL/SYS)时，文件会被加载到PE头的ImageBase所指的地址处。若加载的是DLL(SYS)文件，且在ImageBase位置处已经加载了其他DLL（SYS）文件，那么PE装载器就会将其加载到其他未被占用的空间。">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/06/02/Base-Relocation-Table/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>基址重定位表</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-06-02
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#ReverseCore" title="Category: ReverseCore" rel="category">ReverseCore</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#reading-notes" title="Tag: reading-notes" rel="tag">reading-notes</a-->
+        <a href="/tag/#reading-notes" title="Tag: reading-notes" rel="tag">reading-notes</a>&nbsp;
+    
+        <!--a href="/tag/#reverse" title="Tag: reverse" rel="tag">reverse</a-->
+        <a href="/tag/#reverse" title="Tag: reverse" rel="tag">reverse</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>向进程的虚拟内存中加载PE文件(EXE/DLL/SYS)时，文件会被加载到PE头的ImageBase所指的地址处。若加载的是DLL(SYS)文件，且在ImageBase位置处已经加载了其他DLL（SYS）文件，那么PE装载器就会将其加载到其他未被占用的空间。</p>
+
+<ul id="markdown-toc">
+  <li><a href="#基址重定位表" id="markdown-toc-基址重定位表">基址重定位表</a></li>
+  <li><a href="#删除reloc节区" id="markdown-toc-删除reloc节区">删除.reloc节区</a></li>
+</ul>
+
+<!--more-->
+
+<h2 id="基址重定位表">基址重定位表</h2>
+
+<p><strong>PE重定位：</strong>PE文件无法加载到ImageBase所指位置，而是被加载到其他地址时发生的一系列的处理行为。（硬编码在成 ）</p>
+
+<p><small>SDK或VC++创建PE文件，EXE的默认基址为<code class="highlighter-rouge">00400000</code>,DLL默认的基址为<code class="highlighter-rouge">10000000</code>;DDK创建的SYS文件默认基址为<code class="highlighter-rouge">10000</code></small></p>
+
+<p>PE重定位的基本操作原理：</p>
+<ul>
+  <li>在应用程序中查找硬编码的地址位置</li>
+  <li>读取值后，减去ImageBase（VA-&gt;RVA）</li>
+  <li>加上实际加载地址（RVA-&gt;VA）</li>
+</ul>
+
+<p>其中最关键的是查找硬编码地址的位置，查找过程中会用到PE文件内部的Relocation Table（重定位表，记录硬编码地址偏移的列表，在PE文件构建过程中的编译和链接中提供）。通过重定位表查找，就是根据PE头的”基址重定位表“项进行的查找。</p>
+
+<p>基地址重定位表地址位于PE头的DataDirectory的第六个元素（索引值为5）：</p>
+
+<p><code class="highlighter-rouge">IMAGE_NT_HEADERS\IMAGE_OPTIONAL_HEADER\IMAGE_DATA_DIRECTORY[5]</code></p>
+
+<blockquote>
+  <p>重定位表是一个数组，这个数组的大小记载在 _IMAGE_OPTIONAL_HEADER 的.DataDirectory[IMAGE_DIRECTORY_TNTRY_BASERELOC].Size 成员中</p>
+</blockquote>
+
+<p>基址重定位表中罗列了硬编码地址的偏移，基址重定位表是IMAGE_BASE_RELOCATION结构体数组。根据IMAGE_BASE_RELOCATION结构体可以获得准确的硬编码地址偏移。
+IMAGE_BASE_RELOCATION结构体定义如下：</p>
+
+<pre><code class="language-C++">// 【基址重定位位于数据目录表的第六项，共8 + N字节】  
+typedef struct _IMAGE_BASE_RELOCATION  
+{  
+    DWORD VirtualAddress; //重定位数据开始的RVA 地址
+    DWORD SizeOfBlock;    //重定位块得长度，标识重定向字段个数
+    WORD TypeOffset;      //重定项位数组相对虚拟RVA, 个数动态分配
+}IMAGE_BASE_RELOCATION, *PIMAGE_BASE_RELOCATION;
+#define IMAGE_REL_BASED_ABSOLUTE        0
+#define IMAGE_REL_BASED_HIGH            1
+#define IMAGE_REL_BASED_LOW             2
+#define IMAGE_REL_BASED_HIGHLOW         3
+#define IMAGE_REL_BASED_HIGHADJ         4
+#define IMAGE_REL_BASED_MIPS_JMPADDR    5
+#define IMAGE_REL_BASED_MIPS_JMPADDR16  9
+#define IMAGE_REL_BASED_IA64_IMM64      9
+#define IMAGE_REL_BASED_DIR64           10
+</code></pre>
+<p>IMAGE_BASE_RELOCATION结构体的第一个成员为VirtualAddress,它是一个基准地址(BaseAddress)，实际是RVA值。第二个成员为SizeOfBlock，指重定位块的大小。最后一项TypeOffset数组不是结构体成员，而是以注释形式存在的，表示在该结构体之下会出现WORD类型的数组，并且该数组元素的值就是硬编码在程序中的地址偏移</p>
+
+<p><img src="/img/reversecore_assets/PE重定位表地址/基址重定位表.png" alt="基址重定位表.png" /></p>
+
+<p><img src="/img/reversecore_assets/PE重定位表地址/基址重定位表2.png" alt="基址重定位表2.png" /></p>
+
+<p>由IMAGE_BASE_RELOCATION结构体定义可知，VirtualAddress成员（基准地址）的值为1000，SizeOfBlock成员的值为150.即TypeOffset数组的基准地址（起始地址）为RVA 1000，块的总大小为150.块的末端显示为0.TypeOffset值为2个字节（16位）大小，是由4位的Type与12位的Offset合成。</p>
+
+<p>如TypeOffset值为3420，解析如表：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>类型(4位)</th>
+      <th>偏移（12位）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>3</td>
+      <td>420</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>高4位用作type，PE文件中常见的值为3（IMAGE_REL_BASED_HIGHLOW），64位的PE+文件中常见值为A（IMAGE_REL_BASED_DIR64）</p>
+
+<blockquote>
+  <p>恶意文件中正常修改文件代码后，有时要修改指向相应区域的重定位表（为了略去PE装载器的重定位过程，常常把Type修改为0(IMAGE_REL_BASED_ABSOLUTE)））</p>
+</blockquote>
+
+<p>TypeOffset的低12位是真正的位移，该位移 值基于Virtual Address偏移。所以程序中的硬编码地址的偏移使用下面等式换算：</p>
+
+<p>VirtualAddress（1000）+Offset（420）=1420（RVA）</p>
+
+<p>TypeOffset中指向位移的低3Byte可表示的最大地址为0x1000，为了表示更大的地址，要添加一个与其对应的块，由于这些块以数组形式罗列，故称为重定位表
+若TypeOffset为0，则表明一个IMAGE_BASE_RELOCATION结构体结束</p>
+
+<p>重定位表以NULL结构体结束，即IMAGE_BASE_RELOCATION结构体成员的值全部为NULL</p>
+
+<h2 id="删除reloc节区">删除.reloc节区</h2>
+
+<p>EXE形式的PE文件中，基址重定位表对运行没什么影响。将其删除后程序仍然正常运行（基址重定位表对DLL/SYS形式的文件来说几乎是必须的0）</p>
+
+<p>VC++中生成的PE文件的重定位节区名为.reloc，删除该节区后文件照常运行，且文件大小将缩减</p>
+
+<p>准确删除位于文件末尾的.reloc节区步骤：</p>
+
+<ul>
+  <li>删除.reloc节区头</li>
+  <li>删除.reloc节区</li>
+  <li>修改IMAGE_FILE_HEADER</li>
+  <li>修改IMAGE_OPTIONAL_HEADER</li>
+</ul>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/06/01/compress/">压缩</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/06/04/SSDT/">SSDT</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/06/02/Base-Relocation-Table/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/06/02/Base-Relocation-Table/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

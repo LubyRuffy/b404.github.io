@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>日常使用Linux</title>
+    <meta name="description" content="Linux常用的一些知识、命令、遇到的问题">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/09/15/linux-commands/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>日常使用Linux</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-09-15
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#hack" title="Category: hack" rel="category">hack</a>&nbsp;
+    
+        <a href="/category/#sec" title="Category: sec" rel="category">sec</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#Linux" title="Tag: Linux" rel="tag">Linux</a-->
+        <a href="/tag/#Linux" title="Tag: Linux" rel="tag">Linux</a>&nbsp;
+    
+        <!--a href="/tag/#hack" title="Tag: hack" rel="tag">hack</a-->
+        <a href="/tag/#hack" title="Tag: hack" rel="tag">hack</a>&nbsp;
+    
+        <!--a href="/tag/#command" title="Tag: command" rel="tag">command</a-->
+        <a href="/tag/#command" title="Tag: command" rel="tag">command</a>&nbsp;
+    
+        <!--a href="/tag/#information" title="Tag: information" rel="tag">information</a-->
+        <a href="/tag/#information" title="Tag: information" rel="tag">information</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>Linux常用的一些知识、命令、遇到的问题</p>
+
+<ul id="markdown-toc">
+  <li><a href="#linux的文件和目录" id="markdown-toc-linux的文件和目录">Linux的文件和目录</a></li>
+  <li><a href="#linux-的硬链接与软链接" id="markdown-toc-linux-的硬链接与软链接">Linux 的硬链接与软链接</a></li>
+  <li><a href="#重命名文件" id="markdown-toc-重命名文件">重命名文件</a></li>
+  <li><a href="#删除文件" id="markdown-toc-删除文件">删除文件</a></li>
+  <li><a href="#创建目录" id="markdown-toc-创建目录">创建目录</a></li>
+  <li><a href="#删除目录" id="markdown-toc-删除目录">删除目录</a></li>
+  <li><a href="#查看文件内容" id="markdown-toc-查看文件内容">查看文件内容</a></li>
+  <li><a href="#查看整个文件" id="markdown-toc-查看整个文件">查看整个文件</a></li>
+  <li><a href="#检测程序" id="markdown-toc-检测程序">检测程序</a></li>
+  <li><a href="#检测磁盘" id="markdown-toc-检测磁盘">检测磁盘</a>    <ul>
+      <li><a href="#挂载存储媒体" id="markdown-toc-挂载存储媒体">挂载存储媒体</a></li>
+    </ul>
+  </li>
+  <li><a href="#查看磁盘空间" id="markdown-toc-查看磁盘空间">查看磁盘空间</a></li>
+  <li><a href="#处理数据文件" id="markdown-toc-处理数据文件">处理数据文件</a>    <ul>
+      <li><a href="#排序" id="markdown-toc-排序">排序</a></li>
+      <li><a href="#搜索" id="markdown-toc-搜索">搜索</a></li>
+    </ul>
+  </li>
+  <li><a href="#环境变量" id="markdown-toc-环境变量">环境变量</a></li>
+  <li><a href="#监视命令每两秒执行一次" id="markdown-toc-监视命令每两秒执行一次">监视命令(每两秒执行一次)</a></li>
+  <li><a href="#使用端口杀死程序" id="markdown-toc-使用端口杀死程序">使用端口杀死程序</a></li>
+  <li><a href="#限制内存使用" id="markdown-toc-限制内存使用">限制内存使用</a></li>
+  <li><a href="#获得文件的完整路径" id="markdown-toc-获得文件的完整路径">获得文件的完整路径</a></li>
+  <li><a href="#列出targz文件的内容只解压其中一个文件" id="markdown-toc-列出targz文件的内容只解压其中一个文件">列出tar.gz文件的内容&amp;只解压其中一个文件</a></li>
+  <li><a href="#路由追踪" id="markdown-toc-路由追踪">路由追踪</a></li>
+  <li><a href="#查找文件tip" id="markdown-toc-查找文件tip">查找文件tip</a></li>
+  <li><a href="#查看登陆用户" id="markdown-toc-查看登陆用户">查看登陆用户</a></li>
+  <li><a href="#查看文本反向" id="markdown-toc-查看文本反向">查看文本（反向）</a></li>
+  <li><a href="#查看文件每次目录权限" id="markdown-toc-查看文件每次目录权限">查看文件每次目录权限</a></li>
+  <li><a href="#创建给定大小的空文件" id="markdown-toc-创建给定大小的空文件">创建给定大小的空文件</a></li>
+  <li><a href="#刷新交换分区" id="markdown-toc-刷新交换分区">刷新交换分区</a></li>
+  <li><a href="#查看命令资源使用情况" id="markdown-toc-查看命令资源使用情况">查看命令资源使用情况</a></li>
+  <li><a href="#将文件复制到粘贴版" id="markdown-toc-将文件复制到粘贴版">将文件复制到粘贴版</a></li>
+  <li><a href="#centos服务器配置权限问题" id="markdown-toc-centos服务器配置权限问题">centos服务器配置权限问题：</a></li>
+  <li><a href="#linux解压命令" id="markdown-toc-linux解压命令">linux解压命令</a></li>
+  <li><a href="#vim命令" id="markdown-toc-vim命令">vim命令：</a></li>
+  <li><a href="#检查磁盘坏道" id="markdown-toc-检查磁盘坏道">检查磁盘坏道</a></li>
+  <li><a href="#批量修改后缀名" id="markdown-toc-批量修改后缀名">批量修改后缀名</a></li>
+  <li><a href="#在unix机器查看正在监听的tcpudp端口" id="markdown-toc-在unix机器查看正在监听的tcpudp端口">在Unix机器查看正在监听的TCP\UDP端口</a></li>
+  <li><a href="#目录权限是777却不可以读写" id="markdown-toc-目录权限是777却不可以读写">目录权限是777，却不可以读写</a>    <ul>
+      <li><a href="#查看selinux状态" id="markdown-toc-查看selinux状态">查看SELinux状态：</a></li>
+      <li><a href="#关闭selinux" id="markdown-toc-关闭selinux">关闭SELinux：</a></li>
+    </ul>
+  </li>
+  <li><a href="#vmware虚拟机不能上网" id="markdown-toc-vmware虚拟机不能上网">vmware虚拟机不能上网</a></li>
+  <li><a href="#查看本地ip位置" id="markdown-toc-查看本地ip位置">查看本地ip位置</a></li>
+</ul>
+
+<!--more-->
+
+<h2 id="linux的文件和目录">Linux的文件和目录</h2>
+
+<p>现代操作系统为解决信息能独立于进程之外被长期存储引入了文件，文件作为进程创建信息的逻辑单元可被多个进程并发使用。在 UNIX 系统中，操作系统为磁盘上的文本与图像、鼠标与键盘等输入设备及网络交互等 I/O 操作设计了一组通用 API，使他们被处理时均可统一使用字节流方式。换言之，UNIX 系统中除进程之外的一切皆是文件，而 Linux 保持了这一特性。为了便于文件的管理，Linux 还引入了目录（有时亦被称为文件夹）这一概念。目录使文件可被分类管理，且目录的引入使 Linux 的文件系统形成一个层级结构的目录树。清单 1.所示的是普通 Linux 系统的顶层目录结构，其中 /dev 是存放了设备相关文件的目录。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">/</span> <span class="err">虚拟目录的根目录。通常不会在这里存储文件</span>
+<span class="o">/</span><span class="nt">bin</span> <span class="err">二进制目录</span><span class="o">,</span><span class="err">存放许多用户级的</span><span class="nt">GNU</span><span class="err">工具</span>
+<span class="o">/</span><span class="nt">boot</span> <span class="err">启动目录</span><span class="o">,</span><span class="err">存放启动文件</span>
+<span class="o">/</span><span class="nt">dev</span> <span class="err">设备目录</span><span class="o">,</span><span class="nt">Linux</span><span class="err">在这里创建设备节点</span>
+<span class="o">/</span><span class="nt">etc</span> <span class="err">系统配置文件目录</span>
+<span class="o">/</span><span class="nt">home</span> <span class="err">主目录</span><span class="o">,</span><span class="nt">Linux</span><span class="err">在这里创建用户目录</span>
+<span class="o">/</span><span class="nt">lib</span> <span class="err">库目录</span><span class="o">,</span><span class="err">存放系统和应用程序的库文件</span>
+<span class="o">/</span><span class="nt">media</span> <span class="err">媒体目录</span><span class="o">,</span><span class="err">可移动媒体设备的常用挂载点</span>
+<span class="o">/</span><span class="nt">mnt</span> <span class="err">挂载目录</span><span class="o">,</span><span class="err">另一个可移动媒体设备的常用挂载点</span>
+<span class="o">/</span><span class="nt">opt</span> <span class="err">可选目录</span><span class="o">,</span><span class="err">常用于存放第三方软件包和数据文件</span>
+<span class="o">/</span><span class="nt">proc</span> <span class="err">进程目录</span><span class="o">,</span><span class="err">存放现有硬件及当前进程的相关信息</span>
+<span class="o">/</span><span class="nt">root</span> <span class="nt">root</span><span class="err">用户的主目录</span>
+<span class="o">/</span><span class="nt">sbin</span> <span class="err">系统二进制目录</span><span class="o">,</span><span class="err">存放许多</span><span class="nt">GNU</span><span class="err">管理员级工具</span>
+<span class="o">/</span><span class="nt">run</span> <span class="err">运行目录</span><span class="o">,</span><span class="err">存放系统运作时的运行时数据</span>
+<span class="o">/</span><span class="nt">srv</span> <span class="err">服务目录</span><span class="o">,</span><span class="err">存放本地服务的相关文件</span>
+<span class="o">/</span><span class="nt">sys</span> <span class="err">系统目录</span><span class="o">,</span><span class="err">存放系统硬件信息的相关文件</span>
+<span class="o">/</span><span class="nt">tmp</span> <span class="err">临时目录</span><span class="o">,</span><span class="err">可以在该目录中创建和删除临时工作文件</span>
+<span class="o">/</span><span class="nt">usr</span> <span class="err">用户二进制目录</span><span class="o">,</span><span class="err">大量用户级的</span><span class="nt">GNU</span><span class="err">工具和数据文件都存</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">.</code>单点符表示当前工作目录</p>
+
+<h2 id="linux-的硬链接与软链接">Linux 的硬链接与软链接</h2>
+
+<p>硬链接与软链接是 Linux 文件系统中的一个重要概念，其涉及文件系统中的索引节点 (index node 又称 inode)，而索引节点对象是 Linux 虚拟文件系统 (VFS) 的四个基本概念之一。通过剖析硬链接与软链接的联系与区别，我们可更好的了解 Linux 中 VFS 这一通用文件模型。并让 Linux 普通用户和系统管理员正确使用硬链接与软链接，帮助文件系统开发者获取 inode 的相关知识。</p>
+
+<p><strong>见 <a href="https://www.ibm.com/developerworks/cn/linux/l-cn-hardandsymb-links/index.html">Linux的硬链接和软链接</a>:https://www.ibm.com/developerworks/cn/linux/l-cn-hardandsymb-links/index.html</strong></p>
+
+<p>linux中的文件链接：</p>
+
+<ul>
+  <li>符号链接：真实存在的文件</li>
+  <li>硬链接</li>
+</ul>
+
+<p>要为一个文件创建符号链接，原始文件必须事先存在。可以使用<code class="highlighter-rouge">ln -s</code>选项创建符号链接。</p>
+
+<p>可以使用<code class="highlighter-rouge">ls -i</code>查阅inode编号，证明不是同一个文件。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">➜</span> <span class="o">/</span><span class="nx">home</span><span class="o">/</span><span class="nx">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nx">test</span> <span class="o">&gt;</span><span class="nx">ls</span>
+<span class="mi">1</span>  <span class="mi">1</span><span class="p">.</span><span class="nx">txt</span>  <span class="mi">2</span>  <span class="mi">3</span>  <span class="mi">4</span>  <span class="nx">test</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nx">home</span><span class="o">/</span><span class="nx">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nx">test</span> <span class="o">&gt;</span><span class="nx">ln</span> <span class="o">-</span><span class="nx">s</span> <span class="mi">1</span><span class="p">.</span><span class="nx">txt</span> <span class="nx">ls_1</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nx">home</span><span class="o">/</span><span class="nx">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nx">test</span> <span class="o">&gt;</span><span class="nx">ls</span> <span class="o">-</span><span class="nx">l</span> <span class="o">*</span><span class="mi">1</span>
+<span class="o">-</span><span class="nx">rw</span><span class="o">-</span><span class="nx">r</span><span class="o">--</span><span class="nx">r</span><span class="o">--</span> <span class="mi">1</span> <span class="nx">b404</span> <span class="nx">b404</span> <span class="mi">0</span> <span class="mi">8</span><span class="err">月</span>  <span class="mi">22</span> <span class="mi">16</span><span class="p">:</span><span class="mi">56</span> <span class="mi">1</span>
+<span class="nx">lrwxrwxrwx</span> <span class="mi">1</span> <span class="nx">b404</span> <span class="nx">b404</span> <span class="mi">5</span> <span class="mi">8</span><span class="err">月</span>  <span class="mi">22</span> <span class="mi">17</span><span class="p">:</span><span class="mi">04</span> <span class="nx">ls_1</span> <span class="o">-&gt;</span> <span class="mi">1</span><span class="p">.</span><span class="nx">txt</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nx">home</span><span class="o">/</span><span class="nx">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nx">test</span> <span class="o">&gt;</span><span class="nx">ls</span> <span class="o">-</span><span class="nx">i</span> <span class="o">*</span><span class="mi">1</span>
+<span class="mi">7887805</span> <span class="mi">1</span>  <span class="mi">7887810</span> <span class="nx">ls_1</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nx">home</span><span class="o">/</span><span class="nx">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nx">test</span> <span class="o">&gt;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>使用 ls -li 命令显示了 * code_files的inode编号以及长列表。注意,带有硬链接的文件共享inode编号。这是因为它们终归是同一个文件。还要注意的是,链接计数(列表中第三项)显示这两个文件都有两个链接。另外,它们的文件大小也一模一样。</p>
+</blockquote>
+
+<p><strong>只能对处于同一存储媒体的文件创建硬链接。要想在不同存储媒体的文件之间创建链接,只能使用符号链接。</strong></p>
+
+<h2 id="重命名文件">重命名文件</h2>
+
+<p>在Linux中,重命名文件称为移动(moving)。 mv 命令可以将文件和目录移动到另一个位置或重新命名。
+注意,移动文件会将文件名从fall更改为fzll,但inode编号和时间戳保持不变。这是因为 mv只影响文件名。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">ls</span> <span class="nt">-li</span>
+<span class="err">总用量</span> <span class="nt">8</span>
+<span class="nt">7887805</span> <span class="nt">-rw-r--r--</span> <span class="nt">1</span> <span class="nt">b404</span> <span class="nt">b404</span>    <span class="nt">0</span> <span class="nt">8</span><span class="err">月</span>  <span class="nt">22</span> <span class="nt">16</span><span class="nd">:56</span> <span class="nt">1</span>
+<span class="nt">7887811</span> <span class="nt">-rw-r--r--</span> <span class="nt">1</span> <span class="nt">b404</span> <span class="nt">b404</span>    <span class="nt">4</span> <span class="nt">8</span><span class="err">月</span>  <span class="nt">22</span> <span class="nt">17</span><span class="nd">:02</span> <span class="nt">1</span><span class="nc">.txt</span>
+<span class="nt">7887806</span> <span class="nt">-rw-r--r--</span> <span class="nt">1</span> <span class="nt">b404</span> <span class="nt">b404</span>    <span class="nt">0</span> <span class="nt">8</span><span class="err">月</span>  <span class="nt">22</span> <span class="nt">16</span><span class="nd">:56</span> <span class="nt">2</span>
+<span class="nt">7887808</span> <span class="nt">-rw-r--r--</span> <span class="nt">1</span> <span class="nt">b404</span> <span class="nt">b404</span>    <span class="nt">0</span> <span class="nt">8</span><span class="err">月</span>  <span class="nt">22</span> <span class="nt">16</span><span class="nd">:56</span> <span class="nt">3</span>
+<span class="nt">7887809</span> <span class="nt">-rw-r--r--</span> <span class="nt">1</span> <span class="nt">b404</span> <span class="nt">b404</span>    <span class="nt">0</span> <span class="nt">8</span><span class="err">月</span>  <span class="nt">22</span> <span class="nt">16</span><span class="nd">:56</span> <span class="nt">4</span>
+<span class="nt">7887810</span> <span class="nt">lrwxrwxrwx</span> <span class="nt">1</span> <span class="nt">b404</span> <span class="nt">b404</span>    <span class="nt">5</span> <span class="nt">8</span><span class="err">月</span>  <span class="nt">22</span> <span class="nt">17</span><span class="nd">:04</span> <span class="nt">ls_1</span> <span class="nt">-</span><span class="o">&gt;</span> <span class="nt">1</span><span class="nc">.txt</span>
+<span class="nt">7887807</span> <span class="nt">drwxr-xr-x</span> <span class="nt">2</span> <span class="nt">b404</span> <span class="nt">b404</span> <span class="nt">4096</span> <span class="nt">8</span><span class="err">月</span>  <span class="nt">22</span> <span class="nt">16</span><span class="nd">:56</span> <span class="nt">test</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">mv</span> <span class="nt">2</span> <span class="nt">22</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">ls</span> <span class="nt">-li</span>
+<span class="err">总用量</span> <span class="nt">8</span>
+<span class="nt">7887805</span> <span class="nt">-rw-r--r--</span> <span class="nt">1</span> <span class="nt">b404</span> <span class="nt">b404</span>    <span class="nt">0</span> <span class="nt">8</span><span class="err">月</span>  <span class="nt">22</span> <span class="nt">16</span><span class="nd">:56</span> <span class="nt">1</span>
+<span class="nt">7887811</span> <span class="nt">-rw-r--r--</span> <span class="nt">1</span> <span class="nt">b404</span> <span class="nt">b404</span>    <span class="nt">4</span> <span class="nt">8</span><span class="err">月</span>  <span class="nt">22</span> <span class="nt">17</span><span class="nd">:02</span> <span class="nt">1</span><span class="nc">.txt</span>
+<span class="nt">7887806</span> <span class="nt">-rw-r--r--</span> <span class="nt">1</span> <span class="nt">b404</span> <span class="nt">b404</span>    <span class="nt">0</span> <span class="nt">8</span><span class="err">月</span>  <span class="nt">22</span> <span class="nt">16</span><span class="nd">:56</span> <span class="nt">22</span>
+<span class="nt">7887808</span> <span class="nt">-rw-r--r--</span> <span class="nt">1</span> <span class="nt">b404</span> <span class="nt">b404</span>    <span class="nt">0</span> <span class="nt">8</span><span class="err">月</span>  <span class="nt">22</span> <span class="nt">16</span><span class="nd">:56</span> <span class="nt">3</span>
+<span class="nt">7887809</span> <span class="nt">-rw-r--r--</span> <span class="nt">1</span> <span class="nt">b404</span> <span class="nt">b404</span>    <span class="nt">0</span> <span class="nt">8</span><span class="err">月</span>  <span class="nt">22</span> <span class="nt">16</span><span class="nd">:56</span> <span class="nt">4</span>
+<span class="nt">7887810</span> <span class="nt">lrwxrwxrwx</span> <span class="nt">1</span> <span class="nt">b404</span> <span class="nt">b404</span>    <span class="nt">5</span> <span class="nt">8</span><span class="err">月</span>  <span class="nt">22</span> <span class="nt">17</span><span class="nd">:04</span> <span class="nt">ls_1</span> <span class="nt">-</span><span class="o">&gt;</span> <span class="nt">1</span><span class="nc">.txt</span>
+<span class="nt">7887807</span> <span class="nt">drwxr-xr-x</span> <span class="nt">2</span> <span class="nt">b404</span> <span class="nt">b404</span> <span class="nt">4096</span> <span class="nt">8</span><span class="err">月</span>  <span class="nt">22</span> <span class="nt">16</span><span class="nd">:56</span> <span class="nt">test</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span>
+</code></pre></div></div>
+
+<h2 id="删除文件">删除文件</h2>
+
+<p>迟早有一天,你得删除已有的文件。不管是清理文件系统还是删除某个软件包,总有要删除文件的时候。
+在Linux中,删除(deleting)叫作移除(removing) 1 。bash shell中删除文件的命令是 rm 。 rm命令的基本格式非常简单。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">rm</span> <span class="nt">-i</span> <span class="nt">1</span>
+<span class="nt">rm</span><span class="err">：是否删除普通空文件</span> <span class="s2">'1'</span><span class="err">？</span> <span class="nt">y</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">ls</span>
+<span class="nt">1</span><span class="nc">.txt</span>  <span class="nt">22</span>  <span class="nt">3</span>  <span class="nt">4</span>  <span class="nt">ls_1</span>  <span class="nt">test</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>多使用<code class="highlighter-rouge">-i</code>提示</p>
+
+<p>rm 命令的另外一个特性是,如果要删除很多文件且不受提示符的打扰,可以用 -f 参数强制删除。</p>
+
+<h2 id="创建目录">创建目录</h2>
+
+<p>在Linux中创建目录很简单,用 mkdir 命令即可</p>
+
+<h2 id="删除目录">删除目录</h2>
+
+<p>删除目录的基本命令是 rmdir 。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">ls</span>
+<span class="nt">0</span>  <span class="nt">1</span><span class="nc">.txt</span>  <span class="nt">22</span>  <span class="nt">3</span>  <span class="nt">4</span>  <span class="nt">ls_1</span>  <span class="nt">test</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">rmdir</span> <span class="nt">0</span>
+<span class="nt">rmdir</span><span class="o">:</span> <span class="err">删除</span> <span class="s2">'0'</span> <span class="err">失败</span><span class="o">:</span> <span class="err">目录非空</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">cd</span> <span class="nt">0</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span><span class="o">/</span><span class="nt">0</span> <span class="o">&gt;</span><span class="nt">ls</span>
+<span class="nt">00</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span><span class="o">/</span><span class="nt">0</span> <span class="o">&gt;</span><span class="nt">rm</span> <span class="nt">00</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span><span class="o">/</span><span class="nt">0</span> <span class="o">&gt;</span><span class="nt">cd</span> <span class="nt">-</span>
+<span class="o">~/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">rmdir</span> <span class="nt">0</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">ls</span>
+<span class="nt">1</span><span class="nc">.txt</span>  <span class="nt">22</span>  <span class="nt">3</span>  <span class="nt">4</span>  <span class="nt">ls_1</span>  <span class="nt">test</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>默认情况下, rmdir 命令只删除空目录。</p>
+
+<p>一口气删除目录及其所有内容的终极大法就是使用带有 -r 参数和 -f 参数的 rm 命令。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">tree</span>
+<span class="o">.</span>
+<span class="err">├──</span> <span class="nt">1</span><span class="nc">.txt</span>
+<span class="err">├──</span> <span class="nt">22</span>
+<span class="err">├──</span> <span class="nt">3</span>
+<span class="err">├──</span> <span class="nt">4</span>
+<span class="err">├──</span> <span class="nt">ls_1</span> <span class="nt">-</span><span class="o">&gt;</span> <span class="nt">1</span><span class="nc">.txt</span>
+<span class="err">└──</span> <span class="nt">test</span>
+
+<span class="nt">1</span> <span class="nt">directory</span><span class="o">,</span> <span class="nt">5</span> <span class="nt">files</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">rm</span> <span class="nt">-rf</span> <span class="nt">test</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">ls</span>
+<span class="nt">1</span><span class="nc">.txt</span>  <span class="nt">22</span>  <span class="nt">3</span>  <span class="nt">4</span>  <span class="nt">ls_1</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">tree</span>
+<span class="o">.</span>
+<span class="err">├──</span> <span class="nt">1</span><span class="nc">.txt</span>
+<span class="err">├──</span> <span class="nt">22</span>
+<span class="err">├──</span> <span class="nt">3</span>
+<span class="err">├──</span> <span class="nt">4</span>
+<span class="err">└──</span> <span class="nt">ls_1</span> <span class="nt">-</span><span class="o">&gt;</span> <span class="nt">1</span><span class="nc">.txt</span>
+
+<span class="nt">0</span> <span class="nt">directories</span><span class="o">,</span> <span class="nt">5</span> <span class="nt">files</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span>
+</code></pre></div></div>
+
+<h2 id="查看文件内容">查看文件内容</h2>
+
+<p>file 命令是一个随手可得的便捷工具。它能够探测文件的内部,并决定文件是什么类型的:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">ls</span>
+<span class="nt">1</span><span class="nc">.txt</span>  <span class="nt">22</span>  <span class="nt">3</span>  <span class="nt">4</span>  <span class="nt">ls_1</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">file</span> <span class="nt">ls_1</span> 
+<span class="nt">ls_1</span><span class="o">:</span> <span class="nt">symbolic</span> <span class="nt">link</span> <span class="nt">to</span> <span class="nt">1</span><span class="nc">.txt</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">file</span> <span class="nt">1</span><span class="nc">.txt</span> 
+<span class="nt">1</span><span class="nc">.txt</span><span class="o">:</span> <span class="nt">ASCII</span> <span class="nt">text</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">file</span> <span class="nt">22</span>
+<span class="nt">22</span><span class="o">:</span> <span class="nt">empty</span>
+</code></pre></div></div>
+
+<h2 id="查看整个文件">查看整个文件</h2>
+
+<ul>
+  <li>cat:显示文本文件中所有数据</li>
+  <li>more:依次浏览</li>
+  <li>less:more的升级版</li>
+  <li>tail:默认情况下显示文末10行</li>
+  <li>head：默认显示文件前10行</li>
+</ul>
+
+<p>cat</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">➜</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="n">test</span> <span class="o">&gt;</span><span class="n">cat</span> <span class="o">-</span><span class="n">n</span> <span class="mf">1.</span><span class="n">txt</span> 
+     <span class="mi">1</span>  <span class="mi">123</span>
+     <span class="mi">2</span>  
+     <span class="mi">3</span>  <span class="n">asd</span>
+     <span class="mi">4</span>  
+     <span class="mi">5</span>  <span class="mi">123</span>
+     <span class="mi">6</span>  
+     <span class="mi">7</span>  <span class="mi">4343</span>
+     <span class="mi">8</span>  
+<span class="err">➜</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="n">test</span> <span class="o">&gt;</span><span class="n">vim</span> <span class="mf">1.</span><span class="n">txt</span> 
+<span class="err">➜</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="n">test</span> <span class="o">&gt;</span><span class="n">cat</span> <span class="o">-</span><span class="n">b</span> <span class="mf">1.</span><span class="n">txt</span> 
+     <span class="mi">1</span>  <span class="mi">123</span>
+
+     <span class="mi">2</span>  <span class="n">asd</span>
+
+     <span class="mi">3</span>  <span class="mi">123</span>
+
+     <span class="mi">4</span>  <span class="mi">4343</span>
+
+<span class="err">➜</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="n">test</span> <span class="o">&gt;</span><span class="n">cat</span> <span class="mf">1.</span><span class="n">txt</span> 
+<span class="mi">123</span>
+
+<span class="n">asd</span>
+
+<span class="mi">123</span>
+
+<span class="mi">4343</span>    <span class="n">JJHhhp</span>
+
+<span class="err">➜</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="n">test</span> <span class="o">&gt;</span><span class="n">cat</span> <span class="o">-</span><span class="n">T</span> <span class="mf">1.</span><span class="n">txt</span> 
+<span class="mi">123</span>
+
+<span class="n">asd</span>
+
+<span class="mi">123</span>
+
+<span class="mi">4343</span><span class="o">^</span><span class="n">IJJHhhp</span>
+
+</code></pre></div></div>
+
+<h2 id="检测程序">检测程序</h2>
+
+<ul>
+  <li>ps:探查进程。只会显示运行在当前控制台下的属于当前用户的进程</li>
+  <li>top：实时检测进程。观察那些频繁换进换出的内存的进程趋势</li>
+  <li>kill：结束进程。kill 命令会向命令行中列出的全部PID发送一个 TERM 信号。要发送进程信号,你必须是进程的属主或登录为root用户。</li>
+  <li>killall：支持通过进程名结束进程</li>
+</ul>
+
+<p>kill pid的作用是向进程号为pid的进程发送SIGTERM（这是kill默认发送的信号），该信号是一个结束进程的信号且可以被应用程序捕获。若应用程序没有捕获并响应该信号的逻辑代码，则该信号的默认动作是kill掉进程。这是终止指定进程的推荐做法。
+kill -9 pid则是向进程号为pid的进程发送SIGKILL（该信号的编号为9），从本文上面的说明可知，SIGKILL既不能被应用程序捕获，也不能被阻塞或忽略，其动作是立即结束指定进程。通俗地说，应用程序根本无法“感知”SIGKILL信号，它在完全无准备的情况下，就被收到SIGKILL信号的操作系统给干掉了，显然，在这种“暴力”情况下，应用程序完全没有释放当前占用资源的机会。</p>
+
+<h2 id="检测磁盘">检测磁盘</h2>
+
+<h3 id="挂载存储媒体">挂载存储媒体</h3>
+
+<p>在使用新的存储媒体之前,需要把它放到虚拟目录下。这项工作称为挂载(mounting)。</p>
+
+<p>Linux上用来挂载媒体的命令叫作 mount 。默认情况下, mount 命令会输出当前系统上挂载的设备列表。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">mount</span> <span class="nt">-t</span> <span class="nt">type</span> <span class="nt">device</span> <span class="nt">directory</span>
+</code></pre></div></div>
+
+<p>如：</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">mount</span> <span class="nt">-t</span> <span class="nt">vfat</span> <span class="o">/</span><span class="nt">dev</span><span class="o">/</span><span class="nt">sdb1</span> <span class="o">/</span><span class="nt">media</span><span class="o">/</span><span class="nt">disk</span>
+</code></pre></div></div>
+
+<p>后面两个参数定义了该存储设备的设备文件的位置以及挂载点在虚拟目录中的位置.</p>
+
+<p>卸载设备的命令是 umount (是的,你没看错,命令名中并没有字母n,这一点有时候很让人
+困惑)。 umount 命令的格式非常简单:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">umount</span> <span class="o">[</span><span class="nt">directory</span> <span class="o">|</span> <span class="nt">device</span> <span class="o">]</span>
+</code></pre></div></div>
+
+<p>umount 命令支持通过设备文件或者是挂载点来指定要卸载的设备。如果有任何程序正在使
+用设备上的文件,系统就不会允许你卸载它.</p>
+
+<h2 id="查看磁盘空间">查看磁盘空间</h2>
+
+<p>df 命令有一些命令行参数可用,但基本上不会用到。一个常用的参数是 -h 。它会把输出中
+的磁盘空间按照用户易读的形式显示,通常用M来替代兆字节,用G替代吉字节。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span> <span class="o">&gt;</span><span class="nt">df</span> <span class="nt">-h</span>
+<span class="err">文件系统</span>        <span class="err">容量</span>  <span class="err">已用</span>  <span class="err">可用</span> <span class="err">已用</span><span class="o">%</span> <span class="err">挂载点</span>
+<span class="nt">udev</span>            <span class="nt">5</span><span class="nc">.8G</span>     <span class="nt">0</span>  <span class="nt">5</span><span class="nc">.8G</span>    <span class="nt">0</span><span class="o">%</span> <span class="o">/</span><span class="nt">dev</span>
+<span class="nt">tmpfs</span>           <span class="nt">1</span><span class="nc">.2G</span>  <span class="nt">9</span><span class="nc">.7M</span>  <span class="nt">1</span><span class="nc">.2G</span>    <span class="nt">1</span><span class="o">%</span> <span class="o">/</span><span class="nt">run</span>
+<span class="o">/</span><span class="nt">dev</span><span class="o">/</span><span class="nt">sdb3</span>       <span class="nt">222G</span>  <span class="nt">120G</span>   <span class="nt">91G</span>   <span class="nt">58</span><span class="o">%</span> <span class="o">/</span>
+<span class="nt">tmpfs</span>           <span class="nt">5</span><span class="nc">.8G</span>   <span class="nt">25M</span>  <span class="nt">5</span><span class="nc">.8G</span>    <span class="nt">1</span><span class="o">%</span> <span class="o">/</span><span class="nt">dev</span><span class="o">/</span><span class="nt">shm</span>
+<span class="nt">tmpfs</span>           <span class="nt">5</span><span class="nc">.0M</span>  <span class="nt">4</span><span class="nc">.0K</span>  <span class="nt">5</span><span class="nc">.0M</span>    <span class="nt">1</span><span class="o">%</span> <span class="o">/</span><span class="nt">run</span><span class="o">/</span><span class="nt">lock</span>
+<span class="nt">tmpfs</span>           <span class="nt">5</span><span class="nc">.8G</span>     <span class="nt">0</span>  <span class="nt">5</span><span class="nc">.8G</span>    <span class="nt">0</span><span class="o">%</span> <span class="o">/</span><span class="nt">sys</span><span class="o">/</span><span class="nt">fs</span><span class="o">/</span><span class="nt">cgroup</span>
+<span class="o">/</span><span class="nt">dev</span><span class="o">/</span><span class="nt">loop1</span>       <span class="nt">76M</span>   <span class="nt">76M</span>     <span class="nt">0</span>  <span class="nt">100</span><span class="o">%</span> <span class="o">/</span><span class="nt">snap</span><span class="o">/</span><span class="nt">ubuntu-core</span><span class="o">/</span><span class="nt">1797</span>
+<span class="o">/</span><span class="nt">dev</span><span class="o">/</span><span class="nt">loop0</span>       <span class="nt">77M</span>   <span class="nt">77M</span>     <span class="nt">0</span>  <span class="nt">100</span><span class="o">%</span> <span class="o">/</span><span class="nt">snap</span><span class="o">/</span><span class="nt">ubuntu-core</span><span class="o">/</span><span class="nt">1555</span>
+<span class="o">/</span><span class="nt">dev</span><span class="o">/</span><span class="nt">loop2</span>       <span class="nt">77M</span>   <span class="nt">77M</span>     <span class="nt">0</span>  <span class="nt">100</span><span class="o">%</span> <span class="o">/</span><span class="nt">snap</span><span class="o">/</span><span class="nt">ubuntu-core</span><span class="o">/</span><span class="nt">1411</span>
+<span class="o">/</span><span class="nt">dev</span><span class="o">/</span><span class="nt">sda1</span>       <span class="nt">256M</span>   <span class="nt">52M</span>  <span class="nt">205M</span>   <span class="nt">21</span><span class="o">%</span> <span class="o">/</span><span class="nt">boot</span><span class="o">/</span><span class="nt">efi</span>
+<span class="nt">tmpfs</span>           <span class="nt">1</span><span class="nc">.2G</span>  <span class="nt">100K</span>  <span class="nt">1</span><span class="nc">.2G</span>    <span class="nt">1</span><span class="o">%</span> <span class="o">/</span><span class="nt">run</span><span class="o">/</span><span class="nt">user</span><span class="o">/</span><span class="nt">1000</span>
+<span class="o">/</span><span class="nt">dev</span><span class="o">/</span><span class="nt">sda3</span>       <span class="nt">345G</span>  <span class="nt">342G</span>  <span class="nt">3</span><span class="nc">.3G</span>  <span class="nt">100</span><span class="o">%</span> <span class="o">/</span><span class="nt">media</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="nt">Windows</span>
+</code></pre></div></div>
+
+<p>du 命令可以显示某个特定目录(默认情况下是当前目录)的磁盘使用情况。这一方法可用来快速判断系统上某个目录下是不是有超大文件。默认情况下, du 命令会显示当前目录下所有的文件、目录和子目录的磁盘使用情况,它会以磁盘块为单位来表明每个文件或目录占用了多大存储空间。对标准大小的目录来说,这个输出会是一个比较长的列表。</p>
+
+<h2 id="处理数据文件">处理数据文件</h2>
+
+<h3 id="排序">排序</h3>
+
+<p>处理大量数据时的一个常用命令是 sort 命令。顾名思义, sort 命令是对数据进行排序的。
+默认情况下, sort 命令按照会话指定的默认语言的排序规则对文本文件中的数据行排序。</p>
+
+<p>可以用 -t
+参数来指定字段分隔符,然后用 -k 参数来指定排序的字段。举个例子,要对前面提到的密码文件
+/etc/passwd根据用户ID进行数值排序,可以这么做:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">sudo</span> <span class="nt">sort</span> <span class="nt">-t</span> <span class="s2">':'</span> <span class="nt">-k</span> <span class="nt">3</span> <span class="o">/</span><span class="nt">etc</span><span class="o">/</span><span class="nt">passwd</span>
+<span class="o">[</span><span class="nt">sudo</span><span class="o">]</span> <span class="nt">b404</span> <span class="err">的密码：</span> 
+<span class="nt">root</span><span class="nd">:x:0:0:root</span><span class="o">:/</span><span class="nt">root</span><span class="o">:/</span><span class="nt">bin</span><span class="o">/</span><span class="nt">bash</span>
+<span class="nt">b404</span><span class="nd">:x:1000:1000:b404</span><span class="o">,,,:/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">:/</span><span class="nt">usr</span><span class="o">/</span><span class="nt">bin</span><span class="o">/</span><span class="nt">zsh</span>
+<span class="nt">systemd-timesync</span><span class="nd">:x:100:102:systemd</span> <span class="nt">Time</span> <span class="nt">Synchronization</span><span class="o">,,,:/</span><span class="nt">run</span><span class="o">/</span><span class="nt">systemd</span><span class="o">:/</span><span class="nt">bin</span><span class="o">/</span><span class="nt">false</span>
+<span class="nt">uucp</span><span class="nd">:x:10:10:uucp</span><span class="o">:/</span><span class="nt">var</span><span class="o">/</span><span class="nt">spool</span><span class="o">/</span><span class="nt">uucp</span><span class="o">:/</span><span class="nt">usr</span><span class="o">/</span><span class="nt">sbin</span><span class="o">/</span><span class="nt">nologin</span>
+<span class="nt">systemd-network</span><span class="nd">:x:101:103:systemd</span> <span class="nt">Network</span> <span class="nt">Management</span><span class="o">,,,:/</span><span class="nt">run</span><span class="o">/</span><span class="nt">systemd</span><span class="o">/</span><span class="nt">netif</span><span class="o">:/</span><span class="nt">bin</span><span class="o">/</span><span class="nt">false</span>
+<span class="nt">systemd-resolve</span><span class="nd">:x:102:104:systemd</span> <span class="nt">Resolver</span><span class="o">,,,:/</span><span class="nt">run</span><span class="o">/</span><span class="nt">systemd</span><span class="o">/</span><span class="nt">resolve</span><span class="o">:/</span><span class="nt">bin</span><span class="o">/</span><span class="nt">false</span>
+<span class="nt">systemd-bus-proxy</span><span class="nd">:x:103:105:systemd</span> <span class="nt">Bus</span> <span class="nt">Proxy</span><span class="o">,,,:/</span><span class="nt">run</span><span class="o">/</span><span class="nt">systemd</span><span class="o">:/</span><span class="nt">bin</span><span class="o">/</span><span class="nt">false</span>
+<span class="nt">syslog</span><span class="nd">:x:104:108</span><span class="o">::/</span><span class="nt">home</span><span class="o">/</span><span class="nt">syslog</span><span class="o">:/</span><span class="nt">bin</span><span class="o">/</span><span class="nt">false</span>
+<span class="nt">_apt</span><span class="nd">:x:105:65534</span><span class="o">::/</span><span class="nt">nonexistent</span><span class="o">:/</span><span class="nt">bin</span><span class="o">/</span><span class="nt">false</span>
+<span class="nt">messagebus</span><span class="nd">:x:106:109</span><span class="o">::/</span><span class="nt">var</span><span class="o">/</span><span class="nt">run</span><span class="o">/</span><span class="nt">dbus</span><span class="o">:/</span><span class="nt">bin</span><span class="o">/</span><span class="nt">false</span>
+<span class="nt">usermetrics</span><span class="nd">:x:107:111:User</span> <span class="nt">Metrics</span><span class="o">:/</span><span class="nt">var</span><span class="o">/</span><span class="nt">lib</span><span class="o">/</span><span class="nt">userm</span>
+</code></pre></div></div>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">du</span> <span class="nt">-sh</span> <span class="o">*</span> <span class="o">|</span> <span class="nt">sort</span> <span class="nt">-nr</span>
+<span class="nt">4</span><span class="nc">.0K</span>    <span class="nt">1</span><span class="nc">.txt</span>
+<span class="nt">0</span>   <span class="nt">ls_1</span>
+<span class="nt">0</span>   <span class="nt">4</span>
+<span class="nt">0</span>   <span class="nt">3</span>
+<span class="nt">0</span>   <span class="nt">22</span><span class="err">搜索搜索</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span>
+
+</code></pre></div></div>
+
+<h3 id="搜索">搜索</h3>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">grep</span> <span class="o">[</span><span class="nt">options</span><span class="o">]</span> <span class="nt">pattern</span> <span class="o">[</span><span class="nt">file</span><span class="o">]</span>
+</code></pre></div></div>
+
+<p>grep 命令会在输入或指定的文件中查找包含匹配指定模式的字符的行。 grep 的输出就是包含了匹配模式的行。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">cat</span> <span class="nt">1</span><span class="nc">.txt</span>
+<span class="nt">123</span>
+
+<span class="nt">asd</span>
+
+<span class="nt">123</span>
+
+<span class="nt">4343</span>    <span class="nt">JJHhhp</span>
+
+<span class="o">//</span><span class="err">查找</span><span class="nt">1</span><span class="err">的行</span>
+
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">grep</span> <span class="nt">1</span> <span class="nt">1</span><span class="nc">.txt</span>
+<span class="nt">123</span>
+<span class="nt">123</span>
+
+<span class="o">//</span><span class="err">查找除了</span><span class="nt">1</span><span class="err">之外的行</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">grep</span> <span class="nt">-v</span> <span class="nt">1</span> <span class="nt">1</span><span class="nc">.txt</span>
+
+<span class="nt">asd</span>
+
+
+<span class="nt">4343</span>    <span class="nt">JJHhhp</span>
+
+<span class="o">//</span><span class="err">查找有</span><span class="nt">1</span><span class="err">的行数</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">grep</span> <span class="nt">-n</span> <span class="nt">1</span> <span class="nt">1</span><span class="nc">.txt</span>
+<span class="nt">1</span><span class="nd">:123</span>
+<span class="nt">5</span><span class="nd">:123</span>
+
+<span class="o">//</span><span class="err">显示有</span><span class="nt">1</span><span class="err">的行数</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">grep</span> <span class="nt">-c</span> <span class="nt">1</span> <span class="nt">1</span><span class="nc">.txt</span>
+<span class="nt">2</span>
+
+<span class="o">//</span><span class="err">查找有</span><span class="nt">1</span><span class="err">和有</span><span class="nt">3</span><span class="err">的行</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span><span class="o">/</span><span class="err">桌面</span><span class="o">/</span><span class="nt">test</span> <span class="o">&gt;</span><span class="nt">grep</span> <span class="nt">-e</span> <span class="nt">1</span> <span class="nt">-e</span> <span class="nt">3</span> <span class="nt">1</span><span class="nc">.txt</span>
+<span class="nt">123</span>
+<span class="nt">123</span>
+<span class="nt">4343</span>    <span class="nt">JJHhhp</span>
+</code></pre></div></div>
+
+<p>默认情况下, grep 命令用基本的Unix风格正则表达式来匹配模式。Unix风格正则表达式采用特殊字符来定义怎样查找匹配的模式。</p>
+
+<h2 id="环境变量">环境变量</h2>
+
+<ul>
+  <li>全局环境变量：printenv</li>
+  <li>局部环境变量：set</li>
+</ul>
+
+<h2 id="监视命令每两秒执行一次">监视命令(每两秒执行一次)</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>watch "ls -larth"
+</code></pre></div></div>
+
+<p><img src="/img/linux/linux_daily_commands/1505439455543.png" alt="" /></p>
+
+<h2 id="使用端口杀死程序">使用端口杀死程序</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo fuser -k 8000/tcp
+</code></pre></div></div>
+
+<p><img src="/img/linux/linux_daily_commands/1505439394436.png" alt="" /></p>
+
+<h2 id="限制内存使用">限制内存使用</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ulimit -Sv 1000       # 1000 KBs = 1 MB
+ulimit -Sv unlimited  # Remove limit
+</code></pre></div></div>
+
+<h2 id="获得文件的完整路径">获得文件的完整路径</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>readlink -f file.txt
+</code></pre></div></div>
+
+<h2 id="列出targz文件的内容只解压其中一个文件">列出tar.gz文件的内容&amp;只解压其中一个文件</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tar -ztvf file.tgz
+tar -zxvf file.tgz filename
+</code></pre></div></div>
+
+<p><img src="/img/linux/linux_daily_commands/1505443542495.png" alt="" /></p>
+
+<h2 id="路由追踪">路由追踪</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mtr baidu.com
+</code></pre></div></div>
+
+<p><img src="/img/linux/linux_daily_commands/1505443686348.png" alt="" /></p>
+
+<h2 id="查找文件tip">查找文件tip</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find . -size 20c             # By file size (20 bytes)
+find . -name "*.gz" -delete  # Delete files
+find . -exec echo {} \;      # One file by line
+./file1
+./file2
+./file3
+find . -exec echo {} \+      # All in the same line
+./file1 ./file2 ./file3
+</code></pre></div></div>
+
+<p><img src="/img/linux/linux_daily_commands/1505443959979.png" alt="" /></p>
+
+<h2 id="查看登陆用户">查看登陆用户</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>w
+</code></pre></div></div>
+
+<p><img src="/img/linux/linux_daily_commands/1505444046926.png" alt="" /></p>
+
+<h2 id="查看文本反向">查看文本（反向）</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tac file
+</code></pre></div></div>
+
+<p><img src="/img/linux/linux_daily_commands/1505444489064.png" alt="" /></p>
+
+<h2 id="查看文件每次目录权限">查看文件每次目录权限</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>namei -l /path/file
+</code></pre></div></div>
+
+<p><img src="/img/linux/linux_daily_commands/1505444710583.png" alt="" /></p>
+
+<h2 id="创建给定大小的空文件">创建给定大小的空文件</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fallocate -l 20M test.img
+</code></pre></div></div>
+
+<p><img src="/img/linux/linux_daily_commands/1505444945661.png" alt="" /></p>
+
+<h2 id="刷新交换分区">刷新交换分区</h2>
+
+<p>当程序非常吃内存的时候，交换区可以通过以下操作获得剩余内存，使机器恢复常态</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo swapoff -a
+sudo swapon -a
+</code></pre></div></div>
+
+<h2 id="查看命令资源使用情况">查看命令资源使用情况</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/bin/time -v ls
+</code></pre></div></div>
+
+<p><img src="/img/linux/linux_daily_commands/1505445431098.png" alt="" /></p>
+
+<h2 id="将文件复制到粘贴版">将文件复制到粘贴版</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat 1.txt | xclip -selection clipboard
+</code></pre></div></div>
+
+<h2 id="centos服务器配置权限问题">centos服务器配置权限问题：</h2>
+
+<p>1.chown -R root.root upload.zip
+2.//将upload.zip添加到root组root用户
+3.chown -R su.guest title
+4.//将当前目录下的title文件夹及其子文件的所有者改为guest组的su用户；-R 递归式改变指定目录及其下的所有子目录和文件的拥有者，给普通用户设置root权限。
+5.chown -R a+w 目录
+6.//将目录设置为永久可写</p>
+
+<h2 id="linux解压命令">linux解压命令</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. *.tar 用 tar –xvf 解压
+2. *.gz 用 gzip -d或者gunzip 解压
+3. *.tar.gz和*.tgz 用 tar –xzf 解压
+4. *.bz2 用 bzip2 -d或者用bunzip2 解压
+5. *.tar.bz2用tar –xjf 解压
+6. *.Z 用 uncompress 解压
+7. *.tar.Z 用tar –xZf 解压
+8. *.rar 用 unrar e解压
+9. *.zip 用 unzip 解压
+
+10. -------------------------------------
+
+11. tar命令
+12.
+13. 　　解包：tar zxvf FileName.tar
+14.
+15. 　　打包：tar czvf FileName.tar DirName
+16.
+17. gz命令
+18.
+19. 　　解压1：gunzip FileName.gz
+20.
+21. 　　解压2：gzip -d FileName.gz
+22.
+23. 　　压缩：gzip FileName
+24.
+25. 　　.tar.gz 和 .tgz
+26.
+27. 　　解压：tar zxvf FileName.tar.gz
+28.
+29. 　　压缩：tar zcvf FileName.tar.gz DirName
+30.
+31. 压缩多个文件：tar zcvf FileName.tar.gz DirName1 DirName2 DirName3 ...
+32.
+33. bz2命令
+34.
+35. 　　解压1：bzip2 -d FileName.bz2
+36.
+37. 　　解压2：bunzip2 FileName.bz2
+38.
+39. 　　压缩： bzip2 -z FileName
+40.
+41. 　　.tar.bz2
+42.
+43. 　　解压：tar jxvf FileName.tar.bz2
+44.
+45. 　　压缩：tar jcvf FileName.tar.bz2 DirName
+46.
+47. bz命令
+48.
+49. 　　解压1：bzip2 -d FileName.bz
+50.
+51. 　　解压2：bunzip2 FileName.bz
+52.
+53. 　　压缩：未知
+54.
+55. 　　.tar.bz
+56.
+57. 　　解压：tar jxvf FileName.tar.bz
+58.
+59. Z命令
+60.
+61. 　　解压：uncompress FileName.Z
+62.
+63. 　　压缩：compress FileName
+64.
+65. 　　.tar.Z
+66.
+67. 　　解压：tar Zxvf FileName.tar.Z
+68.
+69. 　　压缩：tar Zcvf FileName.tar.Z DirName
+70.
+71. zip命令
+72.
+73. 　　解压：unzip FileName.zip
+74.
+75. 　　压缩：zip FileName.zip DirName
+</code></pre></div></div>
+
+<h2 id="vim命令">vim命令：</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gg //到达文件头
+G //shift+g达到文件尾
+u //撤销
+U //撤销对整行的操作
+ctrl+r //重做，撤销的撤销
+x //删除当前字符
+dd //删除当前行
+yy //拷贝当前行
+/text //查找text，按n键查找下一个，按N键查找前一个
+</code></pre></div></div>
+
+<h2 id="检查磁盘坏道">检查磁盘坏道</h2>
+
+<ol>
+  <li>显示磁盘或闪存信息以及分区信息。</li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>➜ /home/b404 &gt;sudo fdisk -l
+Disk /dev/ram0: 64 MiB, 67108864 bytes, 131072 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+
+
+Disk /dev/ram1: 64 MiB, 67108864 bytes, 131072 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+</code></pre></div></div>
+
+<ol>
+  <li>检查磁盘坏道/坏块</li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>➜ /home/b404 &gt;sudo badblocks -v /dev/sda2 &gt; 1.txt
+正在检查从 0 到 104167423的块
+Checking for bad blocks (read-only test): 
+...
+</code></pre></div></div>
+
+<p>使用smartmontools工具扫描坏道：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>➜ /home/b404 &gt;smartctl -h
+smartctl 6.5 2016-01-24 r4214 [x86_64-linux-4.4.0-47-generic] (local build)
+Copyright (C) 2002-16, Bruce Allen, Christian Franke, www.smartmontools.org
+
+Usage: smartctl [options] device
+
+============================================ SHOW INFORMATION OPTIONS =====
+
+  -h, --help, --usage
+         Display this help and exit
+         ...
+        
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>➜ /home/b404 &gt;sudo smartctl -H /dev/sda2
+[sudo] b404 的密码： 
+smartctl 6.5 2016-01-24 r4214 [x86_64-linux-4.4.0-47-generic] (local build)
+Copyright (C) 2002-16, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+SMART overall-health self-assessment test result: PASSED
+
+➜ /home/b404 &gt;
+
+</code></pre></div></div>
+
+<h2 id="批量修改后缀名">批量修改后缀名</h2>
+
+<p><strong>批量修改后缀名（原文件不存在）：</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//将msg改为eml
+rename 's/\.msg$/\.eml/' *.msg
+</code></pre></div></div>
+
+<h2 id="在unix机器查看正在监听的tcpudp端口">在Unix机器查看正在监听的TCP\UDP端口</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo netstat -plnt
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo netstat -plnu
+</code></pre></div></div>
+
+<p><img src="/img/linux/linux_daily_commands/1486513342380.png" alt="" /></p>
+
+<h2 id="目录权限是777却不可以读写">目录权限是777，却不可以读写</h2>
+
+<h3 id="查看selinux状态">查看SELinux状态：</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">/usr/sbin/sestatus -v</code></li>
+</ul>
+
+<blockquote>
+  <p>如果SELinux status参数为enabled即为开启状态</p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELinux status:                 enabled
+</code></pre></div></div>
+
+<ul>
+  <li><code class="highlighter-rouge">getenforce</code> 也可以检查</li>
+</ul>
+
+<h3 id="关闭selinux">关闭SELinux：</h3>
+
+<ol>
+  <li>临时关闭（不用重启机器）：</li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>setenforce 0                  ##设置SELinux 成为permissive模式
+               ##setenforce 1 设置SELinux 成为enforcing模式
+</code></pre></div></div>
+<ol>
+  <li>修改配置文件需要重启机器：
+修改/etc/selinux/config 文件
+将SELINUX=enforcing改为SELINUX=disabled
+重启机器即可</li>
+</ol>
+
+<p><img src="/img/linux/linux_daily_commands/1487917115700.png" alt="" /></p>
+
+<h2 id="vmware虚拟机不能上网">vmware虚拟机不能上网</h2>
+
+<p>vmware虚拟机，在我重启电脑之后，就不能上网了，改变虚拟机网卡连接方式，也不行..重启网卡也不行。</p>
+
+<p>后面进入网络配置的网络接口设置发现，丢失了配置参数。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@kali:~# vim /etc/network/interfaces
+</code></pre></div></div>
+<p>添加配置参数：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+auto eth0
+iface eth0 inet dhcp
+~                     
+</code></pre></div></div>
+
+<p>添加了配置参数之后，重启网卡。虚拟机就能上网了。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@kali:~# /etc/init.d/networking restart
+[ ok ] Restarting networking (via systemctl): networking.service.
+root@kali:~# ping baidu.com
+PING baidu.com (123.125.114.144) 56(84) bytes of data.
+64 bytes from baidu.com (123.125.114.144): icmp_seq=1 ttl=128 time=56.9 ms
+^C
+--- baidu.com ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 56.903/56.903/56.903/0.000 ms
+
+</code></pre></div></div>
+
+<h2 id="查看本地ip位置">查看本地ip位置</h2>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">➜</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">b404</span> <span class="o">&gt;</span><span class="n">curl</span> <span class="n">ifconfig</span><span class="p">.</span><span class="n">me</span>
+
+<span class="err">➜</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">b404</span> <span class="o">&gt;</span><span class="n">curl</span> <span class="n">myip</span><span class="p">.</span><span class="n">ipip</span><span class="p">.</span><span class="n">net</span>
+</code></pre></div></div>
+
+<p><img src="/img/linux/linux_daily_commands/1506386317645.png" alt="" /></p>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/02/08/Shodan-Manual/">Shodan手册
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/27/hidden-the-network/">阻碍获取真实网络指纹
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/04/command-and-control-images/">command-and-control-images
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/30/exploit-domain/">域渗透的整理
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/09/13/DKMC/">DKMC</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/09/19/printer/">printer</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/09/15/linux-commands/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/09/15/linux-commands/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jirairya</title>
+    <description></description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 24 Jun 2018 00:46:53 -0700</pubDate>
+    <lastBuildDate>Sun, 24 Jun 2018 00:46:53 -0700</lastBuildDate>
+    <generator>Jekyll v3.8.3</generator>
+    
+      <item>
+        <title>Shodan手册</title>
+        <description>
+现由&lt;a href=&quot;http://ph0rse.me/&quot;&gt;ph0rse&lt;/a&gt;和Jirairya共同修订，欢迎大家issue
+&lt;blockquote&gt;
+  **_PS:本来本文投稿于&lt;a href=&quot;http://www.myh0st.cn/&quot;&gt;信安之路&lt;/a&gt;（http://mp.weixin.qq.com/s/SVl_YLhcfNgHya6jEnKx1g）的， 后@&lt;a href=&quot;http://ph0rse.me/&quot;&gt;ph0rse&lt;/a&gt;建议放于gitbook上，方便大家在线查阅、共同维护，就有了&lt;a href=&quot;https://b404.gitbooks.io/shodan-manual/content/&quot;&gt;gitbook版本&lt;/a&gt; （https://b404.gitbooks.io/shodan-manual/content/）
+&lt;/blockquote&gt;
+
+</description>
+        <pubDate>Thu, 08 Feb 2018 00:00:00 -0800</pubDate>
+        <link>http://localhost:4000/2018/02/08/Shodan-Manual/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/02/08/Shodan-Manual/</guid>
+        
+        <category>sec</category>
+        
+        <category>skills</category>
+        
+        <category>shodan</category>
+        
+        <category>information</category>
+        
+        <category>search</category>
+        
+        
+        <category>hack</category>
+        
+        <category>skills</category>
+        
+      </item>
+    
+      <item>
+        <title>阻碍获取真实网络指纹</title>
+        <description>
+真实环境中，很多因素对基本指纹识别，比如说负载平衡器、虚拟服务器配置、代理、WAF、CDN…
+
+</description>
+        <pubDate>Sat, 27 Jan 2018 00:00:00 -0800</pubDate>
+        <link>http://localhost:4000/2018/01/27/hidden-the-network/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/01/27/hidden-the-network/</guid>
+        
+        <category>sec</category>
+        
+        <category>hack</category>
+        
+        <category>skills</category>
+        
+        
+        <category>hack</category>
+        
+        <category>sec</category>
+        
+      </item>
+    
+      <item>
+        <title>command-and-control-images</title>
+        <description>
+使用&lt;a href=&quot;http://rwnin.net/?p=35&quot;&gt;脚本&lt;/a&gt;将命令转化为图标，然后使用powershell执行
+
+</description>
+        <pubDate>Thu, 04 Jan 2018 00:00:00 -0800</pubDate>
+        <link>http://localhost:4000/2018/01/04/command-and-control-images/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/01/04/command-and-control-images/</guid>
+        
+        <category>sec</category>
+        
+        <category>hack</category>
+        
+        <category>tools</category>
+        
+        <category>bin</category>
+        
+        <category>powershell</category>
+        
+        
+        <category>hack</category>
+        
+        <category>sec</category>
+        
+        <category>bin</category>
+        
+        <category>c2</category>
+        
+        <category>image</category>
+        
+        <category>powershell</category>
+        
+      </item>
+    
+      <item>
+        <title>域渗透的整理</title>
+        <description>收集整理的相关域渗透的命令和思路
+
+</description>
+        <pubDate>Sat, 30 Dec 2017 00:00:00 -0800</pubDate>
+        <link>http://localhost:4000/2017/12/30/exploit-domain/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/12/30/exploit-domain/</guid>
+        
+        <category>domain</category>
+        
+        <category>windows</category>
+        
+        <category>command</category>
+        
+        <category>hack</category>
+        
+        
+        <category>hack</category>
+        
+        <category>sec</category>
+        
+      </item>
+    
+      <item>
+        <title>开启RDP</title>
+        <description>
+</description>
+        <pubDate>Wed, 27 Dec 2017 00:00:00 -0800</pubDate>
+        <link>http://localhost:4000/2017/12/27/open-RDP/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/12/27/open-RDP/</guid>
+        
+        <category>sec</category>
+        
+        <category>skills</category>
+        
+        <category>rdp</category>
+        
+        
+        <category>hack</category>
+        
+        <category>skills</category>
+        
+      </item>
+    
+      <item>
+        <title>域环境</title>
+        <description>域控的搭建及加入客户机
+
+</description>
+        <pubDate>Tue, 19 Dec 2017 00:00:00 -0800</pubDate>
+        <link>http://localhost:4000/2017/12/19/build-domain/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/12/19/build-domain/</guid>
+        
+        <category>domain</category>
+        
+        <category>windows</category>
+        
+        <category>environment</category>
+        
+        
+        <category>hack</category>
+        
+        <category>environment</category>
+        
+      </item>
+    
+      <item>
+        <title>TEST LAB 11</title>
+        <description>
+pentestit.ru的第十一期环境
+
+</description>
+        <pubDate>Thu, 30 Nov 2017 00:00:00 -0800</pubDate>
+        <link>http://localhost:4000/2017/11/30/Test-LAB-11/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/11/30/Test-LAB-11/</guid>
+        
+        <category>sec</category>
+        
+        <category>ctf</category>
+        
+        <category>pentest</category>
+        
+        
+        <category>hack</category>
+        
+        <category>tools</category>
+        
+        <category>game</category>
+        
+      </item>
+    
+      <item>
+        <title>代理</title>
+        <description>
+</description>
+        <pubDate>Wed, 29 Nov 2017 00:00:00 -0800</pubDate>
+        <link>http://localhost:4000/2017/11/29/proxy/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/11/29/proxy/</guid>
+        
+        <category>sec</category>
+        
+        <category>skills</category>
+        
+        <category>proxy</category>
+        
+        
+        <category>hack</category>
+        
+        <category>skills</category>
+        
+      </item>
+    
+      <item>
+        <title>Socks端口转发和Socks端口代理</title>
+        <description>
+&lt;code class=&quot;highlighter-rouge&quot;&gt;socks端口代理&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;socks端口转发&lt;/code&gt;不能混为一谈。
+
+</description>
+        <pubDate>Wed, 29 Nov 2017 00:00:00 -0800</pubDate>
+        <link>http://localhost:4000/2017/11/29/port-fowarding-and-socks-proxy/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/11/29/port-fowarding-and-socks-proxy/</guid>
+        
+        <category>sec</category>
+        
+        <category>skills</category>
+        
+        <category>proxy</category>
+        
+        <category>socks</category>
+        
+        <category>port-forwading</category>
+        
+        
+        <category>hack</category>
+        
+        <category>skills</category>
+        
+      </item>
+    
+      <item>
+        <title>端口转发</title>
+        <description>
+</description>
+        <pubDate>Wed, 29 Nov 2017 00:00:00 -0800</pubDate>
+        <link>http://localhost:4000/2017/11/29/port-forwarding/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/11/29/port-forwarding/</guid>
+        
+        <category>sec</category>
+        
+        <category>skills</category>
+        
+        <category>proxy</category>
+        
+        
+        <category>hack</category>
+        
+        <category>skills</category>
+        
+      </item>
+    
+  </channel>
+</rss>

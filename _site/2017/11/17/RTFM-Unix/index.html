@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>RTFM-Unix</title>
+    <meta name="description" content="RTFM Unix">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/11/17/RTFM-Unix/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>RTFM-Unix</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-11-17
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#hack" title="Category: hack" rel="category">hack</a>&nbsp;
+    
+        <a href="/category/#skills" title="Category: skills" rel="category">skills</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a-->
+        <a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a>&nbsp;
+    
+        <!--a href="/tag/#skills" title="Tag: skills" rel="tag">skills</a-->
+        <a href="/tag/#skills" title="Tag: skills" rel="tag">skills</a>&nbsp;
+    
+        <!--a href="/tag/#Unix" title="Tag: Unix" rel="tag">Unix</a-->
+        <a href="/tag/#Unix" title="Tag: Unix" rel="tag">Unix</a>&nbsp;
+    
+        <!--a href="/tag/#command" title="Tag: command" rel="tag">command</a-->
+        <a href="/tag/#command" title="Tag: command" rel="tag">command</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>RTFM Unix</p>
+
+<ul id="markdown-toc">
+  <li><a href="#linux-networks-command" id="markdown-toc-linux-networks-command">Linux Networks Command</a></li>
+  <li><a href="#linux系统信息" id="markdown-toc-linux系统信息">Linux系统信息</a></li>
+  <li><a href="#linux-实用的命令" id="markdown-toc-linux-实用的命令">Linux 实用的命令</a></li>
+  <li><a href="#linux文件命令" id="markdown-toc-linux文件命令">Linux文件命令</a></li>
+  <li><a href="#linux-misc命令" id="markdown-toc-linux-misc命令">Linux Misc命令</a></li>
+  <li><a href="#linux-掩灭踪迹的命令" id="markdown-toc-linux-掩灭踪迹的命令">Linux 掩灭踪迹的命令</a></li>
+  <li><a href="#linux文件系统架构" id="markdown-toc-linux文件系统架构">Linux文件系统架构</a></li>
+  <li><a href="#linux文件" id="markdown-toc-linux文件">Linux文件</a></li>
+  <li><a href="#linux脚本" id="markdown-toc-linux脚本">Linux脚本</a>    <ul>
+      <li><a href="#ping-扫描" id="markdown-toc-ping-扫描">ping 扫描</a></li>
+      <li><a href="#自动域名解析" id="markdown-toc-自动域名解析">自动域名解析</a></li>
+    </ul>
+  </li>
+  <li><a href="#iptables" id="markdown-toc-iptables">IPTABLES</a></li>
+  <li><a href="#允许ssh在22号端口出站" id="markdown-toc-允许ssh在22号端口出站">允许SSH在22号端口出站</a></li>
+  <li><a href="#允许icmp出站" id="markdown-toc-允许icmp出站">允许ICMP出站</a></li>
+  <li><a href="#端口转发" id="markdown-toc-端口转发">端口转发</a></li>
+  <li><a href="#仅允许11102480443和日志记录在varlogmessages" id="markdown-toc-仅允许11102480443和日志记录在varlogmessages">仅允许1.1.1.0/24,80、443和日志记录在/var/log/messages</a></li>
+  <li><a href="#update-rcd" id="markdown-toc-update-rcd">UPDATE-RC.D</a></li>
+  <li><a href="#chkconfig" id="markdown-toc-chkconfig">CHKCONFIG</a></li>
+  <li><a href="#屏幕" id="markdown-toc-屏幕">屏幕</a></li>
+  <li><a href="#x11" id="markdown-toc-x11">X11</a>    <ul>
+      <li><a href="#捕捉远程x11桌面并且转换为jpg" id="markdown-toc-捕捉远程x11桌面并且转换为jpg">捕捉远程X11桌面，并且转换为JPG</a></li>
+      <li><a href="#打开x11查流" id="markdown-toc-打开x11查流">打开X11查流</a></li>
+    </ul>
+  </li>
+</ul>
+
+<!--more-->
+
+<h2 id="linux-networks-command">Linux Networks Command</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>命令</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">watch ss -tp</code></td>
+      <td>网络连接情况</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">netstat -ant</code></td>
+      <td>TCP连接情况（<code class="highlighter-rouge">-anu</code>=udp）</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">netstat -tulpn</code></td>
+      <td>与PIDS连接情况</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">lsof -i</code></td>
+      <td>建立的连接</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">smb://ip/share</code></td>
+      <td>连接Windows smb共享</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">smbclient -U User\\\\ip\\share</code></td>
+      <td>SMB连接</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ifconfig eth# ip/cidr</code></td>
+      <td>设置IP和子网掩码</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ifconfig eth0:1 ip /cidr</code></td>
+      <td>设置虚拟网卡</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">route add default gw gw_ip</code></td>
+      <td>设置GW</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ifconfig eth# mtu[size]</code></td>
+      <td>设置MTU大小</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">export MAC=xx:xx:xx:xx:xx:xx</code></td>
+      <td>更改MAC</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ifconfig int hw ether MAC</code></td>
+      <td>更改MAC</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">macchanger -m MAC int</code></td>
+      <td>回溯MAC更改器</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">iwlist int scan</code></td>
+      <td>建立WIFI扫描器</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">dig -x ip</code></td>
+      <td>域名查找IP</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">host ip</code></td>
+      <td>域名查找IP</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">host -t SRV _service_tcp.url.com</code></td>
+      <td>SRV记录查询</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">dig @ip domain -t AXFR</code></td>
+      <td>DNS区域传送</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">host -l domain -t AXFR</code></td>
+      <td>DNS区域传送</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ip xfrm state list</code></td>
+      <td>打印存在的VPN密钥</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ip addr add ip /cidr dev eth0</code></td>
+      <td>添加隐藏的网卡</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/var/log/messages 1 grep DHCP</code></td>
+      <td>列出DHCP作业</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">tcpkill host ip andr port port</code></td>
+      <td>禁止ip和端口</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">echo "1" /proc/sys/net/ipv4/ip_forward</code></td>
+      <td>打开IP转发</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">echo "nameserver x.x.x.x" /etc/resolv.conf</code></td>
+      <td>添加DNS 服务</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="linux系统信息">Linux系统信息</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>命令</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">nbtstat -A ip</code></td>
+      <td>得到IP的主机名</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">id</code></td>
+      <td>当前用户名</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">w</code></td>
+      <td>登陆的用户</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">who -a</code></td>
+      <td>用户信息</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">last -a</code></td>
+      <td>最后用户登陆信息</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ps -ef</code></td>
+      <td>进程列表（=<code class="highlighter-rouge">top</code>）</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">uname -a</code></td>
+      <td>内核信息</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">df -h</code></td>
+      <td>磁盘剩余量</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">mount</code></td>
+      <td>挂载的文件系统</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">getent passwd</code></td>
+      <td>用户列表</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">PATH=$PATH:/home/mypath</code></td>
+      <td>添加到PATH变量</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">kill pid</code></td>
+      <td>通过PID杀死进程</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">cat /etc/issue</code></td>
+      <td>展示 OS info</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">cat /proc/version</code></td>
+      <td>内核信息</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">cat /etc/*release*</code></td>
+      <td>查看系统版本信息</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rpm --query -all</code></td>
+      <td>查看安装的包(红帽)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rpm -ivh *.rpm</code></td>
+      <td>安装RPM包(<code class="highlighter-rouge">-e</code>=移除)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">dpkg -getselections</code></td>
+      <td>安装DEB(<code class="highlighter-rouge">-r</code>=移除)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">dpkg -I *.deb</code></td>
+      <td>安装deb(<code class="highlighter-rouge">-r</code>=移除)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">dpkginfo</code></td>
+      <td>安装pkg包（Solaris）</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">which tscsh/csh/ksh/bash</code></td>
+      <td>展示可执行程序</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="linux-实用的命令">Linux 实用的命令</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>命令</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">wget http://url -o url.txt -o /dev/null</code></td>
+      <td>抓取url</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">redesktop ip</code></td>
+      <td>远程桌面连接ip</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">scp /tmp/file user@x.x.x.x: /tmp/file</code></td>
+      <td>复制文件到远程</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">useradd -m user</code></td>
+      <td>添加用户</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">passwd user</code></td>
+      <td>改变用户密码</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rmuser uname</code></td>
+      <td>移除用户</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">script -a outfile</code></td>
+      <td><strong>记录shell:Ctrl-D 停止记录</strong></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">apropos subject</code></td>
+      <td>查找相近的命令</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">history</code></td>
+      <td>查看用户命令历史</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">!num</code></td>
+      <td>在历史中执行行#</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="linux文件命令">Linux文件命令</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>命令</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge"><span class="gh">diff file1 file2</span></code></td>
+      <td>比较文件</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rm -rf dir</code></td>
+      <td>强制删除dir</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">shred -f -u file</code></td>
+      <td>覆盖/删除文件</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">touch -r ref_file file</code></td>
+      <td>匹配ref_file时间戳</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">touch -t YYYYMMDDHHSS</code></td>
+      <td>设置文件时间戳</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">sudo fdisk -l</code></td>
+      <td>列出连接的设备</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">mount /dev/sda# mnt/usbkey</code></td>
+      <td>挂载USB密钥</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">md5sum -t file</code></td>
+      <td>计算md5值</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">echo -n "str" 1 md5sum </code></td>
+      <td>生成md5值</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">sha1sum file</code></td>
+      <td>文件的SHA1值</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">sort -u</code></td>
+      <td>显示唯一的行</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">grep -c "str" file</code></td>
+      <td>计算含有”str”的行数</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">tar cf file.tar.gz files</code></td>
+      <td>压缩文件为<code class="highlighter-rouge">.tar</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">tar xf file.tar</code></td>
+      <td>解压tar文件</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">tar czf file.tar.gz files</code></td>
+      <td>压缩文件为<code class="highlighter-rouge">tar.gz</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">tar xzf file.tar.gz</code></td>
+      <td>解压缩<code class="highlighter-rouge">.tar.gz</code>文件</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">tar cjf file.tar.bz2 files</code></td>
+      <td>压缩文件为<code class="highlighter-rouge">.tar.bz2</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">tar xjf file.tar.bz2</code></td>
+      <td>解压缩<code class="highlighter-rouge">tar.bz2</code>文件</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">gzip file</code></td>
+      <td>压缩文件或重命名文件</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">gzip -d file. gz</code></td>
+      <td>解压缩文件</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">upx -9 -o out.exe orig.exe</code></td>
+      <td>UPX打包orig.exe</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">zip -r zipname.zip \Directory\*</code></td>
+      <td>生成zip文件</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">dd skip=lOOO count=2000 bs=S if=file of=file</code></td>
+      <td>将1k-3k的区域剪切到另外一个文件</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">split -b 9K \ file prefix</code></td>
+      <td>将文件分割成9k/块</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">awk 'sub("$"."\r")' unix.txt win.txt</code></td>
+      <td>获得</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">find -i -name file -type *.pdf</code></td>
+      <td>搜索pdf文件</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">find /-perm -4000 -o -perm -2000 -exec ls -ldb {} \;</code></td>
+      <td>搜索setuid文件</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">dos2unix file</code></td>
+      <td>转换成Unix格式</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">file file</code></td>
+      <td>解释文件格式</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">chattr (+/-)i file</code></td>
+      <td>设置或取消固定格式</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="linux-misc命令">Linux Misc命令</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>命令</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">unset HISTFILE</code></td>
+      <td>关闭历史记录</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ddh user@ip arecord - 1</code></td>
+      <td>记录远程声卡信号</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">gcc -o outfile myfile.c</code></td>
+      <td>编译C/C++文件</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">init 6</code></td>
+      <td>重启（<code class="highlighter-rouge">0</code>=关机）</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">cat /etc/*syslog*.conf \| grep -v "#"</code></td>
+      <td>列出日志文件</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">grep 'href=' file | cut -d"/" -f3 |grep url | sort -u</code></td>
+      <td>去除url.com中的链接</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">dd if=dev/urandom of=file bs=3145728 count=100</code></td>
+      <td>随机生成3MB的文件</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="linux-掩灭踪迹的命令">Linux 掩灭踪迹的命令</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>命令</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">echo "" /var/log/auth.log</code></td>
+      <td>清理登陆日志</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">echo "" ~/.bash_history</code></td>
+      <td>清理当前用户的bash命令历史记录</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rm ~/.bash_history -rf</code></td>
+      <td>delete .bash_history file</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">history -c</code></td>
+      <td>清除当前会话历史记录</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">export HISTFILESIZE=0</code></td>
+      <td>清零历史记录行数</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">export HISTSIZE=0</code></td>
+      <td>清零历史记录命令</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">unset HISTFILE</code></td>
+      <td>关闭历史日志（<strong>注销生效</strong>）</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">kill -9 $$</code></td>
+      <td>杀死当前会话</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ln /devnull ~/.bash_history -sf</code></td>
+      <td>永久将所有bash记录发送到 /dev/null</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="linux文件系统架构">Linux文件系统架构</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">/</span>  <span class="err">虚拟目录的根目录。通常不会在这里存储文件</span>
+<span class="o">/</span><span class="nx">bin</span>  <span class="err">二进制目录</span><span class="p">,</span><span class="err">存放许多用户级的</span><span class="nx">GNU</span><span class="err">工具</span>
+<span class="o">/</span><span class="nx">boot</span>  <span class="err">启动目录</span><span class="p">,</span><span class="err">存放启动文件</span>
+<span class="o">/</span><span class="nx">dev</span>  <span class="err">设备目录</span><span class="p">,</span><span class="nx">Linux</span><span class="err">在这里创建设备节点</span>
+<span class="o">/</span><span class="nx">etc</span>  <span class="err">系统配置文件目录</span>
+<span class="o">/</span><span class="nx">home</span>  <span class="err">主目录</span><span class="p">,</span><span class="nx">Linux</span><span class="err">在这里创建用户目录</span>
+<span class="o">/</span><span class="nx">lib</span>  <span class="err">库目录</span><span class="p">,</span><span class="err">存放系统和应用程序的库文件</span>
+<span class="o">/</span><span class="nx">media</span>  <span class="err">媒体目录</span><span class="p">,</span><span class="err">可移动媒体设备的常用挂载点</span>
+<span class="o">/</span><span class="nx">mnt</span>  <span class="err">挂载目录</span><span class="p">,</span><span class="err">另一个可移动媒体设备的常用挂载点</span>
+<span class="o">/</span><span class="nx">opt</span>  <span class="err">可选目录</span><span class="p">,</span><span class="err">常用于存放第三方软件包和数据文件</span>
+<span class="o">/</span><span class="nx">proc</span>  <span class="err">进程目录</span><span class="p">,</span><span class="err">存放现有硬件及当前进程的相关信息</span>
+<span class="o">/</span><span class="nx">root</span>  <span class="nx">root</span><span class="err">用户的主目录</span>
+<span class="o">/</span><span class="nx">sbin</span>  <span class="err">系统二进制目录</span><span class="p">,</span><span class="err">存放许多</span><span class="nx">GNU</span><span class="err">管理员级工具</span>
+<span class="o">/</span><span class="nx">run</span>  <span class="err">运行目录</span><span class="p">,</span><span class="err">存放系统运作时的运行时数据</span>
+<span class="o">/</span><span class="nx">srv</span>  <span class="err">服务目录</span><span class="p">,</span><span class="err">存放本地服务的相关文件</span>
+<span class="o">/</span><span class="nx">sys</span>  <span class="err">系统目录</span><span class="p">,</span><span class="err">存放系统硬件信息的相关文件</span>
+<span class="o">/</span><span class="nx">tmp</span>  <span class="err">临时目录</span><span class="p">,</span><span class="err">可以在该目录中创建和删除临时工作文件</span>
+<span class="o">/</span><span class="nx">usr</span>  <span class="err">用户二进制目录</span><span class="p">,</span><span class="err">大量用户级的</span><span class="nx">GNU</span><span class="err">工具和数据文件都存</span>
+</code></pre></div></div>
+
+<h2 id="linux文件">Linux文件</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>文件名</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">/etc/shadow</code></td>
+      <td>本地用户hash值</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/etc/passwd </code></td>
+      <td>本地用户</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/etc/group</code></td>
+      <td>本地组</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/etc/rc.d </code></td>
+      <td>启动的服务</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/etc/init.d </code></td>
+      <td>服务</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/etc/hosts  </code></td>
+      <td>已知主机名和IP</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/etc/HOSTNAME</code></td>
+      <td>域的所有主机</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/etc/network/interfaces</code></td>
+      <td>网络配置文件</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/etc/profile </code></td>
+      <td>系统环境变量</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/etc/apt/sources.list </code></td>
+      <td>Ubuntu资源列表</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/etc/resolv.conf</code></td>
+      <td>域名配置</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/home/user/.bash_history </code></td>
+      <td>bash历史记录(也可能是/root)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/usr/share/wireshark/manuf</code></td>
+      <td>Vendor-MAC查询</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">~/.ssh/</code></td>
+      <td>SSH密钥存储区</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/var/log</code></td>
+      <td>系统日志文件(大多数Linux)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/var/adm </code></td>
+      <td>系统日志文件（Unix）</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/var/spool/cron</code></td>
+      <td>列出cron文件</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/var/log/apache/access.log</code></td>
+      <td>Apache连接日志</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/etc/fstab</code></td>
+      <td>静态文件系统信息</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="linux脚本">Linux脚本</h2>
+
+<h3 id="ping-扫描">ping 扫描</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for </span>x <span class="k">in</span> <span class="o">{</span>1 .. 254 ..1<span class="o">}</span><span class="p">;</span><span class="k">do </span>ping <span class="nt">-c</span> 1 1.1.1.<span class="nv">$x</span> | <span class="nb">grep</span> <span class="s2">"64 b"</span> | cut <span class="nt">-d</span><span class="s2">" "</span><span class="nt">-f4</span>
+ips.txt<span class="p">;</span> <span class="k">done</span>
+</code></pre></div></div>
+
+<h3 id="自动域名解析">自动域名解析</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nb">echo</span> <span class="s2">"Enter Class C Range:i.e. 192.168.3"</span>
+<span class="nb">read </span>range
+<span class="k">for </span>ip <span class="k">in</span> <span class="o">{</span>1..254..1<span class="o">}</span><span class="p">;</span><span class="k">do
+</span>host <span class="nv">$range</span>.<span class="nv">$ip</span> | <span class="nb">grep</span> <span class="s2">"name pointer"</span> | cut <span class="nt">-d</span> <span class="s2">" "</span> <span class="nt">-f5</span>
+<span class="k">done</span>
+</code></pre></div></div>
+
+<h2 id="iptables">IPTABLES</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>命令</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">iptables -L -v --line-numbers</code></td>
+      <td>列出所有的iptables规则</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">iptables -F</code></td>
+      <td>刷新所有ipatbles规则</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">iptables -D INPUT 7</code></td>
+      <td>删除第七条入站规则</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">iptables -t raw -L -n</code></td>
+      <td>关闭无状态的规则提高性能</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">iptables -P INPUT DROP</code></td>
+      <td>丢弃所有包</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="允许ssh在22号端口出站">允许SSH在22号端口出站</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables <span class="nt">-A</span> OUTPUT <span class="nt">-o</span> iface <span class="nt">-p</span> tcp <span class="nt">--dport</span> 22 <span class="nt">-m</span> state <span class="nt">--state</span> New,ESTABLISHED <span class="nt">-j</span> ACCEPT
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables <span class="nt">-A</span> INPUT <span class="nt">-i</span> iface <span class="nt">-p</span> tcp <span class="nt">--sport</span> 22 <span class="nt">-m</span> state <span class="nt">--state</span> ESTABLISHED <span class="nt">-j</span> ACCEPT
+</code></pre></div></div>
+
+<h2 id="允许icmp出站">允许ICMP出站</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables <span class="nt">-A</span> OUTPUT <span class="nt">-o</span> iface <span class="nt">-p</span> tcp <span class="nt">--dport</span> 22 <span class="nt">-m</span> state <span class="nt">--state</span> NEW,ESTABLISHED <span class="nt">-j</span> ACCEPT
+
+iptabele <span class="nt">-A</span> INPUT <span class="nt">-o</span> iface <span class="nt">-p</span> icmp <span class="nt">--icmp-type</span> <span class="nb">echo </span>reply <span class="nt">-j</span> Aceept
+</code></pre></div></div>
+
+<h2 id="端口转发">端口转发</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"1"</span> /proc/sys/net/ipv4/ip_forward 
+<span class="c"># OR - sysctl net.ipv4.ip.ipforward=1</span>
+
+iptables <span class="nt">-t</span> nat <span class="nt">-A</span> PREROUTING <span class="nt">-p</span> tcp <span class="nt">-i</span> eth0 <span class="nt">-j</span> DNAT <span class="nt">-d</span> pivotip <span class="nt">--dport</span> 443 <span class="nt">-to-destination</span> attk_ip :443
+
+iptables <span class="nt">-t</span> nat <span class="nt">-A</span> POSTROUTING <span class="nt">-p</span> tcp <span class="nt">-i</span> eth0 <span class="nt">-j</span> SNAT <span class="nt">-s</span> target subnet iptables <span class="nt">-t</span> filter <span class="nt">-I</span> FORWARD 1 <span class="nt">-j</span> ACCEPT  
+</code></pre></div></div>
+
+<h2 id="仅允许11102480443和日志记录在varlogmessages">仅允许1.1.1.0/24,80、443和日志记录在/var/log/messages</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables <span class="nt">-A</span> INPUT <span class="nt">-s</span> 1.1.1.0/24 <span class="nt">-m</span> state <span class="nt">--state</span> RELATED,ESTABLISHED,NEW <span class="nt">-p</span> tcp <span class="nt">-m</span> multiport <span class="nt">--dports</span> 80,443 <span class="nt">-j</span> ACCEPT
+
+iptables <span class="nt">-A</span> INPUT <span class="nt">-i</span> ethO <span class="nt">-m</span> state <span class="nt">--state</span> RELATED,ESTABLISHED <span class="nt">-j</span> ACCEPT
+
+iptables <span class="nt">-P</span> INPUT DROP
+
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-o</span> ethO <span class="nt">-j</span> ACCEPT
+
+iptables <span class="nt">-A</span> INPUT <span class="nt">-i</span> lo <span class="nt">-j</span> ACCEPT
+
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-o</span> lo <span class="nt">-j</span> ACCEPT
+
+iptables <span class="nt">-N</span> LOGGING
+
+iptables <span class="nt">-A</span> INPUT <span class="nt">-j</span> LOGGING
+
+iptables <span class="nt">-A</span> LOGGING <span class="nt">-m</span> limit <span class="nt">--limit</span> 4/min <span class="nt">-j</span> LOG <span class="nt">--log-prefix</span> <span class="s2">"DROPPED "</span>
+
+iptables <span class="nt">-A</span> LOGGING <span class="nt">-j</span> DROP
+</code></pre></div></div>
+
+<h2 id="update-rcd">UPDATE-RC.D</h2>
+
+<p>检查/改变启动服务的状态</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>命令</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">service -status-all</code></td>
+      <td>引导区启动的服务和非启动服务</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">service service start</code></td>
+      <td>启动服务</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">service service stop</code></td>
+      <td>关闭服务</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">service service status</code></td>
+      <td>检查服务状态</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">update-rc.d -f service remove</code></td>
+      <td>移除启动的服务(若<code class="highlighter-rouge">etc/init.d 启动文件存在</code>)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">update-rc.d service defaults</code></td>
+      <td>添加要启动的服务</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="chkconfig">CHKCONFIG</h2>
+
+<p>存在于红帽系列的Linux，比如Centos、OEL</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>命令</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">chkconfig --list</code></td>
+      <td>列出存在的服务运行状态</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">chkconfig service -list</code></td>
+      <td>检查单一服务的状态</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">chkconfig service on [--level 3]</code></td>
+      <td>添加服务并指定运行级别</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">chkconfig service off [--level 3]</code></td>
+      <td>移除服务</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="屏幕">屏幕</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>命令</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">screen -S name</code></td>
+      <td>开启新窗口</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">screen -ls</code></td>
+      <td>列出开启的屏幕</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">screen -r name</code></td>
+      <td>附加屏幕名字</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">screen -S name -X cmd</code></td>
+      <td>发送cmd到屏幕</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">C-a</code></td>
+      <td>列出键值绑定</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">C-a d</code></td>
+      <td>拆分</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">C-a D D</code></td>
+      <td>拆分并退出</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">C-a c</code></td>
+      <td>创建新窗口</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">C-a C-a</code></td>
+      <td>切换到最后的活动窗口</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">C-a ' num|name</code></td>
+      <td>切换到对应编号或名称的窗口</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">C-a "</code></td>
+      <td>窗口的列和改变</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">C-a k</code></td>
+      <td>杀死当前窗口</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">C-a S</code></td>
+      <td>将显示横向分割</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">C-a V</code></td>
+      <td>将显示纵向分割</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">C-a tab</code></td>
+      <td>跳到下一移除当前个显示窗口</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">C-a X</code></td>
+      <td>移除当前区域</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">C-a Q</code></td>
+      <td>移除除了当前区域的所有区域</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="x11">X11</h2>
+
+<h3 id="捕捉远程x11桌面并且转换为jpg">捕捉远程X11桌面，并且转换为JPG</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xwd <span class="nt">-display</span> ip :0 <span class="nt">-root</span> <span class="nt">-out</span> /tmp/test.xpm
+
+xwud <span class="nt">-in</span> /tmp/test1.xpm
+
+convert /tmp/test.xpm <span class="nt">-resize</span> 1280x1024 /tmp/test.jpg
+</code></pre></div></div>
+
+<h3 id="打开x11查流">打开X11查流</h3>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/02/08/Shodan-Manual/">Shodan手册
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/27/hidden-the-network/">阻碍获取真实网络指纹
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/04/command-and-control-images/">command-and-control-images
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/30/exploit-domain/">域渗透的整理
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/27/open-RDP/">开启RDP
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/11/30/Test-LAB-11/">TEST LAB 11
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/11/06/PE-file-signature-forgery/">PE文件的签名伪造</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/11/23/OpenDreamBox-WebAdmin-Remote-Code-Execution/">OpenDreamBox-WebAdmin远程代码执行</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/11/17/RTFM-Unix/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/11/17/RTFM-Unix/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

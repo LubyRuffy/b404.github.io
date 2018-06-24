@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Javascript-DOM</title>
+    <meta name="description" content="Javascript-DOM编程艺术笔记">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2016/10/17/javascript-dom-notes/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>Javascript-DOM</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2016-10-17
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#reading-notes" title="Category: reading-notes" rel="category">reading-notes</a>&nbsp;
+    
+        <a href="/category/#javascript" title="Category: javascript" rel="category">javascript</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#javascript" title="Tag: javascript" rel="tag">javascript</a-->
+        <a href="/tag/#javascript" title="Tag: javascript" rel="tag">javascript</a>&nbsp;
+    
+        <!--a href="/tag/#dom" title="Tag: dom" rel="tag">dom</a-->
+        <a href="/tag/#dom" title="Tag: dom" rel="tag">dom</a>&nbsp;
+    
+        <!--a href="/tag/#reading-notes" title="Tag: reading-notes" rel="tag">reading-notes</a-->
+        <a href="/tag/#reading-notes" title="Tag: reading-notes" rel="tag">reading-notes</a>&nbsp;
+    
+        <!--a href="/tag/#code" title="Tag: code" rel="tag">code</a-->
+        <a href="/tag/#code" title="Tag: code" rel="tag">code</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>Javascript-DOM编程艺术笔记
+<!--more--></p>
+
+<ul id="markdown-toc">
+  <li><a href="#javascript-dom" id="markdown-toc-javascript-dom">Javascript DOM:</a>    <ul>
+      <li><a href="#显示缩略语表" id="markdown-toc-显示缩略语表">显示缩略语表:</a></li>
+      <li><a href="#显示文献来源链接表" id="markdown-toc-显示文献来源链接表">显示“文献来源链接表”：</a></li>
+      <li><a href="#快捷键清单" id="markdown-toc-快捷键清单">快捷键清单：</a></li>
+      <li><a href="#css-dom" id="markdown-toc-css-dom">CSS DOM:</a></li>
+      <li><a href="#动画效果" id="markdown-toc-动画效果">动画效果</a></li>
+      <li><a href="#实用的动画" id="markdown-toc-实用的动画">实用的动画：</a></li>
+      <li><a href="#misc" id="markdown-toc-misc">misc:</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="javascript-dom">Javascript DOM:</h2>
+
+<h3 id="显示缩略语表">显示缩略语表:</h3>
+<p>使用DOM来创建定义列表：</p>
+<ol>
+  <li>遍历这份文档中的所有abbr元素</li>
+  <li>保存每个abbr元素的title属性</li>
+  <li>保存每个abbr元素包含的文本</li>
+  <li>创建一个“定义列表”元素（即dl元素）</li>
+  <li>遍历刚才保存的title属性和abbr元素的文本。</li>
+  <li>创建一个“定义列表”元素（即dt元素）</li>
+  <li>把abbr元素的文本插入到这个dt元素。</li>
+  <li>创建一个“定义描述”的元素（即dd元素）。</li>
+  <li>把title属性插入到这个dd元素。</li>
+  <li>把dt元素追加到第四步创建的dl元素上。</li>
+  <li>把dd元素追加到第四步创建的dl元素上。</li>
+  <li>把dl元素追加到explanation.html创建的body元素上。</li>
+</ol>
+
+<ul>
+  <li>引用body的方法：</li>
+  <li>使用 DOM core，即引用某给定文档的第一个body标签：</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"body"</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+</code></pre></div></div>
+
+<ul>
+  <li>使用HTML-DOM，即引用某给定文档的body属性：
+  document.body</li>
+</ul>
+
+<pre><code class="language-Javascript">  1.  首先插入“缩略语表”的标题：
+document.body.appendChild(header);
+  2.  然后插入“缩略语表”本身：
+document.body.appendChild(dlist);
+</code></pre>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">function</span> <span class="nx">displayAbbreviations</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="c1">//取得缩略词</span>
+  <span class="kd">var</span> <span class="nx">abbreviations</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"abbr"</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">abbreviations</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">defs</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+  <span class="c1">//遍历这些缩略词</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">abbreviations</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">current_abbr</span> <span class="o">=</span> <span class="nx">abbreviations</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="kd">var</span> <span class="nx">definition</span> <span class="o">=</span> <span class="nx">current_abbr</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s2">"title"</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="nx">current_abbr</span><span class="p">.</span><span class="nx">lastChild</span><span class="p">.</span><span class="nx">nodeValue</span><span class="p">;</span>
+    <span class="nx">defs</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">definition</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="c1">//创建定义列表</span>
+  <span class="kd">var</span> <span class="nx">dlist</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"dl"</span><span class="p">);</span>
+  <span class="c1">//遍历定义列表</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">key</span> <span class="k">in</span> <span class="nx">defs</span><span class="p">){</span>    <span class="c1">//对于defs关联数组里的每个键，把它的值赋给变量key</span>
+    <span class="kd">var</span> <span class="nx">definition</span> <span class="o">=</span> <span class="nx">defs</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+    <span class="c1">// 定义标题</span>
+    <span class="kd">var</span> <span class="nx">dtitle</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"dt"</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">dtitle_text</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+    <span class="nx">dtitle</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">dtitle_text</span><span class="p">);</span>
+    <span class="c1">//创建定义描述</span>
+    <span class="kd">var</span> <span class="nx">ddesc</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"dd"</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">ddesc_text</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="nx">definition</span><span class="p">);</span>
+    <span class="c1">//添加到定义列表</span>
+    <span class="nx">ddesc</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">ddesc_text</span><span class="p">);</span>
+    <span class="nx">dlist</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">dtitle</span><span class="p">);</span>
+    <span class="nx">dlist</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">ddesc</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="c1">//创建标题</span>
+  <span class="kd">var</span> <span class="nx">header</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"h2"</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">header_text</span>  <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="s2">"Abbreviations"</span><span class="p">);</span>
+  <span class="nx">header</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">header_text</span><span class="p">);</span>
+  <span class="c1">//添加到页面主体</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">header</span><span class="p">);</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">dlist</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">addLoadEvent</span><span class="p">(</span><span class="nx">displayAbbreviations</span><span class="p">);</span>
+
+</code></pre></div></div>
+
+<h3 id="显示文献来源链接表">显示“文献来源链接表”：</h3>
+
+<p>将文献以连接形式显示出来：</p>
+<ol>
+  <li>遍历这个文档里所有blockquote元素。</li>
+  <li>从blockquote元素提取cite属性。</li>
+  <li>创建一个标识文本是source的链接。</li>
+  <li>把这个链接赋值为blockquote元素的cite属性值。</li>
+  <li>把这个链接插入到文献节选的末尾。</li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">displayCitations</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span> <span class="o">||</span> <span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span> 
+    <span class="o">||</span> <span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="c1">//取得所有引用</span>
+  <span class="kd">var</span> <span class="nx">quotes</span> <span class="o">=</span> <span class="nx">documents</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"blockquote"</span><span class="p">);</span>
+    <span class="c1">//遍历引用</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">quotes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//如果没有cite属性，继续循环</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">quotes</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s2">"cite"</span><span class="p">)){</span>
+      <span class="k">continue</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">//保存cite</span>
+    <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">quotes</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s2">"cite"</span><span class="p">);</span>
+    <span class="c1">//取得引用中的所有元素节点</span>
+    <span class="kd">var</span> <span class="nx">quoteChildren</span> <span class="o">=</span> <span class="nx">quotes</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"*"</span><span class="p">);</span>
+    <span class="c1">//如果没有节点元素，继续循环</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">quoteChildren</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+    <span class="c1">//取得引用中的最后一个元素节点</span>
+    <span class="kd">var</span> <span class="nx">elem</span> <span class="o">=</span> <span class="nx">quoteChildren</span><span class="p">[</span><span class="nx">quoteChildren</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="c1">//创建标记</span>
+    <span class="kd">var</span> <span class="nx">link</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"a"</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">link_text</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="s2">"source"</span><span class="p">);</span>
+    <span class="nx">link</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">link_text</span><span class="p">);</span>
+    <span class="nx">link</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">"href"</span><span class="p">,</span><span class="nx">url</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">superscript</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"sup"</span><span class="p">);</span>
+    <span class="nx">superscript</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">link</span><span class="p">);</span>
+    <span class="c1">//把标记添加到引用中的最后一个元素节点</span>
+    <span class="nx">elem</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">superscript</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">addLoadEvent</span><span class="p">(</span><span class="nx">displayCitations</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="快捷键清单">快捷键清单：</h3>
+
+<p>利用DOM创建快捷键清单：</p>
+
+<blockquote>
+  <ol>
+    <li>把文档里的所有链接全部提取到一个节点集合中</li>
+    <li>遍历这个节点集合里的所有链接。</li>
+    <li>如果这个链接带有accesskey属性，就把它保存起来。</li>
+    <li>把这个链接在浏览器窗口里的屏显文字也保存起来。</li>
+    <li>创建一个清单。</li>
+    <li>为拥有快捷键的各个链接分别创建一个列表项（li元素）</li>
+    <li>把列表添加到“快捷键清单”里。</li>
+  </ol>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">displayAccesskeys</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span> <span class="o">||</span> <span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span> <span class="o">||</span> <span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="c1">// get all the links in the document</span>
+  <span class="kd">var</span> <span class="nx">links</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"a"</span><span class="p">);</span>
+<span class="c1">// create an array to store the accesskeys</span>
+  <span class="kd">var</span> <span class="nx">akeys</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+<span class="c1">// loop through the links</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">links</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">current_link</span> <span class="o">=</span> <span class="nx">links</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+<span class="c1">// if there is no accesskey attribute, continue the loop</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">current_link</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s2">"accesskey"</span><span class="p">)</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+<span class="c1">// get the value of the accesskey</span>
+    <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="nx">current_link</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s2">"accesskey"</span><span class="p">);</span>
+<span class="c1">// get the value of the link text</span>
+    <span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="nx">current_link</span><span class="p">.</span><span class="nx">lastChild</span><span class="p">.</span><span class="nx">nodeValue</span><span class="p">;</span>
+<span class="c1">// add them to the array</span>
+    <span class="nx">akeys</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">text</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="c1">// create the list</span>
+  <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"ul"</span><span class="p">);</span>
+<span class="c1">// loop through the accesskeys</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">key</span> <span class="k">in</span> <span class="nx">akeys</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="nx">akeys</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+<span class="c1">//  create the string to put in the list item</span>
+    <span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="nx">key</span> <span class="o">+</span> <span class="s2">" : "</span><span class="o">+</span><span class="nx">text</span><span class="p">;</span>
+<span class="c1">// create the list item</span>
+    <span class="kd">var</span> <span class="nx">item</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"li"</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">item_text</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+    <span class="nx">item</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">item_text</span><span class="p">);</span>
+<span class="c1">// add the list item to the list</span>
+    <span class="nx">list</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="c1">// create a headline</span>
+  <span class="kd">var</span> <span class="nx">header</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"h3"</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">header_text</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="s2">"Accesskeys"</span><span class="p">);</span>
+  <span class="nx">header</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">header_text</span><span class="p">);</span>
+<span class="c1">// add the headline to the body</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">header</span><span class="p">);</span>
+<span class="c1">// add the list to the body</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">list</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">addLoadEvent</span><span class="p">(</span><span class="nx">displayAccesskeys</span><span class="p">);</span>
+</code></pre></div></div>
+<p>效果如图：</p>
+
+<p><img src="http://oe9cdien8.bkt.clouddn.com/选区_004.bmp" alt="Alt text" /></p>
+
+<h3 id="css-dom">CSS DOM:</h3>
+
+<ol>
+  <li>原图</li>
+</ol>
+
+<pre><code class="language-Html">&lt;table&gt;
+    &lt;caption&gt;Itinerary&lt;/caption&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;When&lt;/th&gt;
+        &lt;th&gt;Where&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;June 9th&lt;/td&gt;
+        &lt;td&gt;Portland,&lt;abbr title="Oregon"&gt;OR&lt;/abbr&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;June 10th&lt;/td&gt;
+        &lt;td&gt;Seattle,&lt;abbr title="Washington"&gt;WA&lt;/abbr&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;June 12th&lt;/td&gt;
+        &lt;td&gt;Sacramento,&lt;abbr title="California"&gt;CA&lt;/abbr&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+
+</code></pre>
+
+<ul>
+  <li>代码如下效果：</li>
+</ul>
+<table>
+    <caption>Itinerary</caption>
+    <thead>
+      <tr>
+        <th>When</th>
+        <th>Where</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>June 9th</td>
+        <td>Portland,<abbr title="Oregon">OR</abbr></td>
+      </tr>
+      <tr>
+        <td>June 10th</td>
+        <td>Seattle,<abbr title="Washington">WA</abbr></td>
+      </tr>
+      <tr>
+        <td>June 12th</td>
+        <td>Sacramento,<abbr title="California">CA</abbr></td>
+      </tr>
+    </tbody>
+  </table>
+
+<ol>
+  <li>加入css效果实现可视化：</li>
+</ol>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">body</span> <span class="p">{</span>
+  <span class="nl">font-family</span><span class="p">:</span> <span class="s1">"Helvetica"</span><span class="p">,</span><span class="s1">"Arial"</span><span class="p">,</span><span class="nb">sans-serif</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#fff</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#000</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">table</span> <span class="p">{</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="m">#699</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">caption</span> <span class="p">{</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">.2em</span><span class="p">;</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">1.2em</span><span class="p">;</span>
+  <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">th</span> <span class="p">{</span>
+  <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">normal</span><span class="p">;</span>
+  <span class="nl">font-style</span><span class="p">:</span> <span class="nb">italic</span><span class="p">;</span>
+  <span class="nl">text-align</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">dotted</span> <span class="m">#699</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#9cc</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#000</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">th</span><span class="o">,</span><span class="nt">td</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">10em</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">.5em</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<ul>
+  <li>效果如图：</li>
+</ul>
+
+<p><img src="http://oe9cdien8.bkt.clouddn.com/选区_005.bmp" alt="列表" /></p>
+
+<ol>
+  <li>如果支持css3就直接使用</li>
+</ol>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">tr</span><span class="nd">:nth-child</span><span class="o">(</span><span class="nt">odd</span><span class="o">)</span> <span class="p">{</span><span class="nl">background-color</span><span class="p">:</span><span class="m">#ffc</span><span class="p">;}</span>
+<span class="nt">tr</span><span class="nd">:nth-child</span><span class="o">(</span><span class="nt">even</span><span class="o">)</span> <span class="p">{</span><span class="nl">background-color</span><span class="p">:</span><span class="m">#fff</span><span class="p">;}</span>
+</code></pre></div></div>
+
+<p><img src="http://oe9cdien8.bkt.clouddn.com/选区_006.bmp" alt="Alt text" /></p>
+
+<ol>
+  <li>nth-child不能用之后可采用：</li>
+</ol>
+
+<blockquote>
+  <p>为表格中的每个奇数行（或每个偶数行）设置一个class属性即可。但增删比较麻烦，可采用js脚本为表格增加斑马线效果，只要隔行设置样式就可以：</p>
+  <ol>
+    <li>把文档中的table元素找出来。</li>
+    <li>对每个table元素，创建odd变量并把它初始化为false。</li>
+    <li>遍历这个表格里的所有数据行</li>
+    <li>若变量odd的值是true，设置样式并把odd变量修改为false。</li>
+    <li>若变量odd的值是false，不设置样式，但把odd变量修改为true。</li>
+  </ol>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">stripeTables</span><span class="p">(){</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">tables</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"table"</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">odd</span><span class="p">,</span><span class="nx">rows</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">tables</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="nx">odd</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="nx">rows</span> <span class="o">=</span> <span class="nx">tables</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"tr"</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">j</span><span class="o">&lt;</span><span class="nx">rows</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">j</span><span class="o">++</span><span class="p">){</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">odd</span><span class="o">==</span><span class="kc">true</span><span class="p">){</span>
+        <span class="nx">rows</span><span class="p">[</span><span class="nx">j</span><span class="p">].</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="s2">"#ffc"</span><span class="p">;</span>
+        <span class="nx">odd</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">odd</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="p">}</span> 
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">addLoadEvent</span><span class="p">(</span><span class="nx">stripeTables</span><span class="p">);</span>
+</code></pre></div></div>
+<ul>
+  <li>效果如图显示：</li>
+</ul>
+
+<p><img src="http://oe9cdien8.bkt.clouddn.com/选区_007.bmp" alt="Alt text" /></p>
+
+<ol>
+  <li>响应事件：</li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">highlightRows</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">rows</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"tr"</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">rows</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="nx">rows</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">onmouseover</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontWeight</span> <span class="o">=</span> <span class="s2">"bold"</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">rows</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">onmouseout</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontWeight</span> <span class="o">=</span> <span class="s2">"normal"</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">addLoadEvent</span><span class="p">(</span><span class="nx">highlightRows</span><span class="p">);</span>
+</code></pre></div></div>
+<p>效果如图：</p>
+
+<p><img src="http://oe9cdien8.bkt.clouddn.com/选区_008.bmp" alt="Alt text" /></p>
+
+<h3 id="动画效果">动画效果</h3>
+
+<ol>
+  <li>时间：
+setTimeout(“function”,interval)</li>
+</ol>
+
+<blockquote>
+  <p>第一个参数是函数名字，第二个是毫秒级的单位。设定过了多少时间执行第一个参数给出的函数。通常赋值一个变量：</p>
+</blockquote>
+
+<pre><code class="language-Javascript">    variable = setTimeout("function",interval)
+</code></pre>
+<p>clearTimeout函数可以取消“等待执行”队列里的某个函数。</p>
+
+<pre><code class="language-Javascript">    clearTimeout(variable)
+</code></pre>
+
+<ol>
+  <li>时间递增量：
+让元素的移动以渐变的方式发生：</li>
+</ol>
+
+<blockquote>
+  <ol>
+    <li>获得元素的当前位置</li>
+    <li>如果元素已经到达它的目的地，则退出这个函数。</li>
+    <li>如果元素尚未到达它的目的地，则把它向目的地移近一点。</li>
+    <li>经过一段时间间隔之后从步骤1开始重复以上步骤。</li>
+  </ol>
+</blockquote>
+<pre>parseInt(string)可以把字符串中的数字提取出来，返回值为纯数字。parseFloat(string)可以提取浮点数。</pre>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">moveElement</span><span class="p">(</span><span class="nx">elementID</span><span class="p">,</span><span class="nx">final_x</span><span class="p">,</span><span class="nx">final_y</span><span class="p">,</span><span class="nx">interval</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">elementID</span><span class="p">))</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">elem</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">elementID</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">xpos</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">elem</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">ypos</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">elem</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">xpos</span> <span class="o">==</span> <span class="nx">final_x</span> <span class="o">&amp;&amp;</span> <span class="nx">ypos</span> <span class="o">==</span> <span class="nx">final_y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">xpos</span> <span class="o">&lt;</span> <span class="nx">final_x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">xpos</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">xpos</span> <span class="o">&gt;</span> <span class="nx">final_x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">xpos</span><span class="o">--</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">ypos</span> <span class="o">&lt;</span> <span class="nx">final_y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">ypos</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">ypos</span> <span class="o">&gt;</span> <span class="nx">final_y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">ypos</span><span class="o">--</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nx">elem</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">xpos</span> <span class="o">+</span> <span class="s2">"px"</span><span class="p">;</span>
+  <span class="nx">elem</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="nx">ypos</span> <span class="o">+</span> <span class="s2">"px"</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">repeat</span> <span class="o">=</span> <span class="s2">"moveElement('"</span><span class="o">+</span><span class="nx">elementID</span><span class="o">+</span><span class="s2">"',"</span><span class="o">+</span><span class="nx">final_x</span><span class="o">+</span><span class="s2">","</span><span class="o">+</span><span class="nx">final_y</span><span class="o">+</span><span class="s2">","</span><span class="o">+</span><span class="nx">interval</span><span class="o">+</span><span class="s2">")"</span><span class="p">;</span>
+  <span class="nx">movement</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">repeat</span><span class="p">,</span><span class="nx">interval</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">positionMessage</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"message"</span><span class="p">))</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">elem</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"message"</span><span class="p">);</span>
+  <span class="nx">elem</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">position</span> <span class="o">=</span> <span class="s2">"absolute"</span><span class="p">;</span>
+  <span class="nx">elem</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="s2">"50px"</span><span class="p">;</span>
+  <span class="nx">elem</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="s2">"100px"</span><span class="p">;</span>
+  <span class="nx">moveElement</span><span class="p">(</span><span class="s2">"message"</span><span class="p">,</span><span class="mi">125</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"message2"</span><span class="p">))</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">elem</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"message2"</span><span class="p">);</span>
+  <span class="nx">elem</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">position</span> <span class="o">=</span> <span class="s2">"absolute"</span><span class="p">;</span>
+  <span class="nx">elem</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="s2">"50px"</span><span class="p">;</span>
+  <span class="nx">elem</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="s2">"50px"</span><span class="p">;</span>
+  <span class="nx">moveElement</span><span class="p">(</span><span class="s2">"message2"</span><span class="p">,</span><span class="mi">125</span><span class="p">,</span><span class="mi">75</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">addLoadEvent</span><span class="p">(</span><span class="nx">positionMessage</span><span class="p">);</span>
+</code></pre></div></div>
+<p>实现效果如下：
+ <img src="http://oe9cdien8.bkt.clouddn.com/选区_009.bmp" alt="Alt text" /></p>
+
+<h3 id="实用的动画">实用的动画：</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//把一个节点插入到另外一个节点之后：</span>
+<span class="kd">function</span> <span class="nx">insertAfter</span><span class="p">(</span><span class="nx">newElement</span><span class="p">,</span><span class="nx">targetElement</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nx">targetElement</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">parent</span><span class="p">.</span><span class="nx">lastChild</span> <span class="o">==</span> <span class="nx">targetElement</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">parent</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">newElement</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">parent</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">newElement</span><span class="p">,</span><span class="nx">targetElement</span><span class="p">.</span><span class="nx">nextSibling</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>指针划过链接时候，预览图片：</p>
+<blockquote>
+  <p>为预览图片生成一张“集体照”的图片，通过css的overflow(hideen)属性隐藏图片绝大部分。，当鼠标指针悬停（mouseover）的链接的时候，只显示图片的相应部分</p>
+</blockquote>
+
+<p>1.moveElement：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">moveElement</span><span class="p">(</span><span class="nx">elementID</span><span class="p">,</span><span class="nx">final_x</span><span class="p">,</span><span class="nx">final_y</span><span class="p">,</span><span class="nx">interval</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">elementID</span><span class="p">))</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">elem</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">elementID</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">elem</span><span class="p">.</span><span class="nx">movement</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">elem</span><span class="p">.</span><span class="nx">movement</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">elem</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">elem</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="s2">"0px"</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">elem</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">elem</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="s2">"0px"</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="kd">var</span> <span class="nx">xpos</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">elem</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">ypos</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">elem</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">xpos</span> <span class="o">==</span> <span class="nx">final_x</span> <span class="o">&amp;&amp;</span> <span class="nx">ypos</span> <span class="o">==</span> <span class="nx">final_y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">xpos</span> <span class="o">&lt;</span> <span class="nx">final_x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">dist</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">((</span><span class="nx">final_x</span> <span class="o">-</span> <span class="nx">xpos</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">);</span>
+    <span class="nx">xpos</span> <span class="o">=</span> <span class="nx">xpos</span> <span class="o">+</span> <span class="nx">dist</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">xpos</span> <span class="o">&gt;</span> <span class="nx">final_x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">dist</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">((</span><span class="nx">xpos</span> <span class="o">-</span> <span class="nx">final_x</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">);</span>
+    <span class="nx">xpos</span> <span class="o">=</span> <span class="nx">xpos</span> <span class="o">-</span> <span class="nx">dist</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">ypos</span> <span class="o">&lt;</span> <span class="nx">final_y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">dist</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">((</span><span class="nx">final_y</span> <span class="o">-</span> <span class="nx">ypos</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">);</span>
+    <span class="nx">ypos</span> <span class="o">=</span> <span class="nx">ypos</span> <span class="o">+</span> <span class="nx">dist</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">ypos</span> <span class="o">&gt;</span> <span class="nx">final_y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">dist</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">((</span><span class="nx">ypos</span> <span class="o">-</span> <span class="nx">final_y</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">);</span>
+    <span class="nx">ypos</span> <span class="o">=</span> <span class="nx">ypos</span> <span class="o">-</span> <span class="nx">dist</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nx">elem</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">xpos</span> <span class="o">+</span> <span class="s2">"px"</span><span class="p">;</span>
+  <span class="nx">elem</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="nx">ypos</span> <span class="o">+</span> <span class="s2">"px"</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">repeat</span> <span class="o">=</span> <span class="s2">"moveElement('"</span><span class="o">+</span><span class="nx">elementID</span><span class="o">+</span><span class="s2">"',"</span><span class="o">+</span><span class="nx">final_x</span><span class="o">+</span><span class="s2">","</span><span class="o">+</span><span class="nx">final_y</span><span class="o">+</span><span class="s2">","</span><span class="o">+</span><span class="nx">interval</span><span class="o">+</span><span class="s2">")"</span><span class="p">;</span>
+  <span class="nx">elem</span><span class="p">.</span><span class="nx">movement</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">repeat</span><span class="p">,</span><span class="nx">interval</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>2.prepareSlideshow:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">prepareSlideshow</span><span class="p">()</span> <span class="p">{</span>
+<span class="c1">// Make sure the browser understands the DOM methods</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="c1">// Make sure the elements exist</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"linklist"</span><span class="p">))</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">slideshow</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"div"</span><span class="p">);</span>
+  <span class="nx">slideshow</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">"id"</span><span class="p">,</span><span class="s2">"slideshow"</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">preview</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"img"</span><span class="p">);</span>
+  <span class="nx">preview</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">"src"</span><span class="p">,</span><span class="s2">"topics.gif"</span><span class="p">);</span>
+  <span class="nx">preview</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">"alt"</span><span class="p">,</span><span class="s2">"building blocks of web design"</span><span class="p">);</span>
+  <span class="nx">preview</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">"id"</span><span class="p">,</span><span class="s2">"preview"</span><span class="p">);</span>
+  <span class="nx">slideshow</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">preview</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"linklist"</span><span class="p">);</span>
+  <span class="nx">insertAfter</span><span class="p">(</span><span class="nx">slideshow</span><span class="p">,</span><span class="nx">list</span><span class="p">);</span>
+<span class="c1">// Get all the links in the list</span>
+  <span class="kd">var</span> <span class="nx">links</span> <span class="o">=</span> <span class="nx">list</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"a"</span><span class="p">);</span>
+<span class="c1">// Attach the animation behavior to the mouseover event</span>
+  <span class="nx">links</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">onmouseover</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">moveElement</span><span class="p">(</span><span class="s2">"preview"</span><span class="p">,</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nx">links</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">onmouseover</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">moveElement</span><span class="p">(</span><span class="s2">"preview"</span><span class="p">,</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nx">links</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">onmouseover</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">moveElement</span><span class="p">(</span><span class="s2">"preview"</span><span class="p">,</span><span class="o">-</span><span class="mi">300</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">addLoadEvent</span><span class="p">(</span><span class="nx">prepareSlideshow</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="http://oe9cdien8.bkt.clouddn.com/选区_010.bmp" alt="Alt text" /></p>
+
+<h3 id="misc">misc:</h3>
+
+<ul>
+  <li>css
+    <ul>
+      <li>布局：</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">section</span><span class="p">,</span><span class="nx">header</span><span class="p">,</span><span class="nx">article</span><span class="p">,</span><span class="nx">nav</span><span class="p">{</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="nx">block</span><span class="p">;</span>  <span class="c1">//呈现块结构</span>
+<span class="p">}</span>
+<span class="c1">//section 用于有标题之处</span>
+<span class="o">*</span> <span class="p">{</span>
+  <span class="na">padding</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">//padding 就是内容与边框的空隙。而margin则是模块与模块的空隙。</span>
+<span class="nx">body</span> <span class="p">{</span>
+  <span class="na">margin</span><span class="p">:</span> <span class="mi">1</span><span class="nx">em</span> <span class="mi">10</span><span class="o">%</span><span class="p">;</span> <span class="c1">//1em = 16p   %：规定基于父元素的宽度的百分比的外边距</span>
+  <span class="c1">//length:规定以具体单位计的外边距值，比如像素、厘米等。默认值是 0px</span>
+  <span class="nx">background</span><span class="o">-</span><span class="na">image</span><span class="p">:</span> <span class="nx">url</span><span class="p">(..</span><span class="o">/</span><span class="nx">images</span><span class="o">/</span><span class="nx">background</span><span class="p">.</span><span class="nx">gif</span><span class="p">);</span><span class="c1">//background-image 属性为元素设置背景图像</span>
+  <span class="nx">background</span><span class="o">-</span><span class="na">attachment</span><span class="p">:</span> <span class="nx">fixed</span><span class="p">;</span>
+  <span class="c1">//定义背景图片随滚动轴的移动方式;</span>
+    <span class="cm">/* scroll: 随着页面的滚动轴背景图片将移动
+    fixed: 随着页面的滚动轴背景图片不会移动
+    inherit: 继承 */</span>
+  <span class="nx">background</span><span class="o">-</span><span class="na">position</span><span class="p">:</span> <span class="nx">top</span> <span class="nx">left</span><span class="p">;</span>
+  <span class="nx">background</span><span class="o">-</span><span class="na">repeat</span><span class="p">:</span> <span class="nx">repeat</span><span class="o">-</span><span class="nx">x</span><span class="p">;</span>
+  <span class="c1">//background-repeat 属性设置是否及如何重复背景图像。</span>
+   <span class="c1">//默认地，背景图像在水平和垂直方向上重复。</span>
+  <span class="nx">max</span><span class="o">-</span><span class="na">width</span><span class="p">:</span> <span class="mi">80</span><span class="nx">em</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">header</span> <span class="p">{</span>
+  <span class="nx">background</span><span class="o">-</span><span class="na">image</span><span class="p">:</span> <span class="nx">url</span><span class="p">(..</span><span class="o">/</span><span class="nx">images</span><span class="o">/</span><span class="nx">guitarist</span><span class="p">.</span><span class="nx">gif</span><span class="p">);</span>
+  <span class="nx">background</span><span class="o">-</span><span class="na">repeat</span><span class="p">:</span> <span class="nx">no</span><span class="o">-</span><span class="nx">repeat</span><span class="p">;</span>
+  <span class="nx">background</span><span class="o">-</span><span class="na">position</span><span class="p">:</span> <span class="nx">bottom</span> <span class="nx">right</span><span class="p">;</span>
+  <span class="nx">border</span><span class="o">-</span><span class="na">width</span><span class="p">:</span> <span class="p">.</span><span class="mi">1</span><span class="nx">em</span><span class="p">;</span>
+  <span class="nx">border</span><span class="o">-</span><span class="na">style</span><span class="p">:</span> <span class="nx">solid</span><span class="p">;</span>
+  <span class="c1">//border-style属性设置一个元素的四个边框的样式</span>
+  <span class="nx">border</span><span class="o">-</span><span class="nx">bottom</span><span class="o">-</span><span class="na">width</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">header</span> <span class="nx">nav</span> <span class="p">{</span>
+  <span class="nx">background</span><span class="o">-</span><span class="na">image</span><span class="p">:</span> <span class="nx">url</span><span class="p">(..</span><span class="o">/</span><span class="nx">images</span><span class="o">/</span><span class="nx">navbar</span><span class="p">.</span><span class="nx">gif</span><span class="p">);</span>
+  <span class="nx">background</span><span class="o">-</span><span class="na">position</span><span class="p">:</span> <span class="nx">bottom</span> <span class="nx">left</span><span class="p">;</span>
+  <span class="nx">background</span><span class="o">-</span><span class="na">repeat</span><span class="p">:</span> <span class="nx">repeat</span><span class="o">-</span><span class="nx">x</span><span class="p">;</span>
+  <span class="nx">border</span><span class="o">-</span><span class="na">width</span><span class="p">:.</span><span class="mi">1</span><span class="nx">em</span><span class="p">;</span>
+  <span class="nx">border</span><span class="o">-</span><span class="na">style</span><span class="p">:</span><span class="nx">solid</span><span class="p">;</span>
+  <span class="nx">border</span><span class="o">-</span><span class="nx">bottom</span><span class="o">-</span><span class="na">width</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="nx">border</span><span class="o">-</span><span class="nx">top</span><span class="o">-</span><span class="na">width</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="nx">padding</span><span class="o">-</span><span class="na">left</span><span class="p">:</span> <span class="mi">10</span><span class="o">%</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">header</span> <span class="nx">nav</span> <span class="nx">ul</span> <span class="p">{</span>
+  <span class="na">width</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span><span class="p">;</span>
+  <span class="nl">overflow</span><span class="p">:</span> <span class="nx">hidden</span><span class="p">;</span>
+  <span class="nx">border</span><span class="o">-</span><span class="nx">left</span><span class="o">-</span><span class="na">width</span><span class="p">:</span> <span class="p">.</span><span class="mi">1</span><span class="nx">em</span><span class="p">;</span>
+  <span class="nx">border</span><span class="o">-</span><span class="nx">left</span><span class="o">-</span><span class="na">style</span><span class="p">:</span> <span class="nx">solid</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">header</span> <span class="nx">nav</span> <span class="nx">li</span> <span class="p">{</span>
+  <span class="na">display</span><span class="p">:</span> <span class="nx">inline</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">header</span> <span class="nx">nav</span> <span class="nx">li</span> <span class="nx">a</span> <span class="p">{</span>
+  <span class="na">display</span><span class="p">:</span> <span class="nx">block</span><span class="p">;</span>
+  <span class="nl">float</span><span class="p">:</span> <span class="nx">left</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="p">.</span><span class="mi">5</span><span class="nx">em</span> <span class="mi">2</span><span class="nx">em</span><span class="p">;</span>
+  <span class="nx">border</span><span class="o">-</span><span class="na">right</span><span class="p">:</span> <span class="p">.</span><span class="mi">1</span><span class="nx">em</span> <span class="nx">solid</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">article</span> <span class="p">{</span>
+  <span class="nx">border</span><span class="o">-</span><span class="na">width</span><span class="p">:</span> <span class="p">.</span><span class="mi">1</span><span class="nx">em</span><span class="p">;</span>
+  <span class="nx">border</span><span class="o">-</span><span class="na">style</span><span class="p">:</span> <span class="nx">solid</span><span class="p">;</span>
+  <span class="nx">border</span><span class="o">-</span><span class="nx">top</span><span class="o">-</span><span class="na">width</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="mi">2</span><span class="nx">em</span> <span class="mi">10</span><span class="o">%</span><span class="p">;</span>
+  <span class="nx">line</span><span class="o">-</span><span class="na">height</span><span class="p">:</span> <span class="mf">1.80</span><span class="nx">em</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">article</span> <span class="nx">img</span> <span class="p">{</span>
+  <span class="nx">border</span><span class="o">-</span><span class="na">width</span><span class="p">:</span> <span class="p">.</span><span class="mi">1</span><span class="nx">em</span><span class="p">;</span>
+  <span class="nx">border</span><span class="o">-</span><span class="na">style</span><span class="p">:</span> <span class="nx">solid</span><span class="p">;</span>
+  <span class="nx">outline</span><span class="o">-</span><span class="na">width</span><span class="p">:</span> <span class="p">.</span><span class="mi">1</span><span class="nx">em</span><span class="p">;</span>
+  <span class="nx">outline</span><span class="o">-</span><span class="na">style</span><span class="p">:</span> <span class="nx">solid</span><span class="p">;</span>
+  <span class="c1">//outline-style 属性用于设置元素的整个轮廓的样式。样式不能是 none，否则轮廓不会出现。</span>
+<span class="c1">//outline （轮廓）是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用。outline 属性设置元素周围的轮廓线。</span>
+<span class="p">}</span> 
+</code></pre></div></div>
+<p>效果如图：</p>
+
+<p><img src="http://oe9cdien8.bkt.clouddn.com/选区_011.bmp" alt="Alt text" /></p>
+
+<ul>
+  <li>
+    <ul>
+      <li>版式：</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">body</span> <span class="p">{</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">76%</span><span class="p">;</span>
+  <span class="nl">font-family</span><span class="p">:</span> <span class="s1">"Helvetica"</span><span class="p">,</span><span class="s1">"Arial"</span><span class="p">,</span><span class="nb">sans-serif</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">body</span> <span class="o">*</span> <span class="p">{</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">a</span> <span class="p">{</span>
+  <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
+  <span class="nl">text-decoration</span><span class="p">:</span><span class="nb">none</span><span class="p">;</span>
+  <span class="err">//text-decoration</span> <span class="err">属性规定添加到文本的修饰(下划线等)</span>
+<span class="p">}</span>
+<span class="nt">header</span> <span class="nt">nav</span> <span class="p">{</span>
+  <span class="nl">font-family</span><span class="p">:</span> <span class="s1">"Lucida Grande"</span><span class="p">,</span><span class="s1">"Helvetica"</span><span class="p">,</span><span class="s1">"Arial"</span><span class="p">,</span><span class="nb">sans-serif</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">header</span> <span class="nt">nav</span> <span class="nt">a</span> <span class="p">{</span>
+  <span class="nl">text-decoration</span><span class="p">:</span><span class="nb">none</span><span class="p">;</span>
+  <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">article</span> <span class="p">{</span>
+  <span class="nl">line-height</span><span class="p">:</span> <span class="m">1.8em</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">article</span> <span class="nt">p</span> <span class="p">{</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">1em</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">h1</span> <span class="p">{</span>
+  <span class="nl">font-family</span><span class="p">:</span> <span class="s1">"Georgia"</span><span class="p">,</span><span class="s1">"Times New Roman"</span><span class="p">,</span><span class="nb">sans-serif</span><span class="p">;</span>
+  <span class="nl">font</span><span class="p">:</span> <span class="m">2.4em</span> <span class="nb">normal</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">h2</span> <span class="p">{</span>
+  <span class="nl">font-family</span><span class="p">:</span> <span class="s1">"Georgia"</span><span class="p">,</span><span class="s1">"Times New Roman"</span><span class="p">,</span><span class="nb">sans-serif</span><span class="p">;</span>
+  <span class="nl">font</span><span class="p">:</span><span class="m">1.8em</span> <span class="nb">normal</span><span class="p">;</span>
+  <span class="nl">margin-top</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nf">#imagegallery</span> <span class="nt">li</span><span class="p">{</span>
+  <span class="nl">list-style-type</span><span class="p">:</span> <span class="p">:</span><span class="nb">none</span><span class="p">;</span>
+  <span class="err">//设置列表项的样式</span>
+<span class="p">}</span>
+<span class="nt">textarea</span> <span class="p">{</span>
+  <span class="nl">font-family</span><span class="p">:</span> <span class="s1">"Helvetica"</span><span class="p">,</span><span class="s1">"Arial"</span><span class="p">,</span><span class="nb">sans-serif</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<ul>
+  <li>
+    <ul>
+      <li>将css文件综合到一个基础css文件中调用，方便改动：</li>
+    </ul>
+  </li>
+</ul>
+
+<pre><code class="language-Javascript">import url(layout.css);
+@import url(color.css);
+@import url(typography.css);
+</code></pre>
+<p><img src="" /></p>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2016/09/28/install-docker/">ubuntu16.04 install docker</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/01/17/Build-Postfix-dovecot-squirrelmail/">在Ubuntu14.04上建立邮件服务器(Postfix-dovecot)</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2016/10/17/javascript-dom-notes/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2016/10/17/javascript-dom-notes/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

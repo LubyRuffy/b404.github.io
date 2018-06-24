@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>powershell备忘单</title>
+    <meta name="description" content="powershell备忘单">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/10/08/powershell/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>powershell备忘单</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-10-08
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#hack" title="Category: hack" rel="category">hack</a>&nbsp;
+    
+        <a href="/category/#sec" title="Category: sec" rel="category">sec</a>&nbsp;
+    
+        <a href="/category/#windows" title="Category: windows" rel="category">windows</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#windows" title="Tag: windows" rel="tag">windows</a-->
+        <a href="/tag/#windows" title="Tag: windows" rel="tag">windows</a>&nbsp;
+    
+        <!--a href="/tag/#hack" title="Tag: hack" rel="tag">hack</a-->
+        <a href="/tag/#hack" title="Tag: hack" rel="tag">hack</a>&nbsp;
+    
+        <!--a href="/tag/#command" title="Tag: command" rel="tag">command</a-->
+        <a href="/tag/#command" title="Tag: command" rel="tag">command</a>&nbsp;
+    
+        <!--a href="/tag/#powershell" title="Tag: powershell" rel="tag">powershell</a-->
+        <a href="/tag/#powershell" title="Tag: powershell" rel="tag">powershell</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <ul id="markdown-toc">
+  <li><a href="#常用命令" id="markdown-toc-常用命令">常用命令</a>    <ul>
+      <li><a href="#获取目录" id="markdown-toc-获取目录">获取目录</a></li>
+      <li><a href="#复制文件" id="markdown-toc-复制文件">复制文件</a></li>
+      <li><a href="#移动文件" id="markdown-toc-移动文件">移动文件</a></li>
+      <li><a href="#在文本中查找字符串" id="markdown-toc-在文本中查找字符串">在文本中查找字符串</a></li>
+      <li><a href="#显示文件内容" id="markdown-toc-显示文件内容">显示文件内容</a></li>
+      <li><a href="#显示当前路径" id="markdown-toc-显示当前路径">显示当前路径</a></li>
+      <li><a href="#显示当前进程" id="markdown-toc-显示当前进程">显示当前进程</a></li>
+      <li><a href="#显示当前服务" id="markdown-toc-显示当前服务">显示当前服务</a></li>
+      <li><a href="#格式化输出命令" id="markdown-toc-格式化输出命令">格式化输出命令</a></li>
+      <li><a href="#按页输出" id="markdown-toc-按页输出">按页输出</a></li>
+    </ul>
+  </li>
+  <li><a href="#渗透测试常用" id="markdown-toc-渗透测试常用">渗透测试常用</a>    <ul>
+      <li><a href="#ping扫描" id="markdown-toc-ping扫描">ping扫描</a></li>
+      <li><a href="#端口扫描" id="markdown-toc-端口扫描">端口扫描</a></li>
+      <li><a href="#下载文件" id="markdown-toc-下载文件">下载文件</a></li>
+      <li><a href="#查找指定名称所有的文件" id="markdown-toc-查找指定名称所有的文件">查找指定名称所有的文件</a></li>
+      <li><a href="#查看补丁" id="markdown-toc-查看补丁">查看补丁</a></li>
+      <li><a href="#列出注册表中的自启动项" id="markdown-toc-列出注册表中的自启动项">列出注册表中的自启动项</a></li>
+      <li><a href="#将ascii字符串转换为base64编码" id="markdown-toc-将ascii字符串转换为base64编码">将ASCII字符串转换为Base64编码</a></li>
+      <li><a href="#获得防火墙规则" id="markdown-toc-获得防火墙规则">获得防火墙规则</a></li>
+      <li><a href="#操作注册表" id="markdown-toc-操作注册表">操作注册表</a></li>
+    </ul>
+  </li>
+  <li><a href="#cmdlet" id="markdown-toc-cmdlet">Cmdlet</a>    <ul>
+      <li><a href="#cmdlet-aliadses长命令的简写" id="markdown-toc-cmdlet-aliadses长命令的简写">Cmdlet Aliadses——长命令的简写</a></li>
+      <li><a href="#获取帮助" id="markdown-toc-获取帮助">获取帮助</a></li>
+      <li><a href="#查找cmdlets" id="markdown-toc-查找cmdlets">查找Cmdlets</a></li>
+      <li><a href="#简化" id="markdown-toc-简化">简化</a></li>
+      <li><a href="#5条基本的ps命令" id="markdown-toc-5条基本的ps命令">5条基本的PS命令</a></li>
+    </ul>
+  </li>
+  <li><a href="#资源" id="markdown-toc-资源">资源</a></li>
+</ul>
+
+<p>powershell备忘单</p>
+
+<!--more-->
+
+<h2 id="常用命令">常用命令</h2>
+
+<h3 id="获取目录">获取目录</h3>
+
+<p>ls、dir、cgi</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get</span><span class="o">-</span><span class="n">ChildItem</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507514677357.png" alt="" /></p>
+
+<h3 id="复制文件">复制文件</h3>
+
+<p>cp、 copy、cpi</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Copy</span><span class="o">-</span><span class="n">Item</span> <span class="n">src</span><span class="p">.</span><span class="n">txt</span> <span class="n">dst</span><span class="p">.</span><span class="n">txt</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507514962920.png" alt="" /></p>
+
+<h3 id="移动文件">移动文件</h3>
+
+<p>mv、move、mi</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Move</span><span class="o">-</span><span class="n">Item</span> <span class="n">src</span><span class="p">.</span><span class="n">txt</span> <span class="n">dst</span><span class="p">.</span><span class="n">txt</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507515217663.png" alt="" /></p>
+
+<h3 id="在文本中查找字符串">在文本中查找字符串</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Select-String -path c:\users\b404\Desktop\*.txt -pattern password
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507515507501.png" alt="" /></p>
+
+<h3 id="显示文件内容">显示文件内容</h3>
+
+<p>cat、type、gc</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Get-Content file.txt
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507516025588.png" alt="" /></p>
+
+<h3 id="显示当前路径">显示当前路径</h3>
+
+<p>pwd、gl</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get</span><span class="o">-</span><span class="n">Location</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507516143288.png" alt="" /></p>
+
+<h3 id="显示当前进程">显示当前进程</h3>
+
+<p>ps、gps</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get</span><span class="o">-</span><span class="n">Process</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507516303651.png" alt="" /></p>
+
+<h3 id="显示当前服务">显示当前服务</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get</span><span class="o">-</span><span class="n">Service</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507516386369.png" alt="" /></p>
+
+<h3 id="格式化输出命令">格式化输出命令</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ls</span> <span class="o">|</span> <span class="n">Format</span><span class="o">-</span><span class="n">List</span> <span class="o">-</span><span class="n">property</span> <span class="n">name</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507516556753.png" alt="" /></p>
+
+<h3 id="按页输出">按页输出</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ls</span> <span class="o">-</span><span class="n">r</span> <span class="o">|</span> <span class="n">Out</span><span class="o">-</span><span class="n">Host</span> <span class="o">-</span><span class="n">paging</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507516928586.png" alt="" /></p>
+
+<h2 id="渗透测试常用">渗透测试常用</h2>
+
+<h3 id="ping扫描">ping扫描</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="mf">1..255</span> <span class="o">|</span> <span class="o">%</span> <span class="p">{</span><span class="n">echo</span> <span class="s">"192.168.222.$_"</span><span class="p">;</span><span class="n">ping</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1</span> <span class="o">-</span><span class="n">w</span> <span class="mi">100</span> <span class="mf">192.168.222</span><span class="p">.</span><span class="err">$</span><span class="n">_</span> <span class="o">|</span> <span class="n">Select</span><span class="o">-</span><span class="n">String</span> <span class="n">ttl</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507518995172.png" alt="" /></p>
+
+<h3 id="端口扫描">端口扫描</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mf">1..1024</span> <span class="o">|</span> <span class="o">%</span> <span class="p">{</span><span class="n">echo</span> <span class="p">((</span><span class="k">new</span><span class="o">-</span><span class="n">object</span> <span class="n">Net</span><span class="p">.</span><span class="n">Sockets</span><span class="p">.</span><span class="n">TcpClient</span><span class="p">).</span><span class="n">Connect</span><span class="p">(</span><span class="s">"192.168.222.138"</span><span class="p">,</span><span class="err">$</span><span class="n">_</span><span class="p">))</span> <span class="s">"Port $_</span><span class="err">
+</span><span class="s">is open!"</span><span class="p">}</span> <span class="mi">2</span><span class="o">&gt;</span><span class="err">$</span><span class="n">null</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507520110439.png" alt="" /></p>
+
+<h3 id="下载文件">下载文件</h3>
+
+<p>实现wget功能</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">New</span><span class="o">-</span><span class="n">Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="n">Downloadfile</span><span class="p">(</span><span class="s">"http://127.0.0.1/calc.exe"</span><span class="p">,</span><span class="s">"calc1.exe"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507532353210.png" alt="" /></p>
+
+<h3 id="查找指定名称所有的文件">查找指定名称所有的文件</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 
+<span class="n">Get</span><span class="o">-</span><span class="n">ChildItem</span> <span class="s">"C:\Users</span><span class="se">\"</span><span class="s"> -recurse -include *2*.txt</span><span class="err">
+</span></code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507534064256.png" alt="" /></p>
+
+<h3 id="查看补丁">查看补丁</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get</span><span class="o">-</span><span class="n">HotFix</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507534179813.png" alt="" /></p>
+
+<h3 id="列出注册表中的自启动项">列出注册表中的自启动项</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get</span><span class="o">-</span><span class="n">ItemProperty</span> <span class="n">HKLM</span><span class="o">:</span><span class="err">\</span><span class="n">SOFTWARE</span><span class="err">\</span><span class="n">Microsoft</span><span class="err">\</span><span class="n">Windows</span><span class="err">\</span><span class="n">CurrentVersion</span><span class="err">\</span><span class="n">run</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507534688373.png" alt="" /></p>
+
+<h3 id="将ascii字符串转换为base64编码">将ASCII字符串转换为Base64编码</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">System</span><span class="p">.</span><span class="n">Convert</span><span class="p">]</span><span class="o">::</span><span class="n">ToBase64String</span><span class="p">([</span><span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">Encoding</span><span class="p">]</span><span class="o">::</span><span class="n">UTF8</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="s">"PSFuck!"</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507534899840.png" alt="" /></p>
+
+<h3 id="获得防火墙规则">获得防火墙规则</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get</span><span class="o">-</span><span class="n">NetfirewallRule</span> <span class="o">-</span><span class="n">all</span>
+
+<span class="n">New</span><span class="o">-</span><span class="n">NetFirewallRule</span> <span class="o">-</span><span class="n">Action</span> <span class="n">Allow</span> <span class="o">-</span><span class="n">DisplayName</span> <span class="n">LetMeIn</span> <span class="o">-</span><span class="n">RemoteAddress</span> <span class="mf">192.168.222.145</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507535143925.png" alt="" /></p>
+
+<p><img src="/img/hack/powershell/1507535250641.png" alt="" /></p>
+
+<h3 id="操作注册表">操作注册表</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">PS</span> <span class="n">C</span><span class="o">:</span><span class="err">\</span><span class="n">Users</span><span class="err">\</span><span class="n">Administrator</span><span class="o">&gt;</span> <span class="n">cd</span> <span class="n">HKLM</span><span class="o">:</span>\
+<span class="n">PS</span> <span class="n">HKLM</span><span class="o">:</span><span class="err">\</span><span class="o">&gt;</span> <span class="n">ls</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507535372987.png" alt="" /></p>
+
+<h2 id="cmdlet">Cmdlet</h2>
+
+<p>cmdlet是command-let的缩写，实际上相当于命令提示符窗口的命令行，看似很长的cmdlet，实际上所有cmdlet都以标准的“动词-名词”格式命名的，如Get-Command命令，就是获得(动词)—命令(名词)，输入该命令回车后，Windows PowerShell会显示所有的命令:</p>
+
+<ul>
+  <li>Get-Command:用于检索所有可用cmdlet的列表。</li>
+  <li>Get-Help:用于显示有关cmdlet和概念的帮助信息。</li>
+  <li>Get-WMIObject:用于通过WMI来检索管理信息。</li>
+  <li>Get-EventLog:用于检索Windows事件日志。</li>
+  <li>Get-Process:用于检索单个活动进程或活动进程的列表。</li>
+  <li>Get-Service:用于检索 Windows 服务。</li>
+  <li>Get-Content:用于读入文本文件，将每行视为一个子对象。</li>
+  <li>Add-Content:用于将内容附加到文本文件。</li>
+  <li>Copy-Item:用于复制文件、文件夹和其他对象。</li>
+  <li>Get-Acl:用于检索访问控制列表(ACL)。</li>
+</ul>
+
+<h3 id="cmdlet-aliadses长命令的简写">Cmdlet Aliadses——长命令的简写</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get</span><span class="o">-</span><span class="n">Alias</span>
+
+<span class="n">alias</span> <span class="n">gcm</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507536354752.png" alt="" /></p>
+
+<h3 id="获取帮助">获取帮助</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get</span><span class="o">-</span><span class="n">Help</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507536651104.png" alt="" /></p>
+
+<h3 id="查找cmdlets">查找Cmdlets</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get</span><span class="o">-</span><span class="n">Command</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507536737678.png" alt="" /></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get</span><span class="o">-</span><span class="n">Command</span> <span class="n">Set</span><span class="o">*</span>
+<span class="err">或</span>
+<span class="n">Get</span><span class="o">-</span><span class="n">Command</span> <span class="o">-</span><span class="n">Verb</span> <span class="n">Set</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507536812946.png" alt="" /></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get</span><span class="o">-</span><span class="n">Command</span> <span class="o">*</span><span class="n">Process</span>
+</code></pre></div></div>
+
+<p><img src="/img/hack/powershell/1507536924143.png" alt="" /></p>
+
+<h3 id="简化">简化</h3>
+
+<p>输入小写的cmdlet之后，可以按TAB键转化为大写</p>
+
+<p><code class="highlighter-rouge">ls -recurse</code>和<code class="highlighter-rouge">ls -r</code>一样</p>
+
+<h3 id="5条基本的ps命令">5条基本的PS命令</h3>
+
+<p>5条基本的PS命令：</p>
+
+<p><img src="/img/hack/powershell/1507537270702.png" alt="" /></p>
+
+<h2 id="资源">资源</h2>
+
+<ul>
+  <li>http://www.pstips.net/powershell-executing-external-commands.html</li>
+</ul>
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/27/hidden-the-network/">阻碍获取真实网络指纹
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/04/command-and-control-images/">command-and-control-images
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/30/exploit-domain/">域渗透的整理
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/19/build-domain/">域环境
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/09/27/shellcode-automatic-identification-architecture/">shellcode自识别32/64位架构</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/10/08/powershell2/">powershell备忘单2</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/10/08/powershell/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/10/08/powershell/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

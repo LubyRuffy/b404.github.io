@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>在Ubuntu14.04上建立邮件服务器(Postfix-dovecot)</title>
+    <meta name="description" content="在Ubuntu14.04server上基于Postfix和dovecot，搭建Squirrelmail邮件服务器">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/01/17/Build-Postfix-dovecot-squirrelmail/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>在Ubuntu14.04上建立邮件服务器(Postfix-dovecot)</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-01-17
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#mailserver" title="Category: mailserver" rel="category">mailserver</a>&nbsp;
+    
+        <a href="/category/#environment" title="Category: environment" rel="category">environment</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#ubuntu" title="Tag: ubuntu" rel="tag">ubuntu</a-->
+        <a href="/tag/#ubuntu" title="Tag: ubuntu" rel="tag">ubuntu</a>&nbsp;
+    
+        <!--a href="/tag/#postfix" title="Tag: postfix" rel="tag">postfix</a-->
+        <a href="/tag/#postfix" title="Tag: postfix" rel="tag">postfix</a>&nbsp;
+    
+        <!--a href="/tag/#dovecot" title="Tag: dovecot" rel="tag">dovecot</a-->
+        <a href="/tag/#dovecot" title="Tag: dovecot" rel="tag">dovecot</a>&nbsp;
+    
+        <!--a href="/tag/#mailserver" title="Tag: mailserver" rel="tag">mailserver</a-->
+        <a href="/tag/#mailserver" title="Tag: mailserver" rel="tag">mailserver</a>&nbsp;
+    
+        <!--a href="/tag/#sequirrelmail" title="Tag: sequirrelmail" rel="tag">sequirrelmail</a-->
+        <a href="/tag/#sequirrelmail" title="Tag: sequirrelmail" rel="tag">sequirrelmail</a>&nbsp;
+    
+        <!--a href="/tag/#environment" title="Tag: environment" rel="tag">environment</a-->
+        <a href="/tag/#environment" title="Tag: environment" rel="tag">environment</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>在Ubuntu14.04server上基于Postfix和dovecot，搭建Squirrelmail邮件服务器</p>
+
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#在ubuntu1404上建立邮件服务器postfix-dovecot" id="markdown-toc-在ubuntu1404上建立邮件服务器postfix-dovecot">在Ubuntu14.04上建立邮件服务器(Postfix-dovecot)</a>    <ul>
+      <li><a href="#安装和配置postfix" id="markdown-toc-安装和配置postfix">安装和配置postfix:</a></li>
+      <li><a href="#安装配置dovecot" id="markdown-toc-安装配置dovecot">安装配置dovecot</a></li>
+      <li><a href="#安装配置squirremail" id="markdown-toc-安装配置squirremail">安装、配置Squirremail</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="在ubuntu1404上建立邮件服务器postfix-dovecot">在Ubuntu14.04上建立邮件服务器(Postfix-dovecot)</h1>
+
+<p>@(环境搭建)[Ubuntu, postfix, mail]</p>
+
+<blockquote>
+  <p>Postfix(smtp,发送)</p>
+</blockquote>
+
+<blockquote>
+  <p>Dovecot(pop3,imap,接收)</p>
+</blockquote>
+
+<blockquote>
+  <p>Squirrelmail(用于Webmail连接)</p>
+</blockquote>
+
+<h2 id="安装和配置postfix">安装和配置postfix:</h2>
+<p>1.第一步：分配静态IP和hostname，添加一个主机名。打开<code class="highlighter-rouge">/etc/hostname</code>,在里面添加：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">192</span><span class="p">.</span><span class="mi">168</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="mi">10</span>  <span class="n">mail</span><span class="p">.</span><span class="o">****</span><span class="p">.</span><span class="n">xyz</span>
+</code></pre></div></div>
+
+<p>2.更新源仓库：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">#</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+</code></pre></div></div>
+
+<p>3.安装postfix和其依赖包。安装过程中，全部直接<code class="highlighter-rouge">Enter</code>。</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">postfix</span>
+</code></pre></div></div>
+
+<p>4.安装完成，就通过下面的命令配置postfix</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="err">@@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">dpkg</span><span class="o">-</span><span class="n">reconfigure</span> <span class="n">postfix</span>
+</code></pre></div></div>
+<p>现在接下来会遇到一些配置选择，根据自己域名情况配置：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="p">.</span> <span class="n">Internet</span> <span class="n">Site</span>
+<span class="mi">2</span><span class="p">.</span> <span class="o">****</span><span class="p">.</span><span class="n">xyz</span>
+<span class="mi">3</span><span class="p">.</span> <span class="o">****</span>
+<span class="mi">4</span><span class="p">.</span> <span class="o">****</span><span class="p">.</span><span class="n">xyz</span><span class="p">,</span> <span class="n">localhost</span><span class="p">.</span><span class="n">localdomain</span><span class="p">,</span> <span class="n">localhost</span>
+<span class="mi">5</span><span class="p">.</span> <span class="n">No</span>
+<span class="mi">6</span><span class="p">.</span> <span class="mi">127</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">8</span> <span class="p">[</span><span class="o">::</span><span class="n">ffff</span><span class="o">:</span><span class="mi">127</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">104</span> <span class="p">[</span><span class="o">::</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">128</span> <span class="mi">192</span><span class="p">.</span><span class="mi">168</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">24</span>
+<span class="mi">7</span><span class="p">.</span> <span class="mi">0</span>
+<span class="mi">8</span><span class="p">.</span> <span class="o">+</span>
+<span class="mi">9</span><span class="p">.</span> <span class="n">all</span>
+</code></pre></div></div>
+<p>5.现在配置Postfix，用于SMTP-AUTH(使用Dovecot SASL)。通过添加以下的配置参数到<code class="highlighter-rouge">/etc/postfix/main.cf</code>中。</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">home_mailbox</span> <span class="o">=</span> <span class="n">Maildir</span><span class="o">/</span>
+<span class="n">smtpd_sasl_type</span> <span class="o">=</span> <span class="n">dovecot</span>
+<span class="n">smtpd_sasl_path</span> <span class="o">=</span> <span class="n">private</span><span class="o">/</span><span class="n">auth</span>
+<span class="n">smtpd_sasl_local_domain</span> <span class="o">=</span>
+<span class="n">smtpd_sasl_security_options</span> <span class="o">=</span> <span class="n">noanonymous</span>
+<span class="n">broken_sasl_auth_clients</span> <span class="o">=</span> <span class="n">yes</span>
+<span class="n">smtpd_sasl_auth_enable</span> <span class="o">=</span> <span class="n">yes</span>
+<span class="n">smtpd_recipient_restrictions</span> <span class="o">=</span> <span class="n">permit_sasl_authenticated</span><span class="p">,</span><span class="n">permit_mynetworks</span><span class="p">,</span><span class="n">reject_unauth_destination</span>
+<span class="n">smtp_tls_security_level</span> <span class="o">=</span> <span class="n">may</span>
+<span class="n">smtpd_tls_security_level</span> <span class="o">=</span> <span class="n">may</span>
+<span class="n">smtp_tls_note_starttls_offer</span> <span class="o">=</span> <span class="n">yes</span>
+<span class="n">smtpd_tls_loglevel</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">smtpd_tls_received_header</span> <span class="o">=</span> <span class="n">yes</span>
+</code></pre></div></div>
+<p><img src="/img/mailserver/1479370288872.png" alt="Alt text" /></p>
+
+<p>6.制作tls证书，根据以下的命令</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">openssl</span> <span class="n">genrsa</span> <span class="o">-</span><span class="n">des3</span> <span class="o">-</span><span class="n">out</span> <span class="n">server</span><span class="p">.</span><span class="n">key</span> <span class="mi">2048</span>
+<span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">openssl</span> <span class="n">rsa</span> <span class="o">-</span><span class="n">in</span> <span class="n">server</span><span class="p">.</span><span class="n">key</span> <span class="o">-</span><span class="n">out</span> <span class="n">server</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">insecure</span>
+<span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">mv</span> <span class="n">server</span><span class="p">.</span><span class="n">key</span> <span class="n">server</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">secure</span>
+<span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">mv</span> <span class="n">server</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">insecure</span> <span class="n">server</span><span class="p">.</span><span class="n">key</span>
+<span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">new</span> <span class="o">-</span><span class="n">key</span> <span class="n">server</span><span class="p">.</span><span class="n">key</span> <span class="o">-</span><span class="n">out</span> <span class="n">server</span><span class="p">.</span><span class="n">csr</span>
+<span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">openssl</span> <span class="n">x509</span> <span class="o">-</span><span class="n">req</span> <span class="o">-</span><span class="n">days</span> <span class="mi">365</span> <span class="o">-</span><span class="n">in</span> <span class="n">server</span><span class="p">.</span><span class="n">csr</span> <span class="o">-</span><span class="n">signkey</span> <span class="n">server</span><span class="p">.</span><span class="n">key</span> <span class="o">-</span><span class="n">out</span> <span class="n">server</span><span class="p">.</span><span class="n">crt</span>
+<span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">cp</span> <span class="n">server</span><span class="p">.</span><span class="n">crt</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssl</span><span class="o">/</span><span class="n">certs</span>
+<span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">cp</span> <span class="n">server</span><span class="p">.</span><span class="n">key</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssl</span><span class="o">/</span><span class="n">private</span>
+</code></pre></div></div>
+<p>7.配置证书路径：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">postconf</span> <span class="o">-</span><span class="n">e</span> <span class="err">'</span><span class="n">smtpd_tls_key_file</span> <span class="o">=</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssl</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">server</span><span class="p">.</span><span class="n">key</span><span class="err">'</span>
+<span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">postconf</span> <span class="o">-</span><span class="n">e</span> <span class="err">'</span><span class="n">smtpd_tls_cert_file</span> <span class="o">=</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssl</span><span class="o">/</span><span class="n">certs</span><span class="o">/</span><span class="n">server</span><span class="p">.</span><span class="n">crt</span><span class="err">'</span>
+</code></pre></div></div>
+<p>8.打开<code class="highlighter-rouge">/etc/postfix/master.cf</code>，开启smtp(465)和提交(587)：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">-</span><span class="n">o</span> <span class="n">syslog_name</span><span class="o">=</span><span class="n">postfix</span><span class="o">/</span><span class="n">submission</span>
+  <span class="o">-</span><span class="n">o</span> <span class="n">smtpd_tls_security_level</span><span class="o">=</span><span class="n">encrypt</span>
+  <span class="o">-</span><span class="n">o</span> <span class="n">smtpd_sasl_auth_enable</span><span class="o">=</span><span class="n">yes</span>
+  <span class="o">-</span><span class="n">o</span> <span class="n">smtpd_relay_restrictions</span><span class="o">=</span><span class="n">permit_sasl_authenticated</span><span class="p">,</span><span class="n">reject</span>
+  <span class="o">-</span><span class="n">o</span> <span class="n">milter_macro_daemon_name</span><span class="o">=</span><span class="n">ORIGINATING</span>
+<span class="n">smtps</span>     <span class="n">inet</span>  <span class="n">n</span>       <span class="o">-</span>       <span class="n">n</span>       <span class="o">-</span>       <span class="o">-</span>       <span class="n">smtpd</span>
+  <span class="o">-</span><span class="n">o</span> <span class="n">syslog_name</span><span class="o">=</span><span class="n">postfix</span><span class="o">/</span><span class="n">smtps</span>
+  <span class="o">-</span><span class="n">o</span> <span class="n">smtpd_tls_wrappermode</span><span class="o">=</span><span class="n">yes</span>
+  <span class="o">-</span><span class="n">o</span> <span class="n">smtpd_sasl_auth_enable</span><span class="o">=</span><span class="n">yes</span>
+  <span class="o">-</span><span class="n">o</span> <span class="n">smtpd_relay_restrictions</span><span class="o">=</span><span class="n">permit_sasl_authenticated</span><span class="p">,</span><span class="n">reject</span>
+  <span class="o">-</span><span class="n">o</span> <span class="n">milter_macro_daemon_name</span><span class="o">=</span><span class="n">ORIGINATING</span>
+</code></pre></div></div>
+<p><img src="/img/mailserver/1479367056070.png" alt="Alt text" /></p>
+
+<p>9.安装Dovecot SASL:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">dovecot</span><span class="o">-</span><span class="n">common</span>
+</code></pre></div></div>
+<p>在安装过程中做出如下选择：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="p">.</span><span class="n">yes</span>
+<span class="mi">2</span><span class="p">.</span><span class="n">mail</span><span class="p">.</span><span class="o">****</span><span class="p">.</span><span class="n">xyz</span>
+</code></pre></div></div>
+<p>10.更改<code class="highlighter-rouge">/etc/dovecot/conf.d/10-master.conf </code>文件找出其中95行的<code class="highlighter-rouge">#Postfix smtp-auth</code>：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp"># Postfix smtp-auth
+</span><span class="n">unix_listener</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">spool</span><span class="o">/</span><span class="n">postfix</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">auth</span> <span class="p">{</span>
+<span class="n">mode</span> <span class="o">=</span> <span class="mo">0660</span>
+<span class="n">user</span> <span class="o">=</span> <span class="n">postfix</span>
+<span class="n">group</span> <span class="o">=</span> <span class="n">postfix</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>11.打开<code class="highlighter-rouge">/etc/dovecot/conf.d/10-auth.conf</code>文件，找到100行：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">auth_mechanisms</span> <span class="o">=</span> <span class="n">plain</span>
+</code></pre></div></div>
+<p>更改成：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">auth_mechanisms</span> <span class="o">=</span> <span class="n">plain</span> <span class="n">login</span>
+</code></pre></div></div>
+<p>12.重启postfix和dovecot服务：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">service</span> <span class="n">postfix</span> <span class="n">restart</span>
+<span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">service</span> <span class="n">dovecot</span> <span class="n">restart</span>
+</code></pre></div></div>
+<p>13.测试<code class="highlighter-rouge">SMTP-AUTH</code>和smtp/pop3的端口连接情况：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">#</span> <span class="n">nmap</span> <span class="o">****</span><span class="p">.</span><span class="n">xyz</span>
+
+<span class="n">Starting</span> <span class="n">Nmap</span> <span class="mi">6</span><span class="p">.</span><span class="mi">40</span> <span class="p">(</span> <span class="n">http</span><span class="o">:</span><span class="c1">//nmap.org ) at 2016-11-17 02:26 EST
+</span><span class="n">Nmap</span> <span class="n">scan</span> <span class="n">report</span> <span class="k">for</span> <span class="o">****</span><span class="p">.</span><span class="n">xyz</span> <span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="p">.</span><span class="mi">224</span><span class="p">.</span><span class="o">***</span><span class="p">.</span><span class="o">***</span><span class="p">)</span>
+<span class="n">Host</span> <span class="n">is</span> <span class="n">up</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mo">000025</span><span class="n">s</span> <span class="n">latency</span><span class="p">).</span>
+<span class="n">rDNS</span> <span class="n">record</span> <span class="k">for</span> <span class="mi">10</span><span class="o">*</span><span class="p">.</span><span class="mi">224</span><span class="p">.</span><span class="o">***</span><span class="p">.</span><span class="o">***:</span> <span class="n">mail</span><span class="p">.</span><span class="n">ussec</span><span class="p">.</span><span class="n">xyz</span>
+<span class="n">Not</span> <span class="n">shown</span><span class="o">:</span> <span class="mi">993</span> <span class="n">closed</span> <span class="n">ports</span>
+<span class="n">PORT</span>    <span class="n">STATE</span> <span class="n">SERVICE</span>
+<span class="mi">25</span><span class="o">/</span><span class="n">tcp</span>  <span class="n">open</span>  <span class="n">smtp</span>
+<span class="mi">80</span><span class="o">/</span><span class="n">tcp</span>  <span class="n">open</span>  <span class="n">http</span>
+<span class="mi">110</span><span class="o">/</span><span class="n">tcp</span> <span class="n">open</span>  <span class="n">pop3</span>
+<span class="mi">143</span><span class="o">/</span><span class="n">tcp</span> <span class="n">open</span>  <span class="n">imap</span>
+<span class="mi">587</span><span class="o">/</span><span class="n">tcp</span> <span class="n">open</span>  <span class="n">submission</span>
+<span class="mi">993</span><span class="o">/</span><span class="n">tcp</span> <span class="n">open</span>  <span class="n">imaps</span>
+<span class="mi">995</span><span class="o">/</span><span class="n">tcp</span> <span class="n">open</span>  <span class="n">pop3s</span>
+
+<span class="n">Nmap</span> <span class="n">done</span><span class="o">:</span> <span class="mi">1</span> <span class="n">IP</span> <span class="n">address</span> <span class="p">(</span><span class="mi">1</span> <span class="n">host</span> <span class="n">up</span><span class="p">)</span> <span class="n">scanned</span> <span class="n">in</span> <span class="mi">0</span><span class="p">.</span><span class="mi">21</span> <span class="n">seconds</span>
+</code></pre></div></div>
+<p>开启成功就做telnet测试：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">#</span> <span class="n">telnet</span> <span class="n">mail</span><span class="p">.</span><span class="n">ussec</span><span class="p">.</span><span class="n">xyz</span> <span class="n">smtp</span>
+<span class="n">Trying</span> <span class="mi">10</span><span class="o">*</span><span class="p">.</span><span class="mi">224</span><span class="p">.</span><span class="o">***</span><span class="p">.</span><span class="o">***</span><span class="p">...</span>
+<span class="n">Connected</span> <span class="n">to</span> <span class="n">mail</span><span class="p">.</span><span class="o">****</span><span class="p">.</span><span class="n">xyz</span><span class="p">.</span>
+<span class="n">Escape</span> <span class="n">character</span> <span class="n">is</span> <span class="err">'</span><span class="o">^</span><span class="p">]</span><span class="err">'</span><span class="p">.</span>
+<span class="mi">220</span> <span class="n">mail</span> <span class="n">ESMTP</span> <span class="n">Postfix</span> <span class="p">(</span><span class="n">Ubuntu</span><span class="p">)</span>
+<span class="n">ehlo</span> <span class="n">hello</span>     <span class="c1">//手动输入ehlo hello
+</span><span class="mi">250</span><span class="o">-</span><span class="n">mail</span>
+<span class="mi">250</span><span class="o">-</span><span class="n">PIPELINING</span>
+<span class="mi">250</span><span class="o">-</span><span class="n">SIZE</span> <span class="mi">10240000</span>
+<span class="mi">250</span><span class="o">-</span><span class="n">VRFY</span>
+<span class="mi">250</span><span class="o">-</span><span class="n">ETRN</span>
+<span class="mi">250</span><span class="o">-</span><span class="n">STARTTLS</span>
+<span class="mi">250</span><span class="o">-</span><span class="n">AUTH</span> <span class="n">PLAIN</span> <span class="n">LOGIN</span>
+<span class="mi">250</span><span class="o">-</span><span class="n">AUTH</span><span class="o">=</span><span class="n">PLAIN</span> <span class="n">LOGIN</span>
+<span class="mi">250</span><span class="o">-</span><span class="n">ENHANCEDSTATUSCODES</span>
+<span class="mi">250</span><span class="o">-</span><span class="mi">8</span><span class="n">BITMIME</span>
+<span class="mi">250</span> <span class="n">DSN</span>
+</code></pre></div></div>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">#</span> <span class="n">telnet</span> <span class="n">mail</span><span class="p">.</span><span class="o">****</span><span class="p">.</span><span class="n">xyz</span> <span class="n">smtp</span> 
+<span class="n">Trying</span> <span class="mi">10</span><span class="o">*</span><span class="p">.</span><span class="mi">224</span><span class="p">.</span><span class="o">***</span><span class="p">.</span><span class="o">***</span><span class="p">...</span>
+<span class="n">Connected</span> <span class="n">to</span> <span class="n">mail</span><span class="p">.</span><span class="o">****</span><span class="p">.</span><span class="n">xyz</span><span class="p">.</span>
+<span class="n">Escape</span> <span class="n">character</span> <span class="n">is</span> <span class="err">'</span><span class="o">^</span><span class="p">]</span><span class="err">'</span><span class="p">.</span>
+<span class="mi">220</span> <span class="n">mail</span> <span class="n">ESMTP</span> <span class="n">Postfix</span> <span class="p">(</span><span class="n">Ubuntu</span><span class="p">)</span>
+<span class="n">mail</span> <span class="n">from</span><span class="o">:</span><span class="n">root</span><span class="err">@</span><span class="o">****</span><span class="p">.</span><span class="n">xyz</span>
+<span class="mi">250</span> <span class="mi">2</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span> <span class="n">Ok</span>
+<span class="n">rcpt</span> <span class="n">to</span><span class="o">:</span><span class="n">bobby</span><span class="err">@</span><span class="o">****</span><span class="p">.</span><span class="n">xyz</span>
+<span class="mi">250</span> <span class="mi">2</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="mi">5</span> <span class="n">Ok</span>
+<span class="n">data</span>
+<span class="mi">354</span> <span class="n">End</span> <span class="n">data</span> <span class="n">with</span> <span class="o">&lt;</span><span class="n">CR</span><span class="o">&gt;&lt;</span><span class="n">LF</span><span class="o">&gt;</span><span class="p">.</span><span class="o">&lt;</span><span class="n">CR</span><span class="o">&gt;&lt;</span><span class="n">LF</span><span class="o">&gt;</span>
+<span class="n">Test</span>
+<span class="p">.</span>    
+</code></pre></div></div>
+<p>通过<code class="highlighter-rouge">telnet mail.****.xyz 587</code>测试也是可以的</p>
+
+<h2 id="安装配置dovecot">安装配置dovecot</h2>
+<p>14.安装dovecot ：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">dovecot</span><span class="o">-</span><span class="n">imapd</span> <span class="n">dovecot</span><span class="o">-</span><span class="n">pop3d</span>
+</code></pre></div></div>
+<p>15.现在配置mailbox。打开<code class="highlighter-rouge">/etc/dovecot/conf.d/10-mail.conf</code>，找到30行：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mail_location</span> <span class="o">=</span> <span class="n">mbox</span><span class="o">:~/</span><span class="n">mail</span><span class="o">:</span><span class="n">INBOX</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">mail</span><span class="o">/%</span><span class="n">u</span>
+</code></pre></div></div>
+<p>更改成：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mail_location</span> <span class="o">=</span> <span class="n">maildir</span><span class="o">:~/</span><span class="n">Maildir</span>
+</code></pre></div></div>
+
+<p>16.更改<code class="highlighter-rouge">pop3_uidl_format</code>。打开<code class="highlighter-rouge"> /etc/dovecot/conf.d/20-pop3.conf</code>文件，在50行处找到，去除注释：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pop3_uidl_format</span> <span class="o">=</span> <span class="o">%</span><span class="mi">08</span><span class="n">Xu</span><span class="o">%</span><span class="mi">08</span><span class="n">Xv</span>
+</code></pre></div></div>
+<p>17.打开SSL。在<code class="highlighter-rouge">/etc/dovecot/conf.d/10-ssl.conf</code>找到第6行处，去除注释：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ssl</span><span class="o">=</span><span class="n">yes</span>
+</code></pre></div></div>
+<p>18.重启dovecot service：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">service</span> <span class="n">dovecot</span> <span class="n">restart</span>
+</code></pre></div></div>
+<p>19.用telnet测试pop3和imap端口活跃情况：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">#</span> <span class="n">telnet</span> <span class="n">mail</span><span class="p">.</span><span class="o">****</span><span class="p">.</span><span class="n">xyz</span> <span class="mi">110</span>
+<span class="n">Trying</span> <span class="mi">10</span><span class="o">*</span><span class="p">.</span><span class="mi">224</span><span class="p">.</span><span class="o">***</span><span class="p">.</span><span class="o">***</span><span class="p">...</span>
+<span class="n">Connected</span> <span class="n">to</span> <span class="n">mail</span><span class="p">.</span><span class="o">****</span><span class="p">.</span><span class="n">xyz</span><span class="p">.</span>
+<span class="n">Escape</span> <span class="n">character</span> <span class="n">is</span> <span class="err">'</span><span class="o">^</span><span class="p">]</span><span class="err">'</span><span class="p">.</span>
+<span class="o">+</span><span class="n">OK</span> <span class="n">Dovecot</span> <span class="p">(</span><span class="n">Ubuntu</span><span class="p">)</span> <span class="n">ready</span><span class="p">.</span>
+<span class="n">user</span> <span class="n">bobby</span>
+<span class="o">+</span><span class="n">OK</span>
+<span class="n">pass</span> <span class="n">bobby</span>
+<span class="o">+</span><span class="n">OK</span> <span class="n">Logged</span> <span class="n">in</span><span class="p">.</span>
+<span class="n">retr</span>
+<span class="o">-</span><span class="n">ERR</span> <span class="n">There</span><span class="err">'</span><span class="n">s</span> <span class="n">no</span> <span class="n">message</span> <span class="mi">0</span><span class="p">.</span>
+
+</code></pre></div></div>
+<p>可以在995、993、143端口重复同样的操作。
+或者是通过以下命令查看对应的端口开启情况：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">#</span> <span class="n">netstat</span> <span class="o">-</span><span class="n">nl4</span>
+
+</code></pre></div></div>
+
+<p><img src="/img/mailserver/1479368979694.png" alt="Alt text" /></p>
+
+<p>20.创建用户，检查邮件客户端的使用情况：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">#</span> <span class="n">sudo</span> <span class="n">useradd</span> <span class="o">-</span><span class="n">m</span> <span class="n">tf</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">nologin</span>
+<span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">#</span> <span class="n">sudo</span> <span class="n">passwd</span> <span class="n">tf</span>
+<span class="n">Enter</span> <span class="n">new</span> <span class="n">UNIX</span> <span class="n">password</span><span class="o">:</span> 
+<span class="n">Retype</span> <span class="n">new</span> <span class="n">UNIX</span> <span class="n">password</span><span class="o">:</span> 
+<span class="n">passwd</span><span class="o">:</span> <span class="n">password</span> <span class="n">updated</span> <span class="n">successfully</span>
+
+<span class="c1">//添加用户到root组
+</span><span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">#</span> <span class="n">sudo</span> <span class="n">usermod</span> <span class="o">-</span><span class="n">G</span> <span class="n">root</span> <span class="n">tf</span>
+
+</code></pre></div></div>
+
+<blockquote>
+  <p>Squirrelmail的用户是使用的服务器的用户</p>
+</blockquote>
+
+<h2 id="安装配置squirremail">安装、配置Squirremail</h2>
+<p>21.在安装了apache和php的环境下，在安装Squirrelmail：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">squirrelmail</span>
+</code></pre></div></div>
+
+<p>22.配置squirrelmail：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">squirrelmail</span><span class="o">-</span><span class="n">configure</span>
+</code></pre></div></div>
+<p>我们只用选择配置选项更改就行：
+选择1(Organization Preferences)-&gt;继续选择1(Organization Name)-&gt;Organization Name-&gt;选择S-&gt;选择Q退出
+23.配置apache开启squirrelmail:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">squirrelmail</span><span class="o">/</span><span class="n">apache</span><span class="p">.</span><span class="n">conf</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">squirrelmail</span><span class="p">.</span><span class="n">conf</span>
+<span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">a2ensite</span> <span class="n">squirrelmail</span>
+</code></pre></div></div>
+<p>24.重启Apache服务：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="err">@</span><span class="n">mail</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">service</span> <span class="n">apache2</span> <span class="n">restart</span>
+</code></pre></div></div>
+<p>25.现在在浏览器可以打开<code class="highlighter-rouge">http://serverIP/squirrelmail</code>，就可以正常使用：
+<img src="/img/mailserver/1479370058388.png" alt="Alt text" /></p>
+
+<p><img src="/img/mailserver/1479369799046.png" alt="Alt text" /></p>
+
+<p><img src="/img/mailserver/1479370028649.png" alt="Alt text" /></p>
+
+<p>参考资料：</p>
+
+<p><a href="https://help.ubuntu.com/community/PostfixAmavisNew">[1].https://help.ubuntu.com/community/PostfixAmavisNew</a></p>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/19/build-domain/">域环境
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2016/10/17/javascript-dom-notes/">Javascript-DOM</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/01/17/build-postfix-dovecot-roundcubemail/">在Ubuntu14.04上建立roundcubemail邮件服务器</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/01/17/Build-Postfix-dovecot-squirrelmail/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/01/17/Build-Postfix-dovecot-squirrelmail/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

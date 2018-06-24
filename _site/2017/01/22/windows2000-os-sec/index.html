@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Windows2000系统安全</title>
+    <meta name="description" content="Windows2000系统安全中的Windows安全对象、安全组件、安全子系统…">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/01/22/windows2000-os-sec/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>Windows2000系统安全</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-01-22
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#paper" title="Category: paper" rel="category">paper</a>&nbsp;
+    
+        <a href="/category/#sec" title="Category: sec" rel="category">sec</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#Windows" title="Tag: Windows" rel="tag">Windows</a-->
+        <a href="/tag/#Windows" title="Tag: Windows" rel="tag">Windows</a>&nbsp;
+    
+        <!--a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a-->
+        <a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>Windows2000系统安全中的Windows安全对象、安全组件、安全子系统…</p>
+
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#windows安全对象" id="markdown-toc-windows安全对象">Windows安全对象</a>    <ul>
+      <li><a href="#windows2000中的对象类型有" id="markdown-toc-windows2000中的对象类型有">Windows2000中的对象类型有：</a></li>
+    </ul>
+  </li>
+  <li><a href="#windows安全组件" id="markdown-toc-windows安全组件">Windows安全组件</a>    <ul>
+      <li><a href="#安全标识符" id="markdown-toc-安全标识符">安全标识符：</a>        <ul>
+          <li><a href="#sid的生成" id="markdown-toc-sid的生成">SID的生成</a></li>
+          <li><a href="#rid" id="markdown-toc-rid">RID</a></li>
+          <li><a href="#其它的sid" id="markdown-toc-其它的sid">其它的SID</a></li>
+          <li><a href="#查看sid" id="markdown-toc-查看sid">查看SID</a></li>
+        </ul>
+      </li>
+      <li><a href="#windows2000安全组件" id="markdown-toc-windows2000安全组件">Windows2000安全组件</a></li>
+      <li><a href="#windows安全子系统" id="markdown-toc-windows安全子系统">windows安全子系统</a>        <ul>
+          <li><a href="#winlogon" id="markdown-toc-winlogon">Winlogon</a></li>
+          <li><a href="#gina-dll" id="markdown-toc-gina-dll">GINA DLL</a></li>
+          <li><a href="#本地安全授权lsa" id="markdown-toc-本地安全授权lsa">本地安全授权(LSA)</a></li>
+          <li><a href="#安全支持供应商接口sspi" id="markdown-toc-安全支持供应商接口sspi">安全支持供应商接口(SSPI)</a></li>
+          <li><a href="#认证信息包" id="markdown-toc-认证信息包">认证信息包</a></li>
+          <li><a href="#安全支持供应" id="markdown-toc-安全支持供应">安全支持供应</a></li>
+          <li><a href="#netlogon" id="markdown-toc-netlogon">Netlogon</a></li>
+          <li><a href="#安全帐号管理" id="markdown-toc-安全帐号管理">安全帐号管理</a></li>
+        </ul>
+      </li>
+      <li><a href="#windows2000认证与授权访问" id="markdown-toc-windows2000认证与授权访问">Windows2000认证与授权访问</a></li>
+      <li><a href="#windows安全机制" id="markdown-toc-windows安全机制">Windows安全机制</a>        <ul>
+          <li><a href="#身份验证" id="markdown-toc-身份验证">身份验证</a></li>
+          <li><a href="#windows访问控制机制" id="markdown-toc-windows访问控制机制">Windows访问控制机制</a></li>
+          <li><a href="#windows安全审计功能" id="markdown-toc-windows安全审计功能">Windows安全审计功能</a></li>
+        </ul>
+      </li>
+      <li><a href="#windows2000的默认目录" id="markdown-toc-windows2000的默认目录">Windows2000的默认目录</a></li>
+      <li><a href="#windows2000的默认帐号" id="markdown-toc-windows2000的默认帐号">Windows2000的默认帐号</a></li>
+      <li><a href="#windows2000下的内建组" id="markdown-toc-windows2000下的内建组">Windows2000下的内建组</a></li>
+      <li><a href="#windows2000默认共享" id="markdown-toc-windows2000默认共享">Windows2000默认共享</a></li>
+      <li><a href="#评估windows2000风险的关键" id="markdown-toc-评估windows2000风险的关键">评估Windows2000风险的关键</a></li>
+      <li><a href="#windows2000终端服务" id="markdown-toc-windows2000终端服务">Windows2000终端服务</a></li>
+      <li><a href="#针对ts攻击" id="markdown-toc-针对ts攻击">针对TS攻击</a></li>
+      <li><a href="#ms客户端风险评估" id="markdown-toc-ms客户端风险评估">MS客户端风险评估</a></li>
+      <li><a href="#outlook溢出" id="markdown-toc-outlook溢出">Outlook溢出</a></li>
+    </ul>
+  </li>
+  <li><a href="#windows增强方法" id="markdown-toc-windows增强方法">Windows增强方法</a></li>
+</ul>
+
+<h2 id="windows安全对象">Windows安全对象</h2>
+
+<p><img src="/img/windows2000/sid.png" alt="sid.png" /></p>
+
+<p><img src="/img/windows2000/windows2000架构.png" alt="windows2000架构.png" /></p>
+
+<p><img src="/img/windows2000/windows2000安全系统.png" alt="windows2000安全系统.png" /></p>
+
+<h3 id="windows2000中的对象类型有">Windows2000中的对象类型有：</h3>
+<p>文件、文件夹、打印机、I/O设备、窗口、线程、进程、内存</p>
+
+<p>本地的Windows2000安全子系统包括下列关键组件：安全标识符、访问令牌、安全描述符、访问控制列表、访问控制条目</p>
+
+<h2 id="windows安全组件">Windows安全组件</h2>
+
+<h3 id="安全标识符">安全标识符：</h3>
+<ol>
+  <li>给所有用户、组、计算机的统计上的唯一号码</li>
+  <li>保证SID的唯一性，在生成它们的时候使用一个公式，结合计算机名，当前事件和当前用户模式线程使用CPU事件的总量。</li>
+</ol>
+
+<p>例如，SID：S－1－5－21－1649288664－1549824960－1244863647－500</p>
+
+<ul>
+  <li>D带有前缀S，它的各个部分之间用连字符隔开</li>
+  <li>个数字(本例中的1)是修订版本编号</li>
+  <li>个数字是标识符颁发机构代码(对Windows 2000来说总是为5)</li>
+  <li>是4个子颁发机构代码(本例中是21和后续的3个长数字串)和一个相对标识符(Relative Identifier，RID，本例中是500)</li>
+</ul>
+
+<hr />
+
+<h4 id="sid的生成">SID的生成</h4>
+
+<p>SID中的一部分是各系统和域惟一具有的，而另一部分(RID)是跨所有系统和域共享的。</p>
+
+<p>当安装Windows 2000时，本地计算机会颁发一个随机的SID。当创建一个Windows 2000域时，它也被指定一个惟一的SID。于是对任何的Windows 2000计算机或域来说，子颁发机构代码总是惟一的(除非故意修改或复制，例如某些底层的磁盘复制技术)</p>
+
+<hr />
+
+<h4 id="rid">RID</h4>
+
+<p><strong>RID对所有的计算机和域来说都是一个常数。例如，带有RID 500的SID总是代表本地计算机的真正的Administrator账户。RID 501是Guest账户
+在域中，从1000开始的RID代表用户账户
+Windows 2000(或者使用适当工具的恶意黑客)总是将具有RID 500的账户识别为管理员</strong></p>
+
+<hr />
+
+<h4 id="其它的sid">其它的SID</h4>
+
+<ul>
+  <li>S-1-1-0		Everyone</li>
+  <li>S-1-2-0		Interactive用户</li>
+  <li>S-1-3-0		Creator Owner</li>
+  <li>S-1-3-1		Creator Group</li>
+</ul>
+
+<hr />
+
+<h4 id="查看sid">查看SID</h4>
+
+<p>使用工具<a href="/sources/sid.rar">sid查看器</a>查看sid情况：</p>
+
+<p><img src="/img/windows2000/sid.png" alt="sid.png" /></p>
+
+<hr />
+
+<h3 id="windows2000安全组件">Windows2000安全组件</h3>
+
+<ul>
+  <li>
+    <p>访问控制令牌：
+访问令牌由用户的SID、用户所属组的SID和用户名组成</p>
+  </li>
+  <li>
+    <p>安全描述符
+安全描述符由对象所有者的SID、POSIX子系统使用的组SID、访问控制列表和系统访问控制
+<img src="/img/windows2000/安全描述符构成图.png" alt="安全描述符构成图.png" /></p>
+  </li>
+  <li>
+    <p>访问控制列表</p>
+  </li>
+</ul>
+
+<p><img src="/img/windows2000/访问控制列表.png" alt="访问控制列表.png" /></p>
+
+<ul>
+  <li>访问控制条目
+访问控制条目(Access Control Entry,ACE)包含用户或组的SID和分配给对象的权限。</li>
+</ul>
+
+<hr />
+
+<h3 id="windows安全子系统">windows安全子系统</h3>
+
+<p><img src="/img/windows2000/windows安全子系统.png" alt="windows安全子系统.png" /></p>
+
+<ul>
+  <li>Winlogon</li>
+  <li>图形身份认证和验证动态链接库（Graphical Identification And Authentication DLL，GINA）</li>
+  <li>本地安全管理授权（Local Security Authority，LSA）</li>
+  <li>安全支持供应商接口（Security Support Provider Interface，SSPI）</li>
+  <li>验证软件包（Authentication Packages）</li>
+  <li>安全支持供应商（Security Support Providers）</li>
+  <li>Netlogon服务</li>
+  <li>安全帐户管理器（Security Account Manager，SAM）</li>
+</ul>
+
+<hr />
+
+<h4 id="winlogon">Winlogon</h4>
+<p>Winlogon主要负责管理用户登录和注销过程，并加载GINA DLL并监视安全认证的顺序。</p>
+
+<hr />
+
+<h4 id="gina-dll">GINA DLL</h4>
+
+<ul>
+  <li>GINA DLL为登陆和登陆请求提供接口。GINA DLL被设计成独立的模块并可被更强壮的认证机制所代替。目前有很多强有力的认证设备可以使用，比如利用指纹认证来代替默认的GINA DLL。</li>
+  <li>Winlogon访问注册表里的<code class="highlighter-rouge">HKLM\software\Microsoft\windows\NT\currentversion\winlogon</code>键来查看Gina DLL值是否存在。如果此DLL存在，Winlogon加载并使用那个DLL。否则的话，WindowsNT就使用默认的DLL(MSGINA.DLL，NT自带的)</li>
+  <li>由Winlogon来监视安全认证的顺序并当一个登陆请求发生时通知给GINA。</li>
+</ul>
+
+<hr />
+
+<h4 id="本地安全授权lsa">本地安全授权(LSA)</h4>
+
+<p>本地安全授权是一个保护子系统，主要负责下列任务：</p>
+<ul>
+  <li>加载所有的认证包，包括检查存在于注册表中<code class="highlighter-rouge">\HKLM\System\CurrentControlSet\ControL\LSA</code>中的Authentication Packages值</li>
+  <li>为用户找回本地组的SID以及用户的权限</li>
+  <li>创建用户的访问令牌</li>
+  <li>管理本地安全服务的服务帐号</li>
+  <li>存储和映射用户权限</li>
+  <li>管理审计策略和设置</li>
+  <li>管理信任关系</li>
+</ul>
+
+<hr />
+
+<h4 id="安全支持供应商接口sspi">安全支持供应商接口(SSPI)</h4>
+<p>微软的安全支持供应商接口的RFC2743和RFC2744所定义的一般安全服务API极为相似，安全服务提供商API为应用程序和服务要求安全认证连接提供了解决方法</p>
+
+<hr />
+
+<h4 id="认证信息包">认证信息包</h4>
+<p>认证包的内容提供真正的用户验证。认证包检查通过GINA DLL所得到的证书，当用户的证书被检验后，认证包向LSA返回SID，包括用户的访问令牌</p>
+
+<hr />
+
+<h4 id="安全支持供应">安全支持供应</h4>
+<p>安全支持供应是安装驱动程序来支持额外的安全机制。WindowsNT默认安装包括以下：</p>
+<ul>
+  <li>Msnsspc.dll：微软网络(MSN)挑战／响应认证方法。</li>
+  <li>Msapsspc.dll：分布式密码认证(DPA)挑战／响应方法，也用于MSN。</li>
+  <li>Schannel.Dll 利用证书授权机购(如VeriSign)所发布的证书来时行验证。这种认证方法通常是在安全套接字层(SSL)或私有通信技术(PCT)协议连接时所使用。</li>
+</ul>
+
+<hr />
+
+<h4 id="netlogon">Netlogon</h4>
+
+<ul>
+  <li>Net logon服务必须为认证的传输建立一个安全的通道。</li>
+  <li>为了达到这种效果，要定位—个域控制器来建立安全通道。</li>
+  <li>最后，通过这条安全通道来传递用户的认证再以用户SID及用户权限的形式接收到域控制器的响应。</li>
+</ul>
+
+<hr />
+
+<h4 id="安全帐号管理">安全帐号管理</h4>
+
+<p>安全帐号管理实际上是一个掌管用户和用户证书的数据库。它存储在Windows NET 注册表的一部分。每个域都有不同的SAM，作为两台域服务器复制的一部分。</p>
+
+<h3 id="windows2000认证与授权访问">Windows2000认证与授权访问</h3>
+
+<p><img src="/img/windows2000/windows2000认证与授权.png" alt="windows2000认证与授权.png" /></p>
+
+<h3 id="windows安全机制">Windows安全机制</h3>
+
+<ol>
+  <li>Windows认证机制
+    <ul>
+      <li>本地认证</li>
+      <li>网络认证</li>
+    </ul>
+  </li>
+  <li>Windowss访问控制机制
+    <ul>
+      <li>WindowsNT/XP的安全性达到C2级，C2级实现了受控访问机制</li>
+    </ul>
+  </li>
+  <li>Windows审计和日志机制</li>
+  <li>Windows协议过滤和防火墙</li>
+  <li>Windows文件系统加密系统</li>
+</ol>
+
+<blockquote>
+  <p>和C1一样的控制(自主访问保护，用户可以使用ACL、组或者其他安全机制，对其他用户隐藏数据)，但是自主访问控制机制必须更为严格。管理员首先拒绝任何人访问文件和资源，然后根据需要授予每个用户访问权。C2也必须审计用户的活动，以便记录谁实行了什么活动。需要额外的检测和文档编制来达到这种等级。</p>
+</blockquote>
+
+<h4 id="身份验证">身份验证</h4>
+
+<p>Windows2000支持，包括X.509证书、智能卡、Kerberos协议和NTLM协议数种产业标准身份验证机制</p>
+
+<h4 id="windows访问控制机制">Windows访问控制机制</h4>
+
+<p><img src="/img/windows2000/TCSEC定义的内容.png" alt="TCSEC定义的内容.png" /></p>
+
+<ul>
+  <li>自主的访问控制</li>
+  <li>对象再利用必须由系统控制</li>
+  <li>用户标识和认证</li>
+  <li>审计活动</li>
+  <li>能够审计所有安全相关事件和个人活动</li>
+  <li>只有管理员才有权限访问</li>
+</ul>
+
+<h4 id="windows安全审计功能">Windows安全审计功能</h4>
+
+<p>审计子系统结构，在Windows系统中，几乎每一项事务都可以在一定程度上被审计(开始-&gt;控制面板-&gt;管理工具-&gt;本地安全策略-&gt;审核策略);审计日志和记录格式;事件日志管理特征;安全日志的审计策略。</p>
+
+<h3 id="windows2000的默认目录">Windows2000的默认目录</h3>
+<ul>
+  <li>Windows2000的<code class="highlighter-rouge">%system%\winnt\</code>目录</li>
+  <li>需要注意的默认安装目录</li>
+  <li>IIS的默认目录</li>
+  <li>Log的默认目录(%WinDir%\System32\LogFiles和%WinDir%\system32\config)</li>
+  <li>SAM(账户管理器)和SAM备份的日志目录</li>
+</ul>
+
+<ol>
+  <li>
+    <p>安全帐户管理器多年来一直是微软操作系统的核心部分，现在也是Windows 8.1的一部分。SAM的功能固定于lsass.exe中。lsass.exe是一个位于c:\Windows\system32的Windows服务。
+Windows SAM管理本地Windows账户密码并管理登录过程中的密码验证。</p>
+  </li>
+  <li>
+    <p>本地安全帐户管理器文件(技术上来说是Windows注册表的一部分)称为SAM，位于c:\windows\system32\config\。在域控制器上，SAM文件相当于活动目录数据库文件ntds.dit。</p>
+  </li>
+  <li>
+    <p>SAM文件被锁定，不能访问加载的操作系统。然而，如果计算机是从一个动态恢复磁盘如ophcrack中启动的，该计算机是完全可访问的。这是为什么需要加密企业笔记本和台式机硬盘的主要原因之一。尽管如此，如果存在其他弱点，Windows密码可能会暴露，所以你不能完全依赖于加密。</p>
+  </li>
+  <li>
+    <p>SAM的备份文件位于c:\windows\system32\repair\。如果密码被定期更改，过期密码会包含在这个文件中，但完全可访问登录到计算机的任何人。只需要在机器上创建一个帐户，为某人提供不良意图的未授权(和不负责任的)访问。</p>
+  </li>
+  <li>
+    <p>使用新老LAN Manager(LM)散列或更安全的NTLM散列将密码存储在SAM文件中。Windows 7及以后版本默认为NTLM散列。这两种类型的散列可以使用被彩虹表(Rainbow Table)破解。彩虹表是一种破解哈希算法的技术，在10年前由瑞士联邦理工学院的Philippe Oechslin发现。Oechslin的ophcrack工具和Elcomsoft System Recovery是两款著名的使用预先计算的密码散列来破解Windows密码的工具。图2中显示了Elcomsoft System Recovery中的可用选项。</p>
+  </li>
+</ol>
+
+<p>从SAM文件中提取Windows密码散列的另一个很好的工具是pwdump。尽管Windows syskey程序可以用来在SAM文件中创建更多的安全，一些工具如Elcomsoft的Proactive System Password Recovery可以破坏这些控件。</p>
+
+<h3 id="windows2000的默认帐号">Windows2000的默认帐号</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>账户名</th>
+      <th>注释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>System/localsystem</td>
+      <td>本地计算机的所有特权</td>
+    </tr>
+    <tr>
+      <td>Administrator</td>
+      <td>同上；可以改名，但是不能删除</td>
+    </tr>
+    <tr>
+      <td>Guest</td>
+      <td>有限的权限，默认禁用</td>
+    </tr>
+    <tr>
+      <td>IUER_计算机名</td>
+      <td>IIS的匿名访问，Guests组成</td>
+    </tr>
+    <tr>
+      <td>IWAM_计算机名</td>
+      <td>IIS进程外应用程序运行的账户，Guests</td>
+    </tr>
+    <tr>
+      <td>TSInternetUser</td>
+      <td>终端服务</td>
+    </tr>
+    <tr>
+      <td>Krbtgt</td>
+      <td>Kerberos密钥分发帐号，只在DC上出现，默认禁用</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="windows2000下的内建组">Windows2000下的内建组</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>组名</th>
+      <th>注释</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Administrators</td>
+      <td>成员具有本地计算机的全部权限</td>
+    </tr>
+    <tr>
+      <td>Users</td>
+      <td>所有账号，较低的权限</td>
+    </tr>
+    <tr>
+      <td>Guests</td>
+      <td>有限的权限，与users相同</td>
+    </tr>
+    <tr>
+      <td>Authenticated  users</td>
+      <td>特殊的隐含组，包含所有已登录的用户</td>
+    </tr>
+    <tr>
+      <td>Replicator</td>
+      <td>用于域中的文件复制</td>
+    </tr>
+    <tr>
+      <td>Backup Operators</td>
+      <td>没有</td>
+    </tr>
+    <tr>
+      <td>administrators</td>
+      <td>权限高，但十分接近</td>
+    </tr>
+    <tr>
+      <td>Server Operators</td>
+      <td>没有</td>
+    </tr>
+    <tr>
+      <td>administrators</td>
+      <td>权限高，但十分接近</td>
+    </tr>
+    <tr>
+      <td>Account Operators</td>
+      <td>没有</td>
+    </tr>
+    <tr>
+      <td>administrators</td>
+      <td>权限高，但十分接近</td>
+    </tr>
+    <tr>
+      <td>Print  Operators</td>
+      <td>没有</td>
+    </tr>
+    <tr>
+      <td>administrators</td>
+      <td>权限高，但十分接近</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="windows2000默认共享">Windows2000默认共享</h3>
+
+<ul>
+  <li>C$、D$..</li>
+  <li>IPC$：远程会话管理</li>
+  <li>Admin$：指向<code class="highlighter-rouge">%WinDir%</code>目录，用户远程管理</li>
+</ul>
+
+<h3 id="评估windows2000风险的关键">评估Windows2000风险的关键</h3>
+<ul>
+  <li>IIS5.0风险</li>
+  <li>Windows2000终端服务风险</li>
+  <li>客户端访问风险</li>
+</ul>
+
+<h3 id="windows2000终端服务">Windows2000终端服务</h3>
+
+<ul>
+  <li>TS(Terminal Service)工作于3389端口</li>
+  <li>TS基于RDP(Remote Desktop Protocol)实现</li>
+  <li>终端服务不是使用HTTP或HTTPS的，而是通过RDP通道实现</li>
+  <li>TS监听端口可以自己指定(如
+<code class="highlighter-rouge">\HKLM\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp</code>值—-PortNumber REG_WORD 3389)</li>
+</ul>
+
+<h3 id="针对ts攻击">针对TS攻击</h3>
+
+<p>终端服务(Terminal Service，TS)常受到攻击</p>
+
+<ul>
+  <li>密码猜测攻击风险(TSGrinder)</li>
+  <li>权限提升风险(PipeUpAdmin、GetAdmin)</li>
+</ul>
+
+<h3 id="ms客户端风险评估">MS客户端风险评估</h3>
+
+<ul>
+  <li>恶意电子邮件——MIME扩展</li>
+  <li>Outlook缓冲区溢出</li>
+  <li>Media Play缓冲区溢出</li>
+  <li>VBS地址簿蠕虫</li>
+</ul>
+
+<h3 id="outlook溢出">Outlook溢出</h3>
+
+<ul>
+  <li>起源于vCard</li>
+  <li>Outlook直接打开并运行附件中的vCards而不提示用户</li>
+  <li>vCards存储于.vcf文件中，也是无提示而直接运行</li>
+  <li>当vCards的生日字段(BDAY)超过55字符时，就会出现溢出</li>
+  <li>对策：IE5.5sp2</li>
+</ul>
+
+<h2 id="windows增强方法">Windows增强方法</h2>
+
+<ul>
+  <li>停止Guest帐号、限制用户数量</li>
+  <li>创建多个管理员帐号、管理员帐号改名</li>
+  <li>陷阱帐号、更改默认权限、设置安全密码</li>
+  <li>屏幕保护密码、使用NTFS分区</li>
+  <li>运行防毒软件和确保备份盘安全</li>
+  <li>关闭DirectDraw、关闭默认共享</li>
+  <li>禁用Dump File、文件加密系统</li>
+  <li>加密Temp文件夹、锁住注册表、关机时清除文件</li>
+  <li>禁止软盘光盘启动、使用智能卡、使用IPSec</li>
+  <li>禁止判断主机类型、抵抗DDOS</li>
+  <li>禁止Guest访问日志和数据恢复软件</li>
+</ul>
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/02/08/Shodan-Manual/">Shodan手册
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/27/hidden-the-network/">阻碍获取真实网络指纹
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/04/command-and-control-images/">command-and-control-images
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/27/open-RDP/">开启RDP
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/11/30/Test-LAB-11/">TEST LAB 11
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/11/29/proxy/">代理
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/01/17/linux-systeminfo-command/">Linux系统信息收集常用命令</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/02/03/xunfeng-scan/">巡风扫描器</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/01/22/windows2000-os-sec/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/01/22/windows2000-os-sec/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

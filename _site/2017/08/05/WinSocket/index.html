@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>WinSocket——part1</title>
+    <meta name="description" content="WinSock是一种标准API，主要用于网络中的数据通信，其允许两个或者多个应用程序（或进程）在同一台机器上或通过网络相互通信。Winsock是一种网络编程，不是协议。">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/08/05/WinSocket/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>WinSocket——part1</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-08-05
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#code" title="Category: code" rel="category">code</a>&nbsp;
+    
+        <a href="/category/#C++" title="Category: C++" rel="category">C++</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#Socket" title="Tag: Socket" rel="tag">Socket</a-->
+        <a href="/tag/#Socket" title="Tag: Socket" rel="tag">Socket</a>&nbsp;
+    
+        <!--a href="/tag/#Windows" title="Tag: Windows" rel="tag">Windows</a-->
+        <a href="/tag/#Windows" title="Tag: Windows" rel="tag">Windows</a>&nbsp;
+    
+        <!--a href="/tag/#C%2B%2B" title="Tag: C++" rel="tag">C++</a-->
+        <a href="/tag/#C++" title="Tag: C++" rel="tag">C++</a>&nbsp;
+    
+        <!--a href="/tag/#code" title="Tag: code" rel="tag">code</a-->
+        <a href="/tag/#code" title="Tag: code" rel="tag">code</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>WinSock是一种标准API，主要用于网络中的数据通信，其允许两个或者多个应用程序（或进程）在同一台机器上或通过网络相互通信。Winsock是一种网络编程，不是协议。</p>
+
+<ul id="markdown-toc">
+  <li><a href="#协议模型" id="markdown-toc-协议模型">协议模型</a></li>
+  <li><a href="#文件操作符" id="markdown-toc-文件操作符">文件操作符</a></li>
+  <li><a href="#字节排序" id="markdown-toc-字节排序">字节排序</a></li>
+  <li><a href="#网络地址的初始化与分配" id="markdown-toc-网络地址的初始化与分配">网络地址的初始化与分配</a>    <ul>
+      <li><a href="#将字符串信息转换为网络字节序的整数型" id="markdown-toc-将字符串信息转换为网络字节序的整数型">将字符串信息转换为网络字节序的整数型</a>        <ul>
+          <li><a href="#inet_addr函数" id="markdown-toc-inet_addr函数">inet_addr函数</a></li>
+          <li><a href="#inet_aton函数" id="markdown-toc-inet_aton函数">inet_aton函数</a></li>
+          <li><a href="#inet_ntoa函数" id="markdown-toc-inet_ntoa函数">inet_ntoa函数</a></li>
+        </ul>
+      </li>
+      <li><a href="#网络地址初始化" id="markdown-toc-网络地址初始化">网络地址初始化</a></li>
+    </ul>
+  </li>
+  <li><a href="#winsocket" id="markdown-toc-winsocket">WinSocket</a>    <ul>
+      <li><a href="#头文件和库" id="markdown-toc-头文件和库">头文件和库</a></li>
+      <li><a href="#winsocket初始化" id="markdown-toc-winsocket初始化">WinSocket初始化</a></li>
+      <li><a href="#基于windows的套接字相关函数" id="markdown-toc-基于windows的套接字相关函数">基于Windows的套接字相关函数</a>        <ul>
+          <li><a href="#socket函数" id="markdown-toc-socket函数">socket函数</a></li>
+          <li><a href="#bind函数" id="markdown-toc-bind函数">bind函数</a></li>
+          <li><a href="#listen函数" id="markdown-toc-listen函数">listen函数</a></li>
+          <li><a href="#accept函数" id="markdown-toc-accept函数">accept函数</a></li>
+          <li><a href="#connect函数" id="markdown-toc-connect函数">connect函数</a></li>
+          <li><a href="#closesocket函数" id="markdown-toc-closesocket函数">closesocket函数</a></li>
+        </ul>
+      </li>
+      <li><a href="#基于windows的io函数" id="markdown-toc-基于windows的io函数">基于Windows的I/O函数</a>        <ul>
+          <li><a href="#send函数" id="markdown-toc-send函数">send函数</a></li>
+          <li><a href="#recv函数" id="markdown-toc-recv函数">recv函数</a></li>
+        </ul>
+      </li>
+      <li><a href="#tcp的socket编程" id="markdown-toc-tcp的socket编程">TCP的socket编程</a></li>
+      <li><a href="#udp的socket套接字编程" id="markdown-toc-udp的socket套接字编程">UDP的Socket套接字编程</a></li>
+    </ul>
+  </li>
+</ul>
+
+<!--more-->
+
+<h2 id="协议模型">协议模型</h2>
+
+<p><img src="/img/code/C%2B%2B/WinSocket/OSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B.png" alt="OSI七层协议模型" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>协议层名</th>
+      <th>功能</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>物理硬件层</td>
+      <td>计算机网络中的物理设备，如网卡等</td>
+    </tr>
+    <tr>
+      <td>数据链路层</td>
+      <td>将传输数据进行压缩与解压缩</td>
+    </tr>
+    <tr>
+      <td>网络层</td>
+      <td>将传输数据进行网络传输</td>
+    </tr>
+    <tr>
+      <td>数据传输层</td>
+      <td>进行信息的网络传输</td>
+    </tr>
+    <tr>
+      <td>会话层</td>
+      <td>建立物理网络的连接</td>
+    </tr>
+    <tr>
+      <td>表示层</td>
+      <td>将传输数据以某种格式进行表示</td>
+    </tr>
+    <tr>
+      <td>应用层</td>
+      <td>应用程序接口</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="/img/code/C%2B%2B/WinSocket/TCP-IP%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E6%A8%A1%E5%9E%8B.png" alt="TCP-IP协议模型" /></p>
+
+<p><img src="/img/code/C%2B%2B/WinSocket/TCP-IP%E5%8D%8F%E8%AE%AE.png" alt="TCP-IP协议模型" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>协议层名</th>
+      <th>功能</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>数据链路层</td>
+      <td>网卡等网络硬件设备以及驱动程序</td>
+    </tr>
+    <tr>
+      <td>网络层</td>
+      <td>IP协议等互连协议</td>
+    </tr>
+    <tr>
+      <td>数据传输层</td>
+      <td>为应用程序提供通信方法，通常为TCP、UDP协议</td>
+    </tr>
+    <tr>
+      <td>应用层</td>
+      <td>负责处理应用程序的实际应用层协议</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="文件操作符">文件操作符</h2>
+
+<p>文件描述符在形式上是一个非负整数。实际上，它是一个索引值，指向内核为每一个进程所维护的该进程打开文件的记录表。当程序打开一个现有文件或者创建一个新文件时，内核向进程返回一个文件描述符。（每当生成文件或套接字，操作系统将返回分配给它们的操作数）</p>
+
+<p>Windows下的文件描述符和信号量、互斥锁等内核对象一样都记作HANDLE。要区分文件句柄和套接字句柄，不像Linux内部也将套接字当做文件。</p>
+
+<p>文件操作符是为了方便称呼OS创建的文件或套接字而赋予的数而已。</p>
+
+<h2 id="字节排序">字节排序</h2>
+
+<p>内存中存储字节有两种不同的方法，不同系统采用的存储方式可能不同：</p>
+
+<ul>
+  <li>小端字节序：将低序字节存储在起始地址</li>
+  <li>大端字节序：将高序字节存储在起始地址</li>
+</ul>
+
+<p><img src="/img/code/C%2B%2B/WinSocket/%E5%AD%97%E8%8A%82%E6%8E%92%E5%BA%8F.png" alt="小端字节序和大端字节序" /></p>
+
+<p>将某给定主机所使用的字节序称为主机字节序。为了使采用不同字节序的主机能够相互通信，TCP/IP协议规定了网络字节序。所有主机或路由器在发送IP数据包之前首先要将相应的信息转换成网络字节序；相应地，在接收数据包之后，要将网络字节序装换为主机字节序。网络字节序为大端序。</p>
+
+<blockquote>
+  <p>数据在传输之前不需要手动转化为网络字节序，该过程是自动的。</p>
+</blockquote>
+
+<ul>
+  <li>htons: 将16位的短整型数从主机字节序转换成网络字节序</li>
+  <li>htonl: 将32位的长整形数从主机字节序转换成网络字节序</li>
+  <li>ntohs: 将16位的短整型数从网络字节序转换成主机字节序</li>
+  <li>ntohl: 将32位的长整形数从网络字节序转换成主机字节序</li>
+</ul>
+
+<blockquote>
+  <p>h代表host，n代表network,s代表短整型short，l代表长整形long</p>
+
+</blockquote>
+
+<h2 id="网络地址的初始化与分配">网络地址的初始化与分配</h2>
+
+<h3 id="将字符串信息转换为网络字节序的整数型">将字符串信息转换为网络字节序的整数型</h3>
+
+<p>sockaddr_in中保存地址信息的成员为32整数型。因此，为了分配IP地址，需要将其表示为32位整数型数据。</p>
+
+<h4 id="inet_addr函数">inet_addr函数</h4>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;arpa/inet.h&gt;
+</span><span class="n">in_addr_t</span> <span class="n">inet_addr</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">string</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>成功时返回32位大端序整数型值，失败时返回INADDR_NONE</p>
+
+<h4 id="inet_aton函数">inet_aton函数</h4>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">inet_aton</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">string</span><span class="p">,</span> <span class="k">struct</span> <span class="n">in_addr</span> <span class="o">*</span> <span class="n">addr</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>成功时返回1(true),失败时返回0(false).</p>
+
+<ul>
+  <li>string 含有需转换的IP地址信息的字符串地址值</li>
+  <li>addr 将保存转换结果的in_addr结构体变量的地址值</li>
+</ul>
+
+<p>实际编程中需要调用inet_addr函数，需将转换后的IP地址信息代入sockaddr_in结构体中声明的in_addr结构体变量。而inet_aton函数不需此过程。原因在于，若传递in_addr结构体变量初始化地址值，函数会自动把结果填入该结构体变量。</p>
+
+<h4 id="inet_ntoa函数">inet_ntoa函数</h4>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;arpa/inet.h&gt;
+</span><span class="kt">char</span> <span class="o">*</span> <span class="n">inet_ntoa</span><span class="p">(</span><span class="k">struct</span> <span class="n">in_addr</span> <span class="n">adr</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>成功时返回转换的字符串地址值，失败时返回-1</p>
+
+<p>该函数将通过参数传入的整数型IP地址转换为字符串格式返回。返回值类型为char指针。返回字符串地址意味着字符串已保存到内存空间，但该函数为向程序员未要求分配内存，而是在内部申请了内存并保存了字符串。也就是，调用完该函数后，应立即将字符串信息复制到其他内存空间。不然，再次调用inet_ntoa函数，则有可能覆盖之前保存的字符串信息。（长期保存，需要将字符串复制到其他内存空间）</p>
+
+<h3 id="网络地址初始化">网络地址初始化</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">addr</span><span class="p">;</span>
+<span class="kt">char</span> <span class="o">*</span> <span class="n">serv_ip</span> <span class="o">=</span> <span class="s">"211.231.12.9"</span><span class="p">;</span><span class="c1">//声明ip地址字符串
+</span><span class="kt">char</span> <span class="o">*</span> <span class="n">serv_port</span> <span class="o">=</span> <span class="s">"3298"</span><span class="p">;</span><span class="c1">//声明端口号字符串
+</span><span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">addr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">addr</span><span class="p">));</span><span class="c1">//结构体变量addr的所有成员初始化为0
+</span><span class="n">addr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span><span class="c1">//指定地址族
+</span><span class="n">addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span> <span class="o">=</span> <span class="n">inet_addr</span><span class="p">(</span><span class="n">serv_ip</span><span class="p">);</span><span class="c1">//基于字符串的IP地址初始化
+</span><span class="n">addr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="n">atoi</span><span class="p">(</span><span class="n">serv_port</span><span class="p">));</span><span class="c1">//基于字符串的端口号初始化
+</span></code></pre></div></div>
+
+<blockquote>
+  <p>可利用常数INADDR_ANY分配服务器端的IP地址，该方式可自动获取运行服务器端的计算机IP地址。端口指定为0，可以分配唯一的端口号，其值为1024~5000之间。应用程序可以在bind之后使用<code class="highlighter-rouge">getsockname</code>分配地址</p>
+</blockquote>
+
+<h2 id="winsocket">WinSocket</h2>
+
+<p>Windows socket是实现网络程序的比较简单的方法。Socket是连接应用程序与网络驱动程序的桥梁，Socket在应用程序中创建，通过绑定操作与驱动程序建立关系。此后，应用程序送给Socket的数据，由Socket交给驱动程序向网络上发送出去。计算机从网络上收到该Socket绑定的ip地址和端口号相关的数据，由驱动程序交给Socket，应用程序便可以从该Socket中提取接收到的数据。网络应用程序就是这样通过socket进行数据的发送和接收。</p>
+
+<h3 id="头文件和库">头文件和库</h3>
+
+<p><strong>WinSocket的头文件和库:</strong></p>
+<ul>
+  <li>导入头文件winsock32.h</li>
+  <li>链接ws2_32.lib库</li>
+</ul>
+
+<h3 id="winsocket初始化">WinSocket初始化</h3>
+
+<p>进行WinSocket编程时，首先要调用WSAStartup函数，设置程序中用到的WinSocket版本，并初始化相应版本的库。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;winsock2.h&gt;
+</span><span class="kt">int</span> <span class="n">WSAStartup</span><span class="p">(</span><span class="n">WORD</span> <span class="n">wVersionRequested</span><span class="p">,</span> <span class="n">LPWSADATA</span> <span class="n">lpWSAData</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>WSAStartup()函数成功时返回0，失败时返回非0的错误代码值。</p>
+
+<ul>
+  <li>wVersionRequested：Winsock版本信息，高8位是副版本号，低8位是主版本号</li>
+  <li>lpWSAData:WSADATA结构体变量的地址值，调用完函数后，相应参数中将填充已初始化的库信息。</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[]){</span>
+    <span class="n">WSADATA</span> <span class="n">wsadata</span><span class="p">;</span>
+    <span class="p">...</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">WSAStartup</span><span class="p">(</span><span class="n">MAKEWORD</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="o">&amp;</span><span class="n">wsaData</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">ErrorHandling</span><span class="p">(</span><span class="s">"WSAStartup() error!"</span><span class="p">);</span>
+    <span class="p">...</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>以上WSAStartup函数调用过程，几乎成为Winsock编程的公式。</p>
+</blockquote>
+
+<p>注销Winsock库：</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;winsock2.h&gt;
+</span><span class="kt">int</span> <span class="n">WSACleanup</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>WSACleanup成功时，返回0，失败时返回SOCKET_ERROR。调用完之后，释放资源，将Winsock库返还给Windows OS，无法再调用Winsock函数</p>
+
+<h3 id="基于windows的套接字相关函数">基于Windows的套接字相关函数</h3>
+
+<h4 id="socket函数">socket函数</h4>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;winsock2.h&gt;
+</span><span class="n">SOCKET</span> <span class="n">socket</span><span class="p">(</span><span class="kt">int</span> <span class="n">af</span><span class="p">,</span> <span class="kt">int</span> <span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">protocol</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>成功时，返回套接字句柄，失败时返回INVALID_SOCKET。</p>
+
+<h4 id="bind函数">bind函数</h4>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;winwock2.h&gt;
+</span><span class="kt">int</span> <span class="n">bind</span><span class="p">(</span><span class="n">SOCKET</span> <span class="n">s</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span> <span class="n">name</span><span class="p">,</span> <span class="kt">int</span> <span class="n">namelen</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>成功时，返回0，失败时返回SOCKET_ERROR。</p>
+
+<h4 id="listen函数">listen函数</h4>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;winsock2.h&gt;
+</span><span class="kt">int</span> <span class="n">listen</span><span class="p">(</span><span class="n">SOCKET</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">backlog</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>成功时，返回0，失败时返回SOCKET_ERROR</p>
+
+<h4 id="accept函数">accept函数</h4>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;winsock2.h&gt;
+</span><span class="n">SOCKET</span> <span class="n">accept</span><span class="p">(</span><span class="n">SOCKET</span> <span class="n">s</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span> <span class="n">addr</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">addrlen</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>成功时返回套接字句柄，失败时返回INVALID_SOCKET.</p>
+
+<h4 id="connect函数">connect函数</h4>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;winsock2.h&gt;
+</span><span class="kt">int</span> <span class="n">connect</span><span class="p">(</span><span class="n">SOCKET</span> <span class="n">s</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span> <span class="n">name</span><span class="p">,</span> <span class="kt">int</span> <span class="n">namelen</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>成功时返回0，失败时返回SOCKET_ERROR</p>
+
+<h4 id="closesocket函数">closesocket函数</h4>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;winsock2.h&gt;
+</span><span class="kt">int</span> <span class="n">closesocket</span><span class="p">(</span><span class="n">SOCKET</span> <span class="n">s</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>成功时返回0,失败时返回SOCKET_ERROR</p>
+
+<h3 id="基于windows的io函数">基于Windows的I/O函数</h3>
+
+<p>Linux中套接字也是文件，因为可以通过文件I/O函数read和write进行数据传输。而Windows严格区分文件I/O函数和套接字I/O函数。</p>
+
+<h4 id="send函数">send函数</h4>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;winsock2.h&gt;
+</span><span class="kt">int</span> <span class="n">send</span><span class="p">(</span><span class="n">SOCKET</span> <span class="n">s</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">buf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">,</span> <span class="kt">int</span> <span class="n">flags</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>成功时返回传输字节数，失败时返回SOCKET_ERROR</p>
+
+<ul>
+  <li>s表示数据传输对象连接的套接字句柄值</li>
+  <li>buf保存待传输数据的缓冲地址值</li>
+  <li>len要传输的字节数</li>
+  <li>flags传输数据时用到的多种选项信息</li>
+</ul>
+
+<h4 id="recv函数">recv函数</h4>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;winsock2.h&gt;
+</span><span class="kt">int</span> <span class="n">recv</span><span class="p">(</span><span class="n">SOCKET</span> <span class="n">s</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">buf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>成功时返回接收的字节数(收到EOF时为0)，失败时返回SOCKET_ERROR。</p>
+
+<ul>
+  <li>s 表示数据接收对象连接的套接字句柄值</li>
+  <li>buf 保存接收数据的缓冲地址值</li>
+  <li>len 能够接收的最大字节数</li>
+  <li>flags接收数据时用到的多种选项</li>
+</ul>
+
+<p>Windows socket是实现网络程序的比较简单的方法。Socket是连接应用程序与网络驱动程序的桥梁，Socket在应用程序中创建，通过绑定操作与驱动程序建立关系。此后，应用程序送给Socket的数据，由Socket交给驱动程序向网络上发送出去。计算机从网络上收到该Socket绑定的ip地址和端口号相关的数据，由驱动程序交给Socket，应用程序便可以从该Socket中提取接收到的数据。网络应用程序就是这样通过socket进行数据的发送和接收。</p>
+
+<p>Windows Socket只支持一个通信区域：网际域（AF_INET），这个域被使用网际协议簇通信的进程使用。</p>
+
+<p>套接字的类型：</p>
+
+<ul>
+  <li>流式套接字(SOCK_STREAM)：提供面向连接、可靠的数据传输服务(基于TCP)</li>
+  <li>数据报套接字(SOCK_DGRAM)：提供面向无连接服务（基于UDP）</li>
+  <li>原始套接字（SOCK_RAW）</li>
+</ul>
+
+<h3 id="tcp的socket编程">TCP的socket编程</h3>
+
+<p>服务端：</p>
+
+<ul>
+  <li>创建套接字（socket）</li>
+  <li>将套接字绑定到一个本地地址和端口上（bind）</li>
+  <li>将套接字设为监听模式，准备接收客户请求(listen)</li>
+  <li>等待客户请求到来；当请求到来之后，接受请求，返回一个新的对应于此次连接的套接字(accept)</li>
+  <li>用返回的套接字和客户端进行通信(send/recv)</li>
+  <li>返回等待另一客户请求</li>
+  <li>关闭套接字</li>
+</ul>
+
+<p><img src="/img/code/C%2B%2B/WinSocket/TCP%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A8%8B%E5%BA%8F%E5%92%8C%E5%AE%A2%E6%88%B7%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%88%9B%E5%BB%BA.png" alt="TCP服务器和客户程序连接过程" /></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;iostream&gt;
+#include&lt;Winsock2.h&gt;
+#include&lt;stdio.h&gt;
+</span>
+<span class="cp">#pragma comment(lib, "ws2_32.lib")
+</span>
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+    <span class="c1">//WSAStartup函数，加载套接字库，进行套接字库版本协商
+</span>    <span class="n">WORD</span> <span class="n">wVersionRequested</span><span class="p">;</span><span class="c1">//保存WinSock库的版本号
+</span>    <span class="n">WSADATA</span> <span class="n">wsaData</span><span class="p">;</span> <span class="c1">//指向WSADATA结构的指针，用于返回Socket库初始化信息
+</span>
+    <span class="kt">int</span> <span class="n">err</span><span class="p">;</span>
+    <span class="n">wVersionRequested</span> <span class="o">=</span> <span class="n">MAKEWORD</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span><span class="c1">//调用MAKEWORD宏创建一个请求版本号的word值
+</span>    <span class="n">err</span> <span class="o">=</span> <span class="n">WSAStartup</span><span class="p">(</span><span class="n">wVersionRequested</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">wsaData</span><span class="p">);</span><span class="c1">//WSAStartup函数，加载套接字库，进行套接字库版本协商
+</span>    <span class="k">if</span> <span class="p">(</span><span class="n">err</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">LOBYTE</span><span class="p">(</span><span class="n">wsaData</span><span class="p">.</span><span class="n">wVersion</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">HIBYTE</span><span class="p">(</span><span class="n">wsaData</span><span class="p">.</span><span class="n">wVersion</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">WSACleanup</span><span class="p">();</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">//创建套接字(socket)
+</span>    <span class="c1">//sockSrv用于接收socket返回的套接字
+</span>    <span class="n">SOCKET</span> <span class="n">sockSrv</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span><span class="c1">//socket函数将根据地址格式和套接字类别，自动选择合适的协议
+</span>
+    <span class="c1">//绑定 套接字到ip和端口(bind)
+</span>    <span class="n">SOCKADDR_IN</span> <span class="n">addrSrv</span><span class="p">;</span>
+    <span class="n">addrSrv</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">S_un</span><span class="p">.</span><span class="n">S_addr</span> <span class="o">=</span> <span class="n">htonl</span><span class="p">(</span><span class="n">INADDR_ANY</span><span class="p">);</span>
+    <span class="n">addrSrv</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
+    <span class="n">addrSrv</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="mi">6000</span><span class="p">);</span>
+
+    <span class="c1">//通过bind函数将套接字sockSrv绑定到本地地址和端口
+</span>    <span class="c1">//bind函数的第一个参数是绑定的套接字
+</span>    <span class="c1">//bind函数的第二个参数需要一个指针，可以用取地址符实现
+</span>    <span class="c1">//bind函数的第三个参数是指定地址结构的大小，利用sizeof操作符获取
+</span>    <span class="n">bind</span><span class="p">(</span><span class="n">sockSrv</span><span class="p">,</span> <span class="p">(</span><span class="n">SOCKADDR</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">addrSrv</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">SOCKADDR</span><span class="p">));</span>
+    <span class="c1">//将套接字设为监听模式(listen)，第一个是将要设置的套接字，第二个是等待连接队列的最大长度
+</span>    <span class="n">listen</span><span class="p">(</span><span class="n">sockSrv</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+    
+    <span class="n">SOCKADDR_IN</span> <span class="n">addrClient</span><span class="p">;</span><span class="c1">//定义变量，用于接收客户端地址信息
+</span>    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">SOCKADDR</span><span class="p">);</span><span class="c1">//初始化SOCKADDR_IN结构体长度，否则调用accept函数失败
+</span>    <span class="c1">//不断循环，等待客户端的连接请求，接受请求之后返回一个新的对应于此次连接的套接字(accept)
+</span>    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//accept函数的第一个参数是处于监听状态的套接字
+</span>        <span class="c1">//其第二个参数是利用addrClient变量接收客户端的地址信息
+</span>        <span class="c1">//利用sockConn与客户端进行通信，先前的套接字仍继续监听客户端的连接请求
+</span>        <span class="n">SOCKET</span> <span class="n">sockConn</span> <span class="o">=</span> <span class="n">accept</span><span class="p">(</span><span class="n">sockSrv</span><span class="p">,</span> <span class="p">(</span><span class="n">SOCKADDR</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">addrClient</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">len</span><span class="p">);</span><span class="c1">//返回的套接字描述符保存于sockConn变量
+</span>        <span class="kt">char</span> <span class="n">sendBuf</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span><span class="c1">//定义数组，将客户端的地址进行格式化处理后放于此
+</span>        <span class="c1">//使用inet_ntoa函数，该函数接受一个in_addr结构体类型的参数并返回一个以点分十进制格式表示的IP地址字符串
+</span>        <span class="c1">//SOCKADDR_IN结构体中的sin_addr成员是in_addr类型，刚好可作为参数传递
+</span>        <span class="n">sprintf</span><span class="p">(</span><span class="n">sendBuf</span><span class="p">,</span> <span class="s">"Welcome %s to Test!"</span><span class="p">,</span> <span class="n">inet_ntoa</span><span class="p">(</span><span class="n">addrClient</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">));</span>
+        <span class="c1">//用返回的套接字和客户端进行通信(send/recv)
+</span>        <span class="c1">//使用建立连接的套接字sockConn，而不是监听的套接字
+</span>        <span class="n">send</span><span class="p">(</span><span class="n">sockConn</span><span class="p">,</span> <span class="n">sendBuf</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">sendBuf</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span><span class="c1">//多发送一个字节，主要是为了在该数据字符串之后加"\0"结尾标识符
+</span>        <span class="c1">//在发送数据之后，还可以用recvBuf从客户端接收数据
+</span>        <span class="kt">char</span> <span class="n">recvBuf</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span><span class="c1">//定义保存接收数据的数组
+</span>        <span class="n">recv</span><span class="p">(</span><span class="n">sockConn</span><span class="p">,</span> <span class="n">recvBuf</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="c1">//接收到数据之后，打印接收到的数据
+</span>        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">recvBuf</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="c1">//system("pause");
+</span>        <span class="c1">//关闭套接字，释放分配的资源，进入下一个循环，等待客户端的请求
+</span>        <span class="cm">/*本例是一个死循环，如果不是一个死循环，在closesocket函数调用之后
+        还需关闭监听套接字，并调用WSACleanup函数终止对套接字库的调用*/</span>
+        <span class="n">closesocket</span><span class="p">(</span><span class="n">sockConn</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="/img/code/C%2B%2B/WinSocket/1501835013336.png" alt="" />
+<img src="/img/code/C%2B%2B/WinSocket/1501835035872.png" alt="" />
+<img src="/img/code/C%2B%2B/WinSocket/1501835062181.png" alt="" /></p>
+
+<p>客户端：</p>
+
+<ul>
+  <li>创建套接字(socket)</li>
+  <li>向服务器发出连接请求(connect)</li>
+  <li>和服务器端通信(send/recv)</li>
+  <li>关闭套接字</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;iostream&gt;
+#include&lt;Winsock2.h&gt;
+#include&lt;stdio.h&gt;
+</span>
+<span class="cp">#pragma comment(lib, "ws2_32.lib")
+</span>
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+    <span class="c1">//WSAStartup函数，加载套接字库，进行套接字库版本协商
+</span>    <span class="n">WORD</span> <span class="n">wVersionRequested</span><span class="p">;</span><span class="c1">//保存WinSock库的版本号
+</span>    <span class="n">WSADATA</span> <span class="n">wsaData</span><span class="p">;</span><span class="c1">//指向WSADATA结构的指针，用于返回Socket库初始化信息
+</span>    <span class="kt">int</span> <span class="n">err</span><span class="p">;</span>
+
+    <span class="n">wVersionRequested</span> <span class="o">=</span> <span class="n">MAKEWORD</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">//调用MAKEWORD宏创建一个请求版本号的word值
+</span>    <span class="n">err</span> <span class="o">=</span> <span class="n">WSAStartup</span><span class="p">(</span><span class="n">wVersionRequested</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">wsaData</span><span class="p">);</span><span class="c1">//WSAStartup函数，加载套接字库，进行套接字库版本协商
+</span>    <span class="k">if</span> <span class="p">(</span><span class="n">err</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">LOBYTE</span><span class="p">(</span><span class="n">wsaData</span><span class="p">.</span><span class="n">wVersion</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">HIBYTE</span><span class="p">(</span><span class="n">wsaData</span><span class="p">.</span><span class="n">wVersion</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">WSACleanup</span><span class="p">();</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">//创建套接字
+</span>    <span class="n">SOCKET</span> <span class="n">sockClient</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span><span class="c1">//socket函数将根据地址格式和套接字类别，自动选择合适的协议
+</span>    <span class="c1">//绑定套接字到ip和端口上
+</span>    <span class="cm">/*对于客户端来说，不需要绑定，可以直接连接服务器端  */</span>
+   <span class="c1">//定义一个地址结构体，设定服务器的ip和端口
+</span>    <span class="n">SOCKADDR_IN</span> <span class="n">addrSrv</span><span class="p">;</span>
+    <span class="n">addrSrv</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">S_un</span><span class="p">.</span><span class="n">S_addr</span> <span class="o">=</span> <span class="n">inet_addr</span><span class="p">(</span><span class="s">"127.0.0.1"</span><span class="p">);</span>
+    <span class="n">addrSrv</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
+    <span class="n">addrSrv</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="mi">6000</span><span class="p">);</span>
+
+    <span class="n">connect</span><span class="p">(</span><span class="n">sockClient</span><span class="p">,</span> <span class="p">(</span><span class="n">SOCKADDR</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">addrSrv</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">SOCKADDR</span><span class="p">));</span>
+    <span class="c1">//和服务端通信(sen/recv)
+</span>    <span class="kt">char</span> <span class="n">recvBuf</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span><span class="c1">//定义有100个字节的字符数组
+</span>    <span class="n">recv</span><span class="p">(</span><span class="n">sockClient</span><span class="p">,</span> <span class="n">recvBuf</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span><span class="c1">//接收服务器的数据
+</span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">recvBuf</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="c1">//发送数据到服务端,多发送一个字节，服务器接收到数据后可以将最后一个字节的数据设置为"\0"，表示字符串的结束
+</span>    <span class="n">send</span><span class="p">(</span><span class="n">sockClient</span><span class="p">,</span> <span class="s">"This is lisi"</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="s">"This is lisi"</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">system</span><span class="p">(</span><span class="s">"pause"</span><span class="p">);</span>
+    <span class="c1">//关闭套接字，释放资源
+</span>    <span class="n">closesocket</span><span class="p">(</span><span class="n">sockClient</span><span class="p">);</span>
+    <span class="c1">//调用WSACleanup函数，终止对套接字库的使用
+</span>    <span class="n">WSACleanup</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="/img/code/C%2B%2B/Wi1501835664905.png" alt="" /></p>
+
+<p>结果：</p>
+
+<p><img src="/img/code/C%2B%2B/WinSocket/1501834880518.png" alt="" /></p>
+
+<h3 id="udp的socket套接字编程">UDP的Socket套接字编程</h3>
+
+<p>接收端：</p>
+
+<ul>
+  <li>创建套接字(socket)</li>
+  <li>将套接字绑定到一个本地地址和端口上(bind)</li>
+  <li>等待接收数据(recvfrom)</li>
+  <li>关闭套接字</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;Winsock2.h&gt;
+#include&lt;stdio.h&gt;
+#include&lt;iostream&gt;
+#pragma comment(lib,"ws2_32.lib")
+</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+    <span class="c1">//加载套接字库
+</span>    <span class="n">WORD</span> <span class="n">wVersionRequested</span><span class="p">;</span>
+    <span class="n">WSADATA</span> <span class="n">wsaData</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">err</span><span class="p">;</span>
+    <span class="n">wVersionRequested</span> <span class="o">=</span> <span class="n">MAKEWORD</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">err</span> <span class="o">=</span> <span class="n">WSAStartup</span><span class="p">(</span><span class="n">wVersionRequested</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">wsaData</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">err</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">LOBYTE</span><span class="p">(</span><span class="n">wsaData</span><span class="p">.</span><span class="n">wVersion</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">HIBYTE</span><span class="p">(</span><span class="n">wsaData</span><span class="p">.</span><span class="n">wVersion</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">WSACleanup</span><span class="p">();</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">//创建套接字
+</span>    <span class="n">SOCKET</span> <span class="n">sockSrv</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_DGRAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="c1">//
+</span>    <span class="n">SOCKADDR_IN</span> <span class="n">addrSrv</span><span class="p">;</span>
+    <span class="n">addrSrv</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">S_un</span><span class="p">.</span><span class="n">S_addr</span> <span class="o">=</span> <span class="n">htonl</span><span class="p">(</span><span class="n">INADDR_ANY</span><span class="p">);</span>
+    <span class="n">addrSrv</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
+    <span class="n">addrSrv</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="mi">6000</span><span class="p">);</span>
+    <span class="n">bind</span><span class="p">(</span><span class="n">sockSrv</span><span class="p">,</span> <span class="p">(</span><span class="n">SOCKADDR</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">addrSrv</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">SOCKADDR</span><span class="p">));</span>
+    <span class="n">SOCKADDR_IN</span> <span class="n">addrClient</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">SOCKADDR</span><span class="p">);</span>
+    <span class="kt">char</span> <span class="n">recvBuf</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+    <span class="n">recvfrom</span><span class="p">(</span><span class="n">sockSrv</span><span class="p">,</span> <span class="n">recvBuf</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">SOCKADDR</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">addrClient</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">len</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">recvBuf</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">system</span><span class="p">(</span><span class="s">"pause"</span><span class="p">);</span>
+    <span class="c1">//关闭套接字
+</span>    <span class="n">closesocket</span><span class="p">(</span><span class="n">sockSrv</span><span class="p">);</span>
+    <span class="n">WSACleanup</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>发送端：</p>
+<ul>
+  <li>创建套接字(socket)</li>
+  <li>向服务器发送数据(sendto)</li>
+  <li>关闭套接字</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;winsock2.h&gt;
+#include&lt;iostream&gt;
+#pragma comment(lib, "ws2_32.lib")
+</span>
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">WORD</span> <span class="n">wVersionRequested</span><span class="p">;</span>
+    <span class="n">WSADATA</span> <span class="n">wsaData</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">err</span><span class="p">;</span>
+
+    <span class="n">wVersionRequested</span> <span class="o">=</span> <span class="n">MAKEWORD</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">err</span> <span class="o">=</span> <span class="n">WSAStartup</span><span class="p">(</span><span class="n">wVersionRequested</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">wsaData</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">err</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">LOBYTE</span><span class="p">(</span><span class="n">wsaData</span><span class="p">.</span><span class="n">wVersion</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">HIBYTE</span><span class="p">(</span><span class="n">wsaData</span><span class="p">.</span><span class="n">wVersion</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">WSACleanup</span><span class="p">();</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">SOCKET</span> <span class="n">sockClient</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_DGRAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">SOCKADDR_IN</span> <span class="n">addrSrv</span><span class="p">;</span>
+    <span class="n">addrSrv</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">S_un</span><span class="p">.</span><span class="n">S_addr</span> <span class="o">=</span> <span class="n">inet_addr</span><span class="p">(</span><span class="s">"127.0.0.1"</span><span class="p">);</span>
+    <span class="n">addrSrv</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
+    <span class="n">addrSrv</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="mi">6000</span><span class="p">);</span>
+
+    <span class="n">sendto</span><span class="p">(</span><span class="n">sockClient</span><span class="p">,</span> <span class="s">"Hello"</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">SOCKADDR</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">addrSrv</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">SOCKADDR</span><span class="p">));</span>
+    <span class="n">system</span><span class="p">(</span><span class="s">"pause"</span><span class="p">);</span>
+    <span class="n">closesocket</span><span class="p">(</span><span class="n">sockClient</span><span class="p">);</span>
+    <span class="n">WSACleanup</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>结果：
+<img src="/img/code/C%2B%2B/WinSocket/1501839582074.png" alt="" /></p>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/07/18/hidden-file-folder/">隐藏文件&文件夹</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/08/09/WinSocket2/">WinSocket——part2</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/08/05/WinSocket/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/08/05/WinSocket/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

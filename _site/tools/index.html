@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Tools</title>
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/tools/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a class="active" href="/tools/">
+                            
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>Tools</h1>
+        <hr>
+        <ul id="markdown-toc">
+  <li><a href="#渗透" id="markdown-toc-渗透">渗透</a>    <ul>
+      <li><a href="#隐藏ip" id="markdown-toc-隐藏ip">隐藏IP</a></li>
+      <li><a href="#信息收集" id="markdown-toc-信息收集">信息收集</a></li>
+      <li><a href="#扫描器" id="markdown-toc-扫描器">扫描器</a></li>
+      <li><a href="#密码" id="markdown-toc-密码">密码</a>        <ul>
+          <li><a href="#密码爆破" id="markdown-toc-密码爆破">密码爆破</a></li>
+        </ul>
+      </li>
+      <li><a href="#webshell" id="markdown-toc-webshell">WebShell</a></li>
+      <li><a href="#中继攻击" id="markdown-toc-中继攻击">中继攻击</a></li>
+      <li><a href="#框架" id="markdown-toc-框架">框架</a></li>
+      <li><a href="#powershell" id="markdown-toc-powershell">PowerShell</a></li>
+      <li><a href="#漏洞" id="markdown-toc-漏洞">漏洞</a>        <ul>
+          <li><a href="#poc" id="markdown-toc-poc">POC</a></li>
+          <li><a href="#exp" id="markdown-toc-exp">EXP</a></li>
+          <li><a href="#搜索漏洞" id="markdown-toc-搜索漏洞">搜索漏洞</a></li>
+        </ul>
+      </li>
+      <li><a href="#shellcode" id="markdown-toc-shellcode">Shellcode</a></li>
+      <li><a href="#payload" id="markdown-toc-payload">Payload</a></li>
+    </ul>
+  </li>
+  <li><a href="#二进制" id="markdown-toc-二进制">二进制</a>    <ul>
+      <li><a href="#ida-pro" id="markdown-toc-ida-pro">IDA Pro</a></li>
+    </ul>
+  </li>
+  <li><a href="#编程" id="markdown-toc-编程">编程</a>    <ul>
+      <li><a href="#ide" id="markdown-toc-ide">IDE</a></li>
+    </ul>
+  </li>
+  <li><a href="#misc" id="markdown-toc-misc">Misc</a></li>
+</ul>
+
+<h1 id="渗透">渗透</h1>
+
+<ul>
+  <li><a href="http://b404.xyz/2017/06/23/hack-tools/">安全工具的一些总结及用法</a>:http://b404.xyz/2017/06/23/hack-tools/</li>
+  <li><a href="https://www.t00ls.net/pytools.html">Python工具库_感谢backlion整理</a>:https://www.t00ls.net/pytools.html</li>
+  <li><a href="http://www.joeware.net/freetools/index.htm">AD域实用的工具</a></li>
+</ul>
+
+<h2 id="隐藏ip">隐藏IP</h2>
+
+<ul>
+  <li><strong>代理</strong>
+    <ul>
+      <li><a href="https://github.com/odboy/shadowProxy">shadowProxy代理</a>:https://github.com/odboy/shadowProxy</li>
+      <li><a href="https://github.com/HiroshiManRise/anonym8.git">anonym8</a>:通过Tor，I2P，Privoxy，Polipo和修改DNS的透明代理隧道</li>
+    </ul>
+  </li>
+  <li><strong>VPN</strong>
+    <ul>
+      <li><strong><a href="https://torrentfreak.com/vpn-services-anonymous-review-2017-170304/">VPN服务</a>:</strong>https://torrentfreak.com/vpn-services-anonymous-review-2017-170304/</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="信息收集">信息收集</h2>
+
+<ul>
+  <li><strong><a href="http://osintframework.com/">信息收集</a>:</strong>http://osintframework.com/</li>
+  <li><a href="https://github.com/b3rito/yotter.git">yotter</a>:查找子域和IP段 https://github.com/b3rito/yotter.git</li>
+  <li><strong><a href="https://dnstrails.com/#/">世界上最大的历史DNS数据库</a>：</strong>https://dnstrails.com/#/</li>
+  <li><strong><a href="https://dnsdumpster.com/">DNS调查和研究，查找和查找DNS记录</a></strong></li>
+  <li><strong><a href="https://github.com//jmbr/halberd">查询负载均衡</a></strong>：https://github.com//jmbr/halberd</li>
+  <li><a href="https://github.com/n0tr00t/Sreg">社工收集器</a>：https://github.com/n0tr00t/Sreg</li>
+  <li><a href="https://github.com/darryllane/Bluto">信息探测</a>：https://github.com/darryllane/Bluto</li>
+  <li><a href="https://www.kitploit.com/2018/01/adrecon-tool-which-gathers-information.html?utm_source=dlvr.it&amp;utm_medium=twitter&amp;m=1">ADRecon</a>:收集活动目录的信息</li>
+  <li>Github
+    <ul>
+      <li><a href="https://github.com/sea-god/gitscan">Github信息收集</a>:https://github.com/sea-god/gitscan</li>
+      <li><a href="https://github.com/metac0rtex/GitHarvester">Github Repo信息收集</a>：https://github.com/metac0rtex/GitHarvester</li>
+    </ul>
+  </li>
+  <li><a href=""></a></li>
+  <li>域名侦查工具
+    <ul>
+      <li><a href="http://b404.xyz/2017/06/19/tools-aquatone-discover/">AQUATONE域名侦查工具</a>：域名侦查工具</li>
+      <li><a href="https://github.com/lijiejie/subDomainsBrute">子域名侦查</a>:https://github.com/lijiejie/subDomainsBrute</li>
+      <li><a href="https://github.com/aboul3la/Sublist3r">Sublistr3</a>:https://github.com/aboul3la/Sublist3r</li>
+      <li><a href="https://github.com/TheRook/subbrute">subbrute</a>https://github.com/TheRook/subbrute</li>
+      <li><a href="https://github.com/infosec-au/altdns">altdns</a>:https://github.com/infosec-au/altdns</li>
+      <li><a href="https://github.com/n4xh4ck5/N4xD0rk/blob/master/README.md">N4xD0rk</a>:搜索引擎列出子域名</li>
+      <li><a href="https://github.com/OJ/gobuster">gobuster</a>:子域名、目录爆破工具</li>
+      <li><a href="https://ivre.rocks/">ivre网络侦查框架</a>:类似于ZoomEye</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="扫描器">扫描器</h2>
+
+<ul>
+  <li><a href="https://github.com/future-architect/vuls">linux漏洞扫描器</a>：https://github.com/future-architect/vuls</li>
+  <li><a href="https://github.com/m0nad/HellRaiser">端口扫描以及关联CVE</a>：https://github.com/m0nad/HellRaiser</li>
+  <li><a href="https://github.com/jh00nbr/Routerhunter-2.0">路由器漏洞扫描</a>：https://github.com/jh00nbr/Routerhunter-2.0</li>
+  <li><a href="https://github.com/lijiejie/BBScan">批量信息泄露扫描脚本</a>：https://github.com/lijiejie/BBScan</li>
+  <li><a href="https://github.com/EnableSecurity/wafw00f">WAF类型检测</a>:https://github.com/EnableSecurity/wafw00f</li>
+  <li><a href="https://github.com/wilson9x1/fenghuangscanner_v3">服务器弱口令扫描器</a>：https://github.com/wilson9x1/fenghuangscanner_v3</li>
+  <li><a href="https://github.com/fengxuangit/Fox-scan/">Fox扫描器</a>:https://github.com/fengxuangit/Fox-scan/</li>
+  <li><a href="https://github.com/darryllane/Bluto">信息探测及扫描工具</a>：https://github.com/darryllane/Bluto</li>
+  <li><a href="https://github.com/sowish/LNScan">内部网络信息扫描器</a>：https://github.com/sowish/LNScan</li>
+  <li><a href="https://github.com/linuz/Sticky-Keys-Slayer">远程桌面登陆扫描</a>:https://github.com/linuz/Sticky-Keys-Slayer</li>
+  <li><a href="https://github.com/SECFORCE/sparta">网络基础设施扫描工具</a>：https://github.com/SECFORCE/sparta</li>
+  <li><a href="https://github.com/SigPloiter/GTScan">类似于Nmap的电信公司扫描器</a></li>
+</ul>
+
+<h2 id="密码">密码</h2>
+
+<p>-<a href="http://www.kood.org/windows-password-renew/">renew-windows-password</a>:重置任何用户的密码，管理员权限</p>
+
+<h3 id="密码爆破">密码爆破</h3>
+
+<ul>
+  <li>PC
+    <ul>
+      <li><a href="https://github.com/SECFORCE/SNMP-Brute">SNMAP密码破解</a>:https://github.com/SECFORCE/SNMP-Brute</li>
+      <li><a href="https://github.com/AlessandroZ/LaZagne">本地存储密码提取</a>：https://github.com/AlessandroZ/LaZagne</li>
+      <li><a href="http://www.netmux.com/blog/purple-rain-attack.amp?__twitter_impression=true">*紫雨随机破解</a></li>
+    </ul>
+  </li>
+  <li>Web
+    <ul>
+      <li><a href="https://github.com/mikesiegel/ews-crack/blob/master/README.md">Exchange Web Server爆破</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="webshell">WebShell</h2>
+
+<ul>
+  <li><a href="https://github.com/tennc/webshell">WebShell</a>:https://github.com/tennc/webshell</li>
+</ul>
+
+<h2 id="中继攻击">中继攻击</h2>
+
+<ul>
+  <li><a href="https://github.com/Arno0x/NtlmRelayToEWS">NtlmRelayToEWS</a>:从ntlm中继到攻击Exchange Web服务</li>
+</ul>
+
+<h2 id="框架">框架</h2>
+
+<ul>
+  <li><strong>Web框架</strong>
+    <ul>
+      <li><a href="https://github.com/nil0x42/phpsploit">phpsploit</a>:攻击者在客户端与Web服务器端之间建立隐蔽性极强的交互式链接（类似Shell）</li>
+    </ul>
+  </li>
+  <li><strong>渗透框架：</strong>
+    <ul>
+      <li><strong>C2框架:</strong>
+        <ul>
+          <li><a href="https://github.com/nettitude/PoshC2">PoshC2</a>:一个PowerShell写的感知代理的C2框架，https://labs.nettitude.com/blog/poshc2-v3-with-socks-proxy-sharpsocks/</li>
+          <li><a href="">Cobalt Strike</a></li>
+          <li><a href="">Empire</a></li>
+          <li><a href="https://github.com/zerosum0x0/koadic">Koadic C3 COM Command&amp;Control-JScript RAT</a>:使用Windows Script Host的多兼容性rootkit渗透工具框架</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="powershell">PowerShell</h2>
+
+<ul>
+  <li><a href="https://github.com/9jan/PowerShell">lazywinadmin_PowerShell</a>:https://github.com/lazywinadmin/PowerShell</li>
+  <li><a href="https://github.com/FuzzySecurity/PowerShell-Suite">PowerShell-Suite</a>:https://github.com/FuzzySecurity/PowerShell-Suite</li>
+</ul>
+
+<h2 id="漏洞">漏洞</h2>
+
+<h3 id="poc">POC</h3>
+
+<h3 id="exp">EXP</h3>
+
+<ul>
+  <li>WEB
+    <ul>
+      <li><a href="https://github.com/ernw/insinuator-snippets/tree/master/bmc_bladelogic">BMC任意执行代码漏洞</a> :CVE-2016-1542（BMC-2015-0010）和CVE-2016-1543（BMC-2015-0011）的EXP</li>
+    </ul>
+  </li>
+  <li></li>
+</ul>
+
+<h3 id="搜索漏洞">搜索漏洞</h3>
+
+<ul>
+  <li><a href="http://b404.xyz/2017/09/27/hack-tools2/">getsploit</a>:由Searchsploit启发的Vulners 数据库的命令行搜索和下载工具</li>
+</ul>
+
+<h2 id="shellcode">Shellcode</h2>
+
+<ul>
+  <li><a href="http://b404.xyz/2017/09/13/DKMC/">DKMC</a>: 在BMP文件插入shellcode</li>
+  <li><a href="https://github.com/et0x/C2">Command and Control – Images</a>:可用于伪装shellcode和脚本，字符数量有限制，需要像素大的图片</li>
+  <li><a href="https://github.com/OsandaMalith/Exe2Image/releases">exe2image</a>：将exe转化为图像</li>
+  <li><a href="https://www.darknet.org.uk/2018/01/owasp-zsc-obfuscated-code-generator-tool/?utm_source=feedly&amp;utm_medium=webfeeds">OWASP ZSC混淆代码生成器</a>:生成自定义shellcode，并混淆</li>
+</ul>
+
+<h2 id="payload">Payload</h2>
+
+<ul>
+  <li><a href="http://b404.xyz/2017/07/17/chaos/">CHAOS</a>:CHAOS能生成有效载荷，并控制远程监听</li>
+  <li><a href="https://n0where.net/msfvenom-payload-creator-msfpc">MSFPC</a>:MSFvenom Payload生成器</li>
+</ul>
+
+<hr />
+
+<h1 id="二进制">二进制</h1>
+
+<ul>
+  <li><strong><a href="http://malwareanalysis.tools/">恶意程序分析工具</a>：</strong> http://malwareanalysis.tools/</li>
+  <li><strong><a href="https://blog.didierstevens.com/2018/01/29/new-tool-jpegdump-py/amp/?__twitter_impression=true">图片分析工具</a></strong>:https://blog.didierstevens.com/2018/01/29/new-tool-jpegdump-py/amp/?__twitter_impression=true</li>
+  <li><strong><a href="https://github.com/hasherezade/pe-sieve">查找内联钩子和其他内存代码补丁的工具</a></strong>:https://github.com/hasherezade/pe-sieve
+    <ul>
+      <li><strong><a href="https://github.com/9jan/cutter">radareorg的界面版</a>:</strong>https://github.com/9jan/cutter</li>
+      <li><a href="https://github.com/quarkslab/QBDI">QBDI</a>:基于LLVM的动态二进制工具框架，https://github.com/quarkslab/QBDI</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="ida-pro">IDA Pro</h2>
+
+<ul>
+  <li><strong>IDA Pro</strong>
+    <ul>
+      <li><a href="https://hex-rays.com/contests/2017/index.shtml">官方推的插件</a>:https://hex-rays.com/contests/2017/index.shtml</li>
+      <li><strong><a href="https://github.com/alexander-hanel/idapython6to7">将IDA6的API转化为IDA7的python脚本</a>:</strong>https://github.com/alexander-hanel/idapython6to7</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h1 id="编程">编程</h1>
+
+<h2 id="ide">IDE</h2>
+
+<ul>
+  <li><strong><a href="https://github.com/s4n7h0/Halcyon">Halcyon</a>:</strong>进行Nmap NSE脚本开发的IDE</li>
+</ul>
+
+<h1 id="misc">Misc</h1>
+
+<ul>
+  <li><strong><a href="http://sectools.org/">网络安全工具TOP125</a>:</strong>http://sectools.org/</li>
+  <li><strong><a href="https://github.com/LionSec/katoolin">自动安装kali工具脚本</a>：</strong>https://github.com/LionSec/katoolin</li>
+  <li></li>
+</ul>
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>PE之HelloWorld的PE文件格式解析</title>
+    <meta name="description" content="汇编编写HelloWorld,解析HelloWorld的PE文件格式">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/05/09/Analysis-HelloWorld-PE-Format/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>PE之HelloWorld的PE文件格式解析</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-05-09
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#ReverseCore" title="Category: ReverseCore" rel="category">ReverseCore</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#reading-notes" title="Tag: reading-notes" rel="tag">reading-notes</a-->
+        <a href="/tag/#reading-notes" title="Tag: reading-notes" rel="tag">reading-notes</a>&nbsp;
+    
+        <!--a href="/tag/#reverse" title="Tag: reverse" rel="tag">reverse</a-->
+        <a href="/tag/#reverse" title="Tag: reverse" rel="tag">reverse</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>汇编编写HelloWorld,解析HelloWorld的PE文件格式</p>
+
+<ul id="markdown-toc">
+  <li><a href="#编写helloworld" id="markdown-toc-编写helloworld">编写HelloWorld</a></li>
+  <li><a href="#在winhex中打开exe文件" id="markdown-toc-在winhex中打开exe文件">在WinHex中打开exe文件：</a></li>
+  <li><a href="#pe结构" id="markdown-toc-pe结构">PE结构</a></li>
+  <li><a href="#dos头" id="markdown-toc-dos头">DOS头</a></li>
+  <li><a href="#pe头的image_file_header" id="markdown-toc-pe头的image_file_header">PE头的IMAGE_FILE_HEADER</a></li>
+  <li><a href="#扩展pe头image_optional_header" id="markdown-toc-扩展pe头image_optional_header">扩展PE头IMAGE_OPTIONAL_HEADER</a></li>
+  <li><a href="#数据目录表项" id="markdown-toc-数据目录表项">数据目录表项</a></li>
+  <li><a href="#节表image_section_header" id="markdown-toc-节表image_section_header">节表IMAGE_SECTION_HEADER</a></li>
+  <li><a href="#notepad例子" id="markdown-toc-notepad例子">Notepad例子</a></li>
+  <li><a href="#参考" id="markdown-toc-参考">参考</a></li>
+</ul>
+
+<!--more-->
+
+<h2 id="编写helloworld">编写HelloWorld</h2>
+
+<p>编写HelloWorld的汇编代码，使用NASM编译成obj文件，使用链接器链接成exe文件：</p>
+
+<p><img src="/img/reversecore_assets/PE文件/HelloWorld_NASM.png" alt="HelloWorld_NASM.png" /></p>
+
+<h2 id="在winhex中打开exe文件">在WinHex中打开exe文件：</h2>
+
+<p><img src="/img/reversecore_assets/PE文件/HelloWorld_PE_1.png" alt="HelloWorld_PE_1.png" /></p>
+
+<p><img src="/img/reversecore_assets/PE文件/HelloWorld_PE_2.png" alt="HelloWorld_PE_2.png" /></p>
+
+<h2 id="pe结构">PE结构</h2>
+
+<p><img src="/img/reversecore_assets/PE文件/PE结构.png" alt="PE结构.png" /></p>
+
+<p>标准PE文件一般由四大部分组成：</p>
+<ul>
+  <li>DOS头</li>
+  <li>PE头(IMAGE_NT_HEADERS)
+    <ul>
+      <li>4个字节的标识符(Signature)</li>
+      <li>20个字节的基本头信息(IMAGE_FILE_HEADER)</li>
+      <li>216个字节的扩展头信息(IMAGE_OPTIONAL_HEADER32)</li>
+    </ul>
+  </li>
+  <li>节表(多个IMAGE_SECTION_HEADER结构)</li>
+  <li>节内容（导入表、导出表、资源表、重定位表）</li>
+</ul>
+
+<h2 id="dos头">DOS头</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_IMAGE_DOS_HEADER</span> <span class="p">{</span><span class="err">　　　　</span><span class="c1">// DOS .EXE header
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　</span> <span class="n">e_magic</span><span class="p">;</span><span class="err">　　　　　　　　　　　　　</span><span class="c1">// 0000h;魔术字"MZ"
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　</span> <span class="n">e_cblp</span><span class="p">;</span><span class="err">　　　　　　　　　　　　　</span> <span class="c1">// 0002h;最后页中的字节数
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　</span> <span class="n">e_cp</span><span class="p">;</span><span class="err">　　　　　　　　　　　　　　</span> <span class="c1">// 0004h;文件中的全部和部分页数
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　</span> <span class="n">e_crlc</span><span class="p">;</span><span class="err">　　　　　　　　　　　　　</span> <span class="c1">// 0006h;重定位表中的指针数
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　</span> <span class="n">e_cparhdr</span><span class="p">;</span><span class="err">　　　　　　　　　　　</span> <span class="c1">// 0008h;头部尺寸，以段落为单位
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　</span> <span class="n">e_minalloc</span><span class="p">;</span><span class="err">　　　　　　　　　　</span>  <span class="c1">// 000ah;所需的最小附加段
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　</span> <span class="n">e_maxalloc</span><span class="p">;</span><span class="err">　　　　　　　　　　</span>  <span class="c1">// 000ch;所需的最大附加段
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　</span> <span class="n">e_ss</span><span class="p">;</span><span class="err">　　　　　　　　　　　　</span>    <span class="c1">// 000eh;初始的SS值(相对偏移量)
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　</span> <span class="n">e_sp</span><span class="p">;</span><span class="err">　　　　　　　　　　　　</span>    <span class="c1">// 0010h;初始的SP值
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　</span> <span class="n">e_csum</span><span class="p">;</span><span class="err">　　　　　　　　　　　　</span>  <span class="c1">// 0012h;补码校验值
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　</span> <span class="n">e_ip</span><span class="p">;</span><span class="err">　　　　　　　　　　　　</span>    <span class="c1">// 0014h;初始IP值
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　</span> <span class="n">e_cs</span><span class="p">;</span><span class="err">　　　　　　　　　　　　</span>    <span class="c1">// 0016h;初始CS值
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　</span> <span class="n">e_lfarlc</span><span class="p">;</span><span class="err">　　　　　　　　　　</span>   <span class="c1">// 0018h;重定位表的字节偏移量
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　</span> <span class="n">e_ovno</span><span class="p">;</span><span class="err">　　　　　　　　　　　　</span>  <span class="c1">// 001ah;覆盖号
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　</span> <span class="n">e_res</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span><span class="err">　　　　　　　　　　</span>   <span class="c1">// 001ch;保留字
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　</span> <span class="n">e_oemid</span><span class="p">;</span><span class="err">　　　　　　　　　　</span>    <span class="c1">// 0024h;OEM 标识符
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　</span> <span class="n">e_oeminfo</span><span class="p">;</span><span class="err">　　　　　　　　　　</span>  <span class="c1">// 0026h;OEM 信息
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　</span> <span class="n">e_res2</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span><span class="err">　　　　　　　　　　</span> <span class="c1">// 0028h;保留字
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span><span class="n">e_lfanew</span><span class="p">;</span><span class="err">　　　　　　　　　　</span>   <span class="c1">// 003CH;PE头相对文件的偏移地址
+</span><span class="err">　</span><span class="p">}</span> <span class="n">IMAGE_DOS_HEADER</span><span class="p">,</span> <span class="o">*</span><span class="n">PIMAGE_DOS_HEADER</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="pe头的image_file_header">PE头的IMAGE_FILE_HEADER</h2>
+
+<p>PE头的IMAGE_FILE_HEADER紧跟在PE头标识后，即位于IMAGE_DOS_HEADER的e_lfanew值+4的位置。由此位置开始的20个字节为数据结构标准PE头<code class="highlighter-rouge">IMAGE_FILE_HEADER</code>的内容。该结构为标准通用对象文件格式(COFF)头，记录了PE文件的全局属性，如该PE文件运行的平台、PE文件类型、文件中存在的节的总数等。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_IMAGE_FILE_HEADER</span> <span class="p">{</span>
+<span class="err">　　</span><span class="n">WORD</span><span class="err">　　</span><span class="n">Machine</span><span class="p">;</span>   <span class="c1">//0004h;运行平台
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　　</span><span class="n">NumberOfSections</span><span class="p">;</span> <span class="c1">//0006h;PE中节的数量
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">TimeDateStamp</span><span class="p">;</span> <span class="c1">//0008h;文件创建日期和时间
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">PointerToSymbolTable</span><span class="p">;</span> <span class="c1">//000ch;指向符号表(用于调试)
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">NumberOfSymbols</span><span class="p">;</span> <span class="c1">//0010h;符号表中的符号数量(用于调试)
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　　</span><span class="n">SizeOfOptionalHeader</span><span class="p">;</span> <span class="c1">//0014h;扩展头结构的长度
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　　</span><span class="n">Characteristics</span><span class="p">;</span> <span class="c1">//0016h;文件属性
+</span><span class="p">}</span> <span class="n">IMAGE_FILE_HEADER</span><span class="p">,</span> <span class="o">*</span><span class="n">PIMAGE_FILE_HEADER</span><span class="p">;</span>
+
+<span class="cp">#define IMAGE_SIZEOF_FILE_HEADER　　　　　　 20
+</span></code></pre></div></div>
+
+<h2 id="扩展pe头image_optional_header">扩展PE头IMAGE_OPTIONAL_HEADER</h2>
+
+<p>文件执行时的入口地址、文件被操作系统装入内存后的默认基地址，以及节在磁盘和内存中的对齐单位等信息均可以在此结构中找到。对该结构中的某些数值的随意改动可能会造成PE文件的加载或运行失败。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//
+// Optional header format.
+//
+</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">_IMAGE_OPTIONAL_HEADER</span> <span class="p">{</span>
+<span class="err">　　</span><span class="c1">//
+</span><span class="err">　　</span><span class="c1">// Standard fields.
+</span><span class="err">　　</span><span class="c1">//
+</span>
+<span class="err">　　</span><span class="n">WORD</span><span class="err">　　</span><span class="n">Magic</span><span class="p">;</span>  <span class="c1">//0018h;魔术字;107h=ROM Image;10Bh=exe Image
+</span><span class="err">　　</span><span class="n">BYTE</span><span class="err">　　</span><span class="n">MajorLinkerVersion</span><span class="p">;</span> <span class="c1">//001ah;链接器版本号
+</span><span class="err">　　</span><span class="n">BYTE</span><span class="err">　　</span><span class="n">MinorLinkerVersion</span><span class="p">;</span> <span class="c1">//001bh
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">SizeOfCode</span><span class="p">;</span> <span class="c1">//001ch 所有含代码的节的总大小
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">SizeOfInitializedData</span><span class="p">;</span> <span class="c1">//0020h 所有含代码已初始化数据的节的总大小
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">SizeOfUninitializedData</span><span class="p">;</span> <span class="c1">//0024h 所有含未初始化数据的节的大小
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">AddressOfEntryPoint</span><span class="p">;</span> <span class="c1">//0028h 程序执行入口RVA
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">BaseOfCode</span><span class="p">;</span> <span class="c1">//002ch 代码的节的起始RVA
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">BaseOfData</span><span class="p">;</span> <span class="c1">//0030h 数据的节的起始RVA
+</span>
+<span class="err">　　</span><span class="c1">//
+</span><span class="err">　　</span><span class="c1">// NT additional fields.
+</span><span class="err">　　</span><span class="c1">//
+</span>
+<span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">ImageBase</span><span class="p">;</span> <span class="c1">//0034h 程序的建议装载地址
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">SectionAlignment</span><span class="p">;</span> <span class="c1">//0038h 内存中的节的对齐粒度
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">FileAlignment</span><span class="p">;</span> <span class="c1">//003ch 文件中的节的对齐粒度
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　　</span><span class="n">MajorOperatingSystemVersion</span><span class="p">;</span> <span class="c1">//0040h 操作系统版本号
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　　</span><span class="n">MinorOperatingSystemVersion</span><span class="p">;</span> <span class="c1">//0042h
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　　</span><span class="n">MajorImageVersion</span><span class="p">;</span> <span class="c1">//00044h,该PE的版本号
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　　</span><span class="n">MinorImageVersion</span><span class="p">;</span> 
+<span class="err">　　</span><span class="n">WORD</span><span class="err">　　</span><span class="n">MajorSubsystemVersion</span><span class="p">;</span> <span class="c1">//0048h,所需子系统版本号
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　　</span><span class="n">MinorSubsystemVersion</span><span class="p">;</span>
+<span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">Win32VersionValue</span><span class="p">;</span> <span class="c1">//未用
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">SizeOfImage</span><span class="p">;</span> <span class="c1">//0050h;内存中的整个PE映像尺寸
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">SizeOfHeaders</span><span class="p">;</span> <span class="c1">//0054h;所有头+节表的大小
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">CheckSum</span><span class="p">;</span> <span class="c1">//0058h;校验和
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　　</span><span class="n">Subsystem</span><span class="p">;</span> <span class="c1">//005ch;文件中的子系统
+</span><span class="err">　　</span><span class="n">WORD</span><span class="err">　　</span><span class="n">DllCharacteristics</span><span class="p">;</span> <span class="c1">//005eh;DLL文件特性
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">SizeOfStackReserve</span><span class="p">;</span> <span class="c1">//0060h;初始化时的栈大小
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">SizeOfStackCommit</span><span class="p">;</span> <span class="c1">//0064h;初始化时实际提交的栈大小
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">SizeOfHeapReserve</span><span class="p">;</span> <span class="c1">//0068h;初始化时保留的堆大小
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">SizeOfHeapCommit</span><span class="p">;</span> <span class="c1">//006ch;初始化时实际提交的堆大小
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">LoaderFlags</span><span class="p">;</span> <span class="c1">//0070h;与调试有关
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">NumberOfRvaAndSizes</span><span class="p">;</span> <span class="c1">//0078h;下面的数据目录结构的项目数量
+</span><span class="err">　　</span><span class="n">IMAGE_DATA_DIRECTORY</span> <span class="n">DataDirectory</span><span class="p">[</span><span class="n">IMAGE_NUMBEROF_DIRECTORY_ENTRIES</span><span class="p">];</span> <span class="c1">//数据目录
+</span><span class="p">}</span> <span class="n">IMAGE_OPTIONAL_HEADER32</span><span class="p">,</span> <span class="o">*</span><span class="n">PIMAGE_OPTIONAL_HEADER32</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><img src="/img/reversecore_assets/PE文件/NT头结构.png" alt="NT头结构.png" /></p>
+
+<h2 id="数据目录表项">数据目录表项</h2>
+
+<p><img src="/img/reversecore_assets/PE文件/PE_IMAGE_Data_Directory.png" alt="PE_IMAGE_Data_Directory.png" /></p>
+
+<h2 id="节表image_section_header">节表IMAGE_SECTION_HEADER</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_IMAGE_SECTION_HEADER</span> <span class="p">{</span>
+<span class="err">　　</span><span class="n">BYTE</span><span class="err">　　</span><span class="n">Name</span><span class="p">[</span><span class="n">IMAGE_SIZEOF_SHORT_NAME</span><span class="p">];</span>
+<span class="err">　　</span><span class="k">union</span> <span class="p">{</span>
+<span class="err">　　　　　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">PhysicalAddress</span><span class="p">;</span>
+<span class="err">　　　　　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">VirtualSize</span><span class="p">;</span> <span class="c1">//实际的节表项大小(不一定是对齐后的值)
+</span><span class="err">　　</span><span class="p">}</span> <span class="n">Misc</span><span class="p">;</span>
+<span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">VirtualAddress</span><span class="p">;</span> <span class="c1">//节表载入内存后的相对虚拟地址(按内存对齐)
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">SizeOfRawData</span><span class="p">;</span> <span class="c1">//在磁盘中该节表项的大小(通常为对齐后的值)
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">PointerToRawData</span><span class="p">;</span><span class="c1">//该节表项在磁盘上的偏移地址
+</span><span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">PointerToRelocations</span><span class="p">;</span>
+<span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">PointerToLinenumbers</span><span class="p">;</span>
+<span class="err">　　</span><span class="n">WORD</span><span class="err">　　</span><span class="n">NumberOfRelocations</span><span class="p">;</span>
+<span class="err">　　</span><span class="n">WORD</span><span class="err">　　</span><span class="n">NumberOfLinenumbers</span><span class="p">;</span>
+<span class="err">　　</span><span class="n">DWORD</span><span class="err">　</span> <span class="n">Characteristics</span><span class="p">;</span> <span class="c1">//节表属性
+</span><span class="p">}</span> <span class="n">IMAGE_SECTION_HEADER</span><span class="p">,</span> <span class="o">*</span><span class="n">PIMAGE_SECTION_HEADER</span><span class="p">;</span>
+
+<span class="cp">#define IMAGE_SIZEOF_SECTION_HEADER　　　　　40
+</span></code></pre></div></div>
+
+<h2 id="notepad例子">Notepad例子</h2>
+
+<p><img src="/img/reversecore_assets/PE文件/NotepadPE.png" alt="NotepadPE.png" /></p>
+
+<p><img src="/img/reversecore_assets/PE文件/Notepad_Image_optional_header.png" alt="Notepad_Image_optional_header.png" /></p>
+
+<p><img src="/img/reversecore_assets/PE文件/Notepad_Image_optional_header32_结构体成员.png" alt="Notepad_Image_optional_header32_结构体成员.png" /></p>
+
+<h2 id="参考">参考</h2>
+
+<p>1.<a href="http://www.epubit.com.cn/book/onlinechapter/30801">[C++ 黑客编程揭秘与防范（第2版）]</a>http://www.epubit.com.cn/book/onlinechapter/30801
+2.WindowsPE指南</p>
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/04/10/PE-expansion/">PE(二)</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/06/01/compress/">压缩</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/05/09/Analysis-HelloWorld-PE-Format/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/05/09/Analysis-HelloWorld-PE-Format/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

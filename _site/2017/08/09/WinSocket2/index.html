@@ -1,0 +1,1678 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>WinSocket——part2</title>
+    <meta name="description" content="Winsock提供了一些I/O模型帮助应用程序以异步方式在一个或多个套接字上管理I/O。">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/08/09/WinSocket2/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>WinSocket——part2</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-08-09
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#code" title="Category: code" rel="category">code</a>&nbsp;
+    
+        <a href="/category/#C++" title="Category: C++" rel="category">C++</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#Socket" title="Tag: Socket" rel="tag">Socket</a-->
+        <a href="/tag/#Socket" title="Tag: Socket" rel="tag">Socket</a>&nbsp;
+    
+        <!--a href="/tag/#Windows" title="Tag: Windows" rel="tag">Windows</a-->
+        <a href="/tag/#Windows" title="Tag: Windows" rel="tag">Windows</a>&nbsp;
+    
+        <!--a href="/tag/#C%2B%2B" title="Tag: C++" rel="tag">C++</a-->
+        <a href="/tag/#C++" title="Tag: C++" rel="tag">C++</a>&nbsp;
+    
+        <!--a href="/tag/#code" title="Tag: code" rel="tag">code</a-->
+        <a href="/tag/#code" title="Tag: code" rel="tag">code</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>Winsock提供了一些I/O模型帮助应用程序以异步方式在一个或多个套接字上管理I/O。</p>
+
+<ul id="markdown-toc">
+  <li><a href="#多线程" id="markdown-toc-多线程">多线程</a>    <ul>
+      <li><a href="#进程" id="markdown-toc-进程">进程</a></li>
+      <li><a href="#线程" id="markdown-toc-线程">线程</a></li>
+      <li><a href="#互斥对象实现线程同步" id="markdown-toc-互斥对象实现线程同步">互斥对象实现线程同步</a></li>
+      <li><a href="#事件对象" id="markdown-toc-事件对象">事件对象</a>        <ul>
+          <li><a href="#创建事件对象" id="markdown-toc-创建事件对象">创建事件对象</a></li>
+          <li><a href="#设置事件对象状态" id="markdown-toc-设置事件对象状态">设置事件对象状态</a></li>
+          <li><a href="#重置事件对象状态" id="markdown-toc-重置事件对象状态">重置事件对象状态</a></li>
+        </ul>
+      </li>
+      <li><a href="#关键代码段" id="markdown-toc-关键代码段">关键代码段</a></li>
+    </ul>
+  </li>
+  <li><a href="#异步阻塞" id="markdown-toc-异步阻塞">异步、阻塞</a>    <ul>
+      <li><a href="#异步与同步" id="markdown-toc-异步与同步">异步与同步</a></li>
+      <li><a href="#阻塞和非阻塞" id="markdown-toc-阻塞和非阻塞">阻塞和非阻塞</a></li>
+    </ul>
+  </li>
+  <li><a href="#windows套接字io模型" id="markdown-toc-windows套接字io模型">Windows套接字I/O模型</a>    <ul>
+      <li><a href="#阻塞模式" id="markdown-toc-阻塞模式">阻塞模式</a></li>
+      <li><a href="#非阻塞模式" id="markdown-toc-非阻塞模式">非阻塞模式</a></li>
+      <li><a href="#选择select模型" id="markdown-toc-选择select模型">选择(select)模型</a>        <ul>
+          <li><a href="#select函数" id="markdown-toc-select函数">select函数</a></li>
+        </ul>
+      </li>
+      <li><a href="#wsaasyncselect模型" id="markdown-toc-wsaasyncselect模型">WSAAsyncSelect模型</a></li>
+      <li><a href="#wsaeventselect" id="markdown-toc-wsaeventselect">WSAEventSelect</a></li>
+    </ul>
+  </li>
+</ul>
+
+<!--more-->
+
+<h2 id="多线程">多线程</h2>
+
+<h3 id="进程">进程</h3>
+
+<p>程序是计算机指令的集合，它以文件的形式存储在磁盘上。<strong>进程</strong>通常被定义为一个正在运行的程序的实例，是一个程序在其自身的地址空间中的一次执行活动。一个程序可以对应多个进程。</p>
+
+<p>进程的组成部分：</p>
+<ul>
+  <li>操作系统用来管理进程的内核对象。内核对象是系统用于存放关于进程的统计信息的地方，内核对象属于OS内分配的一个内存块，该内存块是一种数据结构，其成员负责维护该对象的各种信息。由于内核对象的数据结构只能被内核访问使用，因此应用程序在内存中无法找到该数据结构，并直接改变其内容，只能通过Windows提供的函数进行内核操作</li>
+  <li>地址空间。包含所有可执行模块或DLL模块的代码和数据。也包含动态内存分配的空间，例如线程的栈和堆分配空间</li>
+</ul>
+
+<p>真正完成代码执行的是线程，而进程只是线程的容器，或者或是线程的执行环境</p>
+
+<h3 id="线程">线程</h3>
+
+<p>线程组成部分：</p>
+<ul>
+  <li>线程的内核对象。操作系统由它来对线程实施管理。内核对象也是系统用来存放线程统计信息的地方。</li>
+  <li>线程栈：用于维护线程在执行代码时需要的所有函数参数和局部变量。</li>
+</ul>
+
+<p>线程总是在某个进程环境中创建。系统从进程的地址空间中分配内存，供线程的栈使用。线程只有一个内核对象和一个栈，保留的记录很少，因此所需内存很少。</p>
+
+<p><strong>线程创建函数:</strong></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">HANDLE</span> <span class="n">CreateThread</span><span class="p">(</span>
+  <span class="n">LPSECURITY_ATTRIBUTES</span> <span class="n">lpThreadAttributes</span><span class="p">,</span>
+  <span class="n">DWORD</span> <span class="n">dwStackSize</span><span class="p">,</span>
+  <span class="n">LPTHREAD_START_ROUTINE</span> <span class="n">lpStartAddress</span><span class="p">,</span>
+  <span class="n">LPVOID</span> <span class="n">lpParameter</span><span class="p">,</span>
+  <span class="n">DWORD</span> <span class="n">dwCreationFlags</span><span class="p">,</span>
+  <span class="n">LPDWORD</span> <span class="n">lpThreadID</span>
+  <span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>lpThreadAttributes：指向<code class="highlighter-rouge">SECURITY_ATTRIBUTES</code>结构体指针，可以传递NULL让线程使用默认的安全性。但是，若希望所有的子进程能够继承该线程对象的句柄，就必须设定一个<code class="highlighter-rouge">SECURITY_ATTRIBUTES</code>结构体，将它的<code class="highlighter-rouge">bInheritHandle</code>成员初始化为TRUE</li>
+  <li>dwStackSize；设置线程初始栈的大小，即线程可以将多少地址空间用于它的栈，以字节为单位。若为0，或者小于默认提交的大小，将默认使用与调用该函数的线程相同的栈空间大小。</li>
+  <li>lpStartAddress:指向应用程序定义的<code class="highlighter-rouge">LPTHREAD_START_ROUTINE</code>类型的函数的指针，这个函数将由新线程执行，表明新线程的起始地址。main是主线程的入口器函数，新创建的线程也需要一个入口函数，这个函数的地址由此参数指定。新线程的入口函数名称任意，但是格式必须为<code class="highlighter-rouge">DWORD WINAPI ThreadProc(LPVOID lpParameter)</code>,</li>
+  <li>lpParameter：该参数提供了一种将初始化值传递给线程函数的手段。这个参数的值既可以是一个数值，也可以是指向其他信息的指针</li>
+  <li>dwCreationFlags:设置用于控制线程创建的附加标记。若该值为<code class="highlighter-rouge">CREATE_SUSPENDED</code>,那么咸线程创建后处于暂停状态，直到程序调用ResumeThread函数为止；若该值是0，那么线程在创建之后立即运行</li>
+  <li>lpThreadId：这个参数是一个返回值，它指向一个变量，用来接收线程ID。当创建一个线程时，系统会为该线程分配一个ID。</li>
+</ul>
+
+<p>在程序中，若想让某个线程暂停运行，可调用Sleep函数，该函数可使调用线程暂停自己的运行，直到时间间隔过去，函数声明原型为：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">Sleep</span><span class="p">(</span><span class="n">DWORD</span> <span class="n">dwMilliseconds</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>其参数为指定线程睡眠时间值，以毫秒为单位，参数若为1000，世纪是让线程睡眠1秒。</p>
+
+<p>简单的多线程例子：</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;windows.h&gt;
+#include&lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">DWORD</span> <span class="n">WINAPI</span> <span class="n">Fun1Proc</span><span class="p">(</span><span class="n">LPVOID</span> <span class="n">lpParameter</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">HANDLE</span> <span class="n">hThread1</span><span class="p">;</span><span class="c1">//构造句柄，构造
+</span>  <span class="n">hThread1</span> <span class="o">=</span> <span class="n">CreateThread</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Fun1Proc</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+  <span class="c1">//第一个参数NULL，让新线程使用默认的安全性；
+</span>  <span class="c1">//第二个参数设置为0，让新线程采用与调用线程一样的栈大小；
+</span>  <span class="c1">//第三个参数指定线程1入口函数的地址
+</span>  <span class="c1">//第四个参数是传递给线程1的参数，这里不需要使用这个参数
+</span>  <span class="c1">//第五个参数为线程创建标记，设置为0，让线程一旦创建就运行
+</span>  <span class="c1">//第六个参数为新线程ID，不需要使用该ID，所以将其设置为NULL
+</span>  <span class="n">CloseHandle</span><span class="p">(</span><span class="n">hThread1</span><span class="p">);</span><span class="c1">//关闭线程句柄，析构，让该线程内核对象的引用计数减1
+</span>  <span class="k">while</span><span class="p">(</span><span class="n">index</span><span class="o">++&lt;</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"main thread is running</span><span class="se">\n</span><span class="s">"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="n">Sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+  <span class="n">system</span><span class="p">(</span><span class="s">"pause"</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+<span class="n">DWORD</span> <span class="n">WINAPI</span> <span class="nf">Fun1Proc</span><span class="p">(</span><span class="n">LPVOID</span> <span class="n">lpParameter</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">index</span><span class="o">++&lt;</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Thread1 is running!</span><span class="se">\n</span><span class="s">"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>句柄（handle）是一种特殊的智能指针。当一个应用程序要引用其他系统（如数据库、操作系统）所管理的内存块或对象时，就要使用句柄。句柄与普通指针的区别在于，指针包含的是引用对象的内存地址，而句柄则是由系统所管理的引用标识，该标识可以被系统重新定位到一个内存地址上。
+https://www.zhihu.com/question/27656256
+http://blog.csdn.net/wenzhou1219/article/details/17659485</p>
+</blockquote>
+
+<p><img src="/img/code/C%2B%2B/WinSocket/%E7%AE%80%E5%8D%95%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BE%8B%E5%AD%90.png" alt="简单的多线程例子" /></p>
+
+<blockquote>
+  <p>主线程运行一段时间后，当它的时间片到期后，OS会选择线程1开始运行。为线程1分配一个时间片，当线程1运行一段时间后，时间片到期，OS又开始选择主线程开始运行。于是就看到主线程和线程1交替运行</p>
+</blockquote>
+
+<hr />
+
+<h3 id="互斥对象实现线程同步">互斥对象实现线程同步</h3>
+
+<p>互斥对象(mutex)属于内核对象，能够确保线程拥有对单个资源的互斥访问权。互斥对象包含一个使用数量，一个线程ID和一个计数器。其中ID用于标识系统中的哪个线程当前拥有互斥对象，计数器用于指明该线程拥有互斥对象的次数</p>
+
+<p>为了创建互斥对象，需要调用<code class="highlighter-rouge">CreateMutex</code>函数，该函数可以创建或打开一个命名的或匿名的互斥对象，然后程序就可以利用该互斥对象完成线程间的同步。函数原型声明如下：</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">HANDLE</span> <span class="n">CreateMutex</span><span class="p">(</span>
+  <span class="n">LPSECURITY_ATTRIBUTES</span> <span class="n">lpMutexAttributes</span><span class="p">,</span>
+  <span class="n">BOOL</span> <span class="n">bInitialOwner</span><span class="p">,</span>
+  <span class="n">LPCTSTR</span> <span class="n">lpName</span>
+  <span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>lpMutexAttributes:指向SECURUTY_ATTRIBUTES结构的指针，可以给该参数传递NULL值，让互斥对象使用默认的安全性</li>
+  <li>bInitialOwner:BOOL类型，指定互斥对象初始的拥有者。若为真，则创建这个互斥对象的线程获得该对象的所有权；否则，该线程将不获得所创建的互斥对象的所有权</li>
+  <li>lpName：指定互斥对象的名称。若此参数为NULL，则创建一个匿名的互斥对象。</li>
+</ul>
+
+<p>当线程对共享资源访问结束后，应释放该对象的所有权，即让该对象处于已通知状态。此时调用ReleaseMutex函数，该函数将释放指定对象的所有权。函数声明原型如下：</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">BOOL</span> <span class="n">ReleaseMutex</span><span class="p">(</span><span class="n">HANDLE</span> <span class="n">hMutex</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>线程必须主动请求共享对象的使用权才有可能获得该所有权，这可以通过调用<code class="highlighter-rouge">WaitForSingleObject</code>函数实现，函数原型声明如下：</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">DWORD</span> <span class="n">WaitForSingleObject</span><span class="p">(</span><span class="n">HANDLE</span> <span class="n">hHandle</span><span class="p">,</span> <span class="n">DWORD</span> <span class="n">dwMillisseconds</span><span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>hHandle：所请求对象的句柄。一旦互斥对象处于有信号状态，该函数立即返回；若始终处于无信号状态，即未通知的状态，则该函数就会一直等待，这样就会暂停线程的执行。</li>
+  <li>dwMilliseconds:指定等待的时间间隔，以毫秒为单位。若指定的时间间隔已过，即使所请求的对象仍处于无信号状态，WaitForSingleObject函数也会返回。若将此参数设置为0，那么WaitForSingleObject函数将测试该对象的状态立即返回；若将此参数设置为INFINITE，则函数会永远等待，直到等待的对象处于有信号状态才会返回。</li>
+</ul>
+
+<p>调用<code class="highlighter-rouge">WaitForSingleobject</code>函数后，该函数会一直等待，只有在以下两种情况才会返回：</p>
+
+<ul>
+  <li>指定的对象变成有信号状态</li>
+  <li>指定的等待时间间隔已过</li>
+</ul>
+
+<p>WaitForSingleObject函数可能的返回值：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>返回值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>WAIT_OBJECT_0</td>
+      <td>所请求对象有信号</td>
+    </tr>
+    <tr>
+      <td>WAIT_TIMEOUT</td>
+      <td>所指定的时间间隔已过，并且所请求的对象是无信号状态</td>
+    </tr>
+    <tr>
+      <td>WAIT_ABANDONED</td>
+      <td>所请求的对象是一个互斥对象，并且先前拥有该对象的线程在终止前没有释放该对象。这时，该对象的所有权将授予当前调用线程，并且将该互斥对象被设置为无信号状态</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>例子：</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;windows.h&gt;
+#include&lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+
+<span class="n">DWORD</span> <span class="n">WINAPI</span> <span class="n">Fun1Proc</span><span class="p">(</span><span class="n">LPVOID</span> <span class="n">lpParamter</span><span class="p">);</span>
+<span class="n">DWORD</span> <span class="n">WINAPI</span> <span class="n">Fun2Proc</span><span class="p">(</span><span class="n">LPVOID</span> <span class="n">lpParamter</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">tickets</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">HANDLE</span>  <span class="n">hMutex</span><span class="p">;</span><span class="c1">//定义了一个HANDLE类型的全局变量:hMutex,用于保存即将创建的互斥对象句柄
+</span><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">HANDLE</span> <span class="n">hThread1</span><span class="p">;</span>
+  <span class="n">HANDLE</span> <span class="n">hThread2</span><span class="p">;</span>
+
+  <span class="n">hMutex</span> <span class="o">=</span> <span class="n">CreateMutex</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span><span class="c1">//创建一个匿名的互斥对象
+</span>  <span class="c1">//FALSE表明当前没有线程拥有这个互斥对象，
+</span>  <span class="c1">//于是OS将会将该互斥对象设置为有信号状态
+</span>  <span class="n">hThread1</span> <span class="o">=</span> <span class="n">CreateThread</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Fun1Proc</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+  <span class="n">hThread2</span> <span class="o">=</span> <span class="n">CreateThread</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Fun2Proc</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+  <span class="n">CloseHandle</span><span class="p">(</span><span class="n">hThread1</span><span class="p">);</span>
+  <span class="n">CloseHandle</span><span class="p">(</span><span class="n">hThread2</span><span class="p">);</span>
+
+  <span class="n">Sleep</span><span class="p">(</span><span class="mi">4000</span><span class="p">);</span>
+  <span class="n">system</span><span class="p">(</span><span class="s">"pause"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">DWORD</span> <span class="n">WINAPI</span> <span class="nf">Fun1Proc</span><span class="p">(</span><span class="n">LPVOID</span> <span class="n">lpParamter</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="cm">/*在需要保护的代码前添加WaitForSingleObject函数的调用，
+    让其请求互斥对象的所有权，这样线程1和线程2就会一直等待，
+    除非所请求的对象处于有信号状态。在线程1和线程2访问它们
+    共享的全局变量tickets之前，添加WaitForSingleObject语句实现线程同步*/</span>
+    <span class="n">WaitForSingleObject</span><span class="p">(</span><span class="n">hMutex</span><span class="p">,</span> <span class="n">INFINITE</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tickets</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Thread1 sell ticket: "</span> <span class="o">&lt;&lt;</span> <span class="n">tickets</span><span class="o">--</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">else</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="n">ReleaseMutex</span><span class="p">(</span><span class="n">hMutex</span><span class="p">);</span><span class="c1">//对互斥对象来说，谁拥有谁释放
+</span>  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">DWORD</span> <span class="n">WINAPI</span> <span class="nf">Fun2Proc</span><span class="p">(</span><span class="n">LPVOID</span> <span class="n">lpParamter</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">TRUE</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">WaitForSingleObject</span><span class="p">(</span><span class="n">hMutex</span><span class="p">,</span> <span class="n">INFINITE</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tickets</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Thread2 sell ticket: "</span> <span class="o">&lt;&lt;</span> <span class="n">tickets</span><span class="o">--</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">else</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="cm">/*当对所要保护的代码操作完成之后，应该调用ReleaseMutex函数
+    释放当前线程对互斥对象的所有权，从而获得对共享资源的访问*/</span>
+    <span class="n">ReleaseMutex</span><span class="p">(</span><span class="n">hMutex</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="/img/code/C%2B%2B/WinSocket/%E4%BA%92%E6%96%A5%E5%AF%B9%E8%B1%A1%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B.png" alt="互斥对象实现线程同步" /></p>
+
+<p>=================================</p>
+
+<p><strong>保证应用程序只有一个实例运行：</strong></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;windows.h&gt;
+#include&lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+
+<span class="n">DWORD</span> <span class="n">WINAPI</span> <span class="n">Fun1Proc</span><span class="p">(</span><span class="n">LPVOID</span> <span class="n">lpParamter</span><span class="p">);</span>
+<span class="n">DWORD</span> <span class="n">WINAPI</span> <span class="n">Fun2Proc</span><span class="p">(</span><span class="n">LPVOID</span> <span class="n">lpParamter</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">tickets</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">HANDLE</span>  <span class="n">hMutex</span><span class="p">;</span><span class="c1">//定义了一个HANDLE类型的全局变量:hMutex,用于保存即将创建的互斥对象句柄
+</span><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">HANDLE</span> <span class="n">hThread1</span><span class="p">;</span>
+  <span class="n">HANDLE</span> <span class="n">hThread2</span><span class="p">;</span>
+
+  <span class="n">hMutex</span> <span class="o">=</span> <span class="n">CreateMutex</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">TRUE</span><span class="p">,</span><span class="s">"tickets"</span><span class="p">);</span><span class="c1">//创建一个匿名的互斥对象
+</span>  <span class="c1">//FALSE表明当前没有线程拥有这个互斥对象，
+</span>  <span class="c1">//于是OS将会将该互斥对象设置为有信号状态
+</span>  <span class="k">if</span> <span class="p">(</span><span class="n">hMutex</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ERROR_ALREADY_EXISTS</span> <span class="o">==</span> <span class="n">GetLastError</span><span class="p">())</span> <span class="p">{</span>
+      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"only one instance can run!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+      <span class="n">system</span><span class="p">(</span><span class="s">"pause"</span><span class="p">);</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+  
+  <span class="p">}</span>
+  <span class="n">hThread1</span> <span class="o">=</span> <span class="n">CreateThread</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Fun1Proc</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+  <span class="n">hThread2</span> <span class="o">=</span> <span class="n">CreateThread</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Fun2Proc</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+  <span class="n">CloseHandle</span><span class="p">(</span><span class="n">hThread1</span><span class="p">);</span>
+  <span class="n">CloseHandle</span><span class="p">(</span><span class="n">hThread2</span><span class="p">);</span>
+  <span class="n">WaitForSingleObject</span><span class="p">(</span><span class="n">hMutex</span><span class="p">,</span> <span class="n">INFINITE</span><span class="p">);</span>
+  <span class="n">ReleaseMutex</span><span class="p">(</span><span class="n">hMutex</span><span class="p">);</span>
+  <span class="n">ReleaseMutex</span><span class="p">(</span><span class="n">hMutex</span><span class="p">);</span>
+
+  <span class="n">Sleep</span><span class="p">(</span><span class="mi">4000</span><span class="p">);</span>
+  <span class="n">system</span><span class="p">(</span><span class="s">"pause"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">DWORD</span> <span class="n">WINAPI</span> <span class="nf">Fun1Proc</span><span class="p">(</span><span class="n">LPVOID</span> <span class="n">lpParamter</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="cm">/*在需要保护的代码前添加WaitForSingleObject函数的调用，
+    让其请求互斥对象的所有权，这样线程1和线程2就会一直等待，
+    除非所请求的对象处于有信号状态。在线程1和线程2访问它们
+    共享的全局变量tickets之前，添加WaitForSingleObject语句实现线程同步*/</span>
+    <span class="n">WaitForSingleObject</span><span class="p">(</span><span class="n">hMutex</span><span class="p">,</span> <span class="n">INFINITE</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tickets</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Thread1 sell ticket: "</span> <span class="o">&lt;&lt;</span> <span class="n">tickets</span><span class="o">--</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">else</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="n">ReleaseMutex</span><span class="p">(</span><span class="n">hMutex</span><span class="p">);</span><span class="c1">//对互斥对象来说，谁拥有谁释放
+</span>  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">DWORD</span> <span class="n">WINAPI</span> <span class="nf">Fun2Proc</span><span class="p">(</span><span class="n">LPVOID</span> <span class="n">lpParamter</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">TRUE</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">WaitForSingleObject</span><span class="p">(</span><span class="n">hMutex</span><span class="p">,</span> <span class="n">INFINITE</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tickets</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Thread2 sell ticket: "</span> <span class="o">&lt;&lt;</span> <span class="n">tickets</span><span class="o">--</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">else</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="cm">/*当对所要保护的代码操作完成之后，应该调用ReleaseMutex函数
+    释放当前线程对互斥对象的所有权，从而获得对共享资源的访问*/</span>
+    <span class="n">ReleaseMutex</span><span class="p">(</span><span class="n">hMutex</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="/img/code/C%2B%2B/WinSocket/%E4%B8%80%E4%B8%AA%E5%AE%9E%E4%BE%8B%E8%BF%90%E8%A1%8C.png" alt="保证应用程序只有一个实例运行" /></p>
+
+<h3 id="事件对象">事件对象</h3>
+
+<p>事件对象也属于内核对象，它包含以下三个成员：</p>
+
+<ul>
+  <li>使用计数</li>
+  <li>用于指明该事件是一个自动重置的事件还是一个人工重置的事件的布尔值</li>
+  <li>用于指明该事件处于已通知状态还是未通知状态的布尔值</li>
+</ul>
+
+<p>事件对象有两种不同的类型：<strong>人工重置的事件对象</strong>和<strong>自动重置的事件对象</strong>。当人工重置的事件对象得到通知时，等待该事件对象的所有线程均变为可调度线程。当一个自动重置的事件对象得到通知时，等待该事件对象的线程中只有一个线程变为可调度线程。</p>
+
+<h4 id="创建事件对象">创建事件对象</h4>
+
+<p>在程序中可以通过CreateEvent函数创建或打开一个命名的或匿名的事件对象，该函数的原型声明如下：</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">HANDLE</span> <span class="n">CreateEvent</span><span class="p">(</span>
+  <span class="n">LPSECURITY_ATTRIBUTES</span> <span class="n">lpEventAttributes</span><span class="p">,</span>
+  <span class="n">BOOL</span> <span class="n">bManualReset</span><span class="p">,</span>
+  <span class="n">BOOL</span> <span class="n">bInitialState</span><span class="p">,</span>
+  <span class="n">LPCTSTR</span> <span class="n">lpName</span>
+  <span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>lpEventAttributes:指向SECURITY_ATTRIBUTES结构体的指针。若为空，则使用默认的安全性</li>
+  <li>bManualRset：BOOL类型，指定创建的是人工重置事件对象，还是自动重置事件对象。若此参数为TRUE，表示该函数将创建一个人工重置对象；反之，创建自动重置对象。若为人工重置对象，当线程等待到该对象的所有权之后，需要调用ResetEvent函数手动地将该事件对象设置为无信号状态；若自动重置事件对象，当线程等到该对象的所有权之后，系统会自动将该对象设置为无信号状态</li>
+  <li>bInitialState：BOOL类型，指定事件对象的初始状态。若此参数为真，那么该事件对象初始是有信号状态；否则是无信号状态。</li>
+  <li>lpName:指定事件对象的名称，若此参数值为NULL，那么将创建一个匿名的事件对象</li>
+</ul>
+
+<h4 id="设置事件对象状态">设置事件对象状态</h4>
+
+<p>SetEvent函数将把指定的事件对象设置为有信号状态，该函数的原型声明如下所示：</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">BOOL</span> <span class="n">SetEvent</span><span class="p">(</span><span class="n">HANDLE</span> <span class="n">hEvent</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>SetEvent函数有一个HANDLE类型的参数，该参数指定将要设置其状态的事件对象的句柄。</p>
+
+<h4 id="重置事件对象状态">重置事件对象状态</h4>
+
+<p>ResetEvent函数将把指定的事件对象设置为无信号状态，该函数的原型声明如下：</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">BOOL</span> <span class="n">ResetEvent</span><span class="p">(</span><span class="n">HANDLE</span> <span class="n">hEvent</span><span class="p">);</span>
+</code></pre></div></div>
+<p>ResetEvent函数有一个HANDLE类型的参数，该参数指定将要重置其状态的事件对象的句柄。调用成功为非0，失败为0.</p>
+
+<p><strong>当人工重置的事件对象得到通知时，等待该事件对象的所有线程均变为可调度线程；当一个自动重置的事件对象得到通知时，等待该事件对象的线程中只有一个线程变为可调度线程，同时OS会将该事件对象设置无信号状态，这样当对所保护的代码执行完成后，需要调用SetEvent函数将该事件对象设置为有信号状态。而人工重置的事件对象，在一个线程得到该事件对象之后，OS并不会将该事件对象设置为无信号状态，除非显示地调用ResetEvent函数将其设置为无信号状态，否则该对象会一直是有信号状态</strong></p>
+
+<h3 id="关键代码段">关键代码段</h3>
+
+<p>关键代码段，也称为临界区，工作在用户方式下，是指一个小代码段，在代码能够执行前，其必须独占对某些资源的访问权。</p>
+
+<p>在进入关键代码之前，首先需要初始化关键代码段，这可以调用<code class="highlighter-rouge">InitializeCriticalSection</code>函数实现，该函数原型如下：</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">InitializeCriticalSection</span><span class="p">(</span><span class="n">LPCRITICAL_SECTION</span> <span class="n">lpCriticalSection</span><span class="p">);</span>
+</code></pre></div></div>
+<p>该函数的参数是一个指向CRITICAL_SECTION结构体的指针。该参数是out类型，即作为返回值使用。在使用时，需要构造一个CRITICAL_SECTION结构体类型的对象，然后将该对象的地址传递给InitializeCriticalSection函数，系统自动维护该对象。</p>
+
+<p>想要进入关键代码段，首先需要调用EnterCriticalSection函数，以获得指定的临界区对象的所有权。该函数等待指定的临界区对象的所有权，若该所有权赋予了调用线程，则该函数就返回；否则该函数会一直等待，从而导致线程等待。
+当调用程序获得了临界区对象的所有权后，该线程就进入关键代码段，对所保护的资源进行访问。
+在线程使用完所保护的资源之后，需要调用LeaveCriticalSection函数，释放指定的临界区对象的所有权，之后其他想要获得该临界区对象所有权的线程就可以获得该所有权，从而进入关键代码段，访问保护的资源。
+对临界区对象来说，不再需要时，需要调用DeleteCriticalSection函数释放该对象，该函数将释放一个没有被任何线程所拥有的临界区对象的所有资源。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;windows.h&gt;
+#include&lt;iostream&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="n">DWORD</span> <span class="n">WINAPI</span> <span class="n">Fun1Proc</span><span class="p">(</span><span class="n">LPVOID</span> <span class="n">lpParameter</span><span class="p">);</span>
+<span class="n">DWORD</span> <span class="n">WINAPI</span> <span class="n">Fun2Proc</span><span class="p">(</span><span class="n">LPVOID</span> <span class="n">lpParammeter</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="n">tickets</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">CRITICAL_SECTION</span> <span class="n">g_cs</span><span class="p">;</span><span class="c1">//定义临界区对象
+</span>
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="n">HANDLE</span> <span class="n">hThread1</span><span class="p">;</span>
+  <span class="n">HANDLE</span> <span class="n">hThread2</span><span class="p">;</span>
+  <span class="n">hThread1</span> <span class="o">=</span> <span class="n">CreateThread</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Fun1Proc</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+  <span class="n">hThread2</span> <span class="o">=</span> <span class="n">CreateThread</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Fun2Proc</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+  <span class="n">CloseHandle</span><span class="p">(</span><span class="n">hThread1</span><span class="p">);</span>
+  <span class="n">CloseHandle</span><span class="p">(</span><span class="n">hThread2</span><span class="p">);</span>
+
+  <span class="n">InitializeCriticalSection</span><span class="p">(</span><span class="o">&amp;</span><span class="n">g_cs</span><span class="p">);</span><span class="c1">//创建临界区
+</span>  <span class="n">Sleep</span><span class="p">(</span><span class="mi">4000</span><span class="p">);</span>
+  <span class="n">system</span><span class="p">(</span><span class="s">"pause"</span><span class="p">);</span>
+  <span class="n">DeleteCriticalSection</span><span class="p">(</span><span class="o">&amp;</span><span class="n">g_cs</span><span class="p">);</span>
+  <span class="c1">//释放未被任何线程使用的临界区对象的所有资源
+</span><span class="p">}</span>
+
+<span class="n">DWORD</span> <span class="n">WINAPI</span> <span class="nf">Fun1Proc</span><span class="p">(</span><span class="n">LPVOID</span> <span class="n">lpParameter</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">TRUE</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//判断能否得到指定的临界区对象的所有权
+</span>    <span class="c1">//若无法得到该所有权，那么EnterCriticalSection会一直等待，从而导致线程暂停运行
+</span>    <span class="c1">//若能得到该所有权，那么该线程就进入到关键代码段中，访问受保护的资源
+</span>    <span class="n">EnterCriticalSection</span><span class="p">(</span><span class="o">&amp;</span><span class="n">g_cs</span><span class="p">);</span>
+    <span class="n">Sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tickets</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+
+      <span class="n">Sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Threa1 sell tickets: "</span> <span class="o">&lt;&lt;</span> <span class="n">tickets</span><span class="o">--</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+      <span class="n">LeaveCriticalSection</span><span class="p">(</span><span class="o">&amp;</span><span class="n">g_cs</span><span class="p">);</span>
+      <span class="c1">//访问完受保护的资源之后调用LeaveCriticalsection函数，
+</span>      <span class="c1">//释放指定的临界区对象的所有权
+</span>    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="n">LeaveCriticalSection</span><span class="p">(</span><span class="o">&amp;</span><span class="n">g_cs</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">DWORD</span> <span class="n">WINAPI</span> <span class="nf">Fun2Proc</span><span class="p">(</span><span class="n">LPVOID</span> <span class="n">lpParameter</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">TRUE</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">EnterCriticalSection</span><span class="p">(</span><span class="o">&amp;</span><span class="n">g_cs</span><span class="p">);</span>
+    <span class="n">Sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tickets</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">Sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Thread2 sell ticket: "</span> <span class="o">&lt;&lt;</span> <span class="n">tickets</span><span class="o">--</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+      <span class="n">LeaveCriticalSection</span><span class="p">(</span><span class="o">&amp;</span><span class="n">g_cs</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="n">LeaveCriticalSection</span><span class="p">(</span><span class="o">&amp;</span><span class="n">g_cs</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+
+  <span class="p">}</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"thread2 is runnning1"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="/img/code/C%2B%2B/WinSocket/%E4%B8%B4%E7%95%8C%E5%8C%BA.png" alt="临界区" /></p>
+
+<h2 id="异步阻塞">异步、阻塞</h2>
+
+<p>参考：</p>
+<ul>
+  <li><a href="https://www.zybuluo.com/phper/note/595507">1：</a>https://www.zybuluo.com/phper/note/595507</li>
+  <li><a href="https://www.zhihu.com/question/19732473">2：</a>https://www.zhihu.com/question/19732473</li>
+</ul>
+
+<h3 id="异步与同步">异步与同步</h3>
+
+<p><strong>异步和同步的重点在于消息通知的方式上，即调用结果通知的方式。</strong></p>
+
+<ul>
+  <li><strong>同步：</strong>当一个同步调用发出去之后，调用者要一直等待调用结果的通知后，才能进行后续的执行。</li>
+  <li><strong>异步：</strong>当一个异步调用发出去之后，调用者不能立即得到调用结果的返回。要想获得结果，一般有两种方式：</li>
+  <li>主动轮询异步调用的结果</li>
+  <li>被调用方通过callback来通知调用方调用结果</li>
+</ul>
+
+<p><strong>生活中的例子：</strong></p>
+
+<ul>
+  <li>
+    <p>同步买奶茶：小明点单交钱，然后等着拿奶茶；异步买奶茶：小明点单交钱，店员给小明一个小票，等小明奶茶做好了，再来取。</p>
+  </li>
+  <li>
+    <p>异步买奶茶: 小明要想知道奶茶是否做好了，有两种方式：</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>小明主动去问店员，一会就去问一下：“奶茶做好了吗？”…直到奶茶做好。这叫轮训。
+等奶茶做好了，店员喊一声：“小明，奶茶好了！”，然后小明去取奶茶。这叫回调</p>
+</blockquote>
+
+<h3 id="阻塞和非阻塞">阻塞和非阻塞</h3>
+
+<p><strong>阻塞和非阻塞重点在于进程/线程等待消息时候的行为，也就是在等待消息的时候，当前进程/线程是否挂起。</strong></p>
+
+<ul>
+  <li><strong>阻塞：</strong>在发出调用之后，消息返回之前，当前进程/线程会被挂起，直到有消息返回，当前进程/线程才会被激活</li>
+  <li><strong>非阻塞：</strong>调用发出去之后，不会阻塞当前进程/线程，而会立即返回。</li>
+</ul>
+
+<p><strong>生活中的例子：</strong></p>
+
+<ul>
+  <li>阻塞买奶茶：小明点单交钱，干等着拿奶茶，什么事都不做；</li>
+  <li>非阻塞买奶茶：小明点单交钱，等着拿奶茶，等的过程中，时不时刷刷微博、朋友圈。</li>
+</ul>
+
+<ol>
+  <li>同步阻塞：小明在柜台干等着拿奶茶；</li>
+  <li>同步非阻塞：小明在柜台边刷微博边等着拿奶茶；</li>
+  <li>异步阻塞：小明拿着小票啥都不干，一直等着店员通知他拿奶茶；</li>
+  <li>异步非阻塞：小明拿着小票，刷着微博，等着店员通知他拿奶茶。</li>
+</ol>
+
+<h2 id="windows套接字io模型">Windows套接字I/O模型</h2>
+
+<p>Winsock提供了一些I/O模型帮助应用程序以异步方式在一个或多个套接字上管理I/O。</p>
+
+<p>I/O模型大概分为6种：</p>
+
+<ul>
+  <li>阻塞(blocking)模型</li>
+  <li>选择(select)模型</li>
+  <li>WSAAsyncSelect模型</li>
+  <li>WSAEventSelect模型</li>
+  <li>重叠(overlapped)模型</li>
+  <li>完成端口(completion port)模型</li>
+</ul>
+
+<h3 id="阻塞模式">阻塞模式</h3>
+
+<p>套接字创建时，默认为阻塞模式。如recv函数的调用会使程序进入等待状态，直到接收到数据才返回。
+阻塞套接字的好处是使用简单，但当需要处理多个套接字连接时，就必须创建多个线程，即典型的一个连接使用一个线程的问题。</p>
+
+<h3 id="非阻塞模式">非阻塞模式</h3>
+
+<p>应用程序可以调用<code class="highlighter-rouge">ioctlsocket</code>函数显示地让套接字工作在非阻塞模式下。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">u_long</span> <span class="n">ul</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">SOCKET</span> <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ioctlsocket</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">FIONBIO</span><span class="p">,(</span><span class="n">u_long</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ul</span><span class="p">);</span>
+<span class="c1">//此属性的作用是“允许或者禁止套接字的非阻塞模式”
+</span></code></pre></div></div>
+
+<p>一旦套接字被置于非阻塞模式下，处理发送和接收数据或者管理连接的Winsock调用将会立即返回。大多数情况下，调用失败的出错代码是WSAEWOULDBLOCK，这意味着操作在调用期间没有完成。例如，系统输入缓冲区没有待处理的数据，那么对recv的调用将返回WSAEWOULDBLOCK。通常，要对相同函数调用多次，直到返回成功为止。</p>
+
+<p><strong>非阻塞调用经常以WSAEWOULDBLOCK出错代码失败，所以将套接字设置为非阻塞之后，关键的问题在于如何确定套接字什么时候可读/可写，也就是确定网络事件何时发生</strong></p>
+
+<h3 id="选择select模型">选择(select)模型</h3>
+
+<p>select模型是一个广泛在Winsock中使用的I/O模型，称它为select模型，其主要用select函数来管理I/O。其目的是允许那些想要避免在套接字调用非阻塞的应用程序有能力管理多个套接字。</p>
+
+<h4 id="select函数">select函数</h4>
+
+<p>select()函数可以确定一个套接字或多个套接字的状态。若套接字没有网络事件发生，便进入等待状态，以便执行同步I/O.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">select</span><span class="p">(</span>
+    <span class="kt">int</span> <span class="n">nfds</span><span class="p">,</span> <span class="c1">//忽略，仅是为了与Berkeley套接字兼容
+</span>    <span class="n">fd_set</span><span class="o">*</span> <span class="n">readfds</span><span class="p">,</span> <span class="c1">//指向一个套接字集合，用来检查其可读性
+</span>    <span class="n">fd_set</span><span class="o">*</span> <span class="n">writefds</span><span class="p">,</span> <span class="c1">//指向一个套接字集合，用来检测其可读性
+</span>    <span class="n">fd_set</span><span class="o">*</span> <span class="n">exceptfds</span><span class="p">,</span> <span class="c1">//指向一个套接字集合，用来检测错误
+</span>    <span class="k">const</span> <span class="k">struct</span> <span class="n">timeval</span><span class="o">*</span> <span class="n">timeout</span> <span class="c1">//指定此函数等待的最长时间，如果为NULL，则最长时间为无限大
+</span>    <span class="p">);</span>
+</code></pre></div></div>
+
+<p>函数调用成功，返回发生网络事件的所有套接字数量总和。若超出了时间限制，返回0，失败则返回SOCKET_ERROR。</p>
+
+<p><strong>套接字集合：</strong></p>
+
+<p><code class="highlighter-rouge">fd_set</code>结构可以把多个套接字连在一起，形成套接字集合。select函数可以测试这个集合中哪些套接字有事件发生。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">fd_set</span><span class="p">{</span>
+  <span class="n">u_int</span> <span class="n">fd_count</span><span class="p">;</span>
+  <span class="n">SOCKET</span> <span class="n">fd_array</span><span class="p">[</span><span class="n">FD_SETSIZE</span><span class="p">];</span>
+<span class="p">}</span><span class="n">fd_set</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>以下是WINSOCK定义的4个操作<code class="highlighter-rouge">fd_set</code>套接字集合的宏：</p>
+<ul>
+  <li><code class="highlighter-rouge">FD_ZERO(*set)</code>:初始化set为空集合。集合在使用前应该总是清空。</li>
+  <li><code class="highlighter-rouge">FD_CLR(s, *set)</code>：从set移除套接字s</li>
+  <li><code class="highlighter-rouge">FD_SET(s, *set)</code>:添加套接字到集合</li>
+</ul>
+
+<p><strong>网络事件：</strong></p>
+
+<p>select函数返回之后，若有下列事件发生，其对应的套接字就会被标识：</p>
+
+<ul>
+  <li>readfds集合
+    <ul>
+      <li>数据可读</li>
+      <li>连接已经关闭、重启或者中断</li>
+      <li>若listen已经被调用，并且有一个连接未决，accept函数将成功</li>
+    </ul>
+  </li>
+  <li>writefds集合
+    <ul>
+      <li>数据能够发送</li>
+      <li>若一个非阻塞连接调用正在被处理，连接已经成功</li>
+    </ul>
+  </li>
+  <li>exceptfds集合
+    <ul>
+      <li>若一个非阻塞连接调用正在被处理，连接失败</li>
+      <li>OOB数据可读</li>
+    </ul>
+  </li>
+</ul>
+
+<p>当select返回时，它通过移除没有未决I/O操作的套接字句柄修改每个fd_set集合。例如，想要测试套接字s是否可读时，必须将它添加到readfds集合，然后等待select函数返回。当select调用完成后再确定s是否仍然还在readfds集合中，若还在，就说明s可读了。三个参数中的任意两个都可以是NULL（至少要有一个不是NULL），任何不是NULL的集合必须至少包含一个套接字句柄。</p>
+
+<p><strong>设置超时：</strong></p>
+
+<p>最后的参数timeout是timeval结构的指针，它指定了select函数等待的最长时间。若设置为NULL，select将会无限阻塞，直到有网络事件发生。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">timeval</span><span class="p">{</span>
+  <span class="kt">long</span> <span class="n">tv_sec</span><span class="p">;</span><span class="c1">//指示等待多少秒
+</span>  <span class="kt">long</span> <span class="n">tv_usec</span><span class="p">;</span><span class="c1">//指示等待多少毫秒
+</span><span class="p">}</span><span class="n">timeval</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>例子：
+程序运行之后，在4567端口监听，接受客户端连接请求，打印出接收到的数据。(即便是在单个线程内，也可管理多个套接字)</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include "../common/initsock.h"
+#include &lt;stdio.h&gt;
+</span>
+<span class="n">CInitSock</span> <span class="n">theSock</span><span class="p">;</span>    <span class="c1">// 初始化Winsock库
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">USHORT</span> <span class="n">nPort</span> <span class="o">=</span> <span class="mi">4567</span><span class="p">;</span>  <span class="c1">// 此服务器监听的端口号
+</span>
+  <span class="c1">// 创建监听套节字
+</span>  <span class="n">SOCKET</span> <span class="n">sListen</span> <span class="o">=</span> <span class="o">::</span><span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="n">IPPROTO_TCP</span><span class="p">);</span> 
+  <span class="n">sockaddr_in</span> <span class="n">sin</span><span class="p">;</span>
+  <span class="n">sin</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
+  <span class="n">sin</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="n">nPort</span><span class="p">);</span>
+  <span class="n">sin</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">S_un</span><span class="p">.</span><span class="n">S_addr</span> <span class="o">=</span> <span class="n">INADDR_ANY</span><span class="p">;</span>
+  <span class="c1">// 绑定套节字到本地机器
+</span>  <span class="k">if</span><span class="p">(</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="n">sListen</span><span class="p">,</span> <span class="p">(</span><span class="n">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">sin</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">sin</span><span class="p">))</span> <span class="o">==</span> <span class="n">SOCKET_ERROR</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">" Failed bind() </span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="c1">// 进入监听模式
+</span>  <span class="o">::</span><span class="n">listen</span><span class="p">(</span><span class="n">sListen</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+
+    <span class="c1">// select模型处理过程
+</span>  <span class="c1">// 1）初始化一个套节字集合fdSocket，添加监听套节字句柄到这个集合
+</span>  <span class="n">fd_set</span> <span class="n">fdSocket</span><span class="p">;</span>    <span class="c1">// 所有可用套节字集合
+</span>  <span class="n">FD_ZERO</span><span class="p">(</span><span class="o">&amp;</span><span class="n">fdSocket</span><span class="p">);</span>
+  <span class="n">FD_SET</span><span class="p">(</span><span class="n">sListen</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">fdSocket</span><span class="p">);</span>
+  <span class="k">while</span><span class="p">(</span><span class="n">TRUE</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// 2）将fdSocket集合的一个拷贝fdRead传递给select函数，
+</span>    <span class="c1">// 当有事件发生时，select函数移除fdRead集合中没有未决I/O操作的套节字句柄，然后返回。
+</span>    <span class="n">fd_set</span> <span class="n">fdRead</span> <span class="o">=</span> <span class="n">fdSocket</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">nRet</span> <span class="o">=</span> <span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">fdRead</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">nRet</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="c1">// 3）通过将原来fdSocket集合与select处理过的fdRead集合比较，
+</span>      <span class="c1">// 确定都有哪些套节字有未决I/O，并进一步处理这些I/O。
+</span>      <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">fdSocket</span><span class="p">.</span><span class="n">fd_count</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">FD_ISSET</span><span class="p">(</span><span class="n">fdSocket</span><span class="p">.</span><span class="n">fd_array</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">fdRead</span><span class="p">))</span>
+        <span class="p">{</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">fdSocket</span><span class="p">.</span><span class="n">fd_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">sListen</span><span class="p">)</span>   <span class="c1">// （1）监听套节字接收到新连接
+</span>          <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">fdSocket</span><span class="p">.</span><span class="n">fd_count</span> <span class="o">&lt;</span> <span class="n">FD_SETSIZE</span><span class="p">)</span>
+            <span class="p">{</span>
+              <span class="n">sockaddr_in</span> <span class="n">addrRemote</span><span class="p">;</span>
+              <span class="kt">int</span> <span class="n">nAddrLen</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">addrRemote</span><span class="p">);</span>
+              <span class="n">SOCKET</span> <span class="n">sNew</span> <span class="o">=</span> <span class="o">::</span><span class="n">accept</span><span class="p">(</span><span class="n">sListen</span><span class="p">,</span> <span class="p">(</span><span class="n">SOCKADDR</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">addrRemote</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">nAddrLen</span><span class="p">);</span>
+              <span class="n">FD_SET</span><span class="p">(</span><span class="n">sNew</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">fdSocket</span><span class="p">);</span>
+              <span class="n">printf</span><span class="p">(</span><span class="s">"接收到连接（%s）</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">::</span><span class="n">inet_ntoa</span><span class="p">(</span><span class="n">addrRemote</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">));</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+              <span class="n">printf</span><span class="p">(</span><span class="s">" Too much connections! </span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+              <span class="k">continue</span><span class="p">;</span>
+            <span class="p">}</span>
+          <span class="p">}</span>
+          <span class="k">else</span>
+          <span class="p">{</span>
+            <span class="kt">char</span> <span class="n">szText</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+            <span class="kt">int</span> <span class="n">nRecv</span> <span class="o">=</span> <span class="o">::</span><span class="n">recv</span><span class="p">(</span><span class="n">fdSocket</span><span class="p">.</span><span class="n">fd_array</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">szText</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">szText</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">nRecv</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>           <span class="c1">// （2）可读
+</span>            <span class="p">{</span>
+              <span class="n">szText</span><span class="p">[</span><span class="n">nRecv</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'\0'</span><span class="p">;</span>
+              <span class="n">printf</span><span class="p">(</span><span class="s">"接收到数据：%s </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">szText</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span>                <span class="c1">// （3）连接关闭、重启或者中断
+</span>            <span class="p">{</span>
+              <span class="o">::</span><span class="n">closesocket</span><span class="p">(</span><span class="n">fdSocket</span><span class="p">.</span><span class="n">fd_array</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+              <span class="n">FD_CLR</span><span class="p">(</span><span class="n">fdSocket</span><span class="p">.</span><span class="n">fd_array</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">fdSocket</span><span class="p">);</span>
+            <span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">" Failed select() </span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="/img/code/C%2B%2B/WinSocket/select.png" alt="select服务器" /></p>
+
+<p>使用select的好处是程序能够在单个线程内同时处理多个套接字连接，避免了阻塞模式下的线程膨胀问题。但是，添加到fd_set结构的套接字数量是有限的，默认情况下，最大值是FD_SETSIZE,它在winsock2.h文件中定义为64.为了增加套接字数量，应用程序可以将FD_SETSIZE定义为更大的值，通常不能超过1024.FD_SETSIZE值太大的话，服务器性能受到影响。</p>
+
+<h3 id="wsaasyncselect模型">WSAAsyncSelect模型</h3>
+
+<p>WSAAsyncSelect模型允许应用程序以Windows消息的形式接收网络事件通知。其是为了适应Windows的消息驱动环境而设置的。</p>
+
+<p><code class="highlighter-rouge">WSAAsyncSelect</code>函数自动把套接字设为非阻塞模式，并且为套接字绑定一个窗口句柄，当有网络事件发生时，便向这个窗口发送消息。函数用法如下：</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">WSAAsyncSelect</span><span class="p">(</span>
+    <span class="n">SOCKET</span> <span class="n">s</span><span class="p">,</span><span class="c1">//需要设置的套接字句柄
+</span>    <span class="n">HWND</span> <span class="n">hWnd</span><span class="p">,</span><span class="c1">//指定一个窗口句柄
+</span>    <span class="c1">//套接字的通知消息将被发送到与其对应的窗口过程
+</span>    <span class="n">u_int</span> <span class="n">wMsg</span><span class="p">,</span><span class="c1">//网络事件到来时接收到的消息ID
+</span>    <span class="c1">//可以在WM_USER以上的数值中任意选择一个用作ID
+</span>    <span class="kt">long</span> <span class="n">lEvent</span><span class="c1">//指定哪些通知码需要发送
+</span>  <span class="p">)</span>
+</code></pre></div></div>
+
+<p>最后一个参数IEvent指定了要发送的通知码，可以是如下取值的组合：</p>
+
+<ul>
+  <li>FD_READ:套接字接收到对方发送过来的数据包，表明这时可以去读套接字了</li>
+  <li>FD_WRITE：数据缓冲区满后再次变为空时，WinSock接口通过该通知码通知应用程序。表示可以发送数据了(短时间发送过多，便会造成数据缓冲区变满)</li>
+  <li>FD_ACCEPT:监听中的套接字检测到有连接进入</li>
+  <li>FD_CONNECT:若用套接字去连接对方的主机，当连接动作完成以后会接收到这个通知码</li>
+  <li>FD_CLOSE：检测到套接字对应的连接被关闭</li>
+</ul>
+
+<p>在监听套接字时可如此调用WSAAsynvSelect函数：</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">::</span><span class="n">WSAAsyncSelect</span><span class="p">(</span><span class="n">sListen</span><span class="p">,</span><span class="n">hWnd</span><span class="p">,</span><span class="n">WM_SOCKET</span><span class="p">,</span><span class="n">FD_ACCEPT</span><span class="o">|</span><span class="n">FD_CLOSE</span><span class="p">);</span>
+<span class="c1">//WM_SOCKET为自定义消息
+</span></code></pre></div></div>
+
+<p>上述代码将套接字sListen设为窗口通知消息类型。WM_SOCKET为自定义网络通知消息，<code class="highlighter-rouge">FD_CLOSE|FD_ACCEPT</code>指定了sListen套接字只接收两个消息。当有客户连接或套接字关闭时，Winsock接口将向指定的窗口发送WM_SOCKET消息。</p>
+
+<p>成功调用WSAAsyncSelect之后，应用程序便开始以Windows消息的形式在窗口函数接收网络事件通知，窗口函数的定义：</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">LRESULT</span> <span class="n">CALLBACK</span> <span class="n">WindowProc</span><span class="p">(</span><span class="n">HWND</span> <span class="n">hWnd</span><span class="p">,</span><span class="n">UINT</span> <span class="n">uMsg</span><span class="p">,</span><span class="n">WPARAM</span> <span class="n">wParam</span><span class="p">,</span> <span class="n">LPARAM</span> <span class="n">lParam</span><span class="p">);</span>
+</code></pre></div></div>
+<p>wParam参数指定了发生网络事件的套接字句柄，lParam参数的低字位指定了发生的网络事件，高字位包含了任何可能出现的错误代码，可以使宏WSAGETSELECTERROR和WSAGETSELECTEVENT将这些信息取出。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include"../../common/initsock.h"
+</span>
+<span class="cp">#include&lt;stdio.h&gt;
+</span>
+<span class="cp">#define WM_SOCKET WM_USER + 101
+</span>
+<span class="n">CInitSock</span> <span class="n">theSock</span><span class="p">;</span>
+
+<span class="n">LRESULT</span> <span class="n">CALLBACK</span> <span class="n">WindowProc</span><span class="p">(</span><span class="n">HWND</span> <span class="n">hwnd</span><span class="p">,</span> <span class="n">UINT</span> <span class="n">uMsg</span><span class="p">,</span> <span class="n">WPARAM</span> <span class="n">wParam</span><span class="p">,</span> <span class="n">LPARAM</span> <span class="n">lParam</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">char</span> <span class="n">szClassName</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"MainWClass"</span><span class="p">;</span>
+  <span class="n">WNDCLASSEX</span> <span class="n">wndclass</span><span class="p">;</span>
+
+  <span class="n">wndclass</span><span class="p">.</span><span class="n">cbSize</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">wndclass</span><span class="p">);</span>
+  <span class="n">wndclass</span><span class="p">.</span><span class="n">style</span> <span class="o">=</span> <span class="n">CS_HREDRAW</span> <span class="o">|</span> <span class="n">CS_VREDRAW</span><span class="p">;</span>
+  <span class="n">wndclass</span><span class="p">.</span><span class="n">lpfnWndProc</span> <span class="o">=</span> <span class="n">WindowProc</span><span class="p">;</span>
+  <span class="n">wndclass</span><span class="p">.</span><span class="n">cbClsExtra</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">wndclass</span><span class="p">.</span><span class="n">cbWndExtra</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">wndclass</span><span class="p">.</span><span class="n">hInstance</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">wndclass</span><span class="p">.</span><span class="n">hIcon</span> <span class="o">=</span> <span class="o">::</span><span class="n">LoadIcon</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">IDI_APPLICATION</span><span class="p">);</span>
+  <span class="n">wndclass</span><span class="p">.</span><span class="n">hCursor</span> <span class="o">=</span> <span class="o">::</span><span class="n">LoadCursor</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">IDC_ARROW</span><span class="p">);</span>
+  <span class="n">wndclass</span><span class="p">.</span><span class="n">hbrBackground</span> <span class="o">=</span> <span class="p">(</span><span class="n">HBRUSH</span><span class="p">)</span><span class="o">::</span><span class="n">GetStockObject</span><span class="p">(</span><span class="n">WHITE_BRUSH</span><span class="p">);</span>
+  <span class="n">wndclass</span><span class="p">.</span><span class="n">lpszMenuName</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">wndclass</span><span class="p">.</span><span class="n">lpszClassName</span> <span class="o">=</span> <span class="n">szClassName</span><span class="p">;</span>
+  <span class="n">wndclass</span><span class="p">.</span><span class="n">hIconSm</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="o">::</span><span class="n">RegisterClassEx</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wndclass</span><span class="p">);</span>
+
+  <span class="n">HWND</span> <span class="n">hWnd</span> <span class="o">=</span> <span class="o">::</span><span class="n">CreateWindowEx</span><span class="p">(</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="n">szClassName</span><span class="p">,</span>
+    <span class="s">""</span><span class="p">,</span>
+    <span class="n">WS_OVERLAPPEDWINDOW</span><span class="p">,</span>
+    <span class="n">CW_USEDEFAULT</span><span class="p">,</span>
+    <span class="n">CW_USEDEFAULT</span><span class="p">,</span>
+    <span class="n">CW_USEDEFAULT</span><span class="p">,</span>
+    <span class="n">CW_USEDEFAULT</span><span class="p">,</span>
+    <span class="nb">NULL</span><span class="p">,</span>
+    <span class="nb">NULL</span><span class="p">,</span>
+    <span class="nb">NULL</span><span class="p">,</span>
+    <span class="nb">NULL</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">hWnd</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">::</span><span class="n">MessageBox</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="s">"Create Window Falied!"</span><span class="p">,</span> <span class="s">"error"</span><span class="p">,</span> <span class="n">MB_OK</span><span class="p">);</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">USHORT</span> <span class="n">nPort</span> <span class="o">=</span> <span class="mi">4567</span><span class="p">;</span>
+
+  <span class="n">SOCKET</span> <span class="n">sListen</span> <span class="o">=</span> <span class="o">::</span><span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="n">IPPROTO_TCP</span><span class="p">);</span>
+  <span class="n">sockaddr_in</span> <span class="n">sin</span><span class="p">;</span>
+  <span class="n">sin</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
+  <span class="n">sin</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="n">nPort</span><span class="p">);</span>
+  <span class="n">sin</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">S_un</span><span class="p">.</span><span class="n">S_addr</span> <span class="o">=</span> <span class="n">INADDR_ANY</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="n">sListen</span><span class="p">,</span> <span class="p">(</span><span class="n">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">sin</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">sin</span><span class="p">))</span> <span class="o">==</span> <span class="n">SOCKET_ERROR</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Failed bind() </span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="o">::</span><span class="n">WSAAsyncSelect</span><span class="p">(</span><span class="n">sListen</span><span class="p">,</span> <span class="n">hWnd</span><span class="p">,</span> <span class="n">WM_SOCKET</span><span class="p">,</span> <span class="n">FD_ACCEPT</span> <span class="o">|</span> <span class="n">FD_CLOSE</span><span class="p">);</span>
+  <span class="o">::</span><span class="n">listen</span><span class="p">(</span><span class="n">sListen</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+
+  <span class="n">MSG</span> <span class="n">msg</span><span class="p">;</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="o">::</span><span class="n">GetMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="n">msg</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+    <span class="o">::</span><span class="n">TranslateMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="n">msg</span><span class="p">);</span>
+    <span class="o">::</span><span class="n">DispatchMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="n">msg</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">msg</span><span class="p">.</span><span class="n">wParam</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">LRESULT</span> <span class="n">CALLBACK</span> <span class="nf">WindowProc</span><span class="p">(</span><span class="n">HWND</span> <span class="n">hWnd</span><span class="p">,</span> <span class="n">UINT</span> <span class="n">uMsg</span><span class="p">,</span> <span class="n">WPARAM</span> <span class="n">wParam</span><span class="p">,</span> <span class="n">LPARAM</span> <span class="n">lParam</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="n">uMsg</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="n">WM_SOCKET</span><span class="p">:</span> <span class="p">{</span>
+    <span class="n">SOCKET</span> <span class="n">s</span> <span class="o">=</span> <span class="n">wParam</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">WSAGETSELECTERROR</span><span class="p">(</span><span class="n">lParam</span><span class="p">))</span> <span class="p">{</span>
+      <span class="o">::</span><span class="n">closesocket</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+      <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="n">WSAGETSELECTEVENT</span><span class="p">(</span><span class="n">lParam</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">FD_ACCEPT</span><span class="p">:</span> <span class="p">{</span>
+      <span class="n">SOCKET</span> <span class="n">client</span> <span class="o">=</span> <span class="o">::</span><span class="n">accept</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+      <span class="o">::</span><span class="n">WSAAsyncSelect</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">hWnd</span><span class="p">,</span> <span class="n">WM_SOCKET</span><span class="p">,</span> <span class="n">FD_READ</span> <span class="o">|</span> <span class="n">FD_WRITE</span> <span class="o">|</span> <span class="n">FD_CLOSE</span><span class="p">);</span>
+    <span class="p">}</span>
+            <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">FD_WRITE</span><span class="p">:</span> <span class="p">{</span>
+
+    <span class="p">}</span>
+             <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">FD_READ</span><span class="p">:</span> <span class="p">{</span>
+      <span class="kt">char</span> <span class="n">szText</span><span class="p">[</span><span class="mi">1024</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">::</span><span class="n">recv</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">szText</span><span class="p">,</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="o">::</span><span class="n">closesocket</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+      <span class="k">else</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Accept the data: %s"</span><span class="p">,</span> <span class="n">szText</span><span class="p">);</span>
+    <span class="p">}</span>
+            <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">FD_CLOSE</span><span class="p">:</span> <span class="p">{</span>
+      <span class="o">::</span><span class="n">closesocket</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+    <span class="p">}</span>
+             <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+          <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">case</span> <span class="n">WM_DESTROY</span><span class="p">:</span>
+    <span class="o">::</span><span class="n">PostQuitMessage</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="o">::</span><span class="n">DefWindowProc</span><span class="p">(</span><span class="n">hWnd</span><span class="p">,</span> <span class="n">uMsg</span><span class="p">,</span> <span class="n">wParam</span><span class="p">,</span> <span class="n">lParam</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>网络事件消息到达消息处理函数之后，应用程序首先会检查lParam参数的高位，判断是否在套接字上发生了网络错误。宏WSAGETSELECTERROR返回高字节包含的错误信息。若应用程序发现套接字上没有产生错误，便可以调可用宏WSAGETSELECTEVENT读取lParam参数的低字位确定发生的网络事件</strong></p>
+
+<p><strong>WSAAsyncSelect模型最突出的特点是与Windows消息驱动机制融合，会使得开发带GUI的网络程序变得简单。但连接增加，单个Windows函数处理请求过多，性能会受影响</strong></p>
+
+<h3 id="wsaeventselect">WSAEventSelect</h3>
+
+<p>Winsock提供了另一种有用的异步事件通知IO模型——WSAEventSelect模型，允许应用程序在一个或多个套接字上接收基于事件的网络通知。它与WSAAsyncSelect模型类似是因为其也接收FD_XXX类型的网络事件,不过并不是依靠Windows消息驱动机制，而是经由事件对象句柄通知。</p>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/08/05/WinSocket/">WinSocket——part1</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/08/17/TCP-IP/">TCP/IP</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/08/09/WinSocket2/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/08/09/WinSocket2/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

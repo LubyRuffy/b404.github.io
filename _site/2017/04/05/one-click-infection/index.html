@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>一键无文件感染</title>
+    <meta name="description" content="恶意软件作者可以在不将文件写入磁盘的情况下损害计算机，这种技术可以在逃脱文件扫描软件检测威胁性的同时，仍然保持持久性损害。">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/04/05/one-click-infection/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>一键无文件感染</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-04-05
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#translate" title="Category: translate" rel="category">translate</a>&nbsp;
+    
+        <a href="/category/#sec" title="Category: sec" rel="category">sec</a>&nbsp;
+    
+        <a href="/category/#hack" title="Category: hack" rel="category">hack</a>&nbsp;
+    
+        <a href="/category/#paper" title="Category: paper" rel="category">paper</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#translate" title="Tag: translate" rel="tag">translate</a-->
+        <a href="/tag/#translate" title="Tag: translate" rel="tag">translate</a>&nbsp;
+    
+        <!--a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a-->
+        <a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a>&nbsp;
+    
+        <!--a href="/tag/#trojan" title="Tag: trojan" rel="tag">trojan</a-->
+        <a href="/tag/#trojan" title="Tag: trojan" rel="tag">trojan</a>&nbsp;
+    
+        <!--a href="/tag/#virus" title="Tag: virus" rel="tag">virus</a-->
+        <a href="/tag/#virus" title="Tag: virus" rel="tag">virus</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>恶意软件作者可以在不将文件写入磁盘的情况下损害计算机，这种技术可以在逃脱文件扫描软件检测威胁性的同时，仍然保持持久性损害。</p>
+
+<ul id="markdown-toc">
+  <li><a href="#摘要" id="markdown-toc-摘要">摘要</a></li>
+  <li><a href="#引言" id="markdown-toc-引言">引言</a>    <ul>
+      <li><a href="#早期案例" id="markdown-toc-早期案例">早期案例</a></li>
+      <li><a href="#如何工作" id="markdown-toc-如何工作">如何工作</a></li>
+      <li><a href="#使用该技术的著名恶意程序" id="markdown-toc-使用该技术的著名恶意程序">使用该技术的著名恶意程序</a>        <ul>
+          <li><a href="#poweliks" id="markdown-toc-poweliks">Poweliks</a></li>
+          <li><a href="#bedep" id="markdown-toc-bedep">Bedep</a></li>
+          <li><a href="#kotver" id="markdown-toc-kotver">Kotver</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#无文件感染的预备知识" id="markdown-toc-无文件感染的预备知识">无文件感染的预备知识</a>    <ul>
+      <li><a href="#mshtaexe" id="markdown-toc-mshtaexe">MSHTA.EXE</a></li>
+      <li><a href="#hta" id="markdown-toc-hta">HTA</a></li>
+      <li><a href="#为什么用户不只是用html文件" id="markdown-toc-为什么用户不只是用html文件">为什么用户不只是用HTML文件？</a></li>
+      <li><a href="#安全思考" id="markdown-toc-安全思考">安全思考</a></li>
+    </ul>
+  </li>
+  <li><a href="#一键无文件感染" id="markdown-toc-一键无文件感染">一键无文件感染</a>    <ul>
+      <li><a href="#内存感染" id="markdown-toc-内存感染">内存感染</a></li>
+      <li><a href="#概念证明" id="markdown-toc-概念证明">概念证明</a></li>
+      <li><a href="#变体" id="markdown-toc-变体">变体</a></li>
+    </ul>
+  </li>
+  <li><a href="#预防和解决" id="markdown-toc-预防和解决">预防和解决</a>    <ul>
+      <li><a href="#手动清除" id="markdown-toc-手动清除">手动清除</a></li>
+      <li><a href="#av-解决方法" id="markdown-toc-av-解决方法">AV 解决方法</a></li>
+    </ul>
+  </li>
+  <li><a href="#结语" id="markdown-toc-结语">结语</a></li>
+  <li><a href="#参考" id="markdown-toc-参考">参考</a></li>
+</ul>
+
+<!--more-->
+
+<h2 id="摘要">摘要</h2>
+
+<p>本文将阐述不同的无文件感染方法，以及一种经典的使用无PE文件进行欺骗点击进而执行无文件感染的新手法。</p>
+
+<p>传统的恶意软件隐藏于磁盘上的文件中，为了进行长期隐藏感染，注册表运行密钥链接到此文件。
+使用无文件感染的恶意程序在受感染的计算机上，不会作为普通文件存在，反而会以脚本形式存在于计算机注册表的子项中，如Windows PowerShell，VBScript、JavaScript。每次Windows启动时都会调用注册表中的payload。</p>
+
+<p>我们所见的一键无文件感染技术常使用脚本语言实现，比如JavaScript。它一般借助.hta文件在计算机上实现，<code class="highlighter-rouge">.hta</code>文件将JavaScript payload放入注册表子项，每次Windows启动时，通过调用以下命令来触发JavaScript代码:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rundll32</span><span class="p">.</span><span class="n">exe</span> <span class="n">javascript</span><span class="o">:</span><span class="s">"\..\mshtml,RunHTMLApplication "</span><span class="p">;</span><span class="n">alert</span><span class="p">(</span><span class="err">'</span><span class="n">payload</span><span class="err">'</span><span class="p">);</span>
+</code></pre></div></div>
+<p>然后JavaScript代码从另一个子项读取和解码加密的数据。该数据将<code class="highlighter-rouge">payload</code>注入存储器。每隔几分钟，<code class="highlighter-rouge">payload</code>就会检查其注册表项。如果注册表子项内容被删除，则该<code class="highlighter-rouge">payload</code>又会重新创建，从而使感染持久进行。</p>
+
+<p>我们所知第一个使用无文件感染技术切造成大量危害的是2014年出现的<a href="https://www.symantec.com/security_response/writeup.jsp?docid=2014-080408-5614-99">Trojan.Poweliks [1]</a>。随着这类木马技术的提高，许多其他类似的木马也随之出现，其中两个代表性的就是<a href="https://www.symantec.com/security_response/writeup.jsp?docid=2015-020903-0718-99">Trojan.Bedep [2]</a>和<a href="https://www.symantec.com/security_response/writeup.jsp?docid=2015-082817-0932-99">Trojan.Kotver [3]</a>。</p>
+
+<p>这篇文章将阐述和比较恶意软件作者现今使用无文件感染的最常见方法，讨论一键无文件感染的相关内容。</p>
+
+<h2 id="引言">引言</h2>
+
+<p>传统上，AV产品使用恶意程序中发现的字符串或代码签名来检测恶意程序。恶意程序有几种方法可以逃脱AV产品检测，其中之一就是将恶意代码放在内存中。<a href="http://blog.trendmicro.com/trendlabs-security-intelligence/unplugging-plugx-capabilities/">Korplug[4]</a>就是一个使用内存存放恶意代码，逃脱检测的例子。它的侵染链包含加密文件的解码，在内存中加载可执行文件。这样做，可以在AV产品扫描文件时，保护代码。无文件类型感染在不同层面上实现文件不落地，硬盘上不会再有AV产品可以扫描的文件。即使恶意文件不在磁盘上，也可以持久侵害。</p>
+
+<h3 id="早期案例">早期案例</h3>
+
+<p>引起研究人员注意的第一个无文件感染的恶意软件是<a href="http://www.symantec.com/content/en/us/enterprise/media/security_response/whitepapers/evolution-of-poweliks.pdf">Trojan.Poweliks</a>，发现于2014年。Poweliks不作为文件存在于磁盘上，而是仅持久驻留在注册表中。<a href="http://www.symantec.com/content/en/us/enterprise/media/security_response/whitepapers/evolution-of-poweliks.pdf">[5]</a>。Poweliks使用特殊的命名方式，隐藏在注册表中，并一直使用CLSID劫持作为注册表中的运行加载点。之后，还分析出Poweliks利用Microsoft Windows远程权限提升漏洞<a href="https://www.symantec.com/security_response/vulnerability.jsp?bid=71965">（CVE-2015-0016）[6]</a>攻陷并控制存在缺陷的网站。而另一个无文件恶意程序<code class="highlighter-rouge">Trojan.Bedep</code>也使用相同的零日漏洞达到攻击目的。Bedep是一个仅存内存的下载器，与Poweliks有类似的编码风格。从<code class="highlighter-rouge">Poweliks</code>恶意程序到<code class="highlighter-rouge"> Trojan.Bedep </code>和<code class="highlighter-rouge">Trojan.Kotver </code>，这类木马都采用了相同的技术手法。</p>
+
+<h3 id="如何工作">如何工作</h3>
+
+<p>通常，当用户访问危险网站时，无文件恶意程序通过<code class="highlighter-rouge">exploit kits</code>（EK）实现攻击。
+<a href="http://malware.dontneedcoffee.com/2014/08/angler-ek-now-capable-of-fileless.html">Angler EK[7]</a>是第一个无需在驱动器上写入恶意程序而感染主机的EK，它提供shellcode，将无文件恶意程序注入到正在运行且易受攻击的进程中，例如iexplore.exe。</p>
+
+<p>另外无文件恶意程序也可以通过恶意程序下载器实现攻击。通过恶意附件或垃圾邮件的恶意URL链接实现恶意程序下载器的下载，然后向磁盘写入恶意程序，然后在将无文件恶意程序注入内存，接着自动删除恶意程序。</p>
+
+<p><img src="/img/OneClickInfection/无文件感染链的危险分析.jpg" alt="无文件感染链的危险分析.jpg" /></p>
+
+<p>一旦恶意程序注入到内存中，恶意程序会加载并加密自身的二进制组件。将加密后的恶意程序副本保存在注册表中，然后创建另一个程序，该程序中有自启动脚本(该脚本可能是VBScript，JavaScript或PowerShell脚本)，负责解码二进制组件并将其加载到内存中。</p>
+
+<p>然后被解码的二进制组件启动，并作为“看门狗“ 监视其创建的相关注册表项，负责接收恶意指令，控制<code class="highlighter-rouge">C&amp;C</code>服务器。此恶意软件的后门功能包括重新安装注册表项，下载和执行文件以及调用其他命令。其中下载的一个文件，在执行后会将ad-click模块安装到内存中。</p>
+
+<h3 id="使用该技术的著名恶意程序">使用该技术的著名恶意程序</h3>
+
+<h4 id="poweliks">Poweliks</h4>
+
+<p><code class="highlighter-rouge">Trojan.Poweliks</code>在基于文件感染的<code class="highlighter-rouge">Wowliks</code>恶意程序上发展成一个基于注册表感染的恶意软件。且其有下载PowerShell应用程序的行为，所以被命名为<code class="highlighter-rouge">Poweliks</code>。它使用PowerShell脚本将“看门狗”的DLL从注册表项注入到DLLHost.exe进程并运行，实现了持久存留。<code class="highlighter-rouge">Poweliks</code>的主要<code class="highlighter-rouge">payload</code>攻击目的是向受感染的用户进行广告欺诈和勒索。</p>
+
+<h4 id="bedep">Bedep</h4>
+
+<p>由于编码风格相似，且使用相同的<code class="highlighter-rouge">CVE-2015-0016 </code>exploit，<code class="highlighter-rouge">Trojan.Bedep</code>被认为与Poweliks有很大关联，但并没有确凿证据指出这两个恶意程序是出自同一个作者。经分析，Bedep会下载并安装Poweliks以及其他广告欺诈恶意软件。Bedep有32位和64位版本，通过改变自身文件属性达到伪装。这种恶意程序主要攻击目的是将受感染的计算机变成僵尸网络。</p>
+
+<h4 id="kotver">Kotver</h4>
+
+<p>在出现Poweliks无文件感染技术之前，Kotver恶意程序变体为了逃避杀软检测，也会存在于注册表中，只是像Poweliks一样，下载一个PowerShell应用程序，但并没有采用无文件感染，只是在没网络连接可用的情况下，它会基于文件感染，在磁盘上创建自己的副本。据分析，Kotver主要攻击目的是勒索和实现银行木马。</p>
+
+<h2 id="无文件感染的预备知识">无文件感染的预备知识</h2>
+
+<p>开始阐述了不同感染体使用的不同感染媒介，随着深入，现在我们将讨论一种新的感染体，它使用经典的<a href="https://www.symantec.com/connect/blogs/one-click-fraudsters-extend-reach-learning-chinese">一键点击欺诈式手法[8]</a>进行无文件感染。</p>
+
+<p>首先，我们将逐个讨论所有的单个组件，让大家更易于理解一键无文件感染。</p>
+
+<h3 id="mshtaexe">MSHTA.EXE</h3>
+<p><code class="highlighter-rouge">mshta.exe</code>程序通过WebBrowser控件，使用最小的用户界面（UI）运行受信任的HTML和脚本。</p>
+
+<h3 id="hta">HTA</h3>
+<p>随着时间推移，技术不断发展提高，Windows中的一些技术已不再适用。但自Windows NT（1993年7月发布）以来，存在一种这样强大的技术，并且仍然存在于Windows 10（2015年7月发布）），那就是HTML应用程序（HTA）。</p>
+
+<p><a href="https://technet.microsoft.com/en-us/library/ee692768.aspx">HTA[9]</a>是Microsoft Windows程序，其源代码由HTML、动态HTML和Internet Explorer（IE）支持的脚本语言(如VBScript或JScript)组成。HTML用于生成用户界面，脚本语言用于控制程序逻辑。HTA执行是没有互联网浏览器安全模型的限制，而且它作为一个“完全信任”的应用程序执行。HTA常用文件扩展名为.hta。</p>
+
+<p>所有当前的Windows操作系统都支持HTA文件执行。HTA看起来像一个HTML文件，但它具有比HTML文件更高的权限。HTA文件执行需要mshta.exe，<code class="highlighter-rouge">mshta.exe</code>随Internet Explorer一起安装。Mshta.exe通过实例化Internet Explorer渲染引擎（mshtml）以及任何所需的语言引擎（如vbscript.dll）来执行HTA 。</p>
+
+<p>HTAs为用户提供了一种在充满复选框、单选按钮、下拉列表等具有其他Windows元素的图形用户界面（GUI）中加载脚本的方式。</p>
+
+<p>但出于攻击目的，HTA只不过是为脚本提供GUI的一种方式。正如我们所知，WSH和VBScript都没有提供GUI元素，没有复选框，没有列表框等等。然而，Internet Explorer却使用了所有这些元素，甚至更多。由于HTA和IE相互依存，用户就可以利用所有这些GUI元素编写系统管理脚本。</p>
+
+<p>HTML文件和HTAs有多少相近？只要用户将任意的HTML文件扩展名从.htm（或.html）更改为.hta，文件就成为HTA了。</p>
+
+<p><img src="/img/OneClickInfection/IE的架构和程序.jpg" alt="IE的架构.jpg" /></p>
+
+<h3 id="为什么用户不只是用html文件">为什么用户不只是用HTML文件？</h3>
+
+<p>答案非常简单：安全。理由就是，IE上有很多安全限制。而且用户不希望使用重置他们配置且高权限运行的客户端脚本。因此，许多系统管理脚本（如使用了WMI或ADSI的）在IE上运行会失败，情况稍好点的，会显示类似于以下内容的对话框：
+<img src="/img/OneClickInfection/运行脚本弹出对话框.jpg" alt="运行脚本弹出对话框.jpg" /></p>
+<blockquote>
+  <p>每当用户从HTML文件运行脚本时，都会显示类似的对话框。这虽然使用友好，但绝对不是最好的用户体验。</p>
+</blockquote>
+
+<p>相比之下，HTAs没有IE那样的安全限制，HTAs与IE运行的也是不同的进程。HTAs在mshta.exe进程中运行，而不是iexplore.exe进程中。与HTML页面不同，HTAs可以运行客户端脚本，并且可以访问文件系统。除此之外，HTAs还可以运行用户的系统管理脚本，包括使用WMI和ADSI。而且用户的脚本运行正常，不会收到任何关于不安全的提示警告。</p>
+
+<p>当然，这并不意味着HTAs可以随便无视Windows安全机制，HTA也有自己的一些安全策略。例如，如果一个用户没有权限更改其他用户的密码，则在该用户权限是不能使用脚本更改其他用户的密码，将该脚本放置在HTA中也没什么用，该用户仍然无法更改其他用户的密码。</p>
+
+<p>不过，即使HTAs运行的进程不同于IE，但仍要使用Internet Explorer和IE对象模型，所以用户可以执行IE中不允许的其他任务和运行IE中不允许的脚本。</p>
+
+<p>有关HTAs和安全性的更多信息，请参见<a href="https://msdn.microsoft.com/en-us/library/ms536473.aspx">Microsoft Developer Network（MSDN）上的HTML Applications SDK页面[11]</a></p>
+
+<h3 id="安全思考">安全思考</h3>
+
+<p>当执行常规HTML文件时，它的执行也离不开Web浏览器的安全模型。也就是说，它的功能仅限于与服务器通信，操纵页面的对象模型（通常用于验证表单和创建有趣的视觉效果）和读写cookies。</p>
+
+<p>另一方面，HTA作为完全受信任的应用程序运行，因此具有比普通HTML文件更多的权限(例如，HTA可以创建，编辑和删除文件和注册表项)。尽管如此，但查询<code class="highlighter-rouge">Active Directory</code>仍可能会受到Internet Explorer Zone逻辑和相关错误消息的影响。</p>
+
+<h2 id="一键无文件感染">一键无文件感染</h2>
+
+<p>在分析文件感染及其感染媒介后，可知如果攻击者使用非PE文件感染，常用的就是知名的感染媒介——<code class="highlighter-rouge">一键点击式欺骗</code>(one-click fraud)。</p>
+
+<p>一键点击式欺骗并不新鲜，它已经存在了十多年，并且已经影响了大多数亚洲国家，最具代表性的是日本。通常情况下，一键式欺诈者通过诱骗用户订阅虚假的成人视频服务来进行一键点击欺诈攻击，也有两键、三键和四键点击欺骗（甚至是<a href="https://www.symantec.com/connect/blogs/rise-japanese-zero-click-fraud">零键点击[12]</a>)。一键点击欺诈的攻击行为类似勒索软件，它也会锁定用户的屏幕，并重复弹出窗口，直至用户注册、订阅或支付一定金额后才会终止该恶意行为。</p>
+
+<p>经分析可知，恶意程序攻击者可能会将无文件感染和一击欺诈混合在一起，从而创建一键无文件感染。简而言之：</p>
+
+<p><strong>无文件感染+一击欺诈=一键无文件感染</strong></p>
+
+<h3 id="内存感染">内存感染</h3>
+
+<p>可以使用HTA文件创建一个ActiveX对象，然后该对象将JS Payload注入到运行注册表项中。PowerShell和WSCRIPT（VBS）也可以实现同样的功能。</p>
+
+<p><img src="/img/OneClickInfection/攻击流程.jpg" alt="攻击流程.jpg" /></p>
+
+<h3 id="概念证明">概念证明</h3>
+
+<p>下面所示代码是一个存在于被攻击服务器上HTA文件的源码。假设一个感染情景，用户被社工引诱或者是水坑攻击而访问某网站，然后该网站要求点击运行或执行某个事件，一旦点击执行，该事件将创建一个WScript ActiveX对象，然后创建运行注册表项，使用rundll32弹出JS警告（对于POC）而进行更多其它操作。</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/****************************POC*******************************************/
+
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+<span class="nt">&lt;title&gt;</span>RegTest<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;script </span><span class="na">language=</span><span class="s">"JavaScript"</span><span class="nt">&gt;</span>
+<span class="kd">function</span> <span class="nx">writeInRegistry</span><span class="p">(</span><span class="nx">sRegEntry</span><span class="p">,</span> <span class="nx">sRegValue</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="kd">var</span> <span class="nx">regpath</span> <span class="o">=</span> <span class="s2">"HKEY_LOCAL_MACHINE</span><span class="err">\\</span><span class="s2">SOFTWARE</span><span class="err">\\</span><span class="s2">Microsoft</span><span class="err">\\</span><span class="s2">Windows</span><span class="err">\\</span><span class="s2">CurrentVersion</span><span class="err">\\</span><span class="s2">Run</span><span class="err">\</span><span class="se">\"</span><span class="s2"> + sRegEntry;
+   var oWSS = new ActiveXObject("</span><span class="nx">WScript</span><span class="p">.</span><span class="nx">Shell</span><span class="s2">");
+   oWSS.RegWrite(regpath, sRegValue, "</span><span class="nx">REG_SZ</span><span class="s2">");
+}
+
+function readFromRegistry(sRegEntry)
+{
+   var regpath = "</span><span class="nx">HKEY_LOCAL_MACHINE</span><span class="err">\\</span><span class="nx">SOFTWARE</span><span class="err">\\</span><span class="nx">Microsoft</span><span class="err">\\</span><span class="nx">Windows</span><span class="err">\\</span><span class="nx">CurrentVersion</span><span class="err">\\</span><span class="nx">Run</span><span class="err">\\</span><span class="s2">" + sRegEntry;        /*Payload injected in Run registry entry*/
+   var oWSS = new ActiveXObject("</span><span class="nx">WScript</span><span class="p">.</span><span class="nx">Shell</span><span class="s2">");    /*WASCRIPT ActiveX object created which is used to inject the Malicous JS in registry*/
+   return oWSS.RegRead(regpath);
+}
+function tst()
+{
+   writeInRegistry("</span><span class="nx">malware</span><span class="s2">", "</span><span class="nx">rundll32</span><span class="p">.</span><span class="nx">exe</span> <span class="nx">javascript</span><span class="p">:</span><span class="err">\</span><span class="s2">"</span><span class="err">\\</span><span class="s2">..</span><span class="err">\\</span><span class="s2">mshtml,RunHTMLApplication </span><span class="se">\"</span><span class="s2">;alert('payload'); "</span><span class="p">);</span> <span class="cm">/*Payload is the JS payload which does the real malicious stuff and it got watchdog, for keeping an eye over the registry entry which makes the infection persistent*/</span>
+   <span class="nx">alert</span><span class="p">(</span><span class="nx">readFromRegistry</span><span class="p">(</span><span class="s2">"malware"</span><span class="p">));</span>
+<span class="p">}</span>
+<span class="nt">&lt;/script&gt;&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+
+Click here to run test: <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">value=</span><span class="s">"Run"</span> <span class="na">onclick=</span><span class="s">"tst()"</span>
+<span class="err">&lt;/</span><span class="na">body</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+/***************************POC end****************************************/
+</code></pre></div></div>
+
+<p>出于本文目的，选择了<code class="highlighter-rouge">Poweliks</code>作为案例，再加上它能从运行注册表项中释放JS，用它作为例子是不二选择。为了让感染持续存在，它被注入到运行注册表项，用户重新启动计算机，它又会自动重新注册。(因为内存中的感染会在计算机重新启动后消失.)</p>
+
+<p>对于我们的POC，我们使用JS的Alert API演示(恶意攻击者可能会有所不同)，使用PowerShell或CSCRIPT也可以实现同样的效果。分析了之前无文件感染行为，我们发现它具有一个“看门狗”模块，它可以监控注册表项，如果用户删除它，它也会重新创建注册表项。</p>
+
+<p>这种攻击手法，可能会影响从Windows 95到Windows 10的所有Windows版本，因为所有版本都有预安装IE，而随附IE的WSCRIPT是执行此攻击的唯一必需组件。</p>
+
+<h3 id="变体">变体</h3>
+
+<p>以下可信应用程序也能达到同样攻击手段：</p>
+
+<ul>
+  <li><a href="https://blogs.msdn.microsoft.com/powershell/2006/11/14/its-a-wrap-windows-powershell-1-0-released">PowerShell [13]</a></li>
+  <li><a href="https://technet.microsoft.com/en-us/library/bb490887.aspx">CSCRIPT [14]</a></li>
+  <li><a href="https://msdn.microsoft.com/en-us/library/at5ydy31.aspx">WSCRIPT [15]</a></li>
+</ul>
+
+<h2 id="预防和解决">预防和解决</h2>
+
+<p>Symantec建议用户遵守以下几点，防止一键无文件感染攻击：</p>
+
+<ul>
+  <li>不要将HTA文件视为HTML文件</li>
+  <li>动态检测调用PowerShell，WSCRIPT，CSCRIPT，cmd，RUNDLL32或regserve32的独立注册表项</li>
+  <li>必要时进行手动清楚卸载（步骤如下）。</li>
+</ul>
+
+<h3 id="手动清除">手动清除</h3>
+
+<ol>
+  <li>下载Microsoft的Process Explorer并执行。</li>
+  <li>重启进入安全模式。</li>
+  <li>选择父进程（恶意软件注入的进程）并终止它（杀死进程树）。</li>
+  <li>打开注册表编辑器（运行 - &gt; regedit.exe）。</li>
+  <li>在左侧面板中，进入：<code class="highlighter-rouge">HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\</code></li>
+  <li>清理注册表项。</li>
+  <li>关闭注册表编辑器</li>
+</ol>
+
+<h3 id="av-解决方法">AV 解决方法</h3>
+<p>反病毒产品有以下方法定位无文件感染体的路径：</p>
+
+<ol>
+  <li>内存扫描</li>
+  <li>注册表扫描</li>
+  <li>网络扫描。</li>
+</ol>
+
+<h2 id="结语">结语</h2>
+
+<p><a href="https://www.virusbulletin.com/uploads/pdf/magazine/2017/VB2016-AnandMenrige.pdf">原文地址</a>在: https://www.virusbulletin.com/uploads/pdf/magazine/2017/VB2016-AnandMenrige.pdf</p>
+
+<p>该文章在<a href="https://www.youtube.com/watch?v=EIIFly_iR8Y">YouTube</a>上的地址：https://www.youtube.com/watch?v=EIIFly_iR8Y，</p>
+
+<p><a href="https://www.virusbulletin.com/uploads/pdf/conference_slides/2016/Anand_Menrige-vb-2016-One-Click-Fileless.pdf">PPT</a>地址为https://www.virusbulletin.com/uploads/pdf/conference_slides/2016/Anand_Menrige-vb-2016-One-Click-Fileless.pdf。</p>
+
+<p>CHXX大佬也说现在很多病毒都采用无文件感染技术，文件不落地，杀软扫起来比较难。</p>
+
+<p>由此可见，<code class="highlighter-rouge">无文件感染</code>是一种无痕迹的新型恶意攻击，再结合一键点击欺骗的攻击手法，这类病毒造成的危害就会很大的。所以在浏览网页和使用软件的时候需谨慎。</p>
+
+<h2 id="参考">参考</h2>
+
+<p>[1] Trojan.Poweliks. https://www.symantec.com/security_response/writeup.jsp?docid=2014-080408-5614-99.</p>
+
+<p>[2] Trojan.Bedep. https://www.symantec.com/security_response/writeup.jsp?docid=2015-020903-0718-99.</p>
+
+<p>[3] Trojan.Kotver. https://www.symantec.com/security_response/writeup.jsp?docid=2015-082817-0932-99.</p>
+
+<p>[4] Camba, A. Unplugging Plugx Capabilities. Trend Micro Malware Blog. http://blog.trendmicro.com/trendlabs-security-intelligence/unplugging-plugx-capabilities.</p>
+
+<p>[5] O’Murchu, L.; Gutierrez, F. The evolution of the fileless click-fraud malware Poweliks. Symantec Connect Blog. http://www.symantec.com/content/en/us/enterprise/media/security_response/whitepapers/evolution-of-poweliks.pdf.</p>
+
+<p>[6] Microsoft Windows Remote Privilege Escalation Vulnerability (CVE-2015-0016). https://www.symantec.com/security_response/vulnerability.jsp?bid=71965.</p>
+
+<p>[7] Kafeine. Angler EK: now capable of “fileless” infection. Malware Don’t Need Coffee Blog. http://malware.dontneedcoffee.com/2014/08/angler-ek-now-capable-of-fileless.html.</p>
+
+<p>[8] Anand, H. One-click fraudsters extend reach by learning Chinese. Symantec Connect Blog. http://www.symantec.com/connect/blogs/one-click-fraudsters-extend-reach-learning-chinese.</p>
+
+<p>[9] Extreme Makeover: Wrap Your Scripts Up in a GUI Interface. Microsoft Technet. https://technet.microsoft.com/en-us/library/ee692768.aspx.</p>
+
+<p>[10] Recreated from the Microsoft TechNet (2013) gallery – IE Architecture. https://gallery.technet.microsoft.com/IE-Architecture-3bc7c3fd/file/78635/1/IE%20Architecture.png.</p>
+
+<p>[11] HTML Applications SDK. https://msdn.microsoft.com/en-us/library/ms536473(vs.85).aspx.</p>
+
+<p>[12] Hamada, J. The rise of Japanese zero-click fraud. Symantec Connect Blog. http://www.symantec.com/connect/blogs/rise-japanese-zero-click-fraud.</p>
+
+<p>[13] It’s a Wrap! Windows PowerShell 1.0 Released! Windows PowerShell Blog. https://blogs.msdn.microsoft.com/powershell/2006/11/14/its-a-wrap-windows-powershell-1-0-released.</p>
+
+<p>[14] Using the command-based script host (CScript.exe). Microsoft Technet. https://technet.microsoft.com/en-us/library/bb490887.aspx.</p>
+
+<p>[15] WScript Object. Microsoft Developer Network. https://msdn.microsoft.com/en-us/library/at5ydy31(v=vs.84).aspx.</p>
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/02/08/Shodan-Manual/">Shodan手册
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/27/hidden-the-network/">阻碍获取真实网络指纹
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/04/command-and-control-images/">command-and-control-images
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/27/open-RDP/">开启RDP
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/11/30/Test-LAB-11/">TEST LAB 11
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/11/29/proxy/">代理
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/03/28/read-daily/">周结0</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/04/06/interesting-bin/">有趣的二进制读书笔记</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/04/05/one-click-infection/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/04/05/one-click-infection/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

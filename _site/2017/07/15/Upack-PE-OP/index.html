@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>UPack调试——查找OEP</title>
+    <meta name="description" content="UPack会对PE文件进行独特的变形，本文通过对UPack压缩过的文件进行调试找出OEP。">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/07/15/Upack-PE-OP/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>UPack调试——查找OEP</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-07-15
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#ReverseCore" title="Category: ReverseCore" rel="category">ReverseCore</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#reading-notes" title="Tag: reading-notes" rel="tag">reading-notes</a-->
+        <a href="/tag/#reading-notes" title="Tag: reading-notes" rel="tag">reading-notes</a>&nbsp;
+    
+        <!--a href="/tag/#reverse" title="Tag: reverse" rel="tag">reverse</a-->
+        <a href="/tag/#reverse" title="Tag: reverse" rel="tag">reverse</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>UPack会对PE文件进行独特的变形，本文通过对UPack压缩过的文件进行调试找出OEP。</p>
+
+<ul id="markdown-toc">
+  <li><a href="#载入upack压缩程序" id="markdown-toc-载入upack压缩程序">载入UPack压缩程序</a></li>
+  <li><a href="#强制设置ep" id="markdown-toc-强制设置ep">强制设置EP</a></li>
+  <li><a href="#解码循环" id="markdown-toc-解码循环">解码循环</a></li>
+  <li><a href="#设置iat" id="markdown-toc-设置iat">设置IAT</a></li>
+</ul>
+
+<!--more-->
+
+<h1 id="载入upack压缩程序">载入UPack压缩程序</h1>
+
+<p>由于Upack会将<code class="highlighter-rouge">IMAGE_OPTIONAL_HEADER</code>中的<code class="highlighter-rouge">NumberOfRvaAndSizes</code>值设置为A（默认为10），打开该压缩文件时，会弹出错误消息。
+<img src="/img/reversecore_assets/UPack_PE_OEP/OD%E9%94%99%E8%AF%AF%E6%B6%88%E6%81%AF%E6%A1%86.png" alt="OD报错" /></p>
+
+<p>确认之后，关闭对话框，以上错误导致OD无法转到EP位置，停留在ntdll.dll区域。
+<img src="/img/reversecore_assets/UPack_PE_OEP/ntdll%E4%BB%A3%E7%A0%81%E5%8C%BA%E5%9F%9F%E4%BB%A3%E7%A0%81.png" alt="ntdll.dll区域" /></p>
+
+<p>这是由于OD的Bug（严格的PE检查）引起，先要强制设置EP，使用stud_PE查找EP的虚拟地址。</p>
+
+<h1 id="强制设置ep">强制设置EP</h1>
+
+<p>Imagebase为01000000,EP的RVA为1018，可知EP的VA值为01001018，在01001018处，使用<code class="highlighter-rouge">New origin here</code>强制更改EP寄存器的值：</p>
+
+<p><img src="/img/reversecore_assets/UPack_PE_OEP/Upack%E7%9A%84EP%E4%BB%A3%E7%A0%81.png" alt="Upack的EP代码" /></p>
+
+<h1 id="解码循环">解码循环</h1>
+
+<p>所有压缩器都存在解码循环，压缩/解压算法本身就是由许多条件分值语句和循环构成。</p>
+
+<p>调试解码循环，应适当跳过条件分支语句以跳出某个循环。</p>
+
+<p><strong>UPack把压缩后的数据放到第二个节区，再运行解码循环将这些数据解压缩后放到第一个节区。</strong></p>
+
+<p><img src="/img/reversecore_assets/UPack_PE_OEP/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8.png" alt="函数调用" /></p>
+
+<p>在进行F8反复跟进之后(也可以使用Stepinto(F7))，发现执行到<code class="highlighter-rouge">0101FE61</code>之后又循环到<code class="highlighter-rouge">0101FD13</code>，在<code class="highlighter-rouge">010FD18</code>处调用的函数可以确定为是一个decode()函数，其地址为<code class="highlighter-rouge">0101FCCB</code>，并反复执行。</p>
+
+<p><img src="/img/reversecore_assets/UPack_PE_OEP/%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%90%8E%E7%9A%84%E4%BB%A3%E7%A0%81.png" alt="解压缩后的代码" /></p>
+
+<p><code class="highlighter-rouge">0101FE57</code>和<code class="highlighter-rouge">0101FE5D</code>地址处有<code class="highlighter-rouge">向EDI所指位置写入内容</code>的指令。此时，EDI值指向第一个节区中的地址。即，这些命令会先执行解压缩操作，然后写入实际内存。在<code class="highlighter-rouge">0101FE5E</code>与<code class="highlighter-rouge">0101FE61</code>地址处通过CMP/JB指令继续执行循环，直到EDI值为<code class="highlighter-rouge">01014B5A</code>([ESI+34]=01014B5A)。地址<code class="highlighter-rouge">0101FE61</code>即是解码循环的结束部分。在循环调试中，课随时看到向EDI所指地址中写入了什么值。</p>
+
+<h1 id="设置iat">设置IAT</h1>
+
+<p>一般，压缩器执行完解码循环后会根据原文件重新组织IAT。</p>
+
+<p>UPack会使用导入的2个函数(LoadLibraryA和GetProcAddress)边执行循环边构建原本notepad的IAT(先获取notepad中导入函数的实际内存地址，再写入原IAT区域)。该过程结束之后，由<code class="highlighter-rouge">0101FEAF</code>地址处的RETN命令将运行转到OEP<code class="highlighter-rouge">0100739D</code></p>
+
+<p><img src="/img/reversecore_assets/UPack_PE_OEP/UPack%E7%9A%84OEP.png" alt="解压缩后的OEP" /></p>
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/07/12/the-hacker-play-book2/">渗透测试使用指南2</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/07/15/lnline-patch/">内嵌补丁练习</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/07/15/Upack-PE-OP/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/07/15/Upack-PE-OP/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

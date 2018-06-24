@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>渗透测试实用指南</title>
+    <meta name="description" content="这本书很不错，奇淫技巧很多。虽然英文版的这本书有些错误，但是中文版的翻译者简直是脑残，不修订错误直接照搬，估计译者都不知道命令参数的正确格式，连里面真正讲了些什么都不知道吧…翻译得也是狗屎一样，连中文都那么多病句。">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/07/05/the-hacker-play-book1/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>渗透测试实用指南</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-07-05
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#hack" title="Category: hack" rel="category">hack</a>&nbsp;
+    
+        <a href="/category/#tools" title="Category: tools" rel="category">tools</a>&nbsp;
+    
+        <a href="/category/#readingnotes" title="Category: readingnotes" rel="category">readingnotes</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a-->
+        <a href="/tag/#sec" title="Tag: sec" rel="tag">sec</a>&nbsp;
+    
+        <!--a href="/tag/#tools" title="Tag: tools" rel="tag">tools</a-->
+        <a href="/tag/#tools" title="Tag: tools" rel="tag">tools</a>&nbsp;
+    
+        <!--a href="/tag/#readingnotes" title="Tag: readingnotes" rel="tag">readingnotes</a-->
+        <a href="/tag/#readingnotes" title="Tag: readingnotes" rel="tag">readingnotes</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>这本书很不错，奇淫技巧很多。虽然英文版的这本书有些错误，但是中文版的翻译者简直是脑残，不修订错误直接照搬，估计译者都不知道命令参数的正确格式，连里面真正讲了些什么都不知道吧…翻译得也是狗屎一样，连中文都那么多病句。</p>
+
+<ul id="markdown-toc">
+  <li><a href="#扫描网络" id="markdown-toc-扫描网络">扫描网络</a>    <ul>
+      <li><a href="#外部扫描" id="markdown-toc-外部扫描">外部扫描</a>        <ul>
+          <li><a href="#被动式信息收集" id="markdown-toc-被动式信息收集">被动式信息收集</a></li>
+        </ul>
+      </li>
+      <li><a href="#discover-scripts" id="markdown-toc-discover-scripts">Discover Scripts</a></li>
+      <li><a href="#recon-ng" id="markdown-toc-recon-ng">Recon-ng</a></li>
+      <li><a href="#外部或内部的主动式信息收集" id="markdown-toc-外部或内部的主动式信息收集">外部或内部的主动式信息收集</a>        <ul>
+          <li><a href="#网络扫描的流程" id="markdown-toc-网络扫描的流程">网络扫描的流程</a>            <ul>
+              <li><a href="#nessus" id="markdown-toc-nessus">Nessus</a></li>
+              <li><a href="#nmap" id="markdown-toc-nmap">Nmap</a></li>
+              <li><a href="#peepingtom揭示网络构造" id="markdown-toc-peepingtom揭示网络构造">PeepingTOM:揭示网络构造</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#web应用程序扫描" id="markdown-toc-web应用程序扫描">Web应用程序扫描</a>        <ul>
+          <li><a href="#web应用程序的扫描流程" id="markdown-toc-web应用程序的扫描流程">Web应用程序的扫描流程</a></li>
+          <li><a href="#web扫描工具" id="markdown-toc-web扫描工具">Web扫描工具</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#漏洞利用" id="markdown-toc-漏洞利用">漏洞利用</a>    <ul>
+      <li><a href="#配置metasploit进行远程攻击的基本步骤" id="markdown-toc-配置metasploit进行远程攻击的基本步骤">配置Metasploit进行远程攻击的基本步骤</a></li>
+    </ul>
+  </li>
+  <li><a href="#人工检测web应用程序" id="markdown-toc-人工检测web应用程序">人工检测WEB应用程序</a>    <ul>
+      <li><a href="#sql注入" id="markdown-toc-sql注入">SQL注入</a>        <ul>
+          <li><a href="#get参数注入" id="markdown-toc-get参数注入">GET参数注入</a></li>
+          <li><a href="#post参数注入" id="markdown-toc-post参数注入">POST参数注入</a></li>
+        </ul>
+      </li>
+      <li><a href="#xss" id="markdown-toc-xss">XSS</a>        <ul>
+          <li><a href="#beff" id="markdown-toc-beff">BeFF</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#渗透内网" id="markdown-toc-渗透内网">渗透内网</a>    <ul>
+      <li><a href="#无登陆凭据条件下的网络渗透" id="markdown-toc-无登陆凭据条件下的网络渗透">无登陆凭据条件下的网络渗透</a>        <ul>
+          <li><a href="#responderpy" id="markdown-toc-responderpy">responder.py</a></li>
+        </ul>
+      </li>
+      <li><a href="#利用任意域凭据非管理员权限" id="markdown-toc-利用任意域凭据非管理员权限">利用任意域凭据(非管理员权限)</a>        <ul>
+          <li><a href="#组策略首选项" id="markdown-toc-组策略首选项">组策略首选项</a></li>
+          <li><a href="#获取明文凭据" id="markdown-toc-获取明文凭据">获取明文凭据</a></li>
+          <li><a href="#漏洞利用后期" id="markdown-toc-漏洞利用后期">漏洞利用后期</a></li>
+        </ul>
+      </li>
+      <li><a href="#利用本地或域管理账号" id="markdown-toc-利用本地或域管理账号">利用本地或域管理账号</a>        <ul>
+          <li><a href="#使用登陆凭证和psexec掌控网络" id="markdown-toc-使用登陆凭证和psexec掌控网络">使用登陆凭证和PSExec掌控网络</a></li>
+          <li><a href="#攻击域控制器" id="markdown-toc-攻击域控制器">攻击域控制器</a></li>
+        </ul>
+      </li>
+      <li><a href="#漏洞利用后期使用powersploitwindows" id="markdown-toc-漏洞利用后期使用powersploitwindows">漏洞利用后期——使用PowerSploit(Windows)</a></li>
+      <li><a href="#arp欺骗" id="markdown-toc-arp欺骗">ARP欺骗</a></li>
+      <li><a href="#会话劫持" id="markdown-toc-会话劫持">会话劫持</a>        <ul>
+          <li><a href="#hamsterferret" id="markdown-toc-hamsterferret">Hamster/Ferret</a></li>
+          <li><a href="#firesheep" id="markdown-toc-firesheep">firesheep</a></li>
+        </ul>
+      </li>
+      <li><a href="#dns重定向" id="markdown-toc-dns重定向">DNS重定向</a>        <ul>
+          <li><a href="#cainabel" id="markdown-toc-cainabel">Cain&amp;Abel</a></li>
+          <li><a href="#sslstrip" id="markdown-toc-sslstrip">SSLStrip</a></li>
+        </ul>
+      </li>
+      <li><a href="#端口代理" id="markdown-toc-端口代理">端口代理</a></li>
+    </ul>
+  </li>
+  <li><a href="#社工" id="markdown-toc-社工">社工</a>    <ul>
+      <li><a href="#邮件中间人攻击" id="markdown-toc-邮件中间人攻击">邮件中间人攻击</a></li>
+      <li><a href="#鱼叉式钓鱼攻击" id="markdown-toc-鱼叉式钓鱼攻击">鱼叉式钓鱼攻击</a></li>
+      <li><a href="#set" id="markdown-toc-set">SET</a></li>
+    </ul>
+  </li>
+  <li><a href="#物理访问的攻击" id="markdown-toc-物理访问的攻击">物理访问的攻击</a>    <ul>
+      <li><a href="#无线攻击" id="markdown-toc-无线攻击">无线攻击</a>        <ul>
+          <li><a href="#被动识别和侦查" id="markdown-toc-被动识别和侦查">被动识别和侦查</a></li>
+          <li><a href="#主动攻击" id="markdown-toc-主动攻击">主动攻击</a>            <ul>
+              <li><a href="#wep有线等效加密" id="markdown-toc-wep有线等效加密">WEP有线等效加密</a></li>
+              <li><a href="#wpav2tkipwifi访问保护" id="markdown-toc-wpav2tkipwifi访问保护">WPAv2(TKIP)（WIFI访问保护）</a></li>
+              <li><a href="#wpav2-wpswifi配置保护攻击" id="markdown-toc-wpav2-wpswifi配置保护攻击">WPAv2 WPS（Wifi配置保护）攻击</a></li>
+              <li><a href="#wpa企业级伪造radius攻击" id="markdown-toc-wpa企业级伪造radius攻击">WPA企业级——伪造Radius攻击</a></li>
+              <li><a href="#karmetasploit" id="markdown-toc-karmetasploit">karmetasploit</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#物理攻击" id="markdown-toc-物理攻击">物理攻击</a>        <ul>
+          <li><a href="#克隆工卡" id="markdown-toc-克隆工卡">克隆工卡</a></li>
+          <li><a href="#kali-nethunter" id="markdown-toc-kali-nethunter">Kali NetHunter</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#规避杀软" id="markdown-toc-规避杀软">规避杀软</a></li>
+  <li><a href="#破解利用技巧" id="markdown-toc-破解利用技巧">破解、利用、技巧</a>    <ul>
+      <li><a href="#破解" id="markdown-toc-破解">破解</a>        <ul>
+          <li><a href="#字典" id="markdown-toc-字典">字典</a></li>
+          <li><a href="#破解-1" id="markdown-toc-破解-1">破解</a></li>
+        </ul>
+      </li>
+      <li><a href="#漏洞搜索" id="markdown-toc-漏洞搜索">漏洞搜索</a>        <ul>
+          <li><a href="#searchsploit" id="markdown-toc-searchsploit">Searchsploit</a></li>
+          <li><a href="#bugtraq" id="markdown-toc-bugtraq">BugTraq</a></li>
+          <li><a href="#exploitdb" id="markdown-toc-exploitdb">ExploitDB</a></li>
+        </ul>
+      </li>
+      <li><a href="#技巧" id="markdown-toc-技巧">技巧</a>        <ul>
+          <li><a href="#隐藏文件" id="markdown-toc-隐藏文件">隐藏文件</a></li>
+          <li><a href="#稳定隐藏文件" id="markdown-toc-稳定隐藏文件">稳定隐藏文件</a></li>
+          <li><a href="#上传文件" id="markdown-toc-上传文件">上传文件</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!--more-->
+
+<h1 id="扫描网络">扫描网络</h1>
+
+<p>扫描分为外部扫描、内部扫描、WEB应用程序扫描。扫描可以掌握目标弱点，熟悉目标的网络环境。</p>
+
+<h2 id="外部扫描">外部扫描</h2>
+
+<h3 id="被动式信息收集">被动式信息收集</h3>
+
+<p>在不接触目标的情况下收集与测试目标相关的信息，收集目标、网络、客户端以及其他信息。</p>
+
+<h2 id="discover-scripts">Discover Scripts</h2>
+
+<p><a href="https://github.com/leebaird/discover.git">Discover Scripts</a>是一个多功能的信息发掘框架，可用被动方式有效、快速地查找目标相关信息。</p>
+
+<h2 id="recon-ng">Recon-ng</h2>
+
+<p><a href="https://bitbucket.org/LaNMaSteR53/recon-ng">Recon-NG</a>是由Python编写的一个开源的Web侦查（信息收集）框架，使用它可以自动的收集信息和网络侦查。</p>
+
+<h2 id="外部或内部的主动式信息收集">外部或内部的主动式信息收集</h2>
+
+<p>主动式信息收集就是通过主动扫描确认目标安装的操作系统和网络服务，并发现潜在漏洞的过程。即主动式信息收集必定对指定的网络段进行扫描。</p>
+
+<h3 id="网络扫描的流程">网络扫描的流程</h3>
+
+<ul>
+  <li>用Nexpose/Nessus扫描</li>
+  <li>用Nmap扫描</li>
+  <li>用自定义的Nmap扫描</li>
+  <li>用PeepingTom抓取屏幕</li>
+</ul>
+
+<h4 id="nessus">Nessus</h4>
+
+<p><img src="/img/the_hacker_play_book/Nessus.png" alt="Nessus" /></p>
+
+<h4 id="nmap">Nmap</h4>
+
+<p>扫描：</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">root</span><span class="k">@kali</span><span class="p">:/</span><span class="n">usr</span><span class="p">/</span><span class="n">share</span><span class="p">/</span><span class="n">nmap</span><span class="p">/</span><span class="n">scripts</span><span class="err">#</span> <span class="n">nmap</span> <span class="n">--script</span> <span class="n">banner-plus</span><span class="p">.</span><span class="n">nse</span> <span class="n">--min-rate</span><span class="err">=</span><span class="m">400</span> <span class="n">--min-parallelism</span><span class="err">=</span><span class="m">512</span> <span class="n">-p1-65535</span> <span class="n">-n</span> <span class="n">-Pn</span> <span class="n">-PS</span> <span class="n">-oA</span> <span class="p">/</span><span class="n">opt</span><span class="p">/</span><span class="n">peepingtom</span><span class="p">/</span><span class="n">report</span> <span class="m">10.10.10.1</span><span class="p">/</span><span class="m">24</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><code class="highlighter-rouge">--script</code>设置脚本
+<code class="highlighter-rouge">min-rate</code>保证扫描在一定时间结束
+<code class="highlighter-rouge">min-parallelism</code>设置并行扫描数量
+<code class="highlighter-rouge">-p</code>设置端口
+<code class="highlighter-rouge">-n</code>禁用DNS解析
+<code class="highlighter-rouge">-Pn</code>禁用ping
+<code class="highlighter-rouge">-PS</code>使用TCP SYN ping的方式进行主机探测
+<code class="highlighter-rouge">oA</code>导出所有类型的报告</p>
+</blockquote>
+
+<h4 id="peepingtom揭示网络构造">PeepingTOM:揭示网络构造</h4>
+
+<p>下载：</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">root</span><span class="k">@kali</span><span class="p">:/</span><span class="n">opt</span><span class="err">#</span> <span class="n">wget</span> <span class="n">http</span><span class="p">://</span><span class="n">thehackerplaybook</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">Download</span><span class="p">/</span><span class="n">peepingtom</span><span class="p">.</span><span class="n">zip</span>
+</code></pre></div></div>
+
+<p>Gnmap.pl可将Nmap结果处理为PeepingTom所需的IP列表：</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">root</span><span class="k">@kali</span><span class="p">:</span><span class="err">~#</span> <span class="n">sudo</span> <span class="n">cat</span> <span class="n">report</span><span class="p">.</span><span class="n">gnmap</span><span class="err">|</span><span class="n">perl</span> <span class="p">./</span><span class="n">gnmap</span><span class="p">.</span><span class="n">pl</span><span class="err">|</span><span class="n">grep</span> <span class="n">http</span><span class="err">|</span><span class="n">cut</span> <span class="n">-f</span> <span class="m">1</span><span class="p">,</span><span class="m">2</span> <span class="n">-d</span> <span class="s1">","</span><span class="err">|</span><span class="n">tr</span> <span class="s1">","</span> <span class="s1">":"</span> <span class="err">&gt;</span> <span class="n">http_ips</span><span class="p">.</span><span class="n">txt</span>
+</code></pre></div></div>
+
+<p>通过peepingtom的处理:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">root</span><span class="k">@kali</span><span class="p">:</span><span class="err">~#</span> <span class="n">python</span> <span class="n">peepingtom</span><span class="p">.</span><span class="n">py</span> <span class="n">-p</span> <span class="n">-i</span> <span class="n">http_ips</span><span class="p">.</span><span class="n">txt</span>
+</code></pre></div></div>
+
+<h2 id="web应用程序扫描">Web应用程序扫描</h2>
+
+<p>进行Web扫描，可选择WebScarab、Nikto、ZAP、W3af等工具</p>
+
+<h3 id="web应用程序的扫描流程">Web应用程序的扫描流程</h3>
+
+<ul>
+  <li>Burpsuit进行spider、disvocer、scanning</li>
+  <li>用Web扫描器扫描</li>
+  <li>手动注入参数</li>
+  <li>Session Token分析</li>
+</ul>
+
+<h3 id="web扫描工具">Web扫描工具</h3>
+
+<p>在Nessus/Nexpose找到操作系统、应用程序、网络服务的漏洞之后，可以通过Burp suit深入Web应用程序测试：</p>
+
+<ul>
+  <li>设置代理</li>
+  <li>开启Burpsuit</li>
+  <li>对应用进行爬取</li>
+  <li>对内容进行挖掘</li>
+  <li>进行主动扫描</li>
+  <li>漏洞利用</li>
+</ul>
+
+<h1 id="漏洞利用">漏洞利用</h1>
+
+<p>Metasploit框架可用于开发exploit、利用漏洞以及实现辅助攻击。</p>
+
+<h2 id="配置metasploit进行远程攻击的基本步骤">配置Metasploit进行远程攻击的基本步骤</h2>
+
+<ul>
+  <li>选择要使用的攻击利用代码或者模块</li>
+  <li>设置该模块参数</li>
+  <li>set命令可配置模块的输入变量</li>
+  <li>设置目标主机和端口</li>
+  <li>设置本地主机和端口</li>
+  <li>若有详细信息，可设置系统版本、用户账号以及其他信息</li>
+  <li>运行show options查看需要设置的其他选项</li>
+  <li>配置有效载荷</li>
+  <li>载荷是在利用漏洞之后运行的实施具体操纵行为的程序</li>
+  <li>运行show payloads查看payload的全部类型</li>
+  <li>使用set payloads设置要使用的载荷</li>
+  <li>设置编码器(encoder)</li>
+  <li>隐匿攻击程序特征</li>
+  <li>运行show encoders命令查看封装载荷的各种编码器，使用set encoders对payload进行封装</li>
+  <li>设置其他选项</li>
+  <li>exploit</li>
+</ul>
+
+<h1 id="人工检测web应用程序">人工检测WEB应用程序</h1>
+
+<h2 id="sql注入">SQL注入</h2>
+
+<p>常用的SQL注入工具是SQLmap和SQLninja。</p>
+
+<h3 id="get参数注入">GET参数注入</h3>
+
+<ul>
+  <li>验证某个SQL注入是否有效</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">sqlmap</span> <span class="nt">-u</span> <span class="s1">"http://site.com/info.php?user=test&amp;pass=test"</span> <span class="nt">-b</span>
+</code></pre></div></div>
+
+<ul>
+  <li>获取数据库用户名</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">sqlmap</span> <span class="nt">-u</span> <span class="s1">"http://site.com/info.php?user=test&amp;pass=test"</span> <span class="nt">-current-user</span>
+</code></pre></div></div>
+<ul>
+  <li>交互shell</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">sqlmap</span> <span class="nt">-u</span> <span class="s1">"http://site.com/info.php?user=test&amp;pass=test"</span> <span class="nt">--os-shell</span>
+</code></pre></div></div>
+
+<p><strong>技巧提示：</strong></p>
+
+<ul>
+  <li>可能需要指定要攻击的数据库的具体类型。若认为可能存在注入，而SQLmap又没什么发现，就试试–dbms-[database]</li>
+  <li>若目标网站要求用户进行登录认证，可通过浏览器登录到网站，然后获取cookie信息(burpsuit提取)。最后用–data=[cookie]选项定义cookie。</li>
+  <li>卡住了，就试试sqlmap –wizard</li>
+</ul>
+
+<h3 id="post参数注入">POST参数注入</h3>
+
+<p>POST方式不是通过URL传递参数，而是在递交的数据里传递参数。通常传递用户名和密码。</p>
+
+<ul>
+  <li>验证某个SQL注入是否有效</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">sqlmap</span> <span class="nt">-u</span> <span class="s1">"http://site.com/info.php"</span> <span class="nt">--data</span><span class="o">=</span><span class="s1">"user=test&amp;pass=test"</span> <span class="nt">-b</span>
+</code></pre></div></div>
+
+<ul>
+  <li>获取数据库用户名</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">sqlmap</span> <span class="nt">-u</span> <span class="s1">"http://site.com/info.php"</span> <span class="nt">--data</span><span class="o">=</span><span class="s1">"user=test&amp;pass=test"</span> <span class="nt">--current-user</span>
+</code></pre></div></div>
+
+<ul>
+  <li>交互shell:</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">sqlmap</span> <span class="nt">-u</span> <span class="s1">"http://site.com/info.php"</span> <span class="nt">--data</span><span class="o">=</span><span class="s1">"user=test&amp;pass=test"</span> <span class="nt">--os-shell</span>
+</code></pre></div></div>
+
+<h2 id="xss">XSS</h2>
+
+<p>XSS是一种由于Web应用程序缺乏输入验证而引起的针对网站访问客户的攻击，分为反射型和存储型。攻击的本质就是攻击人员向网站访问客户的浏览器里注入了某种代码。</p>
+
+<h3 id="beff">BeFF</h3>
+
+<p><img src="/img/the_hacker_play_book/beff.png" alt="BeFF" /></p>
+
+<h1 id="渗透内网">渗透内网</h1>
+
+<h2 id="无登陆凭据条件下的网络渗透">无登陆凭据条件下的网络渗透</h2>
+
+<p>在连入网络，但没有任何登陆凭据的时候，使用tcpdump程序进行动态的监听，进而分析网络结构，寻找域控制器，然后进行其他类型的被动攻击。</p>
+
+<h3 id="responderpy">responder.py</h3>
+
+<p><a href="https://github.com/SpiderLabs/Responder">responder.py</a>可在一无所知的情况下取得登陆凭据，可率先实现监听、响应LLMNR协议(本地链路多播名称解析协议,Link Local Multicast Name Resolution)和NBT-NS协议(网络基本输入输出系统域名服务协议)。还可以利用WPAD(Web Proxy Auto-Discovery)漏洞（浏览器设置为自动检测设置，那么受害机会从网络获取配置文件）</p>
+
+<p>该情况下，与受害机处于同一个网络的攻击人员，能够回复受害主机发出的名称解析请求，并注入自己的PAC文件，代理所有Web流量，强制浏览器用户对攻击人员的SMB服务器进行身份验证，就能获取该主机的哈希值。</p>
+
+<h2 id="利用任意域凭据非管理员权限">利用任意域凭据(非管理员权限)</h2>
+
+<h3 id="组策略首选项">组策略首选项</h3>
+
+<p>通过GPP(Group Policy Preference，组策略首选项)发布的账号全部存储在<code class="highlighter-rouge">\\[Domain Controller]\SYSVOL\[Domain]\Policies</code>中。可在该文件夹中找到一个名为Group.xmls的文件，找到之后就可以找到cpassword的哈希值。</p>
+
+<p><strong>只要获取域账号使用权限，就应该率先检查组策略首选项</strong></p>
+
+<h3 id="获取明文凭据">获取明文凭据</h3>
+
+<p>WCE和Mimikatz能够从内存中读取明文密码。（管理员权限）</p>
+
+<h3 id="漏洞利用后期">漏洞利用后期</h3>
+
+<p><a href="https://room362.com/">后期渗透思路</a>：https://room362.com/</p>
+
+<h2 id="利用本地或域管理账号">利用本地或域管理账号</h2>
+
+<h3 id="使用登陆凭证和psexec掌控网络">使用登陆凭证和PSExec掌控网络</h3>
+
+<p>PSExec可以使用用户名和密码，也可以使用用户名和密码的hash值登陆。</p>
+
+<p>使用系统漏洞，规避杀软，攻击目标并登陆：</p>
+
+<ul>
+  <li>使用veil生成规避杀软的payload</li>
+  <li>使用msf中的PSExec模块，并设置相关参数(和veil的一样)</li>
+  <li>然后使用<code class="highlighter-rouge">set EXE::Custom+payload所在路径</code>使用veil创建的payload</li>
+  <li>migrate[x86_64进程的PID]</li>
+  <li><code class="highlighter-rouge">getsystem</code>获取系统权限</li>
+  <li>load mimikatz</li>
+  <li>kerberos/wdigest</li>
+  <li>进行域相关操作</li>
+  <li>net group “Domain Admin” /domain(列出域管理员)</li>
+  <li>qwinsta(列出用户会话)</li>
+  <li>新建管理账户</li>
+  <li>获取域控密码</li>
+</ul>
+
+<blockquote>
+  <p>　Mimikatz只在内存中运行。若被攻陷的主机是64位，<strong>首先将程序进程迁移（ｍｉｇｒａｔｅ）到一个６４位的进程中，才能查看密码。若是32位就没有限制。</strong></p>
+</blockquote>
+
+<h3 id="攻击域控制器">攻击域控制器</h3>
+
+<p>域控制器把用户的hash存储在C:\Windows\NTDS\ntds.dit`中，DC运行的活动目录操作会一直访问它，该文件被施加了读取锁，但可使用Windows自带的Shadow Copy创建一份复制。</p>
+
+<p><a href="https://github.com/brav0hax/smbexec">SMBExec</a>是攻击DC的好选择，可以使用Windows的Shadow Copy功能复制ntds.dit文件并获取注册表中的SYS键值。</p>
+
+<h2 id="漏洞利用后期使用powersploitwindows">漏洞利用后期——使用PowerSploit(Windows)</h2>
+
+<p><a href="https://github.com/PowerShellMafia/PowerSploit">PowerSploit</a>,使用Windows的原生工具，可以在内存中执行所有程序，能够规避杀软，可以将DLL注入到进程中，还可以使用目标电脑里缓存的Windows认证信息访问整个域。</p>
+
+<p>若拥有本地管理员凭据，而且登陆到目标的单位中，就可以使用Powershell强制用户下载并调用PowerShell脚本，最终获得创建Meterpreter反向连接的Shell。</p>
+
+<p><a href="https://github.com/PowerShellMafia/PowerSploit/tree/master/CodeExecution/Invoke-Shellcode.ps1">Invoke-ShellCode</a>程序能在客户端创建Meterpreter反射型HTTPS的shell全部功能。</p>
+
+<p>下载以下三个工具：</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">git</span> <span class="nt">clone</span> <span class="nt">https</span><span class="o">://</span><span class="nt">github</span><span class="nc">.com</span><span class="o">/</span><span class="nt">PowerShellMafia</span><span class="o">/</span><span class="nt">PowerSploit</span>
+</code></pre></div></div>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">wget</span> <span class="nt">https</span><span class="o">://</span><span class="nt">raw</span><span class="nc">.githubusercontent.com</span><span class="o">/</span><span class="nt">obscuresec</span><span class="o">/</span><span class="nt">random</span><span class="o">/</span><span class="nt">master</span><span class="o">/</span><span class="nt">StartListener</span><span class="nc">.py</span>
+</code></pre></div></div>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">wget</span> <span class="nt">https</span><span class="o">://</span><span class="nt">raw</span><span class="nc">.githubusercontent.com</span><span class="o">/</span><span class="nt">darkoperator</span><span class="o">/</span><span class="nt">powershell_scripts</span><span class="o">/</span><span class="nt">master</span><span class="o">/</span><span class="nt">ps_encoder</span><span class="nc">.py</span>
+</code></pre></div></div>
+
+<p><a href="https://xianzhi.aliyun.com/forum/read/723.html">具体实际例子，已验证是对的</a>：https://xianzhi.aliyun.com/forum/read/723.html</p>
+
+<h2 id="arp欺骗">ARP欺骗</h2>
+
+<p>ARP欺骗的工具:</p>
+
+<ul>
+  <li><a href="http://www.oxid.it/cain.html">Cain&amp;Abel</a></li>
+  <li><a href="https://pentestmag.com/ettercap-tutorial-for-windows/">Ettercap</a></li>
+  <li><a href="https://github.com/ElevenPaths/EvilFOCA">evilfoca</a></li>
+</ul>
+
+<h2 id="会话劫持">会话劫持</h2>
+
+<p>在成功对目标主机进行ARP欺骗之后，可以对访问目标的内容、使用的协议、密码会话进行控制。</p>
+
+<p>通过劫持会话的cookie，导入浏览器冒充合法用户。</p>
+
+<h3 id="hamsterferret">Hamster/Ferret</h3>
+
+<p>Hamster可实现会话劫持，它以代理服务器的模式工作，将他人的session cookie替换为自己的实现会话攻击。</p>
+
+<h3 id="firesheep">firesheep</h3>
+
+<p>firesheep是火狐的一款插件，可以嗅探通过无线、有线网洛中以明文传输的会话令牌。</p>
+
+<h2 id="dns重定向">DNS重定向</h2>
+
+<p>对内部网络进行中间人攻击，克隆其网站可以获得大量有用信息。</p>
+
+<h3 id="cainabel">Cain&amp;Abel</h3>
+
+<p>Sniffer-&gt;APR标签-&gt;单击APR-DNS-&gt;右键添加需要更改的DNS请求。</p>
+
+<p>此时可以使用SET工具克隆一个谷歌网站或者是其他的网站，配置好DNS欺骗，建立好仿冒网站，当被ARP欺骗的目标用户访问时候就重定向到SET克隆的仿冒页面。</p>
+
+<h3 id="sslstrip">SSLStrip</h3>
+
+<p>SSLStrip可以将用户从HTTPS页面重定向到HTTP站点，以截获明文方式传递的所有浏览器流量(监控HTTPS流量，并修改用户所有的HTTPS通信为HTTP)</p>
+
+<h2 id="端口代理">端口代理</h2>
+
+<p>当连入网络，无法访问特定的网段时候，让具有访问权限或适当IP地址的用户充当代理。</p>
+
+<p>netsh是Windows自带的修改网络配置的命令行工具。(管理员权限)</p>
+
+<p>将10.10.10.128的3389端口转发到10.10.10.136的8080端口：</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">netsh</span> <span class="nt">interface</span> <span class="nt">portproxy</span> <span class="nt">add</span> <span class="nt">v4tov4</span> <span class="nt">listenport</span><span class="o">=</span><span class="nt">8080</span> <span class="nt">listenaddress</span><span class="o">=</span><span class="nt">10</span><span class="nc">.10.10.136</span> <span class="nt">connectport</span><span class="o">=</span><span class="nt">3389</span> <span class="nt">connect</span><span class="o">=</span><span class="nt">address</span><span class="o">=</span><span class="nt">10</span><span class="nc">.10.10.128</span>
+</code></pre></div></div>
+
+<h1 id="社工">社工</h1>
+
+<p>可看https://www.wired.com/2011/09/doppelganger-domains</p>
+
+<h2 id="邮件中间人攻击">邮件中间人攻击</h2>
+
+<p>通过购买与目标近似的域名，然后搭建SMTP邮件服务器，并将服务器设置为catch-all——接收所有邮件。然后将接收的邮件接收后，伪造之后发往正确的邮箱，通过通信双方的信任达到邮件中间人攻击。也可以在该域名上配置ssh服务器，配置日志文件，然后查看目标用户输入的用户名和密码。</p>
+
+<h2 id="鱼叉式钓鱼攻击">鱼叉式钓鱼攻击</h2>
+
+<p>Metasploit Pro具有一个辅助性的社工模块，创建一个页面，从而直接获得用户名和密码以及其他信息。</p>
+
+<h2 id="set">SET</h2>
+
+<ul>
+  <li>
+    <p>伪造页面</p>
+  </li>
+  <li>
+    <p>使用SET中的Java程序进行攻击</p>
+  </li>
+  <li>大规模鱼叉式钓鱼</li>
+  <li>伪造smtp服务器群发邮件</li>
+  <li>SET群发邮件</li>
+  <li>发送附带powershell的Execl</li>
+</ul>
+
+<h1 id="物理访问的攻击">物理访问的攻击</h1>
+
+<h2 id="无线攻击">无线攻击</h2>
+
+<h3 id="被动识别和侦查">被动识别和侦查</h3>
+
+<p>被动WIFI测试就是将无线网卡设置为嗅探模式，继而识别接入点、客户端、信号强度、加密类型等各类信息。主机在被动模式下，不能向任何设备发送数据。</p>
+
+<p><strong>kismet可用于嗅探、识别并监控无限流量，其将会列出所有的SSID、信道、信号强度等无线信息。（卡顿的时候按tab键进行切换）</strong></p>
+
+<ul>
+  <li>黄色为WIFI未加密</li>
+  <li>红色为WIFI使用出厂设置</li>
+  <li>绿色的为WIFI采用了认证机制(WEP、WPA等)</li>
+  <li>蓝色的为WIFI隐藏了SSID（禁用SSID广播）</li>
+</ul>
+
+<p>选定一个SSID，将可以快速查看AP有关信息，例如BSSID、制造商、加密类型、信号强度/丢包率等，有助于判断AP位置。按下<code class="highlighter-rouge">~</code>、<code class="highlighter-rouge">V</code>、<code class="highlighter-rouge">C</code>键将看到连接到该AP的所有客户端。</p>
+
+<p>客户端信息是解除认证和拒绝服务攻击所需的重要信息。</p>
+
+<h3 id="主动攻击">主动攻击</h3>
+
+<p>对无线网络进行侦查之后，尽快破解无线密码或尽可能访问无线基础设施。</p>
+
+<h4 id="wep有线等效加密">WEP有线等效加密</h4>
+
+<p>WEP无线网络的安全机制不够安全。若被测单位使用WEP网络，且有客户端接入，那就可以轻松破解除WEP密码。</p>
+
+<p>破解步骤：</p>
+
+<ul>
+  <li>命令行输入<code class="highlighter-rouge">fern-wifi-cracker</code></li>
+  <li>下拉选中网卡</li>
+  <li>单击scan</li>
+  <li>选择WEP</li>
+  <li>选择想要攻击的SSID</li>
+  <li>单击右侧的WIFI Attack</li>
+  <li>观察IV计数器(初始化矢量计数器)。至少需要10k个IV才能破解</li>
+  <li>破解成功就会显示出密码</li>
+</ul>
+
+<h4 id="wpav2tkipwifi访问保护">WPAv2(TKIP)（WIFI访问保护）</h4>
+
+<p>要攻击WPAv2的无线网络，需要抓取从客户端发送给AP的验证握手包。抓取该数据包需要采取欺骗手段，强制用户解除认证，然后重新认证，抓取到握手的认证数据包之后，不能立即提取出密码，必须暴力破解。</p>
+
+<p>破解步骤：</p>
+
+<ul>
+  <li>命令行输入<code class="highlighter-rouge">fern-WiFi-cracker</code></li>
+  <li>进入工具盒</li>
+  <li>单击WiFi Attack options</li>
+  <li>选择capture file settings</li>
+  <li>按ESC退回到fern-wifi-cracker的主屏幕</li>
+  <li>下拉选中网卡</li>
+  <li>单击scan</li>
+  <li>选中WPA（蓝色信号）</li>
+  <li>选择要攻击的SSID</li>
+  <li>单击Wifi按钮</li>
+  <li>使用wpaclean整理抓取的数据包(<code class="highlighter-rouge">wpaclean &lt;out.cap&gt;&lt;in.cap&gt;</code>)</li>
+  <li>通过aircrack-ng将整理好的数据包转换为hccap(<code class="highlighter-rouge">aircrack-ng &lt;out.cap&gt; -J &lt;out.hccap&gt;</code>)</li>
+  <li>使用oclHashcat破解转换后的文件。</li>
+</ul>
+
+<h4 id="wpav2-wpswifi配置保护攻击">WPAv2 WPS（Wifi配置保护）攻击</h4>
+
+<p>WPS最初叫做WiFi Simple Config，主要致力于创建无线路由器/AP的安全连接。当客户端连接到AP时，只要输入较短的WPS PIN码就行，这就可以进行暴力破解。部分具有WPS功能的无线AP，即使在配置页面关闭了WPS功能，WPS功能依然存在。</p>
+
+<p>攻击WPS步骤与WPAv2的步骤类似，仅仅在于选择WPS_Attack不同于WPAv2的Regualar Attack。</p>
+
+<h4 id="wpa企业级伪造radius攻击">WPA企业级——伪造Radius攻击</h4>
+
+<p>通过伪造Radius攻击企业级的Wifi。利用Radius服务器在WPAv2企业级无线环境下抓取用户名和密码。</p>
+
+<h4 id="karmetasploit">karmetasploit</h4>
+
+<p>karma可以辅助攻击人员识别出无线用户端使用的SSID，并且可以模仿这些SSID的接入点让目标主机连接到攻击人员控制的伪AP。Karmetasploit对这款程序进行改变，让攻击人员使用metasploit攻击连入的客户端。</p>
+
+<h2 id="物理攻击">物理攻击</h2>
+
+<h3 id="克隆工卡">克隆工卡</h3>
+
+<ul>
+  <li>ProxMark3:克隆RFID</li>
+  <li>ProxBrute:暴力破解</li>
+  <li>RFIDiot:RFID克隆和脚本</li>
+  <li>Tastic RFID:远距离克隆RFID卡</li>
+</ul>
+
+<h3 id="kali-nethunter">Kali NetHunter</h3>
+
+<h1 id="规避杀软">规避杀软</h1>
+
+<p>WCE能够提取内存中的密码，但很多杀软都能检测出，最简单易行的就是在WCE文件中找到AV匹配的签名，然后更改签名。</p>
+
+<p>使用文件分割器分隔执行文件，然后使用AV从最小的分割部分扫描，直到AV报警为止。当AV报警时，就可以判断在上一个文件的结束地址到报警文件结束地址之间有AV检测的签名特征，修改该部分签名即可。</p>
+
+<h1 id="破解利用技巧">破解、利用、技巧</h1>
+
+<h2 id="破解">破解</h2>
+
+<h3 id="字典">字典</h3>
+
+<ul>
+  <li><a href="https://downloads.skullsecurity.org/passwords/passwords/rockyou.txt.bz2">Rockyou</a>:https://downloads.skullsecurity.org/passwords/passwords/rockyou.txt.bz2</li>
+  <li><a href="https://download.g0tmi1k.com/wordlists/large/">Crackstation-hunman-only</a>:https://download.g0tmi1k.com/wordlists/large/</li>
+  <li><a href="http://derv.us/wordlists.html">m3g9tr0n wordlist</a></li>
+</ul>
+
+<h3 id="破解-1">破解</h3>
+
+<ul>
+  <li>john the ripper</li>
+  <li>oclhashcat</li>
+</ul>
+
+<h2 id="漏洞搜索">漏洞搜索</h2>
+
+<p>首先使用nmap对目标进行banner分析，然后根据banner对其进行漏洞搜索。</p>
+
+<h3 id="searchsploit">Searchsploit</h3>
+
+<p>直接输入searchsploit搜索漏洞</p>
+
+<h3 id="bugtraq">BugTraq</h3>
+
+<p><a href="http://www.securityfocus.com/bid">bugtraq</a>是一个出色的漏洞和exploit数据源。</p>
+
+<h3 id="exploitdb">ExploitDB</h3>
+
+<h2 id="技巧">技巧</h2>
+
+<ul>
+  <li>通过编写rc脚本提高msf的使用效率</li>
+  <li>限制IP攻击时，通过购买类似域名，将其克隆成相关网站，上线几个星期之后，目标以为域名被公司购买，有可能会解除该域名IP的限制，到时就可以继续做下一步</li>
+  <li>绕过UAC，在meterpreter中使用getsystem不能提权。可以使用<code class="highlighter-rouge">run bypassuac</code>，其会生成另一个会话，之前打开的为了防止关闭使用<code class="highlighter-rouge">background</code>，然后<code class="highlighter-rouge">session -i 2</code>切换到新生成的会话</li>
+  <li>拥有Webshell之后，可以考虑将命令写入txt中，使用<code class="highlighter-rouge">ftp -s:ftp.txt</code>执行</li>
+</ul>
+
+<h3 id="隐藏文件">隐藏文件</h3>
+
+<p>ADS:Alternate Data Streams,备用数据流。<a href="http://www.rootkitanalytics.com/userland/Exploring-Alternate-Data-Streams.php">它是Windows NTFS文件系统上一个鲜为人知的功能，能在现有的文件和文件夹中追加数据，而且不影响文件的功能和大小。</a>.</p>
+
+<p>通过ADS可以在常被管理员查看的目标机器隐藏恶意文件。</p>
+
+<h3 id="稳定隐藏文件">稳定隐藏文件</h3>
+
+<p>通过<code class="highlighter-rouge">C:\&gt;mkdir \\?\c:\tmp\".. \"</code>创建有问题的文件夹，将隐藏文件移动到其中，资源管理器是无法删除和修改、运行该文件。</p>
+
+<h3 id="上传文件">上传文件</h3>
+
+<p>使用powershell或者是bitsadmin(windows更新程序就是它下载的)上传。</p>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/02/08/Shodan-Manual/">Shodan手册
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/27/hidden-the-network/">阻碍获取真实网络指纹
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/04/command-and-control-images/">command-and-control-images
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/27/open-RDP/">开启RDP
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/11/30/Test-LAB-11/">TEST LAB 11
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/11/29/proxy/">代理
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/06/23/hack-tools/">Hack Tools</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/07/05/xss-game/">xssgame</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/07/05/the-hacker-play-book1/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/07/05/the-hacker-play-book1/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

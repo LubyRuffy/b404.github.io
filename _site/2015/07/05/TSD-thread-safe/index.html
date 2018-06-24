@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>并发服务器（TSD安全实例）</title>
+    <meta name="description" content="并发服务器（TSD安全实例）">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2015/07/05/TSD-thread-safe/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>并发服务器（TSD安全实例）</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2015-07-05
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#code" title="Category: code" rel="category">code</a>&nbsp;
+    
+        <a href="/category/#c" title="Category: c" rel="category">c</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#TSD" title="Tag: TSD" rel="tag">TSD</a-->
+        <a href="/tag/#TSD" title="Tag: TSD" rel="tag">TSD</a>&nbsp;
+    
+        <!--a href="/tag/#Linux" title="Tag: Linux" rel="tag">Linux</a-->
+        <a href="/tag/#Linux" title="Tag: Linux" rel="tag">Linux</a>&nbsp;
+    
+        <!--a href="/tag/#c" title="Tag: c" rel="tag">c</a-->
+        <a href="/tag/#c" title="Tag: c" rel="tag">c</a>&nbsp;
+    
+        <!--a href="/tag/#code" title="Tag: code" rel="tag">code</a-->
+        <a href="/tag/#code" title="Tag: code" rel="tag">code</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>并发服务器（TSD安全实例）</p>
+
+<!--more-->
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;string.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;netinet/in.h&gt;
+#include &lt;arpa/inet.h&gt;
+#include
+</span>
+<span class="cp">#define PORT 1234
+#define BACKLOG 5
+#define MAXDATASIZE 1000
+</span>
+<span class="kt">void</span> <span class="n">process_cli</span><span class="p">(</span><span class="kt">int</span> <span class="n">connfd</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">client</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">savedata_r</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">recvbuf</span><span class="p">,</span><span class="kt">int</span> <span class="n">len</span><span class="p">,</span><span class="kt">char</span><span class="o">*</span> <span class="n">cli_data</span><span class="p">);</span>
+<span class="kt">void</span> <span class="o">*</span><span class="n">function</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">arg</span><span class="p">);</span>
+<span class="k">struct</span> <span class="n">ARG</span> <span class="p">{</span>
+<span class="kt">int</span> <span class="n">connfd</span><span class="p">;</span>
+<span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">client</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="n">pthread_key_t</span> <span class="n">key</span><span class="p">;</span>
+<span class="n">pthread_once_t</span> <span class="n">once</span><span class="o">=</span><span class="n">PTHREAD_ONCE_INIT</span><span class="p">;</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">destructor</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">ptr</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">free</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">creatkey_once</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">pthread_key_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">key</span><span class="p">,</span><span class="n">destructor</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">struct</span> <span class="n">ST_DATA</span>
+<span class="p">{</span>
+<span class="kt">int</span> <span class="n">index</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="kt">int</span> <span class="n">listenfd</span><span class="p">,</span><span class="n">connfd</span><span class="p">;</span>
+<span class="n">pthread_t</span> <span class="n">tid</span><span class="p">;</span>
+<span class="k">struct</span> <span class="n">ARG</span> <span class="o">*</span><span class="n">arg</span><span class="p">;</span>
+<span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">server</span><span class="p">;</span>
+<span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">client</span><span class="p">;</span>
+<span class="n">socklen_t</span> <span class="n">len</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">((</span><span class="n">listenfd</span> <span class="o">=</span><span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">perror</span><span class="p">(</span><span class="s">"Creatingsocket failed."</span><span class="p">);</span>
+<span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">opt</span> <span class="o">=</span><span class="n">SO_REUSEADDR</span><span class="p">;</span>
+<span class="n">setsockopt</span><span class="p">(</span><span class="n">listenfd</span><span class="p">,</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">opt</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">opt</span><span class="p">));</span>
+
+<span class="n">bzero</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">server</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">server</span><span class="p">));</span>
+<span class="n">server</span><span class="p">.</span><span class="n">sin_family</span><span class="o">=</span><span class="n">AF_INET</span><span class="p">;</span>
+<span class="n">server</span><span class="p">.</span><span class="n">sin_port</span><span class="o">=</span><span class="n">htons</span><span class="p">(</span><span class="n">PORT</span><span class="p">);</span>
+<span class="n">server</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="o">=</span> <span class="n">htonl</span> <span class="p">(</span><span class="n">INADDR_ANY</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">bind</span><span class="p">(</span><span class="n">listenfd</span><span class="p">,(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">server</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">server</span><span class="p">))</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">perror</span><span class="p">(</span><span class="s">"Bind()error."</span><span class="p">);</span>
+<span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">if</span><span class="p">(</span><span class="n">listen</span><span class="p">(</span><span class="n">listenfd</span><span class="p">,</span><span class="n">BACKLOG</span><span class="p">)</span><span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+<span class="n">perror</span><span class="p">(</span><span class="s">"listen()error</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">len</span><span class="o">=</span><span class="k">sizeof</span><span class="p">(</span><span class="n">client</span><span class="p">);</span>
+<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="k">if</span> <span class="p">((</span><span class="n">connfd</span> <span class="o">=</span><span class="n">accept</span><span class="p">(</span><span class="n">listenfd</span><span class="p">,(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">client</span><span class="p">,</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">len</span><span class="p">))</span><span class="o">==-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">perror</span><span class="p">(</span><span class="s">"accept() error</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">arg</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">ARG</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">ARG</span><span class="p">));</span>
+<span class="n">arg</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">connfd</span> <span class="o">=</span><span class="n">connfd</span><span class="p">;</span>
+<span class="n">memcpy</span><span class="p">((</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">arg</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">client</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">client</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">client</span><span class="p">));</span>
+
+<span class="k">if</span><span class="p">(</span><span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">tid</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="n">arg</span><span class="p">))</span> <span class="p">{</span>
+<span class="n">perror</span><span class="p">(</span><span class="s">"Pthread_create() error"</span><span class="p">);</span>
+<span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="p">}</span>
+<span class="n">close</span><span class="p">(</span><span class="n">listenfd</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">process_cli</span><span class="p">(</span><span class="kt">int</span> <span class="n">connfd</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">client</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">cli_data</span><span class="p">[</span><span class="mi">1000</span><span class="p">];</span>
+<span class="kt">char</span> <span class="n">recvbuf</span><span class="p">[</span><span class="n">MAXDATASIZE</span><span class="p">],</span> <span class="n">sendbuf</span><span class="p">[</span><span class="n">MAXDATASIZE</span><span class="p">],</span> <span class="n">cli_name</span><span class="p">[</span><span class="n">MAXDATASIZE</span><span class="p">];</span>
+
+<span class="n">printf</span><span class="p">(</span><span class="s">"Yougot a connection from %s. </span><span class="se">\n</span><span class="s"> "</span><span class="p">,</span><span class="n">inet_ntoa</span><span class="p">(</span><span class="n">client</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">)</span> <span class="p">);</span>
+<span class="n">num</span> <span class="o">=</span> <span class="n">recv</span><span class="p">(</span><span class="n">connfd</span><span class="p">,</span><span class="n">cli_name</span><span class="p">,</span> <span class="n">MAXDATASIZE</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">close</span><span class="p">(</span><span class="n">connfd</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"Clientdisconnected.</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">cli_name</span><span class="p">[</span><span class="n">num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span><span class="sc">'\0'</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"Client'sname is %s.</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">cli_name</span><span class="p">);</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="n">num</span> <span class="o">=</span><span class="n">recv</span><span class="p">(</span><span class="n">connfd</span><span class="p">,</span> <span class="n">recvbuf</span><span class="p">,</span> <span class="n">MAXDATASIZE</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+<span class="n">recvbuf</span><span class="p">[</span><span class="n">num</span><span class="p">]</span> <span class="o">=</span><span class="sc">'\0'</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"Receivedclient( %s ) message: %s"</span><span class="p">,</span><span class="n">cli_name</span><span class="p">,</span> <span class="n">recvbuf</span><span class="p">);</span>
+<span class="n">savedata_r</span><span class="p">(</span><span class="n">recvbuf</span><span class="p">,</span><span class="n">num</span><span class="p">,</span><span class="n">cli_data</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">=</span><span class="sc">'a'</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">recvbuf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="sc">'A'</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">recvbuf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="sc">'Z'</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">recvbuf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="sc">'z'</span><span class="p">))</span>
+<span class="n">recvbuf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">recvbuf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span> <span class="mi">26</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">sendbuf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span><span class="n">recvbuf</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="n">sendbuf</span><span class="p">[</span><span class="n">num</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'\0'</span><span class="p">;</span>
+<span class="n">send</span><span class="p">(</span><span class="n">connfd</span><span class="p">,</span><span class="n">sendbuf</span><span class="p">,</span><span class="n">strlen</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">close</span><span class="p">(</span><span class="n">connfd</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"client( %s ) closed connection.</span><span class="se">\n</span><span class="s"> Users data: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">cli_name</span><span class="p">,</span> <span class="n">cli_data</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="o">*</span><span class="n">function</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">arg</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="k">struct</span> <span class="n">ARG</span> <span class="o">*</span><span class="n">info</span><span class="p">;</span>
+<span class="n">info</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">ARG</span><span class="o">*</span><span class="p">)</span><span class="n">arg</span><span class="p">;</span>
+<span class="n">process_cli</span><span class="p">(</span><span class="n">info</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">connfd</span><span class="p">,</span><span class="n">info</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">client</span><span class="p">);</span>
+<span class="n">free</span> <span class="p">(</span><span class="n">arg</span><span class="p">);</span>
+<span class="n">pthread_exit</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="n">savedata_r</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">recvbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">cli_data</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="k">struct</span> <span class="n">ST_DATA</span><span class="o">*</span> <span class="n">data</span><span class="p">;</span>
+
+<span class="n">pthread_once</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">once</span><span class="p">,</span> <span class="n">creatkey_once</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">((</span><span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">ST_DATA</span> <span class="o">*</span><span class="p">)</span><span class="n">pthread_getspecific</span> <span class="p">(</span> <span class="n">key</span> <span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">ST_DATA</span> <span class="o">*</span><span class="p">)</span> <span class="n">malloc</span> <span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">ST_DATA</span><span class="p">));</span>
+<span class="n">pthread_setspecific</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">data</span><span class="p">);</span>
+<span class="n">data</span> <span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">len</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cli_data</span><span class="p">[</span><span class="n">data</span> <span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">index</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">recvbuf</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="n">cli_data</span><span class="p">[</span><span class="n">data</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">index</span><span class="p">]</span><span class="o">=</span><span class="sc">'\0'</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//client.c
+</span><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;string.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;netinet/in.h&gt;
+#include
+</span>
+<span class="cp">#define PORT 1234
+#define MAXDATASIZE 100
+</span><span class="kt">void</span> <span class="n">process</span><span class="p">(</span><span class="kt">FILE</span><span class="o">*</span><span class="n">fp</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sockfd</span><span class="p">);</span>
+<span class="kt">char</span> <span class="o">*</span><span class="n">getMessage</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">sendline</span><span class="p">,</span><span class="kt">int</span> <span class="n">len</span><span class="p">,</span> <span class="kt">FILE</span><span class="o">*</span> <span class="n">fp</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span><span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="kt">int</span> <span class="n">fd</span><span class="p">;</span>
+<span class="k">struct</span> <span class="n">hostent</span> <span class="o">*</span><span class="n">he</span><span class="p">;</span>
+<span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">server</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">!=</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"Usage:%s </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">if</span><span class="p">((</span><span class="n">he</span><span class="o">=</span><span class="n">gethostbyname</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span><span class="o">==</span><span class="nb">NULL</span><span class="p">){</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"gethostbyname() error</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">if</span><span class="p">((</span><span class="n">fd</span><span class="o">=</span><span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span><span class="o">==-</span><span class="mi">1</span><span class="p">){</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"socket()error</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">bzero</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">server</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">server</span><span class="p">));</span>
+<span class="n">server</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span><span class="n">AF_INET</span><span class="p">;</span>
+<span class="n">server</span><span class="p">.</span><span class="n">sin_port</span><span class="o">=</span><span class="n">htons</span><span class="p">(</span><span class="n">PORT</span><span class="p">);</span>
+<span class="n">server</span><span class="p">.</span><span class="n">sin_addr</span><span class="o">=</span> <span class="o">*</span><span class="p">((</span><span class="k">struct</span> <span class="n">in_addr</span> <span class="o">*</span><span class="p">)</span><span class="n">he</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">h_addr</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="n">connect</span><span class="p">(</span><span class="n">fd</span><span class="p">,(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">server</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">server</span><span class="p">))</span><span class="o">==-</span><span class="mi">1</span><span class="p">){</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"connect() error</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">process</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span><span class="n">fd</span><span class="p">);</span>
+
+<span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">process</span><span class="p">(</span><span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sockfd</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="kt">char</span> <span class="n">sendline</span><span class="p">[</span><span class="n">MAXDATASIZE</span><span class="p">],</span><span class="n">recvline</span><span class="p">[</span><span class="n">MAXDATASIZE</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+
+<span class="n">printf</span><span class="p">(</span><span class="s">"Connected to server. </span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"Input client's name : "</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">sendline</span><span class="p">,</span> <span class="n">MAXDATASIZE</span><span class="p">,</span> <span class="n">fp</span><span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Exit.</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">send</span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="n">sendline</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">sendline</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>
+<span class="k">while</span><span class="p">(</span><span class="n">getMessage</span><span class="p">(</span><span class="n">sendline</span><span class="p">,</span> <span class="n">MAXDATASIZE</span><span class="p">,</span> <span class="n">fp</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">send</span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="n">sendline</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">sendline</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">((</span><span class="n">num</span> <span class="o">=</span><span class="n">recv</span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span> <span class="n">recvline</span><span class="p">,</span> <span class="n">MAXDATASIZE</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"Server terminated.</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">recvline</span><span class="p">[</span><span class="n">num</span><span class="p">]</span><span class="o">=</span><span class="sc">'\0'</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"Server Message: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">recvline</span><span class="p">);</span>
+
+<span class="p">}</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Exit.</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">char</span> <span class="o">*</span><span class="nf">getMessage</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">sendline</span><span class="p">,</span><span class="kt">int</span> <span class="n">len</span><span class="p">,</span> <span class="kt">FILE</span><span class="o">*</span> <span class="n">fp</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"Inputstring to server:"</span><span class="p">);</span>
+<span class="k">return</span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">sendline</span><span class="p">,</span><span class="n">MAXDATASIZE</span><span class="p">,</span> <span class="n">fp</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2015/06/02/linux-thread-code/">linux多线程编程</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2015/11/02/pythonchallenge/">python challenge</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2015/07/05/TSD-thread-safe/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2015/07/05/TSD-thread-safe/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

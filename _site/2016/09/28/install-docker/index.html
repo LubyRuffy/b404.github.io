@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>ubuntu16.04 install docker</title>
+    <meta name="description" content="ubuntu16.04 install docker">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2016/09/28/install-docker/">
+    <link rel="alternate" type="application/rss+xml" title="Jirairya" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?973906e37cc7bcb6714807627cf64ec6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-111240288-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Jirairya</a>
+        <small></small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collections/">
+                        
+                            <i class="fa fa-folder-open"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/skills/">
+                        
+                            <i class="fa fa-bezier-curve"></i>Skills
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tools/">
+                        
+                            <i class="fa fa-toolbox"></i>Tools
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-paper-plane"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>ubuntu16.04 install docker</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2016-09-28
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#tools" title="Category: tools" rel="category">tools</a>&nbsp;
+    
+        <a href="/category/#environment" title="Category: environment" rel="category">environment</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#reading-notes" title="Tag: reading-notes" rel="tag">reading-notes</a-->
+        <a href="/tag/#reading-notes" title="Tag: reading-notes" rel="tag">reading-notes</a>&nbsp;
+    
+        <!--a href="/tag/#tools" title="Tag: tools" rel="tag">tools</a-->
+        <a href="/tag/#tools" title="Tag: tools" rel="tag">tools</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <p>ubuntu16.04 install docker</p>
+
+<ul id="markdown-toc">
+  <li><a href="#安装docker" id="markdown-toc-安装docker">安装Docker：</a></li>
+  <li><a href="#docker的使用" id="markdown-toc-docker的使用">Docker的使用</a>    <ul>
+      <li><a href="#提交容器的更改到docker-镜像" id="markdown-toc-提交容器的更改到docker-镜像">提交容器的更改到Docker 镜像</a></li>
+      <li><a href="#监听docker容器情况" id="markdown-toc-监听docker容器情况">监听Docker容器情况：</a></li>
+      <li><a href="#push-docker镜像到docker仓库" id="markdown-toc-push-docker镜像到docker仓库">push Docker镜像到Docker仓库</a></li>
+    </ul>
+  </li>
+</ul>
+
+<!--more-->
+
+<blockquote>
+  <p>Ubuntu宿主机安装的条件如下：</p>
+  <blockquote>
+    <p>1.内核</p>
+  </blockquote>
+</blockquote>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span> <span class="o">&gt;</span><span class="nt">uname</span> <span class="nt">-a</span>
+<span class="nt">Linux</span> <span class="nt">admin</span> <span class="nt">4</span><span class="nc">.4.0-38-generic</span> <span class="nf">#57-Ubuntu</span> <span class="nt">SMP</span> <span class="nt">Tue</span> <span class="nt">Sep</span> <span class="nt">6</span> <span class="nt">15</span><span class="nd">:42:33</span> <span class="nt">UTC</span> <span class="nt">2016</span> <span class="nt">x86_64</span> <span class="nt">x86_64</span> <span class="nt">x86_64</span> <span class="nt">GNU</span><span class="o">/</span><span class="nt">Linux</span>
+</code></pre></div></div>
+
+<blockquote>
+  <blockquote>
+    <ul>
+      <li>64位的Ubuntu内核需要3.10及更高的版本</li>
+    </ul>
+  </blockquote>
+</blockquote>
+
+<blockquote>
+  <blockquote>
+    <p>2.检查Device Mapper</p>
+    <blockquote>
+      <p>Device Mapper作为存储器驱动。2.69版本的的Linux内核开始集成Device Mapper，并且提供一个将块设备映射到高级虚拟器的方法。Device Mapper支持“自动精简配置”。Device Mapper作为Docker的存储驱动再合适不过。</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<blockquote>
+  <blockquote>
+    <p>可通过以下代码检测是否安装：</p>
+  </blockquote>
+</blockquote>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span> <span class="o">&gt;</span><span class="nt">ls</span> <span class="nt">-l</span> <span class="o">/</span><span class="nt">sys</span><span class="o">/</span><span class="nt">class</span><span class="o">/</span><span class="nt">misc</span><span class="o">/</span><span class="nt">device-mapper</span>
+<span class="nt">lrwxrwxrwx</span> <span class="nt">1</span> <span class="nt">root</span> <span class="nt">root</span> <span class="nt">0</span> <span class="nt">9</span><span class="err">月</span>  <span class="nt">28</span> <span class="nt">18</span><span class="nd">:50</span> <span class="o">/</span><span class="nt">sys</span><span class="o">/</span><span class="nt">class</span><span class="o">/</span><span class="nt">misc</span><span class="o">/</span><span class="nt">device-mapper</span> <span class="nt">-</span><span class="o">&gt;</span> <span class="o">../../</span><span class="nt">devices</span><span class="o">/</span><span class="nt">virtual</span><span class="o">/</span><span class="nt">misc</span><span class="o">/</span><span class="nt">device-mapper</span>  <span class="err">#检查</span><span class="nt">Device</span> <span class="nt">Mapper</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span> <span class="o">&gt;</span><span class="nt">sudo</span> <span class="nt">grep</span> <span class="nt">device-mapper</span> <span class="nc">.proc</span><span class="o">/</span><span class="nt">devices</span>
+<span class="o">[</span><span class="nt">sudo</span><span class="o">]</span> <span class="nt">b404</span> <span class="err">的密码：</span> 
+<span class="nt">grep</span><span class="o">:</span> <span class="nc">.proc</span><span class="o">/</span><span class="nt">devices</span><span class="o">:</span> <span class="err">没有那个文件或目</span>  <span class="err">#在</span><span class="nt">Ubuntu</span><span class="err">的</span><span class="nt">proc</span><span class="err">中检查</span><span class="nt">Device</span> <span class="nt">Mapper</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span> <span class="o">&gt;</span><span class="nt">sudo</span> <span class="nt">modprobe</span> <span class="nt">dm_mod</span>    <span class="err">#加载</span><span class="nt">Device</span> <span class="nt">Mapper</span><span class="err">模块</span>
+<span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span> <span class="o">&gt;</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="安装docker">安装Docker：</h1>
+
+<p>@[Docker, Ubuntu]</p>
+
+<ol>
+  <li>更新软件包数据:</li>
+</ol>
+
+<pre><code class="language-Shell">➜ /home/b404 &gt;sudo apt-get update
+</code></pre>
+
+<ol>
+  <li>把离线的Docker仓库GPG密钥添加到系统中:</li>
+</ol>
+
+<pre><code class="language-Shell"> ➜ /home/b404 &gt;sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+Executing: /tmp/tmp.qh3kVjqff2/gpg.1.sh --keyserver
+hkp://p80.pool.sks-keyservers.net:80
+--recv-keys
+58118E89F3A912897C070ADBF76221572C52609D
+gpg: 下载密钥‘2C52609D’，从 hkp 服务器 p80.pool.sks-keyservers.net
+gpg: 密钥 2C52609D：公钥“Docker Release Tool (releasedocker) &lt;docker@docker.com&gt;”已导入
+gpg: 合计被处理的数量：1
+gpg:               已导入：1  (RSA: 1)
+</code></pre>
+<ol>
+  <li>添加Docker 仓库到APT源：</li>
+</ol>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">➜</span> <span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">b404</span> <span class="o">&gt;</span><span class="nt">echo</span> <span class="s1">"deb https://apt.dockerproject.org/repo ubuntu-xenial main"</span> <span class="o">|</span> <span class="nt">sudo</span> <span class="nt">tee</span> <span class="o">/</span><span class="nt">etc</span><span class="o">/</span><span class="nt">apt</span><span class="o">/</span><span class="nt">sources</span><span class="nc">.list.d</span><span class="o">/</span><span class="nt">docker</span><span class="nc">.list</span>
+<span class="nt">deb</span> <span class="nt">https</span><span class="o">://</span><span class="nt">apt</span><span class="nc">.dockerproject.org</span><span class="o">/</span><span class="nt">repo</span> <span class="nt">ubuntu-xenial</span> <span class="nt">main</span>
+</code></pre></div></div>
+
+<ol>
+  <li>将具有Docker安装包的软件源列表更新：</li>
+</ol>
+
+<pre><code class="language-Shell">➜ /home/b404 &gt;sudo apt-get update
+
+</code></pre>
+
+<ol>
+  <li>确定软件源中添加了Docker：</li>
+</ol>
+
+<pre><code class="language-Shell">➜ /home/b404 &gt;apt-cache policy docker-engine
+docker-engine:
+  已安装：(无)
+  候选： 1.12.1-0~xenial
+  版本列表：
+     1.12.1-0~xenial 500
+        500 https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+     1.12.0-0~xenial 500
+        500 https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+     1.11.2-0~xenial 500
+        500 https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+     1.11.1-0~xenial 500
+        500 https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+     1.11.0-0~xenial 500
+        500 https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+</code></pre>
+
+<ol>
+  <li>最后安装</li>
+</ol>
+
+<pre><code class="language-Shell">➜ /home/b404 &gt;sudo apt-get install -y docker-engine 
+正在读取软件包列表... 完成
+正在分析软件包的依赖关系树       
+正在读取状态信息... 完成       
+将会同时安装下列软件：
+  aufs-tools cgroupfs-mount
+下列【新】软件包将被安装：
+  aufs-tools cgroupfs-mount docker-engine
+升级了 0 个软件包，新安装了 3 个软件包，要卸载 0 个软件包，有 10 个软件包未被升级。
+需要下载 19.6 MB 的归档。
+解压缩后会消耗 102 MB 的额外空间。
+获取:1 http://cn.archive.ubuntu.com/ubuntu xenial/universe amd64 aufs-tools amd64 1:3.2+20130722-1.1ubuntu1 [92.9 kB]
+获取:2 http://cn.archive.ubuntu.com/ubuntu xenial/universe amd64 cgroupfs-mount all 1.2 [4,970 B]
+获取:3 https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 docker-engine amd64 1.12.1-0~xenial [19.5 MB]
+</code></pre>
+
+<ol>
+  <li>检查Docker是否运行：</li>
+</ol>
+
+<pre><code class="language-Shell">➜ /home/b404 &gt;sudo systemctl status docker
+[sudo] b404 的密码： 
+● docker.service - Docker Application Container Engine
+   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: e
+   Active: active (running) since 三 2016-09-28 22:14:00 CST; 1h 51min ago
+     Docs: https://docs.docker.com
+ Main PID: 11177 (dockerd)
+    Tasks: 20
+   Memory: 17.6M
+      CPU: 3.620s
+   CGroup: /system.slice/docker.service
+           ├─11177 /usr/bin/dockerd -H fd://
+           └─11184 docker-containerd -l unix:///var/run/docker/libcontainerd/doc
+9月 28 22:14:00 admin dockerd[11177]: time="2016-09-28T22:14:00.155743979+08:00" 
+9月 28 22:14:00 admin dockerd[11177]: time="2016-09-28T22:14:00.156382665+08:00" 
+...
+</code></pre>
+
+<blockquote>
+  <p>默认docker运行需要root权限，在执行命令时候必须加上sudo。如果想在使用docker命令时候避免使用sudo，可以将用户名加入docker组中：</p>
+  <blockquote>
+    <p>sudo usermod -aG docker $(whoami)
+sudo username -aG docker username</p>
+    <blockquote>
+      <p><em>username</em>是系统用户名；添加之后可以直接运行docker</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<hr />
+
+<h1 id="docker的使用">Docker的使用</h1>
+
+<ul>
+  <li>可以运行docker命令查看所有指令:</li>
+</ul>
+
+<pre><code class="language-Shell">➜ /home/b404 &gt;docker
+Usage: docker [OPTIONS] COMMAND [arg...]
+       docker [ --help | -v | --version ]
+
+A self-sufficient runtime for containers.
+
+Options:
+
+  --config=~/.docker              Location of client config files
+  -D, --debug                     Enable debug mode
+  -H, --host=[]                   Daemon socket(s) to connect to
+  -h, --help                      Print usage
+  -l, --log-level=info            Set the logging level
+  --tls                           Use TLS; implied by --tlsverify
+  --tlscacert=~/.docker/ca.pem    Trust certs signed only by this CA
+  --tlscert=~/.docker/cert.pem    Path to TLS certificate file
+  --tlskey=~/.docker/key.pem      Path to TLS key file
+  --tlsverify                     Use TLS and verify the remote
+  -v, --version                   Print version information and quit
+
+Commands:
+    attach    Attach to a running container
+    build     Build an image from a Dockerfile
+    commit    Create a new image from a container's changes
+    cp        Copy files/folders between a container and the local filesystem
+    create    Create a new container
+    diff      Inspect changes on a container's filesystem
+    events    Get real time events from the server
+    exec      Run a command in a running container
+    export    Export a container's filesystem as a tar archive
+    history   Show the history of an image
+    images    List images
+    import    Import the contents from a tarball to create a filesystem image
+    info      Display system-wide information
+    inspect   Return low-level information on a container, image or task
+    kill      Kill one or more running containers
+    load      Load an image from a tar archive or STDIN
+    login     Log in to a Docker registry.
+    logout    Log out from a Docker registry.
+    logs      Fetch the logs of a container
+    network   Manage Docker networks
+    node      Manage Docker Swarm nodes
+    pause     Pause all processes within one or more containers
+    port      List port mappings or a specific mapping for the container
+    ps        List containers
+    pull      Pull an image or a repository from a registry
+    push      Push an image or a repository to a registry
+    rename    Rename a container
+    restart   Restart a container
+    rm        Remove one or more containers
+    rmi       Remove one or more images
+    run       Run a command in a new container
+    save      Save one or more images to a tar archive (streamed to STDOUT by default)
+    search    Search the Docker Hub for images
+    service   Manage Docker services
+    start     Start one or more stopped containers
+    stats     Display a live stream of container(s) resource usage statistics
+    stop      Stop one or more running containers
+    swarm     Manage Docker Swarm
+    tag       Tag an image into a repository
+    top       Display the running processes of a container
+    unpause   Unpause all processes within one or more containers
+    update    Update configuration of one or more containers
+    version   Show the Docker version information
+    volume    Manage Docker volumes
+    wait      Block until a container stops, then print its exit code
+
+Run 'docker COMMAND --help' for more information on a command.
+```Shell
+* 查询每个命令的用法:
+
+</code></pre>
+<p>docker docker-subcommand –help</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+```Shell
+➜ /home/b404 &gt;docker search --help
+
+Usage:  docker search [OPTIONS] TERM
+
+Search the Docker Hub for images
+
+Options:
+  -f, --filter value   Filter output based on conditions provided (default [])
+      --help           Print usage
+      --limit int      Max number of search results (default 25)
+      --no-trunc       Don't truncate output
+</code></pre></div></div>
+
+<ul>
+  <li>查看当前系统使用Docker的情况：</li>
+</ul>
+
+<pre><code class="language-Shell"> ➜ /home/b404 &gt;sudo docker info
+[sudo] b404 的密码： 
+Containers: 0
+ Running: 0
+ Paused: 0
+ Stopped: 0
+Images: 0
+Server Version: 1.12.1
+Storage Driver: aufs
+ Root Dir: /var/lib/docker/aufs
+ Backing Filesystem: extfs
+ Dirs: 0
+ Dirperm1 Supported: true
+Logging Driver: json-file
+Cgroup Driver: cgroupfs
+Plugins:
+ Volume: local
+ Network: host bridge null overlay
+Swarm: inactive
+Runtimes: runc
+Default Runtime: runc
+Security Options: apparmor seccomp
+Kernel Version: 4.4.0-38-generic
+</code></pre>
+
+<ul>
+  <li>检查是否连接并从Docker Hub中下载了镜像:</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">➜</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">b404</span> <span class="o">&gt;</span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">run</span> <span class="n">hello</span><span class="o">-</span><span class="n">world</span>
+
+<span class="n">Hello</span> <span class="k">from</span> <span class="n">Docker</span><span class="err">!</span>
+<span class="n">This</span> <span class="n">message</span> <span class="n">shows</span> <span class="n">that</span> <span class="n">your</span> <span class="n">installation</span> <span class="n">appears</span> <span class="n">to</span> <span class="n">be</span> <span class="n">working</span> <span class="n">correctly</span><span class="o">.</span>
+
+<span class="n">To</span> <span class="n">generate</span> <span class="n">this</span> <span class="n">message</span><span class="p">,</span> <span class="n">Docker</span> <span class="n">took</span> <span class="n">the</span> <span class="n">following</span> <span class="n">steps</span><span class="p">:</span>
+ <span class="mf">1.</span> <span class="n">The</span> <span class="n">Docker</span> <span class="n">client</span> <span class="n">contacted</span> <span class="n">the</span> <span class="n">Docker</span> <span class="n">daemon</span><span class="o">.</span>
+ <span class="mf">2.</span> <span class="n">The</span> <span class="n">Docker</span> <span class="n">daemon</span> <span class="n">pulled</span> <span class="n">the</span> <span class="s">"hello-world"</span> <span class="n">image</span> <span class="k">from</span> <span class="n">the</span> <span class="n">Docker</span> <span class="n">Hub</span><span class="o">.</span>
+ <span class="mf">3.</span> <span class="n">The</span> <span class="n">Docker</span> <span class="n">daemon</span> <span class="n">created</span> <span class="n">a</span> <span class="n">new</span> <span class="n">container</span> <span class="k">from</span> <span class="n">that</span> <span class="n">image</span> <span class="n">which</span> <span class="n">runs</span> <span class="n">the</span>
+    <span class="n">executable</span> <span class="n">that</span> <span class="n">produces</span> <span class="n">the</span> <span class="n">output</span> <span class="n">you</span> <span class="n">are</span> <span class="n">currently</span> <span class="n">reading</span><span class="o">.</span>
+ <span class="mf">4.</span> <span class="n">The</span> <span class="n">Docker</span> <span class="n">daemon</span> <span class="n">streamed</span> <span class="n">that</span> <span class="n">output</span> <span class="n">to</span> <span class="n">the</span> <span class="n">Docker</span> <span class="n">client</span><span class="p">,</span> <span class="n">which</span> <span class="n">sent</span> <span class="n">it</span>
+    <span class="n">to</span> <span class="n">your</span> <span class="n">terminal</span><span class="o">.</span>
+
+<span class="n">To</span> <span class="k">try</span> <span class="n">something</span> <span class="n">more</span> <span class="n">ambitious</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">run</span> <span class="n">an</span> <span class="n">Ubuntu</span> <span class="n">container</span> <span class="k">with</span><span class="p">:</span>
+ <span class="err">$</span> <span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">ubuntu</span> <span class="n">bash</span>
+
+<span class="n">Share</span> <span class="n">images</span><span class="p">,</span> <span class="n">automate</span> <span class="n">workflows</span><span class="p">,</span> <span class="ow">and</span> <span class="n">more</span> <span class="k">with</span> <span class="n">a</span> <span class="n">free</span> <span class="n">Docker</span> <span class="n">Hub</span> <span class="n">account</span><span class="p">:</span>
+ <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">hub</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">com</span>
+
+<span class="n">For</span> <span class="n">more</span> <span class="n">examples</span> <span class="ow">and</span> <span class="n">ideas</span><span class="p">,</span> <span class="n">visit</span><span class="p">:</span>
+ <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">docs</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">engine</span><span class="o">/</span><span class="n">userguide</span><span class="o">/</span>
+</code></pre></div></div>
+<ul>
+  <li>从Docker Hub查找docker镜像：</li>
+</ul>
+
+<pre><code class="language-Shell">➜ /home/b404 &gt;sudo docker search ubuntu
+NAME                              DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+ubuntu                            Ubuntu is a Debian-based Linux operating s...   4789      [OK]       
+ubuntu-upstart                    Upstart is an event-based replacement for ...   67        [OK]       
+rastasheep/ubuntu-sshd            Dockerized SSH service, built on top of of...   42                   [OK]
+ubuntu-debootstrap                debootstrap --variant=minbase --components...   27        [OK]       
+torusware/speedus-ubuntu          Always updated official Ubuntu docker imag...   27                   [OK]
+nickistre/ubuntu-lamp             LAMP server on Ubuntu                           9                    [OK]
+...
+</code></pre>
+<ul>
+  <li>通过pull命令拉取镜像：</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>➜ /home/b404 &gt;sudo docker pull ubuntu
+Using default tag: latest
+latest: Pulling from library/ubuntu
+cad964aed91d: Pull complete 
+3a80a22fea63: Pull complete 
+50de990d7957: Pull complete 
+61e032b8f2cb: Pull complete 
+9f03ce1741bf: Pull complete 
+Digest: sha256:28d4c5234db8d5a634d5e621c363d900f8f241240ee0a6a978784c978fe9c737
+Status: Downloaded newer image for ubuntu:latest
+</code></pre></div></div>
+<p>*在镜像下载完之后，可通过run运行镜像：</p>
+
+<pre><code class="language-Shell">➜ /home/b404 &gt;sudo docker run ubuntu
+</code></pre>
+
+<blockquote>
+  <p>查看镜像问题</p>
+</blockquote>
+
+<pre><code class="language-Shell">➜ /home/b404 &gt;sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              latest              c73a085dc378        2 days ago          127.1 MB
+hello-world         latest              c54a2cc56cbb        12 weeks ago        1.848 kB
+➜ /home/b404 &gt;
+</code></pre>
+<ul>
+  <li>通过-i和-t进入交互式shell中：</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">➜</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">b404</span> <span class="o">&gt;</span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">ubuntu</span> 
+<span class="n">root</span><span class="err">@</span><span class="mi">36672865</span><span class="n">d258</span><span class="p">:</span><span class="o">/</span><span class="c"># whoami</span>
+<span class="n">root</span>
+<span class="n">root</span><span class="err">@</span><span class="mi">36672865</span><span class="n">d258</span><span class="p">:</span><span class="o">/</span><span class="c"># uname -a</span>
+<span class="n">Linux</span> <span class="mi">36672865</span><span class="n">d258</span> <span class="mf">4.4</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="mi">38</span><span class="o">-</span><span class="n">generic</span> <span class="c">#57-Ubuntu SMP Tue Sep 6 15:42:33 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux</span>
+<span class="n">root</span><span class="err">@</span><span class="mi">36672865</span><span class="n">d258</span><span class="p">:</span><span class="o">/</span><span class="c"># ls</span>
+<span class="nb">bin</span>   <span class="n">dev</span>  <span class="n">home</span>  <span class="n">lib64</span>  <span class="n">mnt</span>  <span class="n">proc</span>  <span class="n">run</span>   <span class="n">srv</span>  <span class="n">tmp</span>  <span class="n">var</span>
+<span class="n">boot</span>  <span class="n">etc</span>  <span class="n">lib</span>   <span class="n">media</span>  <span class="n">opt</span>  <span class="n">root</span>  <span class="n">sbin</span>  <span class="n">sys</span>  <span class="n">usr</span>
+<span class="n">root</span><span class="err">@</span><span class="mi">36672865</span><span class="n">d258</span><span class="p">:</span><span class="o">/</span><span class="c"># cd home</span>
+<span class="n">root</span><span class="err">@</span><span class="mi">36672865</span><span class="n">d258</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="c"># ls</span>
+<span class="n">root</span><span class="err">@</span><span class="mi">36672865</span><span class="n">d258</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="c"># </span>
+</code></pre></div></div>
+<ul>
+  <li>可以在容器里运行任何命令，不用使用sudo，已经具有root权限：</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@36672865d258:/home# apt-get update
+Get:1 http://archive.ubuntu.com/ubuntu xenial InRelease [247 kB]
+Get:2 http://archive.ubuntu.com/ubuntu xenial-updates InRelease [95.7 kB]
+Get:3 http://archive.ubuntu.com/ubuntu xenial-security InRelease [94.5 kB]
+Get:4 http://archive.ubuntu.com/ubuntu xenial/main Sources [1103 kB]
+...
+</code></pre></div></div>
+<ul>
+  <li>在容器里可以像正常主机一样安装任何东西:</li>
+</ul>
+
+<pre><code class="language-Shell">root@36672865d258:/home# apt-get install -y nodejs
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  libicu55 libssl1.0.0 libuv1
+The following NEW packages will be installed:
+  libicu55 libssl1.0.0 libuv1 nodejs
+0 upgraded, 4 newly installed, 0 to remove and 0 not upgraded.
+Need to get 11.9 MB of archives.
+...
+</code></pre>
+<hr />
+
+<h2 id="提交容器的更改到docker-镜像">提交容器的更改到Docker 镜像</h2>
+
+<blockquote>
+  <p>Docker文件系统是默认设置的。如果开启一个Docker镜像，可以像虚拟机一样创建、更改、删除。然而，如果关闭容器再次打开时候，所有的更改都会丢失。但是可以新Docker镜像来保存容器的状态。</p>
+  <ul>
+    <li>把容器的状态保存为一个新的镜像，首先要从其退出:</li>
+  </ul>
+</blockquote>
+
+<pre><code class="language-Shell">root@36672865d258:/home# exit
+exit
+</code></pre>
+
+<ul>
+  <li>提交更改到一个新的镜像，可以使用以下命令：</li>
+</ul>
+
+<pre><code class="language-Shell">docker commit -m "What did you do to the image" -a "Author Name" container-id repository/new_image_name
+</code></pre>
+<blockquote>
+  <blockquote>
+
+    <p>-m参数是备注提交的内容，-a是标明作者，container-id是开启docker使用时候的。除非增添了仓库在Docker Hub，否则仓库名字一般是自己的Docker Hub名字</p>
+  </blockquote>
+</blockquote>
+
+<pre><code class="language-Shell">➜ /home/b404 &gt;sudo docker commit -m "added node.js" -a "b404" 36672865d258 test/ubuntu-nodejs
+[sudo] b404 的密码： 
+sha256:8f8bc42c9d82d7346bd09ffb1533dd0ac58adab2b72bf45d76f102e9b1830973
+</code></pre>
+<ul>
+  <li>当使用commit一个镜像之后，新的镜像就存储在本地。这时候通过docker images来查看：</li>
+</ul>
+
+<pre><code class="language-Shell">➜ /home/b404 &gt;sudo docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+test/ubuntu-nodejs   latest              8f8bc42c9d82        12 seconds ago      170.3 MB
+ubuntu               latest              c73a085dc378        2 days ago          127.1 MB
+hello-world          latest              c54a2cc56cbb        12 weeks ago        1.848 kB
+</code></pre>
+
+<blockquote>
+  <p>下次使用就可以接着使用上次commit的镜像</p>
+</blockquote>
+
+<hr />
+
+<h2 id="监听docker容器情况">监听Docker容器情况：</h2>
+
+<ul>
+  <li>查看正在运行的情况：</li>
+</ul>
+
+<pre><code class="language-Shell">➜ /home/b404 &gt;sudo docker ps
+[sudo] b404 的密码： 
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+119a9c92099c        ubuntu              "/bin/bash"         16 seconds ago      Up 15 seconds                           sad_mestorf
+</code></pre>
+<ul>
+  <li>查看所有容器的情况：</li>
+</ul>
+
+<pre><code class="language-Shell">➜ /home/b404 &gt;sudo docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                         PORTS               NAMES
+119a9c92099c        ubuntu              "/bin/bash"         36 seconds ago      Up 35 seconds                                      sad_mestorf
+36672865d258        ubuntu              "/bin/bash"         33 minutes ago      Exited (100) 15 minutes ago                        serene_minsky
+c82569274e39        ubuntu              "/bin/bash"         40 minutes ago      Exited (0) 40 minutes ago                          kickass_swartz
+29baff70425e        hello-world         "/hello"            About an hour ago   Exited (0) About an hour ago                       serene_allen
+a241c03cf7e4        hello-world         "/hello"            About an hour ago   Exited (0) About an hour ago                       clever_darwin
+</code></pre>
+<ul>
+  <li>查看最新创建的容器：</li>
+</ul>
+
+<pre><code class="language-Shell">➜ /home/b404 &gt;sudo docker ps -l
+CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS              PORTS               NAMES
+119a9c92099c        ubuntu              "/bin/bash"         About a minute ago   Up About a minute                       sad_mestorf
+</code></pre>
+<ul>
+  <li>销毁指定的容器：</li>
+</ul>
+
+<pre><code class="language-Shell">➜ /home/b404 &gt;sudo docker stop 119a9c92099c 
+119a9c92099c
+</code></pre>
+<hr />
+
+<h2 id="push-docker镜像到docker仓库">push Docker镜像到Docker仓库</h2>
+
+<blockquote>
+  <p>登录Docker Hub，push一个镜像到Docker到一个Docker Hub或者是一个Docker仓库</p>
+</blockquote>
+
+<ul>
+  <li>登录Docker Hub:</li>
+</ul>
+
+<pre><code class="language-Shell">docker login -u docker-registry-username
+</code></pre>
+
+<ul>
+  <li>登录成功之后，push自己的镜像：</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker push docker-registry-username/docker-image-name
+</code></pre></div></div>
+
+<ul>
+  <li>在push时候，会输出类似于下面的字符串:</li>
+</ul>
+
+<pre><code class="language-Shell">The push refers to a repository [docker.io/test/ubuntu-nodejs]
+e3fbbfb44187: Pushed
+5f70bf18a086: Pushed
+a3b5c80a4eba: Pushed
+7f18b442972b: Pushed
+3ce512daaf78: Pushed
+7aae4540b42d: Pushed
+....
+</code></pre>
+<ul>
+  <li>在push完成之后，可以在docker仓库中查看自己的镜像</li>
+</ul>
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/01/04/command-and-control-images/">command-and-control-images
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2016/09/21/brute-force/">密码破解</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2016/10/17/javascript-dom-notes/">Javascript-DOM</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2016/09/28/install-docker/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2016/09/28/install-docker/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//http-b404-xyz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             The quieter you become, the more you can hear. 
+        </p>
+
+        <br>
+        <p class="contact">
+             
+            <a href="https://github.com/9jan" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:jirairya404@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+            
+        </p>
+        <!--
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+    -->
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>
