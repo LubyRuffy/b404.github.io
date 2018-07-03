@@ -420,6 +420,97 @@ apache hostname:.nist.gov
 ![Alt text](/img/shodan/1517823589050.png)
 
 
+### 	图标搜索
+
+
+#### 通过已知icon hash搜索目标
+
+**0x01 获取谷歌地址** 
+
+ping一下google，获得一个谷歌ip，为`172.217.27.174`：
+
+![Alt text](/img/shodan/1530573983568.png)
+
+**0x02 查看原数据** 
+
+使用shodan搜索刚才获取的IP，并找到查看原始数据那一行：
+
+![Alt text](/img/shodan/1530574292469.png)
+
+**0x03 查找favicon hash**
+
+打开原始数据，找到`data.1.http.favicon.hash`，其值为`708578229`:
+
+![Alt text](/img/shodan/1530574515697.png)
+
+**0x04 图标hash搜索** 
+
+在Shodan网页搜索的过滤器处输入`http.favicon.hash:708578229`就可以搜索shodan所收录的谷歌的网站。
+
+![Alt text](/img/shodan/1530574667307.png)
+
+**0x05 favicon data** 
+
+`data.1.http.favicon.data`的值是base64,可以自行验证
+
+![Alt text](/img/shodan/1530575325593.png)
+
+#### 通过未知icon hash搜索目标
+
+**0x01 背景** 
+
+在日一个站的时候只有一个登陆界面的时候，没有其他信息，只有一个icon的时候，这时候就可以通过shodan搜索相同模板的站来入手，找突破口。
+
+如果目标已经被shodan收录，直接搜索对应的IP就能通过上述方法进行图标hash搜索。如果是目标未被收录，就可以通过现在这个方法来进行侧面突破。
+
+**0x02 原理**
+
+shodan对icon的处理其实是通过`MurmurHash`进行存储的。urmurHash 是一种非加密型哈希函数，适用于一般的哈希检索操作。由Austin Appleby在2008年发明，并出现了多个变种，[6] 都已经发布到了公有领域(public domain)。与其它流行的哈希函数相比，对于规律性较强的key，MurmurHash的随机分布特征表现更良好。其地址在github上https://github.com/hajimes/mmh3
+
+
+![Alt text](/img/shodan/1530575887237.png)
+
+**0x03 icon hash的生成验证**
+
+直接在本地使用pip安装mmh3。
+
+
+
+验证代码如下：
+
+```python
+import mmh3
+import requests
+response = requests.get('https://www.baidu.com/favicon.ico')
+favicon = response.content.encode('base64')
+hash = mmh3.hash(favicon)
+print hash
+```
+![Alt text](/img/shodan/1530576114283.png)
+
+运行验证代码获得icon hash
+
+在shodan中进行`http.favicon.hash:-1507567067`搜索，验证成功：
+
+![Alt text](/img/shodan/1530576267114.png)
+
+**0x04 扩展**
+
+例如`http://common.cnblogs.com/favicon.ico`得到博客园的icon：
+
+![Alt text](/img/shodan/1530577989860.png)
+
+直接将图标地址放入脚本中计算其hash值，得到`-395680774`：
+
+![Alt text](/img/shodan/1530577955693.png)
+
+再在shodan中搜索`http.favicon.hash:-395680774`：
+
+![Alt text](/img/shodan/1530578093536.png)
+
+
+
+
 
 
 ### Shodan地图
@@ -2508,5 +2599,6 @@ e8 76 07 b2 e5 5e  8e 3e a4 45 61 2f 6a 2d  |...v...^.>.Ea/j-|\n 00000080  5d 11
 - [灯塔实验室](http://plcscan.org/blog/)：http://plcscan.org/blog/
 - [网络空间工控设备的发现与入侵](https://github.com/evilcos/papers)：https://github.com/evilcos/papers
 - [工控](http://b404.xyz/2017/10/27/industrial-control/)：http://b404.xyz/2017/10/27/industrial-control/
+- [Shodan的http.favicon.hash语法详解](https://mp.weixin.qq.com/s/B9DdQGUZR1GHBPnNACPRKA)
 
 ![2](D:\我的文章\投稿文章\jirairya\Shodan——从入门到放弃(md版本)\Shodan——从入门到放弃(md版本)\2.png)
