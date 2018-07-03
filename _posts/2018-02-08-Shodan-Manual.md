@@ -18,8 +18,7 @@ description: 本文主要对[Complete Guide to Shodan]的内容进行增、删�
 * TOC
 {:toc}
 
-现由[ph0rse](http://ph0rse.me/)和Jirairya共同修订，欢迎大家issue
-> **_PS:本来本文投稿于[信安之路](http://www.myh0st.cn/)（http://mp.weixin.qq.com/s/SVl_YLhcfNgHya6jEnKx1g）的， 后@[ph0rse](http://ph0rse.me/)建议放于gitbook上，方便大家在线查阅、共同维护，就有了[gitbook版本](https://b404.gitbooks.io/shodan-manual/content/) （https://b404.gitbooks.io/shodan-manual/content/）
+ **_PS:本文投稿于[信安之路](http://www.myh0st.cn/)（http://mp.weixin.qq.com/s/SVl_YLhcfNgHya6jEnKx1g）的， 后@[ph0rse](http://ph0rse.me/)建议放于gitbook上，方便大家在线查阅、共同维护，就有了[gitbook版本](https://b404.gitbooks.io/shodan-manual/content/) （https://b404.gitbooks.io/shodan-manual/content/）
 
 <!--more-->
 
